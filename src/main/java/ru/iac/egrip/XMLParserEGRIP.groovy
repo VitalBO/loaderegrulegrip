@@ -2,7 +2,7 @@ package ru.iac.egrip
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import ru.iac.PersistEgrip
+import ru.iac.EgrulDBDAO
 import ru.iac.Util
 import ru.iac.entity.*
 
@@ -49,13 +49,13 @@ class XMLParserEGRIP {
             //PersistEgrip.saveOrUpdate(ip)
             if (it.FOMS.@REGN_FOMS != "") {
                 it.FOMS.each {
-                    Spfoms spfoms = (Spfoms) PersistEgrip.getFromDBbyNaturalId(Spfoms.getName(), it.ORGAN_FOMS.@KOD as String)
+                    Spfoms spfoms = (Spfoms) EgrulDBDAO.getFromDBbyNaturalId(Spfoms.getName(), it.ORGAN_FOMS.@KOD as String)
                     if (spfoms == null) {
                         spfoms = new Spfoms(
                                 kod: it.ORGAN_FOMS.@KOD,
                                 name: it.ORGAN_FOMS.@NAME
                         )
-                        PersistEgrip.saveOrUpdate(spfoms)
+                        EgrulDBDAO.saveOrUpdate(spfoms)
                     }
                     //Ipfoms ipfoms = (Ipfoms) PersistEgrip.getFromDB(Ipfoms.getName(), ip.getIdip() as BigInteger)
                     //if (ipfoms == null) 
@@ -74,13 +74,13 @@ class XMLParserEGRIP {
 
             if (it.FSS.@REGN_FSS != "") {
                 it.FSS.each {
-                    Spfss spfss = (Spfss) PersistEgrip.getFromDBbyNaturalId(Spfss.getName(), it.ORGAN_FSS.@KOD as String)
+                    Spfss spfss = (Spfss) EgrulDBDAO.getFromDBbyNaturalId(Spfss.getName(), it.ORGAN_FSS.@KOD as String)
                     if (spfss == null) {
                         spfss = new Spfss(
                                 kod: it.ORGAN_FSS.@KOD,
                                 name: it.ORGAN_FSS.@NAME
                         )
-                        PersistEgrip.saveOrUpdate(spfss)
+                        EgrulDBDAO.saveOrUpdate(spfss)
                     }
 /*                    Ipfss ipfss = (Ipfss) PersistEgrip.getFromDB(Ipfss.getName(), ip.getIdip() as Integer)
                     if (ipfss == null) */
@@ -98,13 +98,13 @@ class XMLParserEGRIP {
 
             if (it.MNS.@DTSTART != "") {
                 it.MNS.each {
-                    Spmns spmns = (Spmns) PersistEgrip.getFromDBbyNaturalId(Spmns.getName(), it.ORGAN_MNS.@KOD as String)
+                    Spmns spmns = (Spmns) EgrulDBDAO.getFromDBbyNaturalId(Spmns.getName(), it.ORGAN_MNS.@KOD as String)
                     if (spmns == null) {
                         spmns = new Spmns(
                                 kod: it.ORGAN_MNS.@KOD,
                                 name: it.ORGAN_MNS.@NAME
                         )
-                        PersistEgrip.saveOrUpdate(spmns)
+                        EgrulDBDAO.saveOrUpdate(spmns)
                     }
                     //Ipmns ipmns = (Ipmns) PersistEgrip.getFromDB(Ipmns.getName(), ip.getIdip() as Integer)
                     //if (ipmns == null) 
@@ -121,13 +121,13 @@ class XMLParserEGRIP {
 
             if (it.PF.@REGN_PF != "") {
                 it.PF.each {
-                    Sppf sppf = (Sppf) PersistEgrip.getFromDBbyNaturalId(Sppf.getName(), it.ORGAN_PF.@KOD as String)
+                    Sppf sppf = (Sppf) EgrulDBDAO.getFromDBbyNaturalId(Sppf.getName(), it.ORGAN_PF.@KOD as String)
                     if (sppf == null) {
                         sppf = new Sppf(
                                 kod: Util.convertToInt(it.ORGAN_PF.@KOD),
                                 name: it.ORGAN_PF.@NAME
                         )
-                        PersistEgrip.saveOrUpdate(sppf)
+                        EgrulDBDAO.saveOrUpdate(sppf)
                     }
                     //Ippf ippf = (Ippf) PersistEgrip.getFromDB(Ippf.getName(), ip.getIdip() as Integer)
                     //if (ippf == null) 
@@ -207,13 +207,13 @@ class XMLParserEGRIP {
             if (it.OKVED.@KOD_OKVED != "") {
                 ArrayList<Ipokved> listIpOkved = new ArrayList<>()
                 it.OKVED.each {
-                    Okved okved = (Okved) PersistEgrip.getNamedQuery(Okved.FIND_BY_CODEOKVED, "codeOkved", it.@KOD_OKVED as String)
+                    Okved okved = (Okved) EgrulDBDAO.getNamedQuery(Okved.FIND_BY_CODEOKVED, "codeOkved", it.@KOD_OKVED as String)
                     if (okved == null) {
                         okved = new Okved(
                                 codeOkved: it.@KOD_OKVED,
                                 name: it.@NAME
                         )
-                        PersistEgrip.saveOrUpdate(okved)
+                        EgrulDBDAO.saveOrUpdate(okved)
                     }
                     listIpOkved.add(
                             new Ipokved(
@@ -230,12 +230,12 @@ class XMLParserEGRIP {
 
             List<Ipgosreg> ipgosregList = new ArrayList<>()
             it.REGEGRIP.each {
-                Spregorg spregorg = (Spregorg) PersistEgrip.getFromDB(Spregorg.getName(), Util.convertToBInt(it.REGORG.@ID))
+                Spregorg spregorg = (Spregorg) EgrulDBDAO.getFromDB(Spregorg.getName(), Util.convertToBInt(it.REGORG.@ID))
                 if (spregorg == null) {
                     spregorg = new Spregorg(
                             idspro: Util.convertToBInt(it.REGORG.@ID),
                             name: it.REGORG.@NAME)
-                    PersistEgrip.saveOrUpdate(spregorg)
+                    EgrulDBDAO.saveOrUpdate(spregorg)
                 }
                 Ipgosreg ipgosreg = new Ipgosreg(
                         idip: ip,
@@ -260,34 +260,34 @@ class XMLParserEGRIP {
                 List<Licenz> licenzsList = new ArrayList<>()
                 Licenz licenz;
                 it.LICENZ.each {
-                    Splicorg splicorg = (Splicorg) PersistEgrip.getFromDB(Splicorg.getName(), it.LICORG.@ID as String)
+                    Splicorg splicorg = (Splicorg) EgrulDBDAO.getFromDB(Splicorg.getName(), it.LICORG.@ID as String)
                     if (splicorg == null) {
                         splicorg = new Splicorg(
                                 id: it.LICORG.@ID,
                                 name: it.LICORG.@NAME
                         )
-                        PersistEgrip.saveOrUpdate(splicorg)
+                        EgrulDBDAO.saveOrUpdate(splicorg)
                     }
 
-                    Spsostlic spsostlic = (Spsostlic) PersistEgrip.getFromDB(Spsostlic.getName(), Util.convertToInt(it.SOSTLIC.@ID))
+                    Spsostlic spsostlic = (Spsostlic) EgrulDBDAO.getFromDB(Spsostlic.getName(), Util.convertToInt(it.SOSTLIC.@ID))
                     if (spsostlic == null) {
                         spsostlic = new Spsostlic(
                                 idsostlic: Util.convertToInt(it.SOSTLIC.@ID),
                                 name: it.SOSTLIC.@NAME
                         )
-                        PersistEgrip.saveOrUpdate(spsostlic)
+                        EgrulDBDAO.saveOrUpdate(spsostlic)
                     }
 
                     Spvidlic spvidlic = null
                     if (it.VIDLIC.@ID != "") {
-                        spvidlic = (Spvidlic) PersistEgrip.getFromDB(Spvidlic.getName(), Util.convertToBInt(it.VIDLIC.@ID))
+                        spvidlic = (Spvidlic) EgrulDBDAO.getFromDB(Spvidlic.getName(), Util.convertToBInt(it.VIDLIC.@ID))
                         if (spvidlic == null) {
                             spvidlic = new Spvidlic(
                                     idvidlic: Util.convertToBInt(it.VIDLIC.@ID),
                                     name: it.VIDLIC.@NAME_VLIC
 
                             )
-                            PersistEgrip.saveOrUpdate(spvidlic)
+                            EgrulDBDAO.saveOrUpdate(spvidlic)
                         }
                     }
                     licenz = new Licenz(
@@ -308,10 +308,10 @@ class XMLParserEGRIP {
             }
             log.debug("Start saving IP with OGRN " + ip.getIdip() + " to DB")
             try {
-                PersistEgrip.saveOrUpdate(ip)
+                EgrulDBDAO.saveOrUpdate(ip)
                 log.info("Save to EGRIP IP with OGRN " + ip.getOgrn())
                 resultImport.put(ip.getOgrn(), "Success")
-            } catch (Exception | MissingPropertyException ex) {
+            } catch (Exception ex) {
                 log.debug("Error saving EGRIP IP with OGRN " + ip.getOgrn())
                 log.debug(ex.printStackTrace())
                 resultImport.put(ip.getOgrn(), "Fail")

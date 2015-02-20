@@ -2,7 +2,7 @@ package ru.iac.egrul
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import ru.iac.PersistEgrip
+import ru.iac.EgrulDBDAO
 import ru.iac.Util
 import ru.iac.entity.*
 
@@ -22,38 +22,38 @@ public class XMLParserEGRUL {
             log.debug("Start decoding UL with OGRN " + it.@IDUL)
             Spregorg idregorgend = null
             if (it.UL_FINISH.REGORG.@ID != "") {
-                idregorgend = (Spregorg) PersistEgrip.getFromDB(Spregorg.getName(), Util.convertToBInt(it.UL_FINISH.REGORG.@ID))
+                idregorgend = (Spregorg) EgrulDBDAO.getFromDB(Spregorg.getName(), Util.convertToBInt(it.UL_FINISH.REGORG.@ID))
                 if (idregorgend == null) {
                     idregorgend = new Spregorg(
                             idspro: Util.convertToBInt(it.UL_FINISH.REGORG.@ID),
                             name: it.UL_FINISH.REGORG.@NAME
                     )
-                    PersistEgrip.saveOrUpdate(idregorgend)
+                    EgrulDBDAO.saveOrUpdate(idregorgend)
                 }
             }
             Spregorg idregorgstart = null
             if (it.UL_START.REGORG.@ID != "") {
-                idregorgstart = (Spregorg) PersistEgrip.getFromDB(Spregorg.getName(), Util.convertToBInt(it.UL_START.REGORG.@ID))
+                idregorgstart = (Spregorg) EgrulDBDAO.getFromDB(Spregorg.getName(), Util.convertToBInt(it.UL_START.REGORG.@ID))
                 if (idregorgstart == null) {
                     idregorgstart = new Spregorg(
                             idspro: Util.convertToBInt(it.UL_START.REGORG.@ID),
                             name: it.UL_START.REGORG.@NAME
                     )
-                    PersistEgrip.saveOrUpdate(idregorgstart)
+                    EgrulDBDAO.saveOrUpdate(idregorgstart)
                 }
             }
-            Spregorg idregorg = (Spregorg) PersistEgrip.getFromDB(Spregorg.getName(), Util.convertToBInt(it.REGORG.@ID))
+            Spregorg idregorg = (Spregorg) EgrulDBDAO.getFromDB(Spregorg.getName(), Util.convertToBInt(it.REGORG.@ID))
             if (idregorg == null) {
                 idregorg =
                         new Spregorg(
                                 idspro: Util.convertToBInt(it.REGORG.@ID),
                                 name: it.REGORG.@NAME
                         )
-                PersistEgrip.saveOrUpdate(idregorg)
+                EgrulDBDAO.saveOrUpdate(idregorg)
             }
             Spvidreg spvidregend = null
             if (it.UL_FINISH.VIDREG.@ID != "") {
-                spvidregend = (Spvidreg) PersistEgrip.getFromDB(Spvidreg.getName(), Util.convertToInt(it.UL_FINISH.VIDREG.@ID))
+                spvidregend = (Spvidreg) EgrulDBDAO.getFromDB(Spvidreg.getName(), Util.convertToInt(it.UL_FINISH.VIDREG.@ID))
                 if (spvidregend == null) {
                     spvidregend =
                             new Spvidreg(
@@ -61,12 +61,12 @@ public class XMLParserEGRUL {
                                     name: it.UL_FINISH.VIDREG.@NAME
 
                             )
-                    PersistEgrip.saveOrUpdate(spvidregend)
+                    EgrulDBDAO.saveOrUpdate(spvidregend)
                 }
             }
             Spvidreg spvidregstart = null
             if (it.UL_START.VIDREG.@ID != "") {
-                spvidregstart = (Spvidreg) PersistEgrip.getFromDB(Spvidreg.getName(), Util.convertToInt(it.UL_START.VIDREG.@ID))
+                spvidregstart = (Spvidreg) EgrulDBDAO.getFromDB(Spvidreg.getName(), Util.convertToInt(it.UL_START.VIDREG.@ID))
                 if (spvidregstart == null) {
                     spvidregstart =
                             new Spvidreg(
@@ -74,7 +74,7 @@ public class XMLParserEGRUL {
                                     name: it.UL_FINISH.VIDREG.@NAME
 
                             )
-                    PersistEgrip.saveOrUpdate(spvidregstart)
+                    EgrulDBDAO.saveOrUpdate(spvidregstart)
                 }
             }
             log.debug("Decoding UL with OGRN " + it.@IDUL + " begin decode UL")
@@ -102,14 +102,14 @@ public class XMLParserEGRUL {
             if (it.OKVED.@KOD_OKVED != "") {
                 ArrayList<Ulokved> listUlOkved = new ArrayList<>()
                 it.OKVED.each {
-                    Okved okved = (Okved) PersistEgrip.getNamedQuery(Okved.FIND_BY_CODEOKVED, "codeOkved", it.@KOD_OKVED as String)
+                    Okved okved = (Okved) EgrulDBDAO.getNamedQuery(Okved.FIND_BY_CODEOKVED, "codeOkved", it.@KOD_OKVED as String)
                     if (okved == null) {
                         okved = new Okved(
                                 codeOkved: it.@KOD_OKVED,
                                 name: it.@NAME
                         )
                     }
-                    PersistEgrip.saveOrUpdate(okved)
+                    EgrulDBDAO.saveOrUpdate(okved)
                     listUlOkved.add(
                             new Ulokved(
                                     idokved: okved,
@@ -125,7 +125,7 @@ public class XMLParserEGRUL {
                 it.UL_NAME.each {
                     Splang splang = null
                     if (it.NAMEI.LANG.@ID != "") {
-                        splang = (Splang) PersistEgrip.getFromDB(Splang.getName(), Util.convertToInt(it.NAMEI.LANG.@ID))
+                        splang = (Splang) EgrulDBDAO.getFromDB(Splang.getName(), Util.convertToInt(it.NAMEI.LANG.@ID))
                         if (splang == null) {
                             splang =
                                     new Splang(
@@ -133,7 +133,7 @@ public class XMLParserEGRUL {
                                             kodLang: it.NAMEI.LANG.@KOD_LANG,
                                             name: it.NAMEI.LANG.@NAME
                                     )
-                            PersistEgrip.saveOrUpdate(splang)
+                            EgrulDBDAO.saveOrUpdate(splang)
                         }
                     }
                     Ulname ulname = new Ulname()
@@ -177,7 +177,7 @@ public class XMLParserEGRUL {
                                     name: it.REGION.@NAME as String,
                                     kodKl: it.REGION.@KOD_KL as String
                             )
-                            PersistEgrip.saveOrUpdate(rg)
+                            EgrulDBDAO.saveOrUpdate(rg)
                         }
                         if (it.RAION.@ID != "") {
                             Ds ds = new Ds(
@@ -186,7 +186,7 @@ public class XMLParserEGRUL {
                                     kodKl: it.RAION.@KOD_KL as String
 
                             )
-                            PersistEgrip.saveOrUpdate(ds)
+                            EgrulDBDAO.saveOrUpdate(ds)
                         }
                         if (it.GOROD.@ID != "") {
                             Ct ct = new Ct(
@@ -195,7 +195,7 @@ public class XMLParserEGRUL {
                                     kodKl: it.GOROD.@KOD_KL as String
 
                             )
-                            PersistEgrip.saveOrUpdate(ct)
+                            EgrulDBDAO.saveOrUpdate(ct)
                         }
                         if (it.NASPUNKT.@ID != "") {
                             Cn cn = new Cn(
@@ -204,7 +204,7 @@ public class XMLParserEGRUL {
                                     kodKl: it.NASPUNKT.@KOD_KL as String
 
                             )
-                            PersistEgrip.saveOrUpdate(cn)
+                            EgrulDBDAO.saveOrUpdate(cn)
                         }
                         if (it.STREET.@ID != "") {
                             St st = new St(
@@ -213,7 +213,7 @@ public class XMLParserEGRUL {
                                     kodSt: it.STREET.@KOD_ST as String
 
                             )
-                            PersistEgrip.saveOrUpdate(st)
+                            EgrulDBDAO.saveOrUpdate(st)
                         }
                     }
 
@@ -263,14 +263,14 @@ public class XMLParserEGRUL {
                 it.UCHR.RUL.each {
                     Spregorg idregorgrul = null
                     if (it.UCHR.RUL.REGORG.@ID != "") {
-                        idregorgrul = (Spregorg) PersistEgrip.getFromDB(Spregorg.getName(), Util.convertToBInt(it.REGORG.@ID))
+                        idregorgrul = (Spregorg) EgrulDBDAO.getFromDB(Spregorg.getName(), Util.convertToBInt(it.REGORG.@ID))
                         if (idregorgrul == null) {
                             idregorgrul =
                                     new Spregorg(
                                             idspro: Util.convertToBInt(it.REGORG.@ID),
                                             name: it.REGORG.@NAME
                                     )
-                            PersistEgrip.saveOrUpdate(idregorgrul)
+                            EgrulDBDAO.saveOrUpdate(idregorgrul)
                         }
                     }
                     it.ADDRESS.each {
@@ -280,7 +280,7 @@ public class XMLParserEGRUL {
                                     name: it.REGION.@NAME as String,
                                     kodKl: it.REGION.@KOD_KL as String
                             )
-                            PersistEgrip.saveOrUpdate(rg)
+                            EgrulDBDAO.saveOrUpdate(rg)
                         }
                         if (it.RAION.@ID != "") {
                             Ds ds = new Ds(
@@ -289,7 +289,7 @@ public class XMLParserEGRUL {
                                     kodKl: it.RAION.@KOD_KL as String
 
                             )
-                            PersistEgrip.saveOrUpdate(ds)
+                            EgrulDBDAO.saveOrUpdate(ds)
                         }
                         if (it.GOROD.@ID != "") {
                             Ct ct = new Ct(
@@ -298,7 +298,7 @@ public class XMLParserEGRUL {
                                     kodKl: it.GOROD.@KOD_KL as String
 
                             )
-                            PersistEgrip.saveOrUpdate(ct)
+                            EgrulDBDAO.saveOrUpdate(ct)
                         }
                         if (it.NASPUNKT.@ID != "") {
                             Cn cn = new Cn(
@@ -307,7 +307,7 @@ public class XMLParserEGRUL {
                                     kodKl: it.NASPUNKT.@KOD_KL as String
 
                             )
-                            PersistEgrip.saveOrUpdate(cn)
+                            EgrulDBDAO.saveOrUpdate(cn)
                         }
                         if (it.STREET.@ID != "") {
                             St st = new St(
@@ -316,7 +316,7 @@ public class XMLParserEGRUL {
                                     kodSt: it.STREET.@KOD_ST as String
 
                             )
-                            PersistEgrip.saveOrUpdate(st)
+                            EgrulDBDAO.saveOrUpdate(st)
                         }
                     }
                     Rul rul = new Rul(
@@ -432,7 +432,7 @@ public class XMLParserEGRUL {
                                     name: it.REGION.@NAME as String,
                                     kodKl: it.REGION.@KOD_KL as String
                             )
-                            PersistEgrip.saveOrUpdate(rg)
+                            EgrulDBDAO.saveOrUpdate(rg)
                         }
                         if (it.RAION.@ID != "") {
                             Ds ds = new Ds(
@@ -441,7 +441,7 @@ public class XMLParserEGRUL {
                                     kodKl: it.RAION.@KOD_KL as String
 
                             )
-                            PersistEgrip.saveOrUpdate(ds)
+                            EgrulDBDAO.saveOrUpdate(ds)
                         }
                         if (it.GOROD.@ID != "") {
                             Ct ct = new Ct(
@@ -450,7 +450,7 @@ public class XMLParserEGRUL {
                                     kodKl: it.GOROD.@KOD_KL as String
 
                             )
-                            PersistEgrip.saveOrUpdate(ct)
+                            EgrulDBDAO.saveOrUpdate(ct)
                         }
                         if (it.NASPUNKT.@ID != "") {
                             Cn cn = new Cn(
@@ -459,7 +459,7 @@ public class XMLParserEGRUL {
                                     kodKl: it.NASPUNKT.@KOD_KL as String
 
                             )
-                            PersistEgrip.saveOrUpdate(cn)
+                            EgrulDBDAO.saveOrUpdate(cn)
                         }
                         if (it.STREET.@ID != "") {
                             St st = new St(
@@ -468,7 +468,7 @@ public class XMLParserEGRUL {
                                     kodSt: it.STREET.@KOD_ST as String
 
                             )
-                            PersistEgrip.saveOrUpdate(st)
+                            EgrulDBDAO.saveOrUpdate(st)
                         }
                     }
                     Ulupr ulupr = new Ulupr(
@@ -505,14 +505,14 @@ public class XMLParserEGRUL {
                 it.PREDSH.each {
                     Spregorg idregorgrpred = null
                     if (it.PREDSH.REGORG.@ID != "") {
-                        idregorgrpred = (Spregorg) PersistEgrip.getFromDB(Spregorg.getName(), Util.convertToBInt(it.REGORG.@ID))
+                        idregorgrpred = (Spregorg) EgrulDBDAO.getFromDB(Spregorg.getName(), Util.convertToBInt(it.REGORG.@ID))
                         if (idregorgrpred == null) {
                             idregorgrpred =
                                     new Spregorg(
                                             idspro: Util.convertToBInt(it.REGORG.@ID),
                                             name: it.REGORG.@NAME
                                     )
-                            PersistEgrip.saveOrUpdate(idregorgrpred)
+                            EgrulDBDAO.saveOrUpdate(idregorgrpred)
                         }
                     }
                     it.ADDRESS.each {
@@ -522,7 +522,7 @@ public class XMLParserEGRUL {
                                     name: it.REGION.@NAME as String,
                                     kodKl: it.REGION.@KOD_KL as String
                             )
-                            PersistEgrip.saveOrUpdate(rg)
+                            EgrulDBDAO.saveOrUpdate(rg)
                         }
                         if (it.RAION.@ID != "") {
                             Ds ds = new Ds(
@@ -531,7 +531,7 @@ public class XMLParserEGRUL {
                                     kodKl: it.RAION.@KOD_KL as String
 
                             )
-                            PersistEgrip.saveOrUpdate(ds)
+                            EgrulDBDAO.saveOrUpdate(ds)
                         }
                         if (it.GOROD.@ID != "") {
                             Ct ct = new Ct(
@@ -540,7 +540,7 @@ public class XMLParserEGRUL {
                                     kodKl: it.GOROD.@KOD_KL as String
 
                             )
-                            PersistEgrip.saveOrUpdate(ct)
+                            EgrulDBDAO.saveOrUpdate(ct)
                         }
                         if (it.NASPUNKT.@ID != "") {
                             Cn cn = new Cn(
@@ -549,7 +549,7 @@ public class XMLParserEGRUL {
                                     kodKl: it.NASPUNKT.@KOD_KL as String
 
                             )
-                            PersistEgrip.saveOrUpdate(cn)
+                            EgrulDBDAO.saveOrUpdate(cn)
                         }
                         if (it.STREET.@ID != "") {
                             St st = new St(
@@ -558,7 +558,7 @@ public class XMLParserEGRUL {
                                     kodSt: it.STREET.@KOD_ST as String
 
                             )
-                            PersistEgrip.saveOrUpdate(st)
+                            EgrulDBDAO.saveOrUpdate(st)
                         }
                     }
                     Ulpredsh ulpredsh = new Ulpredsh(
@@ -593,14 +593,14 @@ public class XMLParserEGRUL {
                 it.PREEM.each {
                     Spregorg idregorgrpreem = null
                     if (it.PREDSH.REGORG.@ID != "") {
-                        idregorgrpreem = (Spregorg) PersistEgrip.getFromDB(Spregorg.getName(), Util.convertToBInt(it.REGORG.@ID))
+                        idregorgrpreem = (Spregorg) EgrulDBDAO.getFromDB(Spregorg.getName(), Util.convertToBInt(it.REGORG.@ID))
                         if (idregorgrpreem == null) {
                             idregorgrpreem =
                                     new Spregorg(
                                             idspro: Util.convertToBInt(it.REGORG.@ID),
                                             name: it.REGORG.@NAME
                                     )
-                            PersistEgrip.saveOrUpdate(idregorgrpreem)
+                            EgrulDBDAO.saveOrUpdate(idregorgrpreem)
                         }
                     }
                     it.ADDRESS.each {
@@ -610,7 +610,7 @@ public class XMLParserEGRUL {
                                     name: it.REGION.@NAME as String,
                                     kodKl: it.REGION.@KOD_KL as String
                             )
-                            PersistEgrip.saveOrUpdate(rg)
+                            EgrulDBDAO.saveOrUpdate(rg)
                         }
                         if (it.RAION.@ID != "") {
                             Ds ds = new Ds(
@@ -619,7 +619,7 @@ public class XMLParserEGRUL {
                                     kodKl: it.RAION.@KOD_KL as String
 
                             )
-                            PersistEgrip.saveOrUpdate(ds)
+                            EgrulDBDAO.saveOrUpdate(ds)
                         }
                         if (it.GOROD.@ID != "") {
                             Ct ct = new Ct(
@@ -628,7 +628,7 @@ public class XMLParserEGRUL {
                                     kodKl: it.GOROD.@KOD_KL as String
 
                             )
-                            PersistEgrip.saveOrUpdate(ct)
+                            EgrulDBDAO.saveOrUpdate(ct)
                         }
                         if (it.NASPUNKT.@ID != "") {
                             Cn cn = new Cn(
@@ -637,7 +637,7 @@ public class XMLParserEGRUL {
                                     kodKl: it.NASPUNKT.@KOD_KL as String
 
                             )
-                            PersistEgrip.saveOrUpdate(cn)
+                            EgrulDBDAO.saveOrUpdate(cn)
                         }
                         if (it.STREET.@ID != "") {
                             St st = new St(
@@ -646,7 +646,7 @@ public class XMLParserEGRUL {
                                     kodSt: it.STREET.@KOD_ST as String
 
                             )
-                            PersistEgrip.saveOrUpdate(st)
+                            EgrulDBDAO.saveOrUpdate(st)
                         }
                     }
                     
@@ -681,34 +681,34 @@ public class XMLParserEGRUL {
                 List<Licenz> licenzsList = new ArrayList<>()
                 Licenz licenz;
                 it.LICENZ.each {
-                    Splicorg splicorg = (Splicorg) PersistEgrip.getFromDB(Splicorg.getName(), it.LICORG.@ID as String)
+                    Splicorg splicorg = (Splicorg) EgrulDBDAO.getFromDB(Splicorg.getName(), it.LICORG.@ID as String)
                     if (splicorg == null) {
                         splicorg = new Splicorg(
                                 id: it.LICORG.@ID as String,
                                 name: it.LICORG.@NAME
                         )
-                        PersistEgrip.saveOrUpdate(splicorg)
+                        EgrulDBDAO.saveOrUpdate(splicorg)
                     }
 
-                    Spsostlic spsostlic = (Spsostlic) PersistEgrip.getFromDB(Spsostlic.getName(), Util.convertToInt(it.SOSTLIC.@ID))
+                    Spsostlic spsostlic = (Spsostlic) EgrulDBDAO.getFromDB(Spsostlic.getName(), Util.convertToInt(it.SOSTLIC.@ID))
                     if (spsostlic == null) {
                         spsostlic = new Spsostlic(
                                 idsostlic: Util.convertToInt(it.SOSTLIC.@ID),
                                 name: it.SOSTLIC.@NAME
                         )
-                        PersistEgrip.saveOrUpdate(spsostlic)
+                        EgrulDBDAO.saveOrUpdate(spsostlic)
                     }
 
                     Spvidlic spvidlic = null
                     if (it.VIDLIC.@ID != "") {
-                        spvidlic = (Spvidlic) PersistEgrip.getFromDB(Spvidlic.getName(), Util.convertToBInt(it.VIDLIC.@ID))
+                        spvidlic = (Spvidlic) EgrulDBDAO.getFromDB(Spvidlic.getName(), Util.convertToBInt(it.VIDLIC.@ID))
                         if (spvidlic == null) {
                             spvidlic = new Spvidlic(
                                     idvidlic: Util.convertToBInt(it.VIDLIC.@ID),
                                     name: it.VIDLIC.@NAME_VLIC
 
                             )
-                            PersistEgrip.saveOrUpdate(spvidlic)
+                            EgrulDBDAO.saveOrUpdate(spvidlic)
                         }
                     }
                     licenz = new Licenz(
@@ -740,7 +740,7 @@ public class XMLParserEGRUL {
                                     name: it.REGION.@NAME as String,
                                     kodKl: it.REGION.@KOD_KL as String
                             )
-                            PersistEgrip.saveOrUpdate(rg)
+                            EgrulDBDAO.saveOrUpdate(rg)
                         }
                         if (it.RAION.@ID != "") {
                             Ds ds = new Ds(
@@ -749,7 +749,7 @@ public class XMLParserEGRUL {
                                     kodKl: it.RAION.@KOD_KL as String
 
                             )
-                            PersistEgrip.saveOrUpdate(ds)
+                            EgrulDBDAO.saveOrUpdate(ds)
                         }
                         if (it.GOROD.@ID != "") {
                             Ct ct = new Ct(
@@ -758,7 +758,7 @@ public class XMLParserEGRUL {
                                     kodKl: it.GOROD.@KOD_KL as String
 
                             )
-                            PersistEgrip.saveOrUpdate(ct)
+                            EgrulDBDAO.saveOrUpdate(ct)
                         }
                         if (it.NASPUNKT.@ID != "") {
                             Cn cn = new Cn(
@@ -767,7 +767,7 @@ public class XMLParserEGRUL {
                                     kodKl: it.NASPUNKT.@KOD_KL as String
 
                             )
-                            PersistEgrip.saveOrUpdate(cn)
+                            EgrulDBDAO.saveOrUpdate(cn)
                         }
                         if (it.STREET.@ID != "") {
                             St st = new St(
@@ -776,7 +776,7 @@ public class XMLParserEGRUL {
                                     kodSt: it.STREET.@KOD_ST as String
 
                             )
-                            PersistEgrip.saveOrUpdate(st)
+                            EgrulDBDAO.saveOrUpdate(st)
                         }
                     }
                     Ulob ulob = new Ulob(
@@ -806,21 +806,21 @@ public class XMLParserEGRUL {
 
             List<Gosreg> gosregs = new ArrayList<>()
             it.REGEGRUL.each {
-                Spregorg spregorg = (Spregorg) PersistEgrip.getFromDB(Spregorg.getName(), Util.convertToBInt(it.REGORG.@ID))
+                Spregorg spregorg = (Spregorg) EgrulDBDAO.getFromDB(Spregorg.getName(), Util.convertToBInt(it.REGORG.@ID))
                 if (spregorg == null) {
                     spregorg = new Spregorg(
                             idspro: Util.convertToBInt(it.REGORG.@ID),
                             name: it.REGORG.@NAME)
-                    PersistEgrip.saveOrUpdate(spregorg)
+                    EgrulDBDAO.saveOrUpdate(spregorg)
                 }
 
-                Spvidreg spvidreg = (Spvidreg) PersistEgrip.getFromDB(Spvidreg.getName(), Util.convertToInt(it.VIDREG.@ID))
+                Spvidreg spvidreg = (Spvidreg) EgrulDBDAO.getFromDB(Spvidreg.getName(), Util.convertToInt(it.VIDREG.@ID))
                 if (spvidreg == null) {
                     spvidreg = new Spvidreg(
                             idvidreg: Util.convertToInt(it.VIDREG.@ID),
                             name: it.VIDREG.@NAME
                     )
-                    PersistEgrip.saveOrUpdate(spvidreg)
+                    EgrulDBDAO.saveOrUpdate(spvidreg)
                 }
 
                 Gosreg gosreg = new Gosreg(
@@ -841,13 +841,13 @@ public class XMLParserEGRUL {
 
             if (it.MNS.@DTSTART != "") {
                 it.MNS.each {
-                    Spmns spmns = (Spmns) PersistEgrip.getFromDBbyNaturalId(Spmns.getName(), it.ORGAN_MNS.@KOD as String)
+                    Spmns spmns = (Spmns) EgrulDBDAO.getFromDBbyNaturalId(Spmns.getName(), it.ORGAN_MNS.@KOD as String)
                     if (spmns == null) {
                         spmns = new Spmns(
                                 kod: it.ORGAN_MNS.@KOD,
                                 name: it.ORGAN_MNS.@NAME
                         )
-                        PersistEgrip.saveOrUpdate(spmns)
+                        EgrulDBDAO.saveOrUpdate(spmns)
                     }
                     //Ulmns ipmns = (Ulmns) PersistEgrip.getFromDB(Ulmns.getName(), ul.getIdip() as Integer)
                     //if (ipmns == null)
@@ -863,13 +863,13 @@ public class XMLParserEGRUL {
 
             if (it.PF.@REGN_PF != "") {
                 it.PF.each {
-                    Sppf sppf = (Sppf) PersistEgrip.getFromDBbyNaturalId(Sppf.getName(), it.ORGAN_PF.@KOD as String)
+                    Sppf sppf = (Sppf) EgrulDBDAO.getFromDBbyNaturalId(Sppf.getName(), it.ORGAN_PF.@KOD as String)
                     if (sppf == null) {
                         sppf = new Sppf(
                                 kod: Util.convertToInt(it.ORGAN_PF.@KOD),
                                 name: it.ORGAN_PF.@NAME
                         )
-                        PersistEgrip.saveOrUpdate(sppf)
+                        EgrulDBDAO.saveOrUpdate(sppf)
                     }
                     //Ulpf ippf = (Ulpf) PersistEgrip.getFromDB(Ulpf.getName(), ul.getIdip() as Integer)
                     //if (ippf == null)
@@ -886,13 +886,13 @@ public class XMLParserEGRUL {
 
             if (it.FSS.@REGN_FSS != "") {
                 it.FSS.each {
-                    Spfss spfss = (Spfss) PersistEgrip.getFromDBbyNaturalId(Spfss.getName(), it.ORGAN_FSS.@KOD as String)
+                    Spfss spfss = (Spfss) EgrulDBDAO.getFromDBbyNaturalId(Spfss.getName(), it.ORGAN_FSS.@KOD as String)
                     if (spfss == null) {
                         spfss = new Spfss(
                                 kod: it.ORGAN_FSS.@KOD,
                                 name: it.ORGAN_FSS.@NAME
                         )
-                        PersistEgrip.saveOrUpdate(spfss)
+                        EgrulDBDAO.saveOrUpdate(spfss)
                     }
 /*                    Ulfss ipfss = (Ulfss) PersistEgrip.getFromDB(Ulfss.getName(), ul.getIdip() as Integer)
                     if (ipfss == null) */
@@ -910,13 +910,13 @@ public class XMLParserEGRUL {
 
             if (it.FOMS.@REGN_FOMS != "") {
                 it.FOMS.each {
-                    Spfoms spfoms = (Spfoms) PersistEgrip.getFromDBbyNaturalId(Spfoms.getName(), it.ORGAN_FOMS.@KOD as String)
+                    Spfoms spfoms = (Spfoms) EgrulDBDAO.getFromDBbyNaturalId(Spfoms.getName(), it.ORGAN_FOMS.@KOD as String)
                     if (spfoms == null) {
                         spfoms = new Spfoms(
                                 kod: it.ORGAN_FOMS.@KOD,
                                 name: it.ORGAN_FOMS.@NAME
                         )
-                        PersistEgrip.saveOrUpdate(spfoms)
+                        EgrulDBDAO.saveOrUpdate(spfoms)
                     }
                     //Ulfoms ipfoms = (Ulfoms) PersistEgrip.getFromDB(Ulfoms.getName(), ul.getIdip() as BigInteger)
                     //if (ipfoms == null)
@@ -933,12 +933,12 @@ public class XMLParserEGRUL {
             }
             log.debug("Start saving UL with OGRN " + ul.getOgrn() + " to DB")
             try {
-                PersistEgrip.saveOrUpdate(ul)
+                EgrulDBDAO.saveOrUpdate(ul)
                 log.info("Save to EGRUL UL with OGRN " + ul.getOgrn())
                 resultImport.put(ul.getOgrn(), "Success")
             } catch (Exception ex) {
-                log.debug("Error saving EGRUL UL with OGRN " + ul.getOgrn())
-                log.debug(ex.printStackTrace())
+                log.error("Error saving EGRUL UL with OGRN " + ul.getOgrn())
+                log.error(ex.printStackTrace())
                 resultImport.put(ul.getOgrn(), "Fail")
             }
         }

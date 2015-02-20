@@ -29,7 +29,7 @@ public class MainParser {
 
     public static void main(String[] args) {
         MainParser mainParser = new MainParser()
-        mainParser.parse(mainParser.getProps().get("pathToFile") as File)
+        parse(mainParser.getProps().get("pathToFile") as File)
 
     }
 
@@ -46,6 +46,9 @@ public class MainParser {
             log.info("Incorrect file structure")
         }
 
+        log.debug("Call procedure to linking EAS ID to ULADR table")
+        EgrulDBDAO.callProcedure()
+        
         for (Map.Entry<String, String> entry : resultImport.entrySet()) {
             if (entry.getValue().equals("Fail"))
             log.info(entry.getKey() + " " + entry.getValue())

@@ -1,6 +1,7 @@
 package ru.iac;
 
 import org.hibernate.NonUniqueResultException;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.slf4j.Logger;
@@ -10,19 +11,22 @@ import java.math.BigInteger;
 
 /**
  * Created by konenkov on 12.02.2015.
- */
-public abstract class PersistEgrip {
+ * 
+ * Class to work with DB
+ * *
+  */
+public abstract class EgrulDBDAO {
 
-    private static Logger log = LoggerFactory.getLogger(PersistEgrip.class);
+    private static Logger log = LoggerFactory.getLogger(EgrulDBDAO.class);
 
     public static void saveOrUpdate(Object object) {
 
         //try {
-            Session session = HibernateUtil.getSession();
-            Transaction tx = session.beginTransaction();
-            session.saveOrUpdate(object);
-            tx.commit();
-            session.close();
+        Session session = HibernateUtil.getSession();
+        Transaction tx = session.beginTransaction();
+        session.saveOrUpdate(object);
+        tx.commit();
+        session.close();
         /*} catch (Exception ex) {
             log.debug("Error while saving to DB");
             log.debug(ex.getMessage());
@@ -90,6 +94,12 @@ public abstract class PersistEgrip {
         tx.commit();
         session.close();
         return object;
+    }
+
+    public static void callProcedure() {
+        Session session = HibernateUtil.getSession();
+        session.createSQLQuery("CALL rush.PK.link_all");
+        session.close();
     }
 
 }
