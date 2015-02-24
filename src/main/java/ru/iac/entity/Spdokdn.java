@@ -85,9 +85,7 @@ public class Spdokdn implements Serializable {
     public static final String FIND_BY_ROWCHECKSUM = "Spdokdn.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING ="Spdokdn.findByRowCheckSumContaining";
 	
-    @SequenceGenerator(name = "SPDOKDNSEQ", sequenceName ="", allocationSize=1 )
-    @Id @Column(name="ID" ) 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SPDOKDNSEQ") 
+    @Id @Column(name="ID" )
     private Integer id;
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @NAME-field-annotation@

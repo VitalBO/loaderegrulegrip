@@ -4,6 +4,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import ru.iac.egrip.XMLParserEGRIP
 import ru.iac.egrul.XMLParserEGRUL
+import ru.iac.entity.Ip
 
 /**
  * Created by konenkov on 17.02.2015.
@@ -45,7 +46,20 @@ public class MainParser {
         } else {
             log.info("Incorrect file structure")
         }
-
+Ip ip = null;
+        log.debug("Start saving IP with OGRN " + ip.getIdip() + " to DB")
+        try {
+            EgrulDBDAO.saveOrUpdate(ip)
+            log.info("Save to EGRIP IP with OGRN " + ip.getOgrn())
+            resultImport.put(ip.getOgrn(), "Success")
+        } catch (Exception ex) {
+            log.debug("Error saving EGRIP IP with OGRN " + ip.getOgrn())
+            log.debug(ex.printStackTrace())
+            resultImport.put(ip.getOgrn(), "Fail")
+        }
+        
+        
+        
         log.debug("Call procedure to linking EAS ID to ULADR table")
         EgrulDBDAO.callProcedure()
         

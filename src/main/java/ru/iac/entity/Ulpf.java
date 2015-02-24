@@ -113,7 +113,7 @@ public class Ulpf implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDPF-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDPF-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDPF@
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="IDPF"   , nullable=true , unique=false)
     private Sppf idpf;
 //MP-MANAGED-UPDATABLE-ENDING

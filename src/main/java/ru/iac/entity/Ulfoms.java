@@ -113,7 +113,7 @@ public class Ulfoms implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDFOMS-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDFOMS-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDFOMS@
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="IDFOMS"   , nullable=true , unique=false)
     private Spfoms idfoms;
 //MP-MANAGED-UPDATABLE-ENDING

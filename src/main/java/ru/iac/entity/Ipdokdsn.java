@@ -105,7 +105,7 @@ public class Ipdokdsn implements Serializable {
     public static final String FIND_BY_ROWCHECKSUM = "Ipdokdsn.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING ="Ipdokdsn.findByRowCheckSumContaining";
 	
-    @SequenceGenerator(name = "IPDOKDSNSEQ", sequenceName ="", allocationSize=1 )
+    @SequenceGenerator(name = "IPDOKDSNSEQ", sequenceName ="SEQ_IPDOKDSN", allocationSize=1 )
     @Id @Column(name="IDDOKDSN" ) 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="IPDOKDSNSEQ") 
     private Integer iddokdsn;
@@ -113,8 +113,9 @@ public class Ipdokdsn implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDIP-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDIP-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDIP@
-    @Column(name="IDIP"   , nullable=false , unique=true)
-    private Integer idip; 
+    @OneToOne
+    @JoinColumn(name="IDIP"   , nullable=false , unique=true)
+    private Ip idip; 
 //MP-MANAGED-UPDATABLE-ENDING
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @DTSTART-field-annotation@
@@ -127,15 +128,17 @@ public class Ipdokdsn implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDOSNDN-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDOSNDN-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDOSNDN@
-    @Column(name="IDOSNDN"   , nullable=true , unique=false)
-    private Integer idosndn; 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="IDOSNDN"   , nullable=true , unique=false)
+    private Sposndn idosndn;
 //MP-MANAGED-UPDATABLE-ENDING
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDDOKDN-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDDOKDN-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDDOKDN@
-    @Column(name="IDDOKDN"   , nullable=true , unique=false)
-    private Integer iddokdn; 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="IDDOKDN"   , nullable=true , unique=false)
+    private Spdokdn iddokdn; 
 //MP-MANAGED-UPDATABLE-ENDING
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @NUM-field-annotation@
@@ -226,10 +229,10 @@ public class Ipdokdsn implements Serializable {
 	*/
     public Ipdokdsn(
        Integer iddokdsn,
-       Integer idip,
+       Ip idip,
        Date dtstart,
-       Integer idosndn,
-       Integer iddokdn,
+       Sposndn idosndn,
+       Spdokdn iddokdn,
        String num,
        Date dt,
        String nameorg,
@@ -263,10 +266,10 @@ public class Ipdokdsn implements Serializable {
     
 	public Ipdokdsn(
        Integer iddokdsn,
-       Integer idip,
+       Ip idip,
        Date dtstart,
-       Integer idosndn,
-       Integer iddokdn,
+       Sposndn idosndn,
+       Spdokdn iddokdn,
        String num,
        Date dt,
        String nameorg,
@@ -331,11 +334,11 @@ public class Ipdokdsn implements Serializable {
     }
     
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDIP@
-    public Integer getIdip() {
+    public Ip getIdip() {
         return idip;
     }
 	
-    public void setIdip (Integer idip) {
+    public void setIdip (Ip idip) {
         this.idip =  idip;
     }
 	
@@ -353,22 +356,22 @@ public class Ipdokdsn implements Serializable {
 //MP-MANAGED-UPDATABLE-ENDING
 
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDOSNDN@
-    public Integer getIdosndn() {
+    public Sposndn getIdosndn() {
         return idosndn;
     }
 	
-    public void setIdosndn (Integer idosndn) {
+    public void setIdosndn (Sposndn idosndn) {
         this.idosndn =  idosndn;
     }
 	
 //MP-MANAGED-UPDATABLE-ENDING
 
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDDOKDN@
-    public Integer getIddokdn() {
+    public Spdokdn getIddokdn() {
         return iddokdn;
     }
 	
-    public void setIddokdn (Integer iddokdn) {
+    public void setIddokdn (Spdokdn iddokdn) {
         this.iddokdn =  iddokdn;
     }
 	

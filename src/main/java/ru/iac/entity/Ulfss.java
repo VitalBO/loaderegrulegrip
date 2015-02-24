@@ -113,7 +113,7 @@ public class Ulfss implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDFSS-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDFSS-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDFSS@
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="IDFSS"   , nullable=true , unique=false)
     private Spfss idfss;
 //MP-MANAGED-UPDATABLE-ENDING

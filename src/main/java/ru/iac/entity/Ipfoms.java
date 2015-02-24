@@ -116,7 +116,7 @@ public class Ipfoms implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDFOMS-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDFOMS-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDFOMS@
-@ManyToOne(cascade = CascadeType.ALL)
+@ManyToOne(cascade = CascadeType.PERSIST)
 @JoinColumn(name = "IDFOMS")
     private Spfoms idfoms;
 //MP-MANAGED-UPDATABLE-ENDING

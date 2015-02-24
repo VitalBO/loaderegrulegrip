@@ -116,7 +116,7 @@ public class Ipfss implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDFSS-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDFSS-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDFSS@
-@ManyToOne(cascade = CascadeType.ALL)
+@ManyToOne(cascade = CascadeType.PERSIST)
 @JoinColumn(name = "IDFSS")
     private Spfss idfss;
 //MP-MANAGED-UPDATABLE-ENDING

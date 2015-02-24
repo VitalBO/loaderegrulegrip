@@ -108,7 +108,7 @@ public class Ulmns implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDMNS-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDMNS-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDMNS@
-@ManyToOne(cascade = CascadeType.ALL)
+@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="IDMNS"   , nullable=true , unique=false)
     private Spmns idmns;
 //MP-MANAGED-UPDATABLE-ENDING

@@ -30,11 +30,6 @@
 package ru.iac.entity;
 
 import javax.persistence.*;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -118,12 +113,12 @@ public class Ip implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "IDVIDIP")
     private Spvidip idvidip;
-    
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "IDSTATUS")
     private Spipstat idstatus;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "IDREGORG")
     private Spregorg idregorg;
 
@@ -187,6 +182,9 @@ public class Ip implements Serializable {
     @OneToOne(mappedBy = "idip", cascade = CascadeType.ALL)
     private Ipfoms ipfoms;
 
+    @OneToOne(mappedBy = "idip", cascade = CascadeType.ALL)
+    private Ipdokdsn ipdokdsn;
+
     /**
      * Default constructor
      */
@@ -233,6 +231,38 @@ public class Ip implements Serializable {
                 , true);
     }
 
+    public Ip(String idip,
+              String ogrn,
+              String inn,
+              Spvidip idvidip,
+              Spipstat idstatus,
+              Spregorg idregorg,
+              Ipcitizen ipcitizen,
+              Date ipstart,
+              Date ipend,
+              Ipname ipname,
+              Ipregold ipregold,
+              Ipmns ipmns,
+              Ipfss ipfss,
+              Ippf ippf,
+              Ipfoms ipfoms) {
+        this.idip = idip;
+        this.ogrn = ogrn;
+        this.inn = inn;
+        this.idvidip = idvidip;
+        this.idstatus = idstatus;
+        this.idregorg = idregorg;
+        this.ipcitizen = ipcitizen;
+        this.ipstart = ipstart;
+        this.ipend = ipend;
+        this.ipname = ipname;
+        this.ipregold = ipregold;
+        this.ipmns = ipmns;
+        this.ipfss = ipfss;
+        this.ippf = ippf;
+        this.ipfoms = ipfoms;
+    }
+
     public Ip(
             String idip,
             String ogrn,
@@ -262,6 +292,7 @@ public class Ip implements Serializable {
         setIpstart(ipstart);
         setIpend(ipend);
         setGihdAdate(gihdAdate);
+
         setGihdChdate(gihdChdate);
         setGihdDdate(gihdDdate);
         setGihdIdUser(gihdIdUser);
@@ -270,6 +301,14 @@ public class Ip implements Serializable {
         setGihdDIdPackage(gihdDIdPackage);
         setRowCheckSum(rowCheckSum);
         //parents
+    }
+
+    public Ipdokdsn getIpdokdsn() {
+        return ipdokdsn;
+    }
+
+    public void setIpdokdsn(Ipdokdsn ipdokdsn) {
+        this.ipdokdsn = ipdokdsn;
     }
 
     public Ipfoms getIpfoms() {

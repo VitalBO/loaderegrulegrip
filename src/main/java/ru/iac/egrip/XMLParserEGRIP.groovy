@@ -13,16 +13,15 @@ class XMLParserEGRIP {
 
     private static Logger log = LoggerFactory.getLogger(XMLParserEGRIP);
 
-    public static HashMap<String, String> parse(File filePath) {
+    public static Ip parse(String string) {
 
-        def EGRIP_IP_DATA = new XmlSlurper().parse(filePath)
-        HashMap<String, String> resultImport = new HashMap<>();
+        def EGRIP_IP_DATA = new XmlSlurper().parseText(string)
+        Ip ip;
 
-
-        EGRIP_IP_DATA.IP.each {
+        EGRIP_IP_DATA.each {
             log.debug("Start decoding IP with OGRN " + it.@IDIP)
 
-            Ip ip = new Ip(
+            ip = new Ip(
                     idip: it.@IDIP,
                     inn: it.@INN,
                     ogrn: it.@OGRNIP,
@@ -44,282 +43,225 @@ class XMLParserEGRIP {
 
 
             )
-            log.debug("Decoding IP with OGRN " + ip.getIdip() + " begin decode REGN_FOMS")
 
-            //PersistEgrip.saveOrUpdate(ip)
+            log.debug("Decoding IP with OGRN " + ip.getIdip() + " begin decode REGN_FOMS")
             if (it.FOMS.@REGN_FOMS != "") {
                 it.FOMS.each {
-                    Spfoms spfoms = (Spfoms) EgrulDBDAO.getFromDBbyNaturalId(Spfoms.getName(), it.ORGAN_FOMS.@KOD as String)
-                    if (spfoms == null) {
-                        spfoms = new Spfoms(
-                                kod: it.ORGAN_FOMS.@KOD,
-                                name: it.ORGAN_FOMS.@NAME
-                        )
-                        EgrulDBDAO.saveOrUpdate(spfoms)
-                    }
-                    //Ipfoms ipfoms = (Ipfoms) PersistEgrip.getFromDB(Ipfoms.getName(), ip.getIdip() as BigInteger)
-                    //if (ipfoms == null) 
 
-                    Ipfoms ipfoms = new Ipfoms()
-                    ipfoms.setIdip(ip)
-                    ipfoms.setRegnomFoms(it.@REGN_FOMS as String)
-                    ipfoms.setDtstart(Util.convertToDate(it.@DTSTART))
-                    ipfoms.setDtend(Util.convertToDate(it.@DTEND))
-                    ipfoms.setIdfoms(spfoms)
+                    Ipfoms ipfoms = new Ipfoms(
+                            idip: ip,
+                            regnomFoms: it.@REGN_FOMS as String,
+                            idfoms: new Spfoms(
+                                    kod: it.ORGAN_FOMS.@KOD,
+                                    name: it.ORGAN_FOMS.@NAME
+                            ),
+                            dtstart: Util.convertToDate(it.@DTSTART as String),
+                            dtend: Util.convertToDate(it.@DTEND as String)
+                    )
                     ip.setIpfoms(ipfoms)
-
                 }
             }
-            log.debug("Decoding IP with OGRN " + ip.getIdip() + " begin decode REGN_FSS")
 
+            log.debug("Decoding IP with OGRN " + ip.getIdip() + " begin decode REGN_FSS")
             if (it.FSS.@REGN_FSS != "") {
                 it.FSS.each {
-                    Spfss spfss = (Spfss) EgrulDBDAO.getFromDBbyNaturalId(Spfss.getName(), it.ORGAN_FSS.@KOD as String)
-                    if (spfss == null) {
-                        spfss = new Spfss(
-                                kod: it.ORGAN_FSS.@KOD,
-                                name: it.ORGAN_FSS.@NAME
-                        )
-                        EgrulDBDAO.saveOrUpdate(spfss)
-                    }
-/*                    Ipfss ipfss = (Ipfss) PersistEgrip.getFromDB(Ipfss.getName(), ip.getIdip() as Integer)
-                    if (ipfss == null) */
-                    Ipfss ipfss = new Ipfss()
-                    ipfss.setIdip(ip)
-                    ipfss.setIdfss(spfss)
-                    ipfss.setRegnomFss(it.@REGN_FSS as String)
-                    ipfss.setDtstart(Util.convertToDate(it.@DTSTART))
-                    ipfss.setDtend(Util.convertToDate(it.@DTEND))
+                    Ipfss ipfss = new Ipfss(
+                            idip: ip,
+                            idfss: new Spfss(
+                                    kod: it.ORGAN_FSS.@KOD,
+                                    name: it.ORGAN_FSS.@NAME
+                            ),
+                            regnomFss: it.@REGN_FSS as String,
+                            dtstart: Util.convertToDate(it.@DTSTART as String),
+                            dtend: Util.convertToDate(it.@DTEND as String)
+                    )
                     ip.setIpfss(ipfss)
-
                 }
             }
-            log.debug("Decoding IP with OGRN " + ip.getIdip() + " begin decode MNS")
 
+            log.debug("Decoding IP with OGRN " + ip.getIdip() + " begin decode MNS")
             if (it.MNS.@DTSTART != "") {
                 it.MNS.each {
-                    Spmns spmns = (Spmns) EgrulDBDAO.getFromDBbyNaturalId(Spmns.getName(), it.ORGAN_MNS.@KOD as String)
-                    if (spmns == null) {
-                        spmns = new Spmns(
-                                kod: it.ORGAN_MNS.@KOD,
-                                name: it.ORGAN_MNS.@NAME
-                        )
-                        EgrulDBDAO.saveOrUpdate(spmns)
-                    }
-                    //Ipmns ipmns = (Ipmns) PersistEgrip.getFromDB(Ipmns.getName(), ip.getIdip() as Integer)
-                    //if (ipmns == null) 
-                    Ipmns ipmns = new Ipmns()
-                    ipmns.setIdip(ip)
-                    ipmns.setIdmns(spmns)
-                    ipmns.setDtstart(Util.convertToDate(it.@DTSTART))
-                    ipmns.setDtend(Util.convertToDate(it.@DTEND))
+                    Ipmns ipmns = new Ipmns(
+                            idip: ip,
+                            idmns: new Spmns(
+                                    kod: it.ORGAN_MNS.@KOD,
+                                    name: it.ORGAN_MNS.@NAME
+                            ),
+                            dtstart: Util.convertToDate(it.@DTSTART as String),
+                            dtend: Util.convertToDate(it.@DTEND as String)
+                    )
                     ip.setIpmns(ipmns)
                 }
             }
 
             log.debug("Decoding IP with OGRN " + ip.getIdip() + " begin decode REGN_PF")
-
             if (it.PF.@REGN_PF != "") {
                 it.PF.each {
-                    Sppf sppf = (Sppf) EgrulDBDAO.getFromDBbyNaturalId(Sppf.getName(), it.ORGAN_PF.@KOD as String)
-                    if (sppf == null) {
-                        sppf = new Sppf(
-                                kod: Util.convertToInt(it.ORGAN_PF.@KOD),
-                                name: it.ORGAN_PF.@NAME
-                        )
-                        EgrulDBDAO.saveOrUpdate(sppf)
-                    }
-                    //Ippf ippf = (Ippf) PersistEgrip.getFromDB(Ippf.getName(), ip.getIdip() as Integer)
-                    //if (ippf == null) 
-                    Ippf ippf = new Ippf()
-                    ippf.setIdip(ip)
-                    ippf.setDtstart(Util.convertToDate(it.@DTSTART))
-                    ippf.setDtend(Util.convertToDate(it.@DTEND))
-                    ippf.setRegnomPf(it.@REGN_PF as String)
-                    ippf.setIdpf(sppf)
+                    Ippf ippf = new Ippf(
+                            idip: ip,
+                            idpf: new Sppf(
+                                    kod: Util.convertToInt(it.ORGAN_PF.@KOD),
+                                    name: it.ORGAN_PF.@NAME
+                            ),
+                            regnomPf: it.@REGN_PF as String,
+                            dtstart: Util.convertToDate(it.@DTSTART as String),
+                            dtend: Util.convertToDate(it.@DTEND as String)
+                    )
                     ip.setIppf(ippf)
                 }
             }
-            log.debug("Decoding IP with OGRN " + ip.getIdip() + " begin decode REGOLD")
 
+            log.debug("Decoding IP with OGRN " + ip.getIdip() + " begin decode REGOLD")
             if (it.REGOLD.@NUMOLD != "") {
                 it.REGOLD.each {
-                    //Ipregold ipregold = (Ipregold) PersistEgrip.getFromDB(Ipregold.getName(), ip.getIdip() as Integer)
-                    //if (ipregold == null) 
-                    Ipregold ipregold = new Ipregold()
-                    ipregold.setIdip(ip)
-                    ipregold.setNumold(it.@NUMOLD as String)
-                    ipregold.setDtreg(Util.convertToDate(it.@DTREG))
-                    ipregold.setIdregorg(new Spregorg(
-                            idspro: Util.convertToBInt(it.REGORG.@ID),
-                            name: it.REGORG.@NAME))
+                    Ipregold ipregold = new Ipregold(
+                            idip: ip,
+                            numold: it.@NUMOLD as String,
+                            dtreg: Util.convertToDate(it.@DTREG as String),
+                            idregorg: new Spregorg(
+                                    idspro: Util.convertToBInt(it.REGORG.@ID),
+                                    name: it.REGORG.@NAME
+                            )
+                    )
                     ip.setIpregold(ipregold)
-                    //PersistEgrip.saveOrUpdate(ipregold)
                 }
             }
-            log.debug("Decoding IP with OGRN " + ip.getIdip() + " begin decode FL")
 
+            log.debug("Decoding IP with OGRN " + ip.getIdip() + " begin decode FL")
             if (it.FL.@DTSTART != "") {
                 it.FL.each {
-                    //Ipname ipname = (Ipname) PersistEgrip.getFromDB(Ipregold.getName(), ip.getIdip() as Integer)
-                    //if (ipname == null) 
-                    Ipname ipname = new Ipname()
-                    ipname.setIdip(ip)
-                    ipname.setDtstart(Util.convertToDate(it.@DTSTART))
-                    ipname.setFamfl(it.@FAM_FL as String)
-                    ipname.setNamefl(it.@NAME_FL as String)
-                    ipname.setOtchfl(it.@OTCH_FL as String)
-                    ipname.setFamlat(it.@FAM_LAT as String)
-                    ipname.setNamelat(it.@NAME_LAT as String)
-                    ipname.setOtchlat(it.@OTCH_LAT as String)
-                    ipname.setSex(Util.convertToInt(it.@SEX))
+                    Ipname ipname = new Ipname(
+                            idip: ip,
+                            dtstart: Util.convertToDate(it.@DTSTART as String),
+                            famfl: it.@FAM_FL as String,
+                            namefl: it.@NAME_FL as String,
+                            otchfl: it.@OTCH_FL as String,
+                            famlat: it.@FAM_LAT as String,
+                            namelat: it.@NAME_LAT as String,
+                            otchlat: it.@OTCH_LAT as String,
+                            sex: Util.convertToInt(it.@SEX)
+                    )
                     ip.setIpname(ipname)
-                    //PersistEgrip.saveOrUpdate(ipname)
                 }
             }
-            log.debug("Decoding IP with OGRN " + ip.getIdip() + " begin decode CITIZEN")
 
+            log.debug("Decoding IP with OGRN " + ip.getIdip() + " begin decode CITIZEN")
             if (it.CITIZEN.@DTSTART != "") {
                 it.CITIZEN.each {
-                    //Ipcitizen ipcitizen = (Ipcitizen) PersistEgrip.getFromDB(Ipcitizen.getName(), ip.getIdip() as Integer)
-                    //if (ipcitizen == null)
-                    Ipcitizen ipcitizen = new Ipcitizen()
-                    ipcitizen.setIdip(ip)
-                    ipcitizen.setDtstart(Util.convertToDate(it.@DTSTART))
-                    ipcitizen.setIdvidcitizen(new Spvidcitizen(
-                            id: Util.convertToInt(it.VIDCITIZEN.@ID),
-                            name: it.VIDCITIZEN.@NAME)
-                    )
-                    ipcitizen.setOksm(
-                            new Oksm(
+                    Ipcitizen ipcitizen = new Ipcitizen(
+                            idip: ip,
+                            dtstart: Util.convertToDate(it.@DTSTART as String),
+                            idvidcitizen: new Spvidcitizen(
+                                    id: Util.convertToInt(it.VIDCITIZEN.@ID),
+                                    name: it.VIDCITIZEN.@NAME
+                            ),
+                            oksm: new Oksm(
                                     id: Util.convertToInt(it.OKSM.@ID),
                                     kodOksm: it.OKSM.@KOD_OKSM,
                                     name: it.OKSM.@NAME
-
                             )
                     )
                     ip.setIpcitizen(ipcitizen)
-                    //PersistEgrip.saveOrUpdate(ipcitizen)
                 }
             }
-            log.debug("Decoding IP with OGRN " + ip.getIdip() + " begin decode OKVED")
 
+            log.debug("Decoding IP with OGRN " + ip.getIdip() + " begin decode OKVED")
             if (it.OKVED.@KOD_OKVED != "") {
                 ArrayList<Ipokved> listIpOkved = new ArrayList<>()
                 it.OKVED.each {
-                    Okved okved = (Okved) EgrulDBDAO.getNamedQuery(Okved.FIND_BY_CODEOKVED, "codeOkved", it.@KOD_OKVED as String)
-                    if (okved == null) {
-                        okved = new Okved(
-                                codeOkved: it.@KOD_OKVED,
-                                name: it.@NAME
-                        )
-                        EgrulDBDAO.saveOrUpdate(okved)
-                    }
+                    Okved okved = new Okved(
+                            codeOkved: it.@KOD_OKVED,
+                            name: it.@NAME
+                    )
                     listIpOkved.add(
                             new Ipokved(
                                     idokved: okved,
                                     idip: ip
                             )
                     )
-
                 }
                 ip.setIpokved(listIpOkved)
             }
-// TODO make load DOKDSN, at files at 12.2014, I did not find this data
-            log.debug("Decoding IP with OGRN " + ip.getIdip() + " begin decode REGEGRIP")
 
+            log.debug("Decoding IP with OGRN " + ip.getIdip() + " begin decode DOKSDN")
+            if (it.DOKSDN.@DTSTART != "") {
+                it.DOKSDN.each {
+                    Ipdokdsn ipdokdsn = new Ipdokdsn(
+                            idip: ip,
+                            dtstart: Util.convertToDate(it.@DTSTART as String),
+                            iddokdn: new Spdokdn(
+                                    id: Util.convertToInt(it.DOKDN.@ID),
+                                    name: it.DOKDN.@NAME
+                            ),
+                            idosndn: new Sposndn(
+                                    id: Util.convertToInt(it.OSNDN.@ID),
+                                    name: it.OSNDN.@NAME
+                            ),
+                            num: it.@NUM,
+                            dt: it.@DT,
+                            nameorg: it.@NAMEORG
+                    )
+                    ip.setIpdokdsn(ipdokdsn)
+                }
+            }
+            
+            log.debug("Decoding IP with OGRN " + ip.getIdip() + " begin decode REGEGRIP")
             List<Ipgosreg> ipgosregList = new ArrayList<>()
             it.REGEGRIP.each {
-                Spregorg spregorg = (Spregorg) EgrulDBDAO.getFromDB(Spregorg.getName(), Util.convertToBInt(it.REGORG.@ID))
-                if (spregorg == null) {
-                    spregorg = new Spregorg(
-                            idspro: Util.convertToBInt(it.REGORG.@ID),
-                            name: it.REGORG.@NAME)
-                    EgrulDBDAO.saveOrUpdate(spregorg)
-                }
                 Ipgosreg ipgosreg = new Ipgosreg(
                         idip: ip,
                         idreg: it.@IDREG,
                         regnum: it.@REGNUM,
-                        dtreg: Util.convertToDate(it.@DTREG),
-                        dtzap: Util.convertToDate(it.@DTZAP),
+                        dtreg: Util.convertToDate(it.@DTREG as String),
+                        dtzap: Util.convertToDate(it.@DTZAP as String),
                         idvidreg: new Spvidreg(
                                 idvidreg: Util.convertToInt(it.VIDREG.@ID),
                                 name: it.VIDREG.@NAME
                         ),
-                        idregorg: spregorg,
+                        idregorg: new Spregorg(
+                                idspro: Util.convertToBInt(it.REGORG.@ID),
+                                name: it.REGORG.@NAME
+                        ),
                         sersvid: Util.convertToInt(it.SVSV.@SER_SV),
                         numsvid: Util.convertToInt(it.SVSV.@NUM_SV)
                 )
                 ipgosregList.add(ipgosreg)
             }
             ip.setIpgosregs(ipgosregList)
+            
             log.debug("Decoding IP with OGRN " + ip.getIdip() + " begin decode LICENZ")
-
             if (it.LICENZ.@NUMLIC != "") {
                 List<Licenz> licenzsList = new ArrayList<>()
                 Licenz licenz;
                 it.LICENZ.each {
-                    Splicorg splicorg = (Splicorg) EgrulDBDAO.getFromDB(Splicorg.getName(), it.LICORG.@ID as String)
-                    if (splicorg == null) {
-                        splicorg = new Splicorg(
-                                id: it.LICORG.@ID,
-                                name: it.LICORG.@NAME
-                        )
-                        EgrulDBDAO.saveOrUpdate(splicorg)
-                    }
-
-                    Spsostlic spsostlic = (Spsostlic) EgrulDBDAO.getFromDB(Spsostlic.getName(), Util.convertToInt(it.SOSTLIC.@ID))
-                    if (spsostlic == null) {
-                        spsostlic = new Spsostlic(
-                                idsostlic: Util.convertToInt(it.SOSTLIC.@ID),
-                                name: it.SOSTLIC.@NAME
-                        )
-                        EgrulDBDAO.saveOrUpdate(spsostlic)
-                    }
-
-                    Spvidlic spvidlic = null
-                    if (it.VIDLIC.@ID != "") {
-                        spvidlic = (Spvidlic) EgrulDBDAO.getFromDB(Spvidlic.getName(), Util.convertToBInt(it.VIDLIC.@ID))
-                        if (spvidlic == null) {
-                            spvidlic = new Spvidlic(
-                                    idvidlic: Util.convertToBInt(it.VIDLIC.@ID),
-                                    name: it.VIDLIC.@NAME_VLIC
-
-                            )
-                            EgrulDBDAO.saveOrUpdate(spvidlic)
-                        }
-                    }
                     licenz = new Licenz(
                             idip: ip,
                             numlic: it.@NUMLIC,
-                            dtrestart: Util.convertToDate(it.@DTRESH),
-                            idlicorg: splicorg,
-                            idvidlic: spvidlic,
-                            idsostlic: spsostlic,
-                            dtstart: Util.convertToDate(it.@DTSTART),
-                            dtend: Util.convertToDate(it.@DTEND),
-                            dtstop: Util.convertToDate(it.@DTSTOP),
+                            dtrestart: Util.convertToDate(it.@DTRESH as String),
+                            idlicorg: new Splicorg(
+                                    id: it.LICORG.@ID,
+                                    name: it.LICORG.@NAME
+                            ),
+                            idvidlic: new Spvidlic(
+                                    idvidlic: Util.convertToBInt(it.VIDLIC.@ID),
+                                    name: it.VIDLIC.@NAME_VLIC
+                            ),
+                            idsostlic: new Spsostlic(
+                                    idsostlic: Util.convertToInt(it.SOSTLIC.@ID),
+                                    name: it.SOSTLIC.@NAME
+                            ),
+                            dtstart: Util.convertToDate(it.@DTSTART as String),
+                            dtend: Util.convertToDate(it.@DTEND as String),
+                            dtstop: Util.convertToDate(it.@DTSTOP as String),
                     )
 
                     licenzsList.add(licenz)
                 }
                 ip.setLicenzs(licenzsList)
             }
-            log.debug("Start saving IP with OGRN " + ip.getIdip() + " to DB")
-            try {
-                EgrulDBDAO.saveOrUpdate(ip)
-                log.info("Save to EGRIP IP with OGRN " + ip.getOgrn())
-                resultImport.put(ip.getOgrn(), "Success")
-            } catch (Exception ex) {
-                log.debug("Error saving EGRIP IP with OGRN " + ip.getOgrn())
-                log.debug(ex.printStackTrace())
-                resultImport.put(ip.getOgrn(), "Fail")
-            }
-
         }
-        return resultImport
+        return ip
     }
-
 }
 

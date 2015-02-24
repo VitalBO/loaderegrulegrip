@@ -131,7 +131,7 @@ public class Ipgosreg implements Serializable {
     //MP-MANAGED-ADDED-AREA-BEGINNING @IDREGORG-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDREGORG-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDREGORG@
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.PERSIST)
     @JoinColumn(name = "IDREGORG")
     private Spregorg idregorg;
 //MP-MANAGED-UPDATABLE-ENDING

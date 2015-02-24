@@ -12,11 +12,27 @@ import java.util.Objects;
 
 /**
  * Created by konenkov on 12.02.2015.
+ * Some util methods for converts type*
  */
 public abstract class Util {
 
+
+
     public static Date convertToDate(Attributes attribute) {
         String string = attribute.text();
+        if (string == null) return null;
+        if (Objects.equals(string, "")) return null;
+        Date date = null;
+        DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            date = format.parse(string);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
+    public static Date convertToDate(String string) {
         if (string == null) return null;
         if (Objects.equals(string, "")) return null;
         Date date = null;
