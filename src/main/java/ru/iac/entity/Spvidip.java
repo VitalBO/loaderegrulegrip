@@ -31,10 +31,10 @@ package ru.iac.entity;
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
-import java.util.Date;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -69,7 +69,7 @@ import javax.persistence.*;
 
 })
 
-public class Spvidip implements Serializable {
+public class Spvidip implements Serializable, EgrulEntity {
     private static final long serialVersionUID = 1L;
 
     public static final String FIND_ALL = "Spvidip.findAll";
@@ -333,7 +333,12 @@ public class Spvidip implements Serializable {
     public void setRowCheckSum (String rowCheckSum) {
         this.rowCheckSum =  rowCheckSum;
     }
-	
+
+    @Override
+    public String getIdenti() {
+        return id.toString();
+    }
+
 //MP-MANAGED-UPDATABLE-ENDING
 
 

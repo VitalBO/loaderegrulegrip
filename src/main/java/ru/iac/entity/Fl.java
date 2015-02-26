@@ -31,10 +31,10 @@ package ru.iac.entity;
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
-import java.util.Date;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -55,9 +55,10 @@ import javax.persistence.*;
 
 	,@NamedQuery(name="Fl.findByOtchfl", query="SELECT fl FROM Fl fl WHERE fl.otchfl = :otchfl")
 	,@NamedQuery(name="Fl.findByOtchflContaining", query="SELECT fl FROM Fl fl WHERE fl.otchfl like :otchfl")
+        , @NamedQuery(name = "Fl.findByInn", query = "SELECT fl FROM Fl fl WHERE fl.inn = :inn")
 
-	,@NamedQuery(name="Fl.findByInn", query="SELECT fl FROM Fl fl WHERE fl.inn = :inn")
-	,@NamedQuery(name="Fl.findByInnContaining", query="SELECT fl FROM Fl fl WHERE fl.inn like :inn")
+        , @NamedQuery(name = "Fl.findByInnNId", query = "SELECT fl FROM Fl fl WHERE fl.inn = :kod")
+        ,@NamedQuery(name="Fl.findByInnContaining", query="SELECT fl FROM Fl fl WHERE fl.inn like :inn")
 
 	,@NamedQuery(name="Fl.findByGihdAdate", query="SELECT fl FROM Fl fl WHERE fl.gihdAdate = :gihdAdate")
 
@@ -78,10 +79,11 @@ import javax.persistence.*;
 
 })
 
-public class Fl implements Serializable {
+public class Fl implements Serializable, EgrulEntity, EgrulWithNaturalId {
     private static final long serialVersionUID = 1L;
 
     public static final String FIND_ALL = "Fl.findAll";
+    public static final String FIND_BY_NATURALID = "Fl.findByInnNId";
     public static final String FIND_BY_FAMFL = "Fl.findByFamfl";
     public static final String FIND_BY_FAMFL_CONTAINING ="Fl.findByFamflContaining";
     public static final String FIND_BY_NAMEFL = "Fl.findByNamefl";
@@ -418,13 +420,24 @@ public class Fl implements Serializable {
     public void setRowCheckSum (String rowCheckSum) {
         this.rowCheckSum =  rowCheckSum;
     }
-	
+
+    @Override
+    public String getIdenti() {
+        return idfl == null ? null : idfl.toString();
+    }
+
+    @Override
+    public String getnaturalId() {
+        return inn;
+    }
+
 //MP-MANAGED-UPDATABLE-ENDING
 
 
-
-
-
+    @Override
+    public String returnNaturalIdQuery() {
+        return FIND_BY_NATURALID;
+    }
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @implementation@
 //MP-MANAGED-ADDED-AREA-ENDING @implementation@

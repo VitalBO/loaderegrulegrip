@@ -31,10 +31,12 @@ package ru.iac.entity;
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
-import java.util.Date;
 
-import java.io.Serializable;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -124,7 +126,8 @@ public class Ipregold implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDREGORG-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDREGORG-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDREGORG@
-@ManyToOne(cascade = CascadeType.PERSIST)
+@ManyToOne
+@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
 @JoinColumn(name = "IDREGORG")
     private Spregorg idregorg;
 //MP-MANAGED-UPDATABLE-ENDING

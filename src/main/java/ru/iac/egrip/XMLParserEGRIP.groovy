@@ -2,7 +2,6 @@ package ru.iac.egrip
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import ru.iac.EgrulDBDAO
 import ru.iac.Util
 import ru.iac.entity.*
 

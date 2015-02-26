@@ -49,7 +49,7 @@ public class MainParser {
 Ip ip = null;
         log.debug("Start saving IP with OGRN " + ip.getIdip() + " to DB")
         try {
-            EgrulDBDAO.saveOrUpdate(ip)
+            EgrulDAO.saveOrUpdate(ip)
             log.info("Save to EGRIP IP with OGRN " + ip.getOgrn())
             resultImport.put(ip.getOgrn(), "Success")
         } catch (Exception ex) {
@@ -61,7 +61,7 @@ Ip ip = null;
         
         
         log.debug("Call procedure to linking EAS ID to ULADR table")
-        EgrulDBDAO.callProcedure()
+        EgrulDAO.callProcedure()
         
         for (Map.Entry<String, String> entry : resultImport.entrySet()) {
             if (entry.getValue().equals("Fail"))

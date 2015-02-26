@@ -68,7 +68,7 @@ import java.util.Date;
 
 })
 
-public class Cn implements Serializable {
+public class Cn implements Serializable, EgrulEntity {
     public static final String FIND_ALL = "Cn.findAll";
     public static final String FIND_BY_NAME = "Cn.findByName";
     public static final String FIND_BY_NAME_CONTAINING = "Cn.findByNameContaining";
@@ -355,6 +355,12 @@ public class Cn implements Serializable {
     public void setRowCheckSum(String rowCheckSum) {
         this.rowCheckSum = rowCheckSum;
     }
+
+    @Override
+    public String getIdenti() {
+        return idn.toString();
+    }
+
 
 //MP-MANAGED-UPDATABLE-ENDING
 

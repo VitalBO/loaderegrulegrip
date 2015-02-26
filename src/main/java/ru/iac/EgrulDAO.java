@@ -1,13 +1,17 @@
 package ru.iac;
 
+import org.hibernate.Criteria;
 import org.hibernate.NonUniqueResultException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.iac.entity.*;
+import ru.iac.entity.EgrulEntity;
+import ru.iac.entity.EgrulWithNaturalId;
 
 import java.math.BigInteger;
+import java.util.List;
 
 /**
  * Created by konenkov on 12.02.2015.
@@ -15,52 +19,56 @@ import java.math.BigInteger;
  * Class to work with DB
  * *
  */
-public abstract class EgrulDBDAO {
+public abstract class EgrulDAO {
 
-    private static Logger log = LoggerFactory.getLogger(EgrulDBDAO.class);
+    private static Logger log = LoggerFactory.getLogger(EgrulDAO.class);
 
-    public static void saveIpToDB(Ip ip) {
-        //try {
+
+    public static EgrulEntity saveOrUpdateRef(EgrulEntity egrulEntity) {
         Session session = HibernateUtil.getSession();
         Transaction tx = session.beginTransaction();
-        Spfoms spfoms = (Spfoms) getFromDBbyNaturalId(ip.getIpfoms().getIdfoms().getClass().getName(), ip.getIpfoms().getIdfoms().getKod());
-        if (spfoms == null) session.saveOrUpdate(ip.getIpfoms().getIdfoms());
-        else ip.getIpfoms().setIdfoms(spfoms);
-        Spfss spfss = (Spfss) getFromDBbyNaturalId(ip.getIpfss().getIdfss().getClass().getName(), ip.getIpfss().getIdfss().getKod());
-        if (spfss == null) session.saveOrUpdate(ip.getIpfss().getIdfss());
-        else ip.getIpfss().setIdfss(spfss);
-        Spmns spmns = (Spmns) getFromDBbyNaturalId(ip.getIpmns().getIdmns().getClass().getName(), ip.getIpmns().getIdmns().getKod());
-        if (spmns == null) session.saveOrUpdate(ip.getIpmns().getIdmns());
-        else ip.getIpmns().setIdmns(spmns);
-        Sppf sppf = (Sppf) getFromDBbyNaturalId(ip.getIppf().getIdpf().getClass().getName(), ip.getIppf().getIdpf().getKod());
-        if (sppf == null) session.saveOrUpdate(ip.getIppf().getIdpf());
-        else ip.getIppf().setIdpf(sppf);
-        session.saveOrUpdate(ip.getIpregold().getIdregorg());
-        session.saveOrUpdate(ip.getIdregorg());
-        session.saveOrUpdate(ip.getIpcitizen().getOksm());
-        session.saveOrUpdate(ip.getIpdokdsn().getIddokdn());
-        session.saveOrUpdate(ip.getIpdokdsn().getIdosndn());
-        for (Ipokved ipokved : ip.getIpokved()) {
-            session.saveOrUpdate(ipokved.getIdokved());
+        try {
+            Object obj = null;
+            if (egrulEntity.getIdenti() != null)
+                obj = session.get(egrulEntity.getClass().getName(), egrulEntity.getIdenti());
+            if (obj == null || egrulEntity instanceof EgrulWithNaturalId) {
+                EgrulWithNaturalId egrulWithNaturalId = (EgrulWithNaturalId) egrulEntity;
+                org.hibernate.Query query = session.getNamedQuery(egrulWithNaturalId.returnNaturalIdQuery());
+                query.setParameter("kod", egrulWithNaturalId.getnaturalId());
+                obj = query.uniqueResult();
+
+            }
+            if (obj == null) session.saveOrUpdate(egrulEntity);
+            else egrulEntity = (EgrulEntity) obj;
+
+        } catch (Exception ex) {
+            log.error("Error while saving to DB");
+            log.error(ex.getMessage());
+        } finally {
+            tx.commit();
+            session.close();
         }
-        for (Ipgosreg ipgosreg : ip.getIpgosregs()) {
-            Spregorg spregorg = (Spregorg) session.get(ipgosreg.getIdregorg().getClass().getName(), ipgosreg.getIdregorg().getIdspro());
-            if (spregorg == null) session.saveOrUpdate(ipgosreg.getIdregorg());
-            else ipgosreg.setIdregorg(spregorg);
+        return egrulEntity;
+    }
+
+    public static void saveOrUpdateChildTables(EgrulEntity egrulEntity, String parametr, String value) {
+        Session session = HibernateUtil.getSession();
+        Transaction tx = session.beginTransaction();
+        try {
+            Criteria criteria = session.createCriteria(egrulEntity.getClass().getName());
+            criteria.add(Restrictions.eq(parametr, value));
+            List<EgrulEntity> list = criteria.list();
+            for (EgrulEntity temp : list) {
+                session.delete(temp);
+            }
+            //session.saveOrUpdate(egrulEntity.getClass().getName(), egrulEntity);
+        } catch (Exception ex) {
+            log.error("Error while saving to DB");
+            log.error(ex.getMessage());
+        } finally {
+            tx.commit();
+            session.close();
         }
-        for (Licenz licenz : ip.getLicenzs()) {
-            session.saveOrUpdate(licenz.getIdlicorg());
-            session.saveOrUpdate(licenz.getIdsostlic());
-            session.saveOrUpdate(licenz.getIdvidlic());
-        }
-        
-        session.saveOrUpdate(ip);
-        tx.commit();
-        session.close();
-/*        } catch (Exception ex) {
-            log.debug("Error while saving to DB");
-            log.debug(ex.getMessage());
-        }*/
     }
 
 
@@ -73,8 +81,8 @@ public abstract class EgrulDBDAO {
             tx.commit();
             session.close();
         } catch (Exception ex) {
-            log.debug("Error while saving to DB");
-            log.debug(ex.getMessage());
+            log.error("Error while saving to DB");
+            log.error(ex.getMessage());
         }
 
     }
@@ -133,7 +141,7 @@ public abstract class EgrulDBDAO {
         try {
             object = query.uniqueResult();
         } catch (NonUniqueResultException exception) {
-            log.debug("Error " + exception.getMessage());
+            log.error("Error " + exception.getMessage());
             object = null;
         }
         tx.commit();

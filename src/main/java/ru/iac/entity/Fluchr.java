@@ -31,11 +31,11 @@ package ru.iac.entity;
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
-
-import java.io.Serializable;
-import javax.persistence.*;
 
 /**
  *
@@ -75,7 +75,7 @@ import javax.persistence.*;
 
 })
 
-public class Fluchr implements Serializable {
+public class Fluchr implements Serializable, EgrulEntity {
     private static final long serialVersionUID = 1L;
 
     public static final String FIND_ALL = "Fluchr.findAll";
@@ -413,7 +413,12 @@ public class Fluchr implements Serializable {
     public void setRowCheckSum (String rowCheckSum) {
         this.rowCheckSum =  rowCheckSum;
     }
-	
+
+    @Override
+    public String getIdenti() {
+        return idfluchr.toString();
+    }
+
 //MP-MANAGED-UPDATABLE-ENDING
 
 

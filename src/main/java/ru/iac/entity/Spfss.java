@@ -47,6 +47,7 @@ import java.util.Date;
 @Table(name = "\"SPFSS\"")
 @NamedQueries({
         @NamedQuery(name = "Spfss.findAll", query = "SELECT spfss FROM Spfss spfss")
+
         , @NamedQuery(name = "Spfss.findByName", query = "SELECT spfss FROM Spfss spfss WHERE spfss.name = :name")
         , @NamedQuery(name = "Spfss.findByNameContaining", query = "SELECT spfss FROM Spfss spfss WHERE spfss.name like :name")
 
@@ -72,8 +73,10 @@ import java.util.Date;
 
 })
 
-public class Spfss implements Serializable {
+public class Spfss implements Serializable, EgrulEntity, EgrulWithNaturalId {
     public static final String FIND_ALL = "Spfss.findAll";
+    public static final String FIND_BY_NATURALID = "Spfss.findByKod";
+
     public static final String FIND_BY_NAME = "Spfss.findByName";
     public static final String FIND_BY_NAME_CONTAINING = "Spfss.findByNameContaining";
     public static final String FIND_BY_KOD = "Spfss.findByKod";
@@ -363,8 +366,22 @@ public class Spfss implements Serializable {
         this.rowCheckSum = rowCheckSum;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
+    @Override
+    public String getIdenti() {
+        return id == null ? null : id.toString();
+    }
 
+
+    @Override
+    public String getnaturalId() {
+        return kod;
+    }
+
+    //MP-MANAGED-UPDATABLE-ENDING
+    @Override
+    public String returnNaturalIdQuery() {
+        return FIND_BY_NATURALID;
+    }
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @implementation@
 //MP-MANAGED-ADDED-AREA-ENDING @implementation@

@@ -31,10 +31,12 @@ package ru.iac.entity;
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
-import java.util.Date;
 
-import java.io.Serializable;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -74,7 +76,7 @@ import javax.persistence.*;
 
 })
 
-public class Ipcitizen implements Serializable {
+public class Ipcitizen implements Serializable, EgrulEntity {
     private static final long serialVersionUID = 1L;
 
     public static final String FIND_ALL = "Ipcitizen.findAll";
@@ -115,7 +117,8 @@ public class Ipcitizen implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDVIDCITIZEN-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDVIDCITIZEN-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDVIDCITIZEN@
-@ManyToOne(cascade = CascadeType.ALL)
+@ManyToOne
+@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
 @JoinColumn(name = "IDVIDCITIZEN")
     private Spvidcitizen idvidcitizen;
 //MP-MANAGED-UPDATABLE-ENDING
@@ -123,7 +126,8 @@ public class Ipcitizen implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @OKSM-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @OKSM-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-OKSM@
-@OneToOne(cascade = CascadeType.PERSIST)
+@OneToOne
+@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
 @JoinColumn(name = "OKSM")
     private Oksm oksm;
 //MP-MANAGED-UPDATABLE-ENDING
@@ -413,7 +417,12 @@ public class Ipcitizen implements Serializable {
     public void setRowCheckSum (String rowCheckSum) {
         this.rowCheckSum =  rowCheckSum;
     }
-	
+
+    @Override
+    public String getIdenti() {
+        return idipcitizen.toString();
+    }
+
 //MP-MANAGED-UPDATABLE-ENDING
 
 

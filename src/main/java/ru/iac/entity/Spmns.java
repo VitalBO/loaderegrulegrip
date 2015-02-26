@@ -31,12 +31,12 @@ package ru.iac.entity;
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
+
 import org.hibernate.annotations.NaturalId;
 
-import java.util.Date;
-
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -49,8 +49,8 @@ import javax.persistence.*;
 @Table (name="\"SPMNS\"")
 @NamedQueries ({
 	 @NamedQuery(name="Spmns.findAll", query="SELECT spmns FROM Spmns spmns")
-	,@NamedQuery(name="Spmns.findByName", query="SELECT spmns FROM Spmns spmns WHERE spmns.name = :name")
-	,@NamedQuery(name="Spmns.findByNameContaining", query="SELECT spmns FROM Spmns spmns WHERE spmns.name like :name")
+        , @NamedQuery(name = "Spmns.findByName", query = "SELECT spmns FROM Spmns spmns WHERE spmns.name = :name")
+        ,@NamedQuery(name="Spmns.findByNameContaining", query="SELECT spmns FROM Spmns spmns WHERE spmns.name like :name")
 
 	,@NamedQuery(name="Spmns.findByKod", query="SELECT spmns FROM Spmns spmns WHERE spmns.kod = :kod")
 	,@NamedQuery(name="Spmns.findByKodContaining", query="SELECT spmns FROM Spmns spmns WHERE spmns.kod like :kod")
@@ -74,10 +74,12 @@ import javax.persistence.*;
 
 })
 
-public class Spmns implements Serializable {
+public class Spmns implements Serializable, EgrulEntity, EgrulWithNaturalId {
     private static final long serialVersionUID = 1L;
 
     public static final String FIND_ALL = "Spmns.findAll";
+    public static final String FIND_BY_NATURALID = "Spmns.findByKod";
+
     public static final String FIND_BY_NAME = "Spmns.findByName";
     public static final String FIND_BY_NAME_CONTAINING ="Spmns.findByNameContaining";
     public static final String FIND_BY_KOD = "Spmns.findByKod";
@@ -365,12 +367,25 @@ public class Spmns implements Serializable {
     public void setRowCheckSum (String rowCheckSum) {
         this.rowCheckSum =  rowCheckSum;
     }
-	
+
+    @Override
+    public String getIdenti() {
+        return id == null ? null : id.toString();
+    }
+
+
+    @Override
+    public String getnaturalId() {
+        return kod;
+    }
+
 //MP-MANAGED-UPDATABLE-ENDING
 
 
-
-
+    @Override
+    public String returnNaturalIdQuery() {
+        return FIND_BY_NATURALID;
+    }
 
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @implementation@

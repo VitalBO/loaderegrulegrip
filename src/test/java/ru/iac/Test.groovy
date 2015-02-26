@@ -74,10 +74,10 @@ public class Test extends Assert {
         Spfoms spfoms = new Spfoms();
         spfoms.setName("asdddd");
         spfoms.setKod("109");
-        EgrulDBDAO.saveOrUpdate(spfoms);
-        Spfoms spfoms1 = (Spfoms) EgrulDBDAO.getFromDBbyNaturalId(Spfoms.class.getName(), "109");
+        EgrulDAO.saveOrUpdate(spfoms);
+        Spfoms spfoms1 = (Spfoms) EgrulDAO.getFromDBbyNaturalId(Spfoms.class.getName(), "109");
         assertEquals(spfoms.getKod(), spfoms1.getKod());
-        EgrulDBDAO.removeFromDB(spfoms);
+        EgrulDAO.removeFromDB(spfoms);
 
     }
 
@@ -87,27 +87,70 @@ public class Test extends Assert {
         Spfoms spfoms = new Spfoms();
         spfoms.setName("asdddd");
         spfoms.setKod("109");
-        EgrulDBDAO.saveOrUpdate(spfoms);
-        Spfoms spfoms1 = (Spfoms) EgrulDBDAO.getNamedQuery(Spfoms.FIND_BY_NAME, "name", "asdddd");
+        Spfoms spfoms3 = new Spfoms(
+                name: "asdddd",
+                kod: "109"
+        )
+        spfoms = EgrulDAO.saveOrUpdateRef(spfoms) as Spfoms;
+        Spfoms spfoms1 = (Spfoms) EgrulDAO.getNamedQuery(Spfoms.FIND_BY_NAME, "name", "asdddd");
+        spfoms3 = EgrulDAO.saveOrUpdateRef(spfoms3) as Spfoms;
         assertEquals(spfoms.getKod(), spfoms1.getKod());
-        EgrulDBDAO.removeFromDB(spfoms);
+        assertEquals(spfoms.getKod(), spfoms3.getKod())
+        spfoms = EgrulDAO.saveOrUpdateRef(spfoms) as Spfoms;
+        assertEquals(spfoms.getKod(), spfoms1.getKod());
+        EgrulDAO.removeFromDB(spfoms);
     }
 
 
     @org.junit.Test
     public void testCallProcedure() {
-        EgrulDBDAO.callProcedure();
+        EgrulDAO.callProcedure();
     }
+
+    @org.junit.Test
+    public void testsaveOrUpdateChildTables() {
+        Ip ip1 = getTestIp()
+        EgrulDAO.saveOrUpdateRef(ip1.getIppf().getIdpf())
+        Ippf ippf = new Ippf(
+                idip: ip1,
+                idpf: ip1.getIppf().getIdpf(),
+                regnomPf: 10001
+        )
+        EgrulDAO.saveOrUpdateChildTables(ippf, "regnomPf", "088010086138")
+
+    }
+
 
     @org.junit.Test
     public void testPersistEgrip() {
         Ip ip1 = getTestIp()
-        EgrulDBDAO.saveIpToDB(ip1)
-        Ip ip2 = (Ip) EgrulDBDAO.getFromDB(Ip.getName(), "100000000000001")
+        EgrulService.saveIpToDB(ip1)
+        Ip ip2 = (Ip) EgrulDAO.getFromDB(Ip.getName(), "100000000000001")
         assertEquals(ip1.getInn(), ip2.getInn())
-        assertEquals(ip1.getLicenzs().size(),ip2.getLicenzs().size())
+        assertEquals(ip1.getLicenzs().size(), ip2.getLicenzs().size())
         assertEquals(ip1.getIpfoms().getIdfoms().getName(), ip2.getIpfoms().getIdfoms().getName())
+        EgrulDAO.removeFromDB(ip2)
     }
+
+    @org.junit.Test
+    public void testPersistEgripUpdate() {
+        Ip ip1 = getTestIp()
+        EgrulService.saveIpToDB(ip1)
+        ip1.getLicenzs().add(new Licenz(
+                idip: ip1,
+                numlic: "test"
+        )
+        )
+        ip1.getLicenzs().get(0).setNumlic("test2")
+        EgrulService.saveIpToDB(ip1)
+        Ip ip2 = (Ip) EgrulDAO.getFromDB(Ip.getName(), "100000000000001")
+        assertEquals(ip1.getInn(), ip2.getInn())
+        assertEquals(ip1.getLicenzs().size(), ip2.getLicenzs().size())
+        assertEquals(ip1.getLicenzs().get(0).getNumlic(), ip2.getLicenzs().get(0).getNumlic())
+        assertEquals(ip1.getLicenzs().get(1).getNumlic(), ip2.getLicenzs().get(1).getNumlic())
+        EgrulDAO.removeFromDB(ip2)
+    }
+
 
     private Ip getTestIp() {
         ip = new Ip(

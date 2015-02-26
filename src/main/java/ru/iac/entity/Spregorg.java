@@ -31,11 +31,11 @@ package ru.iac.entity;
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
-
-import java.io.Serializable;
-import javax.persistence.*;
 
 /**
  *
@@ -72,7 +72,7 @@ import javax.persistence.*;
 
 })
 
-public class Spregorg implements Serializable {
+public class Spregorg implements Serializable, EgrulEntity {
     private static final long serialVersionUID = 1L;
 
     public static final String FIND_ALL = "Spregorg.findAll";
@@ -148,10 +148,31 @@ public class Spregorg implements Serializable {
     private Integer gihdChIdPackage; 
 //MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__D_ID_PACKAGE-field-annotation@
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Spregorg)) return false;
+
+        Spregorg spregorg = (Spregorg) o;
+
+        if (!idspro.equals(spregorg.idspro)) return false;
+        if (!name.equals(spregorg.name)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idspro.hashCode();
+        result = 31 * result + name.hashCode();
+        return result;
+    }
+
+    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__D_ID_PACKAGE-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @GIHD__D_ID_PACKAGE-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__D_ID_PACKAGE@
     @Column(name="GIHD__D_ID_PACKAGE"   , nullable=true , unique=false)
+
     private Integer gihdDIdPackage; 
 //MP-MANAGED-UPDATABLE-ENDING
 
@@ -359,7 +380,12 @@ public class Spregorg implements Serializable {
     public void setRowCheckSum (String rowCheckSum) {
         this.rowCheckSum =  rowCheckSum;
     }
-	
+
+    @Override
+    public String getIdenti() {
+        return idspro.toString();
+    }
+
 //MP-MANAGED-UPDATABLE-ENDING
 
 

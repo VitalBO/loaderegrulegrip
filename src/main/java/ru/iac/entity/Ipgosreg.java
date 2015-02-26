@@ -32,6 +32,8 @@ package ru.iac.entity;
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -81,7 +83,7 @@ import java.util.Date;
 
 })
 
-public class Ipgosreg implements Serializable {
+public class Ipgosreg implements Serializable, EgrulEntity {
     public static final String FIND_ALL = "Ipgosreg.findAll";
     public static final String FIND_BY_IDIP = "Ipgosreg.findByIdip";
     public static final String FIND_BY_REGNUM = "Ipgosreg.findByRegnum";
@@ -131,7 +133,8 @@ public class Ipgosreg implements Serializable {
     //MP-MANAGED-ADDED-AREA-BEGINNING @IDREGORG-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDREGORG-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDREGORG@
-    @ManyToOne (cascade = CascadeType.PERSIST)
+    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDREGORG")
     private Spregorg idregorg;
 //MP-MANAGED-UPDATABLE-ENDING
@@ -140,6 +143,7 @@ public class Ipgosreg implements Serializable {
 //MP-MANAGED-ADDED-AREA-ENDING @IDVIDREG-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDVIDREG@
     @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDVIDREG")
     private Spvidreg idvidreg;
 //MP-MANAGED-UPDATABLE-ENDING
@@ -513,6 +517,11 @@ public class Ipgosreg implements Serializable {
 
     public void setRowCheckSum(String rowCheckSum) {
         this.rowCheckSum = rowCheckSum;
+    }
+
+    @Override
+    public String getIdenti() {
+        return idreg;
     }
 
 //MP-MANAGED-UPDATABLE-ENDING

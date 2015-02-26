@@ -31,12 +31,12 @@ package ru.iac.entity;
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
+
 import org.hibernate.annotations.NaturalId;
 
-import java.util.Date;
-
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -95,7 +95,8 @@ public class Ipmns implements Serializable {
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING ="Ipmns.findByRowCheckSumContaining";
 	
     @SequenceGenerator(name = "IPMNSSEQ", sequenceName ="SEQ_IPMNS", allocationSize=1 )
-    @Id @Column(name="IDIPMNS" ) 
+    @Id
+    @Column(name = "IDIPMNS")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="IPMNSSEQ") 
     private Integer idipmns;
 

@@ -31,10 +31,10 @@ package ru.iac.entity;
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
-import java.util.Date;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -83,7 +83,7 @@ import javax.persistence.*;
 
 })
 
-public class Gosreg implements Serializable {
+public class Gosreg implements Serializable, EgrulEntity {
     private static final long serialVersionUID = 1L;
 
     public static final String FIND_ALL = "Gosreg.findAll";
@@ -136,7 +136,7 @@ public class Gosreg implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDREGORG-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDREGORG-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDREGORG@
-    @ManyToOne(cascade = CascadeType.PERSIST)
+@ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="IDREGORG"   , nullable=true , unique=false)
     private Spregorg idregorg; 
 //MP-MANAGED-UPDATABLE-ENDING
@@ -144,7 +144,7 @@ public class Gosreg implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDVIDREG-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDVIDREG-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDVIDREG@
-    @ManyToOne(cascade = CascadeType.PERSIST)
+@ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "IDVIDREG")
     private Spvidreg idvidreg;
 //MP-MANAGED-UPDATABLE-ENDING
@@ -519,7 +519,12 @@ public class Gosreg implements Serializable {
     public void setRowCheckSum (String rowCheckSum) {
         this.rowCheckSum =  rowCheckSum;
     }
-	
+
+    @Override
+    public String getIdenti() {
+        return idreg;
+    }
+
 //MP-MANAGED-UPDATABLE-ENDING
 
 

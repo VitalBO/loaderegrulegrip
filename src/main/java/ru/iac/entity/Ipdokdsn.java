@@ -31,10 +31,12 @@ package ru.iac.entity;
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
-import java.util.Date;
 
-import java.io.Serializable;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -82,7 +84,7 @@ import javax.persistence.*;
 
 })
 
-public class Ipdokdsn implements Serializable {
+public class Ipdokdsn implements Serializable, EgrulEntity {
     private static final long serialVersionUID = 1L;
 
     public static final String FIND_ALL = "Ipdokdsn.findAll";
@@ -128,7 +130,8 @@ public class Ipdokdsn implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDOSNDN-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDOSNDN-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDOSNDN@
-    @ManyToOne(cascade = CascadeType.PERSIST)
+@ManyToOne
+@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name="IDOSNDN"   , nullable=true , unique=false)
     private Sposndn idosndn;
 //MP-MANAGED-UPDATABLE-ENDING
@@ -136,7 +139,8 @@ public class Ipdokdsn implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDDOKDN-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDDOKDN-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDDOKDN@
-    @ManyToOne(cascade = CascadeType.PERSIST)
+@ManyToOne
+@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name="IDDOKDN"   , nullable=true , unique=false)
     private Spdokdn iddokdn; 
 //MP-MANAGED-UPDATABLE-ENDING
@@ -495,7 +499,12 @@ public class Ipdokdsn implements Serializable {
     public void setRowCheckSum (String rowCheckSum) {
         this.rowCheckSum =  rowCheckSum;
     }
-	
+
+    @Override
+    public String getIdenti() {
+        return iddokdsn.toString();
+    }
+
 //MP-MANAGED-UPDATABLE-ENDING
 
 

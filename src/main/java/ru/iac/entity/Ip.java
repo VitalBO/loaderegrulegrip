@@ -29,6 +29,10 @@
  */
 package ru.iac.entity;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -79,7 +83,7 @@ import java.util.List;
 
 })
 
-public class Ip implements Serializable {
+public class Ip implements Serializable, EgrulEntity {
     public static final String FIND_ALL = "Ip.findAll";
     public static final String FIND_BY_OGRN = "Ip.findByOgrn";
     public static final String FIND_BY_OGRN_CONTAINING = "Ip.findByOgrnContaining";
@@ -110,15 +114,18 @@ public class Ip implements Serializable {
     @Column(name = "INN", length = 20, nullable = true, unique = true)
     private String inn;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDVIDIP")
     private Spvidip idvidip;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDSTATUS")
     private Spipstat idstatus;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDREGORG")
     private Spregorg idregorg;
 
@@ -158,16 +165,20 @@ public class Ip implements Serializable {
     @OneToOne(mappedBy = "idip", cascade = CascadeType.ALL)
     private Ipname ipname;
 
-    @OneToMany(mappedBy = "idip", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "idip")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Ipokved> ipokved;
 
-    @OneToMany(mappedBy = "idip", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "idip", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Licenz> licenzs;
 
     @OneToOne(mappedBy = "idip", cascade = CascadeType.ALL)
     private Ipregold ipregold;
 
-    @OneToMany(mappedBy = "idip", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "idip", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Ipgosreg> ipgosregs;
 
     @OneToOne(mappedBy = "idip", cascade = CascadeType.ALL)
@@ -567,5 +578,10 @@ public class Ip implements Serializable {
 
     public void setRowCheckSum(String rowCheckSum) {
         this.rowCheckSum = rowCheckSum;
+    }
+
+    @Override
+    public String getIdenti() {
+        return idip;
     }
 }

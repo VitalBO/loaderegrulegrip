@@ -32,6 +32,8 @@ package ru.iac.entity;
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -140,7 +142,8 @@ public class Licenz implements Serializable {
     //MP-MANAGED-ADDED-AREA-BEGINNING @IDLICORG-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDLICORG-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDLICORG@
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDLICORG")
     private Splicorg idlicorg;
 //MP-MANAGED-UPDATABLE-ENDING
@@ -148,7 +151,8 @@ public class Licenz implements Serializable {
     //MP-MANAGED-ADDED-AREA-BEGINNING @IDVIDLIC-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDVIDLIC-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDVIDLIC@
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDVIDLIC")
     private Spvidlic idvidlic;
 //MP-MANAGED-UPDATABLE-ENDING
@@ -156,7 +160,8 @@ public class Licenz implements Serializable {
     //MP-MANAGED-ADDED-AREA-BEGINNING @IDSOSTLIC-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDSOSTLIC-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDSOSTLIC@
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDSOSTLIC")
     private Spsostlic idsostlic;
 //MP-MANAGED-UPDATABLE-ENDING

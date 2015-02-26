@@ -71,7 +71,7 @@ import java.util.Date;
 
 })
 
-public class Ds implements Serializable {
+public class Ds implements Serializable, EgrulEntity {
     private static final long serialVersionUID = 1L;
 
     public static final String FIND_ALL = "Ds.findAll";
@@ -359,6 +359,11 @@ public class Ds implements Serializable {
 
     public void setRowCheckSum(String rowCheckSum) {
         this.rowCheckSum = rowCheckSum;
+    }
+
+    @Override
+    public String getIdenti() {
+        return idd.toString();
     }
 
 //MP-MANAGED-UPDATABLE-ENDING
