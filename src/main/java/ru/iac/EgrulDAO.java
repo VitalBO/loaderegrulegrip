@@ -1,17 +1,12 @@
 package ru.iac;
 
-import org.hibernate.Criteria;
 import org.hibernate.NonUniqueResultException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.iac.entity.EgrulEntity;
-import ru.iac.entity.EgrulWithNaturalId;
 
 import java.math.BigInteger;
-import java.util.List;
 
 /**
  * Created by konenkov on 12.02.2015.
@@ -24,9 +19,7 @@ public abstract class EgrulDAO {
     private static Logger log = LoggerFactory.getLogger(EgrulDAO.class);
 
 
-    public static EgrulEntity saveOrUpdateRef(EgrulEntity egrulEntity) {
-        Session session = HibernateUtil.getSession();
-        Transaction tx = session.beginTransaction();
+/*    public static EgrulEntity saveOrUpdateRef(EgrulEntity egrulEntity, Session session) {
         try {
             Object obj = null;
             if (egrulEntity.getIdenti() != null)
@@ -44,16 +37,11 @@ public abstract class EgrulDAO {
         } catch (Exception ex) {
             log.error("Error while saving to DB");
             log.error(ex.getMessage());
-        } finally {
-            tx.commit();
-            session.close();
         }
         return egrulEntity;
-    }
+    }*/
 
-    public static void saveOrUpdateChildTables(EgrulEntity egrulEntity, String parametr, String value) {
-        Session session = HibernateUtil.getSession();
-        Transaction tx = session.beginTransaction();
+/*    public static void saveOrUpdateChildTables(EgrulEntity egrulEntity, String parametr, String value, Session session) {
         try {
             Criteria criteria = session.createCriteria(egrulEntity.getClass().getName());
             criteria.add(Restrictions.eq(parametr, value));
@@ -65,11 +53,8 @@ public abstract class EgrulDAO {
         } catch (Exception ex) {
             log.error("Error while saving to DB");
             log.error(ex.getMessage());
-        } finally {
-            tx.commit();
-            session.close();
         }
-    }
+    }*/
 
 
     public static void saveOrUpdate(Object object) {
@@ -132,10 +117,8 @@ public abstract class EgrulDAO {
 
     }
 
-    public static Object getNamedQuery(String queryName, String parametrName, String parametr) {
+    public static Object getNamedQuery(String queryName, String parametrName, String parametr, Session session) {
         Object object;
-        Session session = HibernateUtil.getSession();
-        Transaction tx = session.beginTransaction();
         org.hibernate.Query query = session.getNamedQuery(queryName);
         query.setParameter(parametrName, parametr);
         try {
@@ -144,8 +127,6 @@ public abstract class EgrulDAO {
             log.error("Error " + exception.getMessage());
             object = null;
         }
-        tx.commit();
-        session.close();
         return object;
     }
 

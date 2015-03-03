@@ -31,10 +31,10 @@ package ru.iac.entity;
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
-import java.util.Date;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -98,7 +98,7 @@ public class Ulokved implements Serializable {
     @JoinColumn(name = "IDUL")
     private Ul idul;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "IDOKVED")
     private Okved idokved;
     

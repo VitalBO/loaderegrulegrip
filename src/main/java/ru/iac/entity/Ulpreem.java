@@ -32,6 +32,8 @@ package ru.iac.entity;
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -68,29 +70,6 @@ import java.util.Date;
 
         , @NamedQuery(name = "Ulpreem.findByIdregorg", query = "SELECT ulpreem FROM Ulpreem ulpreem WHERE ulpreem.idregorg = :idregorg")
 
-        , @NamedQuery(name = "Ulpreem.findByOkato", query = "SELECT ulpreem FROM Ulpreem ulpreem WHERE ulpreem.okato = :okato")
-        , @NamedQuery(name = "Ulpreem.findByOkatoContaining", query = "SELECT ulpreem FROM Ulpreem ulpreem WHERE ulpreem.okato like :okato")
-
-        , @NamedQuery(name = "Ulpreem.findByIndeks", query = "SELECT ulpreem FROM Ulpreem ulpreem WHERE ulpreem.indeks = :indeks")
-
-        , @NamedQuery(name = "Ulpreem.findByIdregion", query = "SELECT ulpreem FROM Ulpreem ulpreem WHERE ulpreem.idregion = :idregion")
-
-        , @NamedQuery(name = "Ulpreem.findByIdraion", query = "SELECT ulpreem FROM Ulpreem ulpreem WHERE ulpreem.idraion = :idraion")
-
-        , @NamedQuery(name = "Ulpreem.findByIdgorod", query = "SELECT ulpreem FROM Ulpreem ulpreem WHERE ulpreem.idgorod = :idgorod")
-
-        , @NamedQuery(name = "Ulpreem.findByIdnasp", query = "SELECT ulpreem FROM Ulpreem ulpreem WHERE ulpreem.idnasp = :idnasp")
-
-        , @NamedQuery(name = "Ulpreem.findByIdstreet", query = "SELECT ulpreem FROM Ulpreem ulpreem WHERE ulpreem.idstreet = :idstreet")
-
-        , @NamedQuery(name = "Ulpreem.findByDom", query = "SELECT ulpreem FROM Ulpreem ulpreem WHERE ulpreem.dom = :dom")
-        , @NamedQuery(name = "Ulpreem.findByDomContaining", query = "SELECT ulpreem FROM Ulpreem ulpreem WHERE ulpreem.dom like :dom")
-
-        , @NamedQuery(name = "Ulpreem.findByKorp", query = "SELECT ulpreem FROM Ulpreem ulpreem WHERE ulpreem.korp = :korp")
-        , @NamedQuery(name = "Ulpreem.findByKorpContaining", query = "SELECT ulpreem FROM Ulpreem ulpreem WHERE ulpreem.korp like :korp")
-
-        , @NamedQuery(name = "Ulpreem.findByKvart", query = "SELECT ulpreem FROM Ulpreem ulpreem WHERE ulpreem.kvart = :kvart")
-        , @NamedQuery(name = "Ulpreem.findByKvartContaining", query = "SELECT ulpreem FROM Ulpreem ulpreem WHERE ulpreem.kvart like :kvart")
 
         , @NamedQuery(name = "Ulpreem.findByGihdAdate", query = "SELECT ulpreem FROM Ulpreem ulpreem WHERE ulpreem.gihdAdate = :gihdAdate")
 
@@ -127,20 +106,6 @@ public class Ulpreem implements Serializable {
     public static final String FIND_BY_REGNUMST_CONTAINING = "Ulpreem.findByRegnumstContaining";
     public static final String FIND_BY_DTREG = "Ulpreem.findByDtreg";
     public static final String FIND_BY_IDREGORG = "Ulpreem.findByIdregorg";
-    public static final String FIND_BY_OKATO = "Ulpreem.findByOkato";
-    public static final String FIND_BY_OKATO_CONTAINING = "Ulpreem.findByOkatoContaining";
-    public static final String FIND_BY_INDEKS = "Ulpreem.findByIndeks";
-    public static final String FIND_BY_IDREGION = "Ulpreem.findByIdregion";
-    public static final String FIND_BY_IDRAION = "Ulpreem.findByIdraion";
-    public static final String FIND_BY_IDGOROD = "Ulpreem.findByIdgorod";
-    public static final String FIND_BY_IDNASP = "Ulpreem.findByIdnasp";
-    public static final String FIND_BY_IDSTREET = "Ulpreem.findByIdstreet";
-    public static final String FIND_BY_DOM = "Ulpreem.findByDom";
-    public static final String FIND_BY_DOM_CONTAINING = "Ulpreem.findByDomContaining";
-    public static final String FIND_BY_KORP = "Ulpreem.findByKorp";
-    public static final String FIND_BY_KORP_CONTAINING = "Ulpreem.findByKorpContaining";
-    public static final String FIND_BY_KVART = "Ulpreem.findByKvart";
-    public static final String FIND_BY_KVART_CONTAINING = "Ulpreem.findByKvartContaining";
     public static final String FIND_BY_GIHDADATE = "Ulpreem.findByGihdAdate";
     public static final String FIND_BY_GIHDCHDATE = "Ulpreem.findByGihdChdate";
     public static final String FIND_BY_GIHDDDATE = "Ulpreem.findByGihdDdate";
@@ -156,6 +121,17 @@ public class Ulpreem implements Serializable {
     @Column(name = "IDULPREEM")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ULPREEMSEQ")
     private Integer idulpreem;
+
+    @Embedded
+    Address fulladdress;
+
+    public Address getFulladdress() {
+        return fulladdress;
+    }
+
+    public void setFulladdress(Address fulladdress) {
+        this.fulladdress = fulladdress;
+    }
 
     //MP-MANAGED-ADDED-AREA-BEGINNING @IDUL-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDUL-field-annotation@
@@ -217,7 +193,8 @@ public class Ulpreem implements Serializable {
     //MP-MANAGED-ADDED-AREA-BEGINNING @IDREGORG-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDREGORG-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDREGORG@
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDREGORG", nullable = true, unique = false)
     private Spregorg idregorg;
 //MP-MANAGED-UPDATABLE-ENDING
@@ -225,72 +202,7 @@ public class Ulpreem implements Serializable {
     //MP-MANAGED-ADDED-AREA-BEGINNING @OKATO-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @OKATO-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-OKATO@
-    @Column(name = "OKATO", length = 20, nullable = true, unique = false)
-    private String okato;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @INDEKS-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @INDEKS-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-INDEKS@
-    @Column(name = "INDEKS", nullable = true, unique = false)
-    private Integer indeks;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDREGION-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDREGION-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDREGION@
-    @Column(name = "IDREGION", nullable = true, unique = false)
-    private String idregion;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDRAION-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDRAION-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDRAION@
-    @Column(name = "IDRAION", nullable = true, unique = false)
-    private String idraion;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDGOROD-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDGOROD-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDGOROD@
-    @Column(name = "IDGOROD", nullable = true, unique = false)
-    private String idgorod;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDNASP-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDNASP-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDNASP@
-    @Column(name = "IDNASP", nullable = true, unique = false)
-    private String idnasp;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDSTREET-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDSTREET-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDSTREET@
-    @Column(name = "IDSTREET", nullable = true, unique = false)
-    private String idstreet;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @DOM-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @DOM-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-DOM@
-    @Column(name = "DOM", length = 100, nullable = true, unique = false)
-    private String dom;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    @Column(name = "ADDRESS", nullable = true, unique = false)
-    private String address;
-    //MP-MANAGED-ADDED-AREA-BEGINNING @KORP-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @KORP-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-KORP@
-    @Column(name = "KORP", length = 100, nullable = true, unique = false)
-    private String korp;
-    //MP-MANAGED-ADDED-AREA-BEGINNING @KVART-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @KVART-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-KVART@
-    @Column(name = "KVART", length = 100, nullable = true, unique = false)
-    private String kvart;
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ADATE-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @GIHD__ADATE-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ADATE@
     @Column(name = "GIHD__ADATE", nullable = true, unique = false)
@@ -360,16 +272,6 @@ public class Ulpreem implements Serializable {
             String regnumst,
             Date dtreg,
             Spregorg idregorg,
-            String okato,
-            Integer indeks,
-            String idregion,
-            String idraion,
-            String idgorod,
-            String idnasp,
-            String idstreet,
-            String dom,
-            String korp,
-            String kvart,
             Date gihdAdate,
             Date gihdChdate,
             Date gihdDdate,
@@ -389,16 +291,6 @@ public class Ulpreem implements Serializable {
                 regnumst,
                 dtreg,
                 idregorg,
-                okato,
-                indeks,
-                idregion,
-                idraion,
-                idgorod,
-                idnasp,
-                idstreet,
-                dom,
-                korp,
-                kvart,
                 gihdAdate,
                 gihdChdate,
                 gihdDdate,
@@ -422,16 +314,6 @@ public class Ulpreem implements Serializable {
             String regnumst,
             Date dtreg,
             Spregorg idregorg,
-            String okato,
-            Integer indeks,
-            String idregion,
-            String idraion,
-            String idgorod,
-            String idnasp,
-            String idstreet,
-            String dom,
-            String korp,
-            String kvart,
             Date gihdAdate,
             Date gihdChdate,
             Date gihdDdate,
@@ -453,16 +335,6 @@ public class Ulpreem implements Serializable {
         setRegnumst(regnumst);
         setDtreg(dtreg);
         setIdregorg(idregorg);
-        setOkato(okato);
-        setIndeks(indeks);
-        setIdregion(idregion);
-        setIdraion(idraion);
-        setIdgorod(idgorod);
-        setIdnasp(idnasp);
-        setIdstreet(idstreet);
-        setDom(dom);
-        setKorp(korp);
-        setKvart(kvart);
         setGihdAdate(gihdAdate);
         setGihdChdate(gihdChdate);
         setGihdDdate(gihdDdate);
@@ -474,13 +346,6 @@ public class Ulpreem implements Serializable {
         //parents
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public Ulpreem flat() {
         return new Ulpreem(
@@ -494,16 +359,6 @@ public class Ulpreem implements Serializable {
                 getRegnumst(),
                 getDtreg(),
                 getIdregorg(),
-                getOkato(),
-                getIndeks(),
-                getIdregion(),
-                getIdraion(),
-                getIdgorod(),
-                getIdnasp(),
-                getIdstreet(),
-                getDom(),
-                getKorp(),
-                getKvart(),
                 getGihdAdate(),
                 getGihdChdate(),
                 getGihdDdate(),
@@ -624,114 +479,6 @@ public class Ulpreem implements Serializable {
 //MP-MANAGED-UPDATABLE-ENDING
 
     //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-OKATO@
-    public String getOkato() {
-        return okato;
-    }
-
-    public void setOkato(String okato) {
-        this.okato = okato;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-INDEKS@
-    public Integer getIndeks() {
-        return indeks;
-    }
-
-    public void setIndeks(Integer indeks) {
-        this.indeks = indeks;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDREGION@
-    public String getIdregion() {
-        return idregion;
-    }
-
-    public void setIdregion(String idregion) {
-        this.idregion = idregion;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDRAION@
-    public String getIdraion() {
-        return idraion;
-    }
-
-    public void setIdraion(String idraion) {
-        this.idraion = idraion;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDGOROD@
-    public String getIdgorod() {
-        return idgorod;
-    }
-
-    public void setIdgorod(String idgorod) {
-        this.idgorod = idgorod;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDNASP@
-    public String getIdnasp() {
-        return idnasp;
-    }
-
-    public void setIdnasp(String idnasp) {
-        this.idnasp = idnasp;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDSTREET@
-    public String getIdstreet() {
-        return idstreet;
-    }
-
-    public void setIdstreet(String idstreet) {
-        this.idstreet = idstreet;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-DOM@
-    public String getDom() {
-        return dom;
-    }
-
-    public void setDom(String dom) {
-        this.dom = dom;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-KORP@
-    public String getKorp() {
-        return korp;
-    }
-
-    public void setKorp(String korp) {
-        this.korp = korp;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-KVART@
-    public String getKvart() {
-        return kvart;
-    }
-
-    public void setKvart(String kvart) {
-        this.kvart = kvart;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
 
     //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ADATE@
     public Date getGihdAdate() {

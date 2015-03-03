@@ -112,7 +112,7 @@ public class Ipmns implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDMNS-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDMNS-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDMNS@
-@ManyToOne(cascade = CascadeType.PERSIST)
+@ManyToOne
 @JoinColumn(name = "IDMNS")
     private Spmns idmns;
 //MP-MANAGED-UPDATABLE-ENDING

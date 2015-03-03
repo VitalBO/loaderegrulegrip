@@ -31,10 +31,10 @@ package ru.iac.entity;
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
-import java.util.Date;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -113,7 +113,7 @@ public class Ulfoms implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDFOMS-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDFOMS-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDFOMS@
-    @ManyToOne(cascade = CascadeType.PERSIST)
+@ManyToOne
     @JoinColumn(name="IDFOMS"   , nullable=true , unique=false)
     private Spfoms idfoms;
 //MP-MANAGED-UPDATABLE-ENDING

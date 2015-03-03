@@ -33,6 +33,7 @@ package ru.iac.entity;
 //MP-MANAGED-ADDED-AREA-ENDING @import@
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -134,7 +135,7 @@ public class Ipgosreg implements Serializable, EgrulEntity {
 //MP-MANAGED-ADDED-AREA-ENDING @IDREGORG-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDREGORG@
     @ManyToOne
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @Cascade(CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDREGORG")
     private Spregorg idregorg;
 //MP-MANAGED-UPDATABLE-ENDING
@@ -143,7 +144,7 @@ public class Ipgosreg implements Serializable, EgrulEntity {
 //MP-MANAGED-ADDED-AREA-ENDING @IDVIDREG-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDVIDREG@
     @ManyToOne
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @Cascade(CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDVIDREG")
     private Spvidreg idvidreg;
 //MP-MANAGED-UPDATABLE-ENDING

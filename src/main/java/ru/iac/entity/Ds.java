@@ -366,6 +366,27 @@ public class Ds implements Serializable, EgrulEntity {
         return idd.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ds)) return false;
+
+        Ds ds = (Ds) o;
+
+        if (!idd.equals(ds.idd)) return false;
+        if (kodKl != null ? !kodKl.equals(ds.kodKl) : ds.kodKl != null) return false;
+        if (name != null ? !name.equals(ds.name) : ds.name != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idd.hashCode();
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (kodKl != null ? kodKl.hashCode() : 0);
+        return result;
+    }
 //MP-MANAGED-UPDATABLE-ENDING
 
 

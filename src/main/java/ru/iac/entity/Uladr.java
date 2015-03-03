@@ -46,35 +46,11 @@ import java.util.Date;
 @NamedQueries({
         @NamedQuery(name = "Uladr.findAll", query = "SELECT uladr FROM Uladr uladr")
         , @NamedQuery(name = "Uladr.findByIdul", query = "SELECT uladr FROM Uladr uladr WHERE uladr.idul = :idul")
+        , @NamedQuery(name = "Uladr.findbyNaturalId", query = "SELECT uladr FROM Uladr uladr WHERE uladr.idul = :kod")
 
         , @NamedQuery(name = "Uladr.findByDtstart", query = "SELECT uladr FROM Uladr uladr WHERE uladr.dtstart = :dtstart")
 
         , @NamedQuery(name = "Uladr.findByIdvidadr", query = "SELECT uladr FROM Uladr uladr WHERE uladr.idvidadr = :idvidadr")
-
-        , @NamedQuery(name = "Uladr.findByOkato", query = "SELECT uladr FROM Uladr uladr WHERE uladr.okato = :okato")
-        , @NamedQuery(name = "Uladr.findByOkatoContaining", query = "SELECT uladr FROM Uladr uladr WHERE uladr.okato like :okato")
-
-        , @NamedQuery(name = "Uladr.findByIndeks", query = "SELECT uladr FROM Uladr uladr WHERE uladr.indeks = :indeks")
-        , @NamedQuery(name = "Uladr.findByIndeksContaining", query = "SELECT uladr FROM Uladr uladr WHERE uladr.indeks like :indeks")
-
-        , @NamedQuery(name = "Uladr.findByIdregion", query = "SELECT uladr FROM Uladr uladr WHERE uladr.idregion = :idregion")
-
-        , @NamedQuery(name = "Uladr.findByIdraion", query = "SELECT uladr FROM Uladr uladr WHERE uladr.idraion = :idraion")
-
-        , @NamedQuery(name = "Uladr.findByIdgorod", query = "SELECT uladr FROM Uladr uladr WHERE uladr.idgorod = :idgorod")
-
-        , @NamedQuery(name = "Uladr.findByIdnasp", query = "SELECT uladr FROM Uladr uladr WHERE uladr.idnasp = :idnasp")
-
-        , @NamedQuery(name = "Uladr.findByIdstreet", query = "SELECT uladr FROM Uladr uladr WHERE uladr.idstreet = :idstreet")
-
-        , @NamedQuery(name = "Uladr.findByDom", query = "SELECT uladr FROM Uladr uladr WHERE uladr.dom = :dom")
-        , @NamedQuery(name = "Uladr.findByDomContaining", query = "SELECT uladr FROM Uladr uladr WHERE uladr.dom like :dom")
-
-        , @NamedQuery(name = "Uladr.findByKorp", query = "SELECT uladr FROM Uladr uladr WHERE uladr.korp = :korp")
-        , @NamedQuery(name = "Uladr.findByKorpContaining", query = "SELECT uladr FROM Uladr uladr WHERE uladr.korp like :korp")
-
-        , @NamedQuery(name = "Uladr.findByKvart", query = "SELECT uladr FROM Uladr uladr WHERE uladr.kvart = :kvart")
-        , @NamedQuery(name = "Uladr.findByKvartContaining", query = "SELECT uladr FROM Uladr uladr WHERE uladr.kvart like :kvart")
 
         , @NamedQuery(name = "Uladr.findByKodgorod", query = "SELECT uladr FROM Uladr uladr WHERE uladr.kodgorod = :kodgorod")
         , @NamedQuery(name = "Uladr.findByKodgorodContaining", query = "SELECT uladr FROM Uladr uladr WHERE uladr.kodgorod like :kodgorod")
@@ -107,26 +83,12 @@ import java.util.Date;
 
 })
 
-public class Uladr implements Serializable {
+public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
     public static final String FIND_ALL = "Uladr.findAll";
     public static final String FIND_BY_IDUL = "Uladr.findByIdul";
     public static final String FIND_BY_DTSTART = "Uladr.findByDtstart";
+    public static final String FIND_BY_NATURALID = "Uladr.findbyNaturalId";
     public static final String FIND_BY_IDVIDADR = "Uladr.findByIdvidadr";
-    public static final String FIND_BY_OKATO = "Uladr.findByOkato";
-    public static final String FIND_BY_OKATO_CONTAINING = "Uladr.findByOkatoContaining";
-    public static final String FIND_BY_INDEKS = "Uladr.findByIndeks";
-    public static final String FIND_BY_INDEKS_CONTAINING = "Uladr.findByIndeksContaining";
-    public static final String FIND_BY_IDREGION = "Uladr.findByIdregion";
-    public static final String FIND_BY_IDRAION = "Uladr.findByIdraion";
-    public static final String FIND_BY_IDGOROD = "Uladr.findByIdgorod";
-    public static final String FIND_BY_IDNASP = "Uladr.findByIdnasp";
-    public static final String FIND_BY_IDSTREET = "Uladr.findByIdstreet";
-    public static final String FIND_BY_DOM = "Uladr.findByDom";
-    public static final String FIND_BY_DOM_CONTAINING = "Uladr.findByDomContaining";
-    public static final String FIND_BY_KORP = "Uladr.findByKorp";
-    public static final String FIND_BY_KORP_CONTAINING = "Uladr.findByKorpContaining";
-    public static final String FIND_BY_KVART = "Uladr.findByKvart";
-    public static final String FIND_BY_KVART_CONTAINING = "Uladr.findByKvartContaining";
     public static final String FIND_BY_KODGOROD = "Uladr.findByKodgorod";
     public static final String FIND_BY_KODGOROD_CONTAINING = "Uladr.findByKodgorodContaining";
     public static final String FIND_BY_TELEFON = "Uladr.findByTelefon";
@@ -145,183 +107,112 @@ public class Uladr implements Serializable {
     public static final String FIND_BY_ROWCHECKSUM = "Uladr.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING = "Uladr.findByRowCheckSumContaining";
     private static final long serialVersionUID = 1L;
+    @Embedded
+    Address fulladdress;
     @SequenceGenerator(name = "ULADRSEQ", sequenceName = "SEQ_ULADR", allocationSize = 1)
     @Id
     @Column(name = "IDULADR")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ULADRSEQ")
     private Integer iduladr;
-
     //MP-MANAGED-ADDED-AREA-BEGINNING @IDUL-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDUL-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDUL@
     @OneToOne
     @JoinColumn(name = "IDUL")
     private Ul idul;
-//MP-MANAGED-UPDATABLE-ENDING
-
     //MP-MANAGED-ADDED-AREA-BEGINNING @DTSTART-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @DTSTART-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-DTSTART@
     @Column(name = "DTSTART", nullable = true, unique = false)
     private Date dtstart;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDVIDADR-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDVIDADR-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDVIDADR@
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "IDVIDADR")
     private Spvidadr idvidadr;
-//MP-MANAGED-UPDATABLE-ENDING
+
+    @Column(name = "ADDRESS", nullable = true, unique = false)
+    private String address;
+
 
     //MP-MANAGED-ADDED-AREA-BEGINNING @OKATO-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @OKATO-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-OKATO@
-    @Column(name = "OKATO", length = 12, nullable = true, unique = false)
-    private String okato;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @INDEKS-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @INDEKS-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-INDEKS@
-    @Column(name = "INDEKS", length = 6, nullable = true, unique = false)
-    private String indeks;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDREGION-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDREGION-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDREGION@
-    @Column(name = "IDREGION", nullable = true, unique = false)
-    private String idregion;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDRAION-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDRAION-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDRAION@
-    @Column(name = "IDRAION", nullable = true, unique = false)
-    private String idraion;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDGOROD-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDGOROD-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDGOROD@
-    @Column(name = "IDGOROD", nullable = true, unique = false)
-    private String idgorod;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDNASP-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDNASP-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDNASP@
-    @Column(name = "IDNASP", nullable = true, unique = false)
-    private String idnasp;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDSTREET-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDSTREET-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDSTREET@
-    @Column(name = "IDSTREET", nullable = true, unique = true)
-    private String idstreet;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @DOM-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @DOM-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-DOM@
-    @Column(name = "DOM", length = 50, nullable = true, unique = false)
-    private String dom;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    @Column(name = "ADDRESS", nullable = true, unique = false)
-    private String address;
-    //MP-MANAGED-ADDED-AREA-BEGINNING @KORP-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @KORP-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-KORP@
-    @Column(name = "KORP", length = 50, nullable = true, unique = false)
-    private String korp;
-    //MP-MANAGED-ADDED-AREA-BEGINNING @KVART-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @KVART-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-KVART@
-    @Column(name = "KVART", length = 50, nullable = true, unique = false)
-    private String kvart;
     //MP-MANAGED-ADDED-AREA-BEGINNING @KODGOROD-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @KODGOROD-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-KODGOROD@
     @Column(name = "KODGOROD", length = 5, nullable = true, unique = false)
     private String kodgorod;
-//MP-MANAGED-UPDATABLE-ENDING
+    //MP-MANAGED-UPDATABLE-ENDING
     //MP-MANAGED-ADDED-AREA-BEGINNING @TELEFON-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @TELEFON-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-TELEFON@
     @Column(name = "TELEFON", length = 20, nullable = true, unique = false)
     private String telefon;
-//MP-MANAGED-UPDATABLE-ENDING
+    //MP-MANAGED-UPDATABLE-ENDING
     //MP-MANAGED-ADDED-AREA-BEGINNING @FAX-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @FAX-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-FAX@
     @Column(name = "FAX", length = 20, nullable = true, unique = false)
     private String fax;
-//MP-MANAGED-UPDATABLE-ENDING
+    //MP-MANAGED-UPDATABLE-ENDING
     //MP-MANAGED-ADDED-AREA-BEGINNING @NAMEISPORG-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @NAMEISPORG-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-NAMEISPORG@
     @Column(name = "NAMEISPORG", length = 255, nullable = true, unique = false)
     private String nameisporg;
-//MP-MANAGED-UPDATABLE-ENDING
+    //MP-MANAGED-UPDATABLE-ENDING
     //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ADATE-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @GIHD__ADATE-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ADATE@
     @Column(name = "GIHD__ADATE", nullable = true, unique = false)
     private Date gihdAdate;
-//MP-MANAGED-UPDATABLE-ENDING
+    //MP-MANAGED-UPDATABLE-ENDING
     //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CHDATE-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @GIHD__CHDATE-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CHDATE@
     @Column(name = "GIHD__CHDATE", nullable = true, unique = false)
     private Date gihdChdate;
-//MP-MANAGED-UPDATABLE-ENDING
+    //MP-MANAGED-UPDATABLE-ENDING
     //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__DDATE-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @GIHD__DDATE-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__DDATE@
     @Column(name = "GIHD__DDATE", nullable = true, unique = false)
     private Date gihdDdate;
-//MP-MANAGED-UPDATABLE-ENDING
+    //MP-MANAGED-UPDATABLE-ENDING
     //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ID_USER-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @GIHD__ID_USER-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ID_USER@
     @Column(name = "GIHD__ID_USER", nullable = true, unique = false)
     private Integer gihdIdUser;
-//MP-MANAGED-UPDATABLE-ENDING
+    //MP-MANAGED-UPDATABLE-ENDING
     //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__A_ID_PACKAGE-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @GIHD__A_ID_PACKAGE-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__A_ID_PACKAGE@
     @Column(name = "GIHD__A_ID_PACKAGE", nullable = true, unique = false)
     private Integer gihdAIdPackage;
-//MP-MANAGED-UPDATABLE-ENDING
+    //MP-MANAGED-UPDATABLE-ENDING
     //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CH_ID_PACKAGE-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @GIHD__CH_ID_PACKAGE-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CH_ID_PACKAGE@
     @Column(name = "GIHD__CH_ID_PACKAGE", nullable = true, unique = false)
     private Integer gihdChIdPackage;
-//MP-MANAGED-UPDATABLE-ENDING
+    //MP-MANAGED-UPDATABLE-ENDING
     //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__D_ID_PACKAGE-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @GIHD__D_ID_PACKAGE-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__D_ID_PACKAGE@
     @Column(name = "GIHD__D_ID_PACKAGE", nullable = true, unique = false)
     private Integer gihdDIdPackage;
-//MP-MANAGED-UPDATABLE-ENDING
+    //MP-MANAGED-UPDATABLE-ENDING
     //MP-MANAGED-ADDED-AREA-BEGINNING @ROW_CHECK_SUM-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @ROW_CHECK_SUM-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-ROW_CHECK_SUM@
     @Column(name = "ROW_CHECK_SUM", nullable = true, unique = false)
     private String rowCheckSum;
-//MP-MANAGED-UPDATABLE-ENDING
-
     /**
      * Default constructor
      */
     public Uladr() {
     }
-//MP-MANAGED-UPDATABLE-ENDING
-
     /**
      * All field constructor
      */
@@ -330,16 +221,6 @@ public class Uladr implements Serializable {
             Ul idul,
             Date dtstart,
             Spvidadr idvidadr,
-            String okato,
-            String indeks,
-            String idregion,
-            String idraion,
-            String idgorod,
-            String idnasp,
-            String idstreet,
-            String dom,
-            String korp,
-            String kvart,
             String kodgorod,
             String telefon,
             String fax,
@@ -357,16 +238,6 @@ public class Uladr implements Serializable {
                 idul,
                 dtstart,
                 idvidadr,
-                okato,
-                indeks,
-                idregion,
-                idraion,
-                idgorod,
-                idnasp,
-                idstreet,
-                dom,
-                korp,
-                kvart,
                 kodgorod,
                 telefon,
                 fax,
@@ -388,16 +259,7 @@ public class Uladr implements Serializable {
             Ul idul,
             Date dtstart,
             Spvidadr idvidadr,
-            String okato,
-            String indeks,
-            String idregion,
-            String idraion,
-            String idgorod,
-            String idnasp,
-            String idstreet,
-            String dom,
-            String korp,
-            String kvart,
+
             String kodgorod,
             String telefon,
             String fax,
@@ -417,16 +279,6 @@ public class Uladr implements Serializable {
         setIdul(idul);
         setDtstart(dtstart);
         setIdvidadr(idvidadr);
-        setOkato(okato);
-        setIndeks(indeks);
-        setIdregion(idregion);
-        setIdraion(idraion);
-        setIdgorod(idgorod);
-        setIdnasp(idnasp);
-        setIdstreet(idstreet);
-        setDom(dom);
-        setKorp(korp);
-        setKvart(kvart);
         setKodgorod(kodgorod);
         setTelefon(telefon);
         setFax(fax);
@@ -440,6 +292,16 @@ public class Uladr implements Serializable {
         setGihdDIdPackage(gihdDIdPackage);
         setRowCheckSum(rowCheckSum);
         //parents
+    }
+//MP-MANAGED-UPDATABLE-ENDING
+
+    public Address getFulladdress() {
+        return fulladdress;
+    }
+//MP-MANAGED-UPDATABLE-ENDING
+
+    public void setFulladdress(Address fulladdress) {
+        this.fulladdress = fulladdress;
     }
 
     public String getAddress() {
@@ -456,16 +318,6 @@ public class Uladr implements Serializable {
                 getIdul(),
                 getDtstart(),
                 getIdvidadr(),
-                getOkato(),
-                getIndeks(),
-                getIdregion(),
-                getIdraion(),
-                getIdgorod(),
-                getIdnasp(),
-                getIdstreet(),
-                getDom(),
-                getKorp(),
-                getKvart(),
                 getKodgorod(),
                 getTelefon(),
                 getFax(),
@@ -524,112 +376,7 @@ public class Uladr implements Serializable {
 //MP-MANAGED-UPDATABLE-ENDING
 
     //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-OKATO@
-    public String getOkato() {
-        return okato;
-    }
 
-    public void setOkato(String okato) {
-        this.okato = okato;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-INDEKS@
-    public String getIndeks() {
-        return indeks;
-    }
-
-    public void setIndeks(String indeks) {
-        this.indeks = indeks;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDREGION@
-    public String getIdregion() {
-        return idregion;
-    }
-
-    public void setIdregion(String idregion) {
-        this.idregion = idregion;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDRAION@
-    public String getIdraion() {
-        return idraion;
-    }
-
-    public void setIdraion(String idraion) {
-        this.idraion = idraion;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDGOROD@
-    public String getIdgorod() {
-        return idgorod;
-    }
-
-    public void setIdgorod(String idgorod) {
-        this.idgorod = idgorod;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDNASP@
-    public String getIdnasp() {
-        return idnasp;
-    }
-
-    public void setIdnasp(String idnasp) {
-        this.idnasp = idnasp;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDSTREET@
-    public String getIdstreet() {
-        return idstreet;
-    }
-
-    public void setIdstreet(String idstreet) {
-        this.idstreet = idstreet;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-DOM@
-    public String getDom() {
-        return dom;
-    }
-
-    public void setDom(String dom) {
-        this.dom = dom;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-KORP@
-    public String getKorp() {
-        return korp;
-    }
-
-    public void setKorp(String korp) {
-        this.korp = korp;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-KVART@
-    public String getKvart() {
-        return kvart;
-    }
-
-    public void setKvart(String kvart) {
-        this.kvart = kvart;
-    }
 
 //MP-MANAGED-UPDATABLE-ENDING
 
@@ -763,7 +510,44 @@ public class Uladr implements Serializable {
         this.rowCheckSum = rowCheckSum;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
+    @Override
+    public String getIdenti() {
+        return iduladr == null ? null : iduladr.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Uladr)) return false;
+
+        Uladr uladr = (Uladr) o;
+
+        if (fulladdress != null ? !fulladdress.equals(uladr.fulladdress) : uladr.fulladdress != null) return false;
+        if (idul != null ? !idul.equals(uladr.idul) : uladr.idul != null) return false;
+        if (!iduladr.equals(uladr.iduladr)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = fulladdress != null ? fulladdress.hashCode() : 0;
+        result = 31 * result + iduladr.hashCode();
+        result = 31 * result + (idul != null ? idul.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String getnaturalId() {
+        return idul.getIdul();
+    }
+
+    @Override
+    public String returnNaturalIdQuery() {
+        return FIND_BY_NATURALID;
+    }
+
+    //MP-MANAGED-UPDATABLE-ENDING
 
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @implementation@

@@ -367,6 +367,28 @@ public class Ct implements Serializable, EgrulEntity {
         return idc.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ct)) return false;
+
+        Ct ct = (Ct) o;
+
+        if (!idc.equals(ct.idc)) return false;
+        if (kodKl != null ? !kodKl.equals(ct.kodKl) : ct.kodKl != null) return false;
+        if (name != null ? !name.equals(ct.name) : ct.name != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idc.hashCode();
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (kodKl != null ? kodKl.hashCode() : 0);
+        return result;
+    }
+
 //MP-MANAGED-UPDATABLE-ENDING
 
 

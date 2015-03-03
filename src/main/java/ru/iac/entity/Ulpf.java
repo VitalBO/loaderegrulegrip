@@ -31,10 +31,10 @@ package ru.iac.entity;
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
-import java.util.Date;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -113,7 +113,7 @@ public class Ulpf implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDPF-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDPF-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDPF@
-    @ManyToOne(cascade = CascadeType.PERSIST)
+@ManyToOne
     @JoinColumn(name="IDPF"   , nullable=true , unique=false)
     private Sppf idpf;
 //MP-MANAGED-UPDATABLE-ENDING

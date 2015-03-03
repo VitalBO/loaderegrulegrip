@@ -340,9 +340,22 @@ public class Spvidreg implements Serializable, EgrulEntity {
 
 //MP-MANAGED-UPDATABLE-ENDING
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Spvidreg)) return false;
 
+        Spvidreg spvidreg = (Spvidreg) o;
 
+        if (!idvidreg.equals(spvidreg.idvidreg)) return false;
 
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return idvidreg.hashCode();
+    }
 
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @implementation@

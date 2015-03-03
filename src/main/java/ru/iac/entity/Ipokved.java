@@ -102,7 +102,7 @@ public class Ipokved implements Serializable {
     //MP-MANAGED-ADDED-AREA-BEGINNING @IDOKVED-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDOKVED-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDOKVED@
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "IDOKVED")
     private Okved idokved;
 //MP-MANAGED-UPDATABLE-ENDING

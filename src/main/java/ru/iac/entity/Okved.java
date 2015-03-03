@@ -75,7 +75,7 @@ import java.util.Date;
 
 public class Okved implements Serializable, EgrulEntity, EgrulWithNaturalId {
     public static final String FIND_ALL = "Okved.findAll";
-    public static final String FIND_BY_NATURALID = "Spfoms.findByCodeOkvedNId";
+    public static final String FIND_BY_NATURALID = "Okved.findByCodeOkvedNId";
     public static final String FIND_BY_NAME = "Okved.findByName";
     public static final String FIND_BY_NAME_CONTAINING = "Okved.findByNameContaining";
     public static final String FIND_BY_CODEOKVED = "Okved.findByCodeOkved";

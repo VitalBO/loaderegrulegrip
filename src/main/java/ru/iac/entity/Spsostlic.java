@@ -340,9 +340,25 @@ public class Spsostlic implements Serializable, EgrulEntity {
 
 //MP-MANAGED-UPDATABLE-ENDING
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Spsostlic)) return false;
 
+        Spsostlic spsostlic = (Spsostlic) o;
 
+        if (!idsostlic.equals(spsostlic.idsostlic)) return false;
+        if (name != null ? !name.equals(spsostlic.name) : spsostlic.name != null) return false;
 
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idsostlic.hashCode();
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
+    }
 
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @implementation@

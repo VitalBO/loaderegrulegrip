@@ -113,7 +113,7 @@ public class Ippf implements Serializable, EgrulEntity {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDPF-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDPF-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDPF@
-@ManyToOne(cascade = CascadeType.PERSIST)
+@ManyToOne
 @JoinColumn(name = "IDPF")
     private Sppf idpf;
 //MP-MANAGED-UPDATABLE-ENDING

@@ -32,6 +32,10 @@ package ru.iac.entity;
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -142,15 +146,18 @@ public class Ul implements Serializable {
     @Column(name = "KPP", length = 10, nullable = true, unique = false)
     private String kpp;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDSTATUS")
     private Spulstat idstatus;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDREGORG")
     private Spregorg idregorg;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDVIDREGSTART")
     private Spvidreg idvidregstart;
 
@@ -160,11 +167,13 @@ public class Ul implements Serializable {
     @Column(name = "DTREGSTART", nullable = true, unique = true)
     private Date dtregstart;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDREGORGSTART")
     private Spregorg idregorgstart;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDVIDREGEND", nullable = true, unique = false)
     private Spvidreg idvidregend;
 
@@ -174,7 +183,8 @@ public class Ul implements Serializable {
     @Column(name = "DTREGEND", nullable = true, unique = false)
     private Date dtregend;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDREGORGEND", nullable = true, unique = false)
     private Spregorg idregorgend;
 
@@ -205,6 +215,7 @@ public class Ul implements Serializable {
     @Column(name = "ROW_CHECK_SUM", nullable = true, unique = false)
     private String rowCheckSum;
     @OneToMany(mappedBy = "idul", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Ulokved> ulokved;
 
     @OneToOne(mappedBy = "idul", cascade = CascadeType.ALL)
@@ -212,37 +223,61 @@ public class Ul implements Serializable {
 
     @OneToOne(mappedBy = "idul", cascade = CascadeType.ALL)
     private Uladr uladr;
-    
+
     @OneToOne(mappedBy = "idul", cascade = CascadeType.ALL)
     private Ulcapital ulcapital;
+
     @OneToMany(mappedBy = "idul", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Rul> ruls;
+
     @OneToMany(mappedBy = "idul", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Iul> iuls;
+
     @OneToMany(mappedBy = "idul", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Fluchr> fluchrs;
+
     @OneToMany(mappedBy = "idul", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Fldolgn> fldolgns;
+
     @OneToOne(mappedBy = "idul", cascade = CascadeType.ALL)
     private Ulupr ulupr;
+
     @OneToMany(mappedBy = "idul", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Ulpredsh> ulpredshs;
+
     @OneToMany(mappedBy = "idul", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Ulpreem> ulpreems;
-    @OneToMany(mappedBy = "idul", cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @OneToMany(mappedBy = "idul", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Licenz> licenzs;
-    @OneToMany(mappedBy = "idul", cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @OneToMany(mappedBy = "idul", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Ulob> ulobs;
-    @OneToMany(mappedBy = "idul", cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @OneToMany(mappedBy = "idul", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Gosreg> gosregs;
+
     @OneToOne(mappedBy = "idul", cascade = CascadeType.ALL)
     private Ulmns ulmns;
+
     @OneToOne(mappedBy = "idul", cascade = CascadeType.ALL)
     private Ulfss ulfss;
+
     @OneToOne(mappedBy = "idul", cascade = CascadeType.ALL)
     private Ulpf ulpf;
+
     @OneToOne(mappedBy = "idul", cascade = CascadeType.ALL)
     private Ulfoms ulfoms;
+
     @OneToOne(mappedBy = "idul", cascade = CascadeType.ALL)
     private Reestrao reestrao;
 

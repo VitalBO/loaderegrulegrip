@@ -2,14 +2,18 @@ package ru.iac
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import ru.iac.egrip.XMLParserEGRIP
-import ru.iac.egrul.XMLParserEGRUL
 import ru.iac.entity.Ip
+import ru.iac.entity.Ul
+
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by konenkov on 17.02.2015.
  */
 public class MainParser {
+    HashMap<String, Integer> resultImport = new HashMap<>()
 
     private Properties getProps() {
         return properties
@@ -30,44 +34,93 @@ public class MainParser {
 
     public static void main(String[] args) {
         MainParser mainParser = new MainParser()
-        parse(mainParser.getProps().get("pathToFile") as File)
+        mainParser.parse(mainParser.getProps().get("pathToFile") as File)
 
     }
 
-    public static void parse(File filePath) {
+    public void parse(File filePath) {
 
+        Comparator<File> comparator = new DataFileComparator();
+        PriorityQueue<File> queue =
+                new PriorityQueue<File>(10, comparator);
+
+        for (File temp : filePath.listFiles(new FileFilter() {
+            @Override
+            boolean accept(File pathname) {
+                if (pathname.getName().endsWith(".XML")) {
+                    return true
+                } else return false
+            }
+        })) {
+            queue.add(temp)
+        }
+        int threads = 1
+        while (queue.peek() != null) {
+            File temp = queue.poll()
+            log.debug("Start parsing file " + temp.getName())
+            resultImport = parseFile(temp, threads)
+            if (threads < 10) threads++
+            //println(queue.poll().getName())
+        }
+
+        for (String key : resultImport.keySet()) {
+            log.info(key + "\t  - " + resultImport.get(key))
+        }
+
+        System.exit(0)
+    }
+
+    HashMap parseFile(File filePath, int treadpool) {
         def DATA = new XmlSlurper().parse(filePath)
-        HashMap<String, String> resultImport = null
+        Ul ul
+        Ip ip
+        int result
+        ExecutorService service = Executors.newFixedThreadPool(treadpool);
 
         if (DATA.IP.@IDDOK != "") {
-            resultImport = XMLParserEGRIP.parse(filePath)
-        } else if (DATA.UL.@IDDOK != "") {
-            resultImport = XMLParserEGRUL.parse(filePath)
-        } else {
-            log.info("Incorrect file structure")
-        }
-Ip ip = null;
-        log.debug("Start saving IP with OGRN " + ip.getIdip() + " to DB")
-        try {
-            EgrulDAO.saveOrUpdate(ip)
-            log.info("Save to EGRIP IP with OGRN " + ip.getOgrn())
-            resultImport.put(ip.getOgrn(), "Success")
-        } catch (Exception ex) {
-            log.debug("Error saving EGRIP IP with OGRN " + ip.getOgrn())
-            log.debug(ex.printStackTrace())
-            resultImport.put(ip.getOgrn(), "Fail")
-        }
-        
-        
-        
-        log.debug("Call procedure to linking EAS ID to ULADR table")
-        EgrulDAO.callProcedure()
-        
-        for (Map.Entry<String, String> entry : resultImport.entrySet()) {
-            if (entry.getValue().equals("Fail"))
-            log.info(entry.getKey() + " " + entry.getValue())
+            DATA.IP.each {
+                service.submit(new Runnable() {
+                    @Override
+                    void run() {
+                        ip = XMLParserEGRIP.parse(it);
+                        if (ip != null) result = EgrulService.saveIpToDB(ip)
+                        else log.error("Error parse file" + filePath.getName())
+                        resultImport.put("File: " + filePath.getName() + ", OGRN: " + ip.getOgrn(), result)
+                    }
+                })
 
+            }
+        } else if (DATA.UL.@IDDOK != "") {
+            DATA.UL.each {
+                service.submit(new Runnable() {
+                    @Override
+                    void run() {
+                        ul = XMLParserEGRUL.parse(it)
+                        if (ul != null) result = EgrulService.saveUlToDB(ul)
+                        else log.error("Error parse file" + filePath.getName())
+                        resultImport.put("File: " + filePath.getName() + ", OGRN: " + ul.getOgrn(), result)
+                    }
+                })
+            }
+        } else {
+            log.error("Incorrect file structure")
         }
-        System.exit(0)
+        service.awaitTermination(2, TimeUnit.HOURS)
+        return resultImport
+    }
+
+
+    private class DataFileComparator implements Comparator<File> {
+
+        @Override
+        int compare(File f1, File f2) {
+
+
+            String o1 = f1.getName().replaceAll("RIV_M_78021_", "").replaceAll("RUV_M_78021_", "").replaceAll("_", "").replaceAll(".XML", "")
+            String o2 = f2.getName().replaceAll("RIV_M_78021_", "").replaceAll("RUV_M_78021_", "").replaceAll("_", "").replaceAll(".XML", "")
+            if (Integer.parseInt(o1) > Integer.parseInt(o2)) return 1
+            if (Integer.parseInt(o1) < Integer.parseInt(o2)) return -1
+            return 0
+        }
     }
 }

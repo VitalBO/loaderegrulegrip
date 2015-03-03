@@ -31,10 +31,10 @@ package ru.iac.entity;
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
-import java.util.Date;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -113,7 +113,7 @@ public class Ulfss implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDFSS-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDFSS-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDFSS@
-    @ManyToOne(cascade = CascadeType.PERSIST)
+@ManyToOne
     @JoinColumn(name="IDFSS"   , nullable=true , unique=false)
     private Spfss idfss;
 //MP-MANAGED-UPDATABLE-ENDING

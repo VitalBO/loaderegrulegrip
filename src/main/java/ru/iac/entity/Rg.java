@@ -31,11 +31,11 @@ package ru.iac.entity;
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
-
-import java.io.Serializable;
-import javax.persistence.*;
 
 /**
  *
@@ -73,7 +73,7 @@ import javax.persistence.*;
 
 })
 
-public class Rg implements Serializable {
+public class Rg implements Serializable, EgrulEntity {
     private static final long serialVersionUID = 1L;
 
     public static final String FIND_ALL = "Rg.findAll";
@@ -361,7 +361,34 @@ public class Rg implements Serializable {
     public void setRowCheckSum (String rowCheckSum) {
         this.rowCheckSum =  rowCheckSum;
     }
-	
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Rg)) return false;
+
+        Rg rg = (Rg) o;
+
+        if (!idr.equals(rg.idr)) return false;
+        if (kodKl != null ? !kodKl.equals(rg.kodKl) : rg.kodKl != null) return false;
+        if (name != null ? !name.equals(rg.name) : rg.name != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idr.hashCode();
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (kodKl != null ? kodKl.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String getIdenti() {
+        return idr.toString();
+    }
+
 //MP-MANAGED-UPDATABLE-ENDING
 
 

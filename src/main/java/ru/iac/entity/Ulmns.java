@@ -31,10 +31,10 @@ package ru.iac.entity;
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
-import java.util.Date;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -108,7 +108,7 @@ public class Ulmns implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDMNS-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDMNS-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDMNS@
-@ManyToOne(cascade = CascadeType.PERSIST)
+@ManyToOne
     @JoinColumn(name="IDMNS"   , nullable=true , unique=false)
     private Spmns idmns;
 //MP-MANAGED-UPDATABLE-ENDING

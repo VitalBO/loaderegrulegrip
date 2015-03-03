@@ -32,6 +32,8 @@ package ru.iac.entity;
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -141,7 +143,8 @@ public class Ulname implements Serializable {
     //MP-MANAGED-ADDED-AREA-BEGINNING @IDLANGI-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDLANGI-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDLANGI@
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDLANGI", nullable = true, unique = false)
     private Splang idlangi;
 //MP-MANAGED-UPDATABLE-ENDING

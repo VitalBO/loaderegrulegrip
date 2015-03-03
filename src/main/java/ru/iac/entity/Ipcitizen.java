@@ -33,6 +33,7 @@ package ru.iac.entity;
 //MP-MANAGED-ADDED-AREA-ENDING @import@
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -118,7 +119,7 @@ public class Ipcitizen implements Serializable, EgrulEntity {
 //MP-MANAGED-ADDED-AREA-ENDING @IDVIDCITIZEN-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDVIDCITIZEN@
 @ManyToOne
-@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+@Cascade(CascadeType.SAVE_UPDATE)
 @JoinColumn(name = "IDVIDCITIZEN")
     private Spvidcitizen idvidcitizen;
 //MP-MANAGED-UPDATABLE-ENDING
@@ -127,7 +128,7 @@ public class Ipcitizen implements Serializable, EgrulEntity {
 //MP-MANAGED-ADDED-AREA-ENDING @OKSM-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-OKSM@
 @OneToOne
-@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+@Cascade(CascadeType.SAVE_UPDATE)
 @JoinColumn(name = "OKSM")
     private Oksm oksm;
 //MP-MANAGED-UPDATABLE-ENDING

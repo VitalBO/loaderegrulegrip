@@ -63,29 +63,6 @@ import java.util.Date;
         , @NamedQuery(name = "Ulupr.findByKpp", query = "SELECT ulupr FROM Ulupr ulupr WHERE ulupr.kpp = :kpp")
         , @NamedQuery(name = "Ulupr.findByKppContaining", query = "SELECT ulupr FROM Ulupr ulupr WHERE ulupr.kpp like :kpp")
 
-        , @NamedQuery(name = "Ulupr.findByOkato", query = "SELECT ulupr FROM Ulupr ulupr WHERE ulupr.okato = :okato")
-        , @NamedQuery(name = "Ulupr.findByOkatoContaining", query = "SELECT ulupr FROM Ulupr ulupr WHERE ulupr.okato like :okato")
-
-        , @NamedQuery(name = "Ulupr.findByIndeks", query = "SELECT ulupr FROM Ulupr ulupr WHERE ulupr.indeks = :indeks")
-
-        , @NamedQuery(name = "Ulupr.findByIdregion", query = "SELECT ulupr FROM Ulupr ulupr WHERE ulupr.idregion = :idregion")
-
-        , @NamedQuery(name = "Ulupr.findByIdraion", query = "SELECT ulupr FROM Ulupr ulupr WHERE ulupr.idraion = :idraion")
-
-        , @NamedQuery(name = "Ulupr.findByIdgorod", query = "SELECT ulupr FROM Ulupr ulupr WHERE ulupr.idgorod = :idgorod")
-
-        , @NamedQuery(name = "Ulupr.findByIdnasp", query = "SELECT ulupr FROM Ulupr ulupr WHERE ulupr.idnasp = :idnasp")
-
-        , @NamedQuery(name = "Ulupr.findByIdstreet", query = "SELECT ulupr FROM Ulupr ulupr WHERE ulupr.idstreet = :idstreet")
-
-        , @NamedQuery(name = "Ulupr.findByDom", query = "SELECT ulupr FROM Ulupr ulupr WHERE ulupr.dom = :dom")
-        , @NamedQuery(name = "Ulupr.findByDomContaining", query = "SELECT ulupr FROM Ulupr ulupr WHERE ulupr.dom like :dom")
-
-        , @NamedQuery(name = "Ulupr.findByKorp", query = "SELECT ulupr FROM Ulupr ulupr WHERE ulupr.korp = :korp")
-        , @NamedQuery(name = "Ulupr.findByKorpContaining", query = "SELECT ulupr FROM Ulupr ulupr WHERE ulupr.korp like :korp")
-
-        , @NamedQuery(name = "Ulupr.findByKvart", query = "SELECT ulupr FROM Ulupr ulupr WHERE ulupr.kvart = :kvart")
-        , @NamedQuery(name = "Ulupr.findByKvartContaining", query = "SELECT ulupr FROM Ulupr ulupr WHERE ulupr.kvart like :kvart")
 
         , @NamedQuery(name = "Ulupr.findByKodgorod", query = "SELECT ulupr FROM Ulupr ulupr WHERE ulupr.kodgorod = :kodgorod")
         , @NamedQuery(name = "Ulupr.findByKodgorodContaining", query = "SELECT ulupr FROM Ulupr ulupr WHERE ulupr.kodgorod like :kodgorod")
@@ -128,20 +105,6 @@ public class Ulupr implements Serializable {
     public static final String FIND_BY_INN_CONTAINING = "Ulupr.findByInnContaining";
     public static final String FIND_BY_KPP = "Ulupr.findByKpp";
     public static final String FIND_BY_KPP_CONTAINING = "Ulupr.findByKppContaining";
-    public static final String FIND_BY_OKATO = "Ulupr.findByOkato";
-    public static final String FIND_BY_OKATO_CONTAINING = "Ulupr.findByOkatoContaining";
-    public static final String FIND_BY_INDEKS = "Ulupr.findByIndeks";
-    public static final String FIND_BY_IDREGION = "Ulupr.findByIdregion";
-    public static final String FIND_BY_IDRAION = "Ulupr.findByIdraion";
-    public static final String FIND_BY_IDGOROD = "Ulupr.findByIdgorod";
-    public static final String FIND_BY_IDNASP = "Ulupr.findByIdnasp";
-    public static final String FIND_BY_IDSTREET = "Ulupr.findByIdstreet";
-    public static final String FIND_BY_DOM = "Ulupr.findByDom";
-    public static final String FIND_BY_DOM_CONTAINING = "Ulupr.findByDomContaining";
-    public static final String FIND_BY_KORP = "Ulupr.findByKorp";
-    public static final String FIND_BY_KORP_CONTAINING = "Ulupr.findByKorpContaining";
-    public static final String FIND_BY_KVART = "Ulupr.findByKvart";
-    public static final String FIND_BY_KVART_CONTAINING = "Ulupr.findByKvartContaining";
     public static final String FIND_BY_KODGOROD = "Ulupr.findByKodgorod";
     public static final String FIND_BY_KODGOROD_CONTAINING = "Ulupr.findByKodgorodContaining";
     public static final String FIND_BY_TELEFON = "Ulupr.findByTelefon";
@@ -163,6 +126,17 @@ public class Ulupr implements Serializable {
     @Column(name = "IDULUPR")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ULUPRSEQ")
     private Integer idulupr;
+
+    @Embedded
+    Address fulladdress;
+
+    public Address getFulladdress() {
+        return fulladdress;
+    }
+
+    public void setFulladdress(Address fulladdress) {
+        this.fulladdress = fulladdress;
+    }
 
     //MP-MANAGED-ADDED-AREA-BEGINNING @IDUL-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDUL-field-annotation@
@@ -217,71 +191,7 @@ public class Ulupr implements Serializable {
     //MP-MANAGED-ADDED-AREA-BEGINNING @OKATO-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @OKATO-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-OKATO@
-    @Column(name = "OKATO", length = 20, nullable = true, unique = false)
-    private String okato;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @INDEKS-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @INDEKS-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-INDEKS@
-    @Column(name = "INDEKS", nullable = true, unique = false)
-    private Integer indeks;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDREGION-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDREGION-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDREGION@
-    @Column(name = "IDREGION", nullable = true, unique = false)
-    private String idregion;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDRAION-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDRAION-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDRAION@
-    @Column(name = "IDRAION", nullable = true, unique = false)
-    private String idraion;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDGOROD-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDGOROD-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDGOROD@
-    @Column(name = "IDGOROD", nullable = true, unique = false)
-    private String idgorod;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDNASP-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDNASP-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDNASP@
-    @Column(name = "IDNASP", nullable = true, unique = false)
-    private String idnasp;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDSTREET-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDSTREET-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDSTREET@
-    @Column(name = "IDSTREET", nullable = true, unique = false)
-    private String idstreet;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @DOM-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @DOM-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-DOM@
-    @Column(name = "DOM", length = 100, nullable = true, unique = false)
-    private String dom;
-//MP-MANAGED-UPDATABLE-ENDING
-
-    @Column(name = "ADDRESS", nullable = true, unique = false)
-    private String address;
-    //MP-MANAGED-ADDED-AREA-BEGINNING @KORP-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @KORP-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-KORP@
-    @Column(name = "KORP", length = 100, nullable = true, unique = false)
-    private String korp;
-    //MP-MANAGED-ADDED-AREA-BEGINNING @KVART-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @KVART-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-KVART@
-    @Column(name = "KVART", length = 100, nullable = true, unique = false)
-    private String kvart;
     //MP-MANAGED-ADDED-AREA-BEGINNING @KODGOROD-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @KODGOROD-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-KODGOROD@
@@ -398,16 +308,6 @@ public class Ulupr implements Serializable {
                 dtreg,
                 inn,
                 kpp,
-                okato,
-                indeks,
-                idregion,
-                idraion,
-                idgorod,
-                idnasp,
-                idstreet,
-                dom,
-                korp,
-                kvart,
                 kodgorod,
                 telefon,
                 fax,
@@ -432,16 +332,6 @@ public class Ulupr implements Serializable {
             Date dtreg,
             String inn,
             String kpp,
-            String okato,
-            Integer indeks,
-            String idregion,
-            String idraion,
-            String idgorod,
-            String idnasp,
-            String idstreet,
-            String dom,
-            String korp,
-            String kvart,
             String kodgorod,
             String telefon,
             String fax,
@@ -464,16 +354,6 @@ public class Ulupr implements Serializable {
         setDtreg(dtreg);
         setInn(inn);
         setKpp(kpp);
-        setOkato(okato);
-        setIndeks(indeks);
-        setIdregion(idregion);
-        setIdraion(idraion);
-        setIdgorod(idgorod);
-        setIdnasp(idnasp);
-        setIdstreet(idstreet);
-        setDom(dom);
-        setKorp(korp);
-        setKvart(kvart);
         setKodgorod(kodgorod);
         setTelefon(telefon);
         setFax(fax);
@@ -488,13 +368,6 @@ public class Ulupr implements Serializable {
         //parents
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public Ulupr flat() {
         return new Ulupr(
@@ -506,16 +379,6 @@ public class Ulupr implements Serializable {
                 getDtreg(),
                 getInn(),
                 getKpp(),
-                getOkato(),
-                getIndeks(),
-                getIdregion(),
-                getIdraion(),
-                getIdgorod(),
-                getIdnasp(),
-                getIdstreet(),
-                getDom(),
-                getKorp(),
-                getKvart(),
                 getKodgorod(),
                 getTelefon(),
                 getFax(),
@@ -614,115 +477,7 @@ public class Ulupr implements Serializable {
         this.kpp = kpp;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-OKATO@
-    public String getOkato() {
-        return okato;
-    }
-
-    public void setOkato(String okato) {
-        this.okato = okato;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-INDEKS@
-    public Integer getIndeks() {
-        return indeks;
-    }
-
-    public void setIndeks(Integer indeks) {
-        this.indeks = indeks;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDREGION@
-    public String getIdregion() {
-        return idregion;
-    }
-
-    public void setIdregion(String idregion) {
-        this.idregion = idregion;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDRAION@
-    public String getIdraion() {
-        return idraion;
-    }
-
-    public void setIdraion(String idraion) {
-        this.idraion = idraion;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDGOROD@
-    public String getIdgorod() {
-        return idgorod;
-    }
-
-    public void setIdgorod(String idgorod) {
-        this.idgorod = idgorod;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDNASP@
-    public String getIdnasp() {
-        return idnasp;
-    }
-
-    public void setIdnasp(String idnasp) {
-        this.idnasp = idnasp;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDSTREET@
-    public String getIdstreet() {
-        return idstreet;
-    }
-
-    public void setIdstreet(String idstreet) {
-        this.idstreet = idstreet;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-DOM@
-    public String getDom() {
-        return dom;
-    }
-
-    public void setDom(String dom) {
-        this.dom = dom;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-KORP@
-    public String getKorp() {
-        return korp;
-    }
-
-    public void setKorp(String korp) {
-        this.korp = korp;
-    }
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-KVART@
-    public String getKvart() {
-        return kvart;
-    }
-
-    public void setKvart(String kvart) {
-        this.kvart = kvart;
-    }
 
 //MP-MANAGED-UPDATABLE-ENDING
 

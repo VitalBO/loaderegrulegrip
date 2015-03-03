@@ -366,6 +366,28 @@ public class Cn implements Serializable, EgrulEntity {
 
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @implementation@
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cn)) return false;
+
+        Cn cn = (Cn) o;
+
+        if (!idn.equals(cn.idn)) return false;
+        if (kodKl != null ? !kodKl.equals(cn.kodKl) : cn.kodKl != null) return false;
+        if (name != null ? !name.equals(cn.name) : cn.name != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idn.hashCode();
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (kodKl != null ? kodKl.hashCode() : 0);
+        return result;
+    }
 //MP-MANAGED-ADDED-AREA-ENDING @implementation@
 
 }
