@@ -7,6 +7,7 @@ import ru.iac.entity.*
 
 /**
  * Created by konenkov on 12.02.2015.
+ * Class parse EGRUL objects, return UL object*
  */
 public class XMLParserEGRUL {
 
@@ -22,8 +23,8 @@ public class XMLParserEGRUL {
             gPathResult.each {
 
                 log.debug("Start decoding UL with OGRN " + it.@IDUL)
-                log.debug("Decoding UL with OGRN " + it.@IDUL + " begin decode UL")
 
+                log.trace("Decoding UL with OGRN " + it.@IDUL + " begin decode UL")
                 ul = new Ul(
                         idul: it.@IDUL,
                         ogrn: it.@OGRN,
@@ -43,7 +44,7 @@ public class XMLParserEGRUL {
                         idregorgend: UtilParser.getRegorg(it.UL_FINISH, list)
                 )
 
-                log.debug("Decoding UL with OGRN " + ul.getIdul() + " begin decode okved")
+                log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode okved")
                 if (it.OKVED.@KOD_OKVED != "") {
                     ArrayList<Ulokved> listUlOkved = new ArrayList<>()
                     Okved okved
@@ -63,7 +64,7 @@ public class XMLParserEGRUL {
                     ul.setUlokved(listUlOkved)
                 }
 
-                log.debug("Decoding UL with OGRN " + ul.getIdul() + " begin decode ulname")
+                log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode ulname")
                 if (it.UL_NAME.@DTSTART != "") {
                     it.UL_NAME.each {
                         Ulname ulname = new Ulname(
@@ -85,7 +86,7 @@ public class XMLParserEGRUL {
                     }
                 }
 
-                log.debug("Decoding UL with OGRN " + ul.getIdul() + " begin decode ul_address")
+                log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode ul_address")
                 if (it.UL_ADDRESS.@DTSTART != "") {
                     it.UL_ADDRESS.each {
                         Uladr uladr = new Uladr(
@@ -106,7 +107,7 @@ public class XMLParserEGRUL {
                     }
                 }
 
-                log.debug("Decoding UL with OGRN " + ul.getIdul() + " begin decode ul_capital")
+                log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode ul_capital")
                 if (it.UL_CAPITAL.@DTSTART != "") {
                     it.UL_CAPITAL.each {
                         Ulcapital ulcapital = new Ulcapital(
@@ -122,7 +123,7 @@ public class XMLParserEGRUL {
                     }
                 }
 
-                log.debug("Decoding UL with OGRN " + ul.getIdul() + " begin decode uchr_rul")
+                log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode uchr_rul")
                 if (it.UCHR.RUL.@DTSTART != "") {
                     ArrayList<Rul> ruls = new ArrayList<>()
                     it.UCHR.RUL.each {
@@ -138,17 +139,14 @@ public class XMLParserEGRUL {
                                 dtogrn: Util.convertToDate(it.@DTOGRN as String),
                                 regnumst: it.@NUMST,
                                 fulladdress: UtilParser.getAddress(it.ADDRESS, list),
-                                idregorg: Util.check(new Spregorg(
-                                        idspro: Util.convertToBInt(it.REGORG.@ID),
-                                        name: it.REGORG.@NAME
-                                ), list)
+                                idregorg: UtilParser.getRegorg(it, list)
                         )
                         ruls.add(rul)
                     }
                     ul.setRuls(ruls)
                 }
 
-                log.debug("Decoding UL with OGRN " + ul.getIdul() + " begin decode uchr_iul")
+                log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode uchr_iul")
                 if (it.UCHR.IUL.@DTSTART != "") {
                     ArrayList<Iul> iuls = new ArrayList<>()
                     it.UCHR.IUL.each {
@@ -288,10 +286,7 @@ public class XMLParserEGRUL {
                                 idul: ul,
                                 numlic: it.@NUMLIC,
                                 dtrestart: Util.convertToDate(it.@DTRESH as String),
-                                idlicorg: new Splicorg(
-                                        id: it.LICORG.@ID as String,
-                                        name: it.LICORG.@NAME
-                                ),
+                                idlicorg: UtilParser.getLicorg(it, list),
                                 idvidlic: UtilParser.getVidlic(it, list),
                                 idsostlic: UtilParser.getSostlic(it, list),
                                 dtstart: Util.convertToDate(it.@DTSTART as String),

@@ -347,19 +347,16 @@ public class Splicorg implements Serializable, EgrulEntity {
         Splicorg splicorg = (Splicorg) o;
 
         if (!id.equals(splicorg.id)) return false;
-        if (name != null ? !name.equals(splicorg.name) : splicorg.name != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
+        return id.hashCode();
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
+    //MP-MANAGED-UPDATABLE-ENDING
 
 
 

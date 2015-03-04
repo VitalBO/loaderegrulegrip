@@ -31,11 +31,14 @@ package ru.iac.entity;
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-
-import java.io.Serializable;
-import javax.persistence.*;
 
 /**
  *
@@ -123,7 +126,8 @@ public class Ulcapital implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDVIDCAP-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDVIDCAP-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDVIDCAP@
-@ManyToOne(cascade = CascadeType.ALL)
+@ManyToOne
+@Cascade(CascadeType.SAVE_UPDATE)
 @JoinColumn(name = "IDVIDCAP")
     private Spvidcap idvidcap;
 //MP-MANAGED-UPDATABLE-ENDING

@@ -7,6 +7,7 @@ import ru.iac.entity.*
 
 /**
  * Created by konenkov on 10.02.2015.
+ * Class parse EGRIP object, return IP - entity with all connections *
  */
 class XMLParserEGRIP {
 

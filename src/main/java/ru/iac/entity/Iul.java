@@ -31,11 +31,14 @@ package ru.iac.entity;
 
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-
-import java.io.Serializable;
-import javax.persistence.*;
 
 /**
  *
@@ -157,7 +160,8 @@ public class Iul implements Serializable {
 //MP-MANAGED-ADDED-AREA-BEGINNING @IDOKSM-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDOKSM-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDOKSM@
-    @ManyToOne(cascade = CascadeType.ALL)
+@ManyToOne
+@Cascade(CascadeType.SAVE_UPDATE)
     @JoinColumn(name="IDOKSM"   , nullable=true , unique=false)
     private Oksm idoksm;
 //MP-MANAGED-UPDATABLE-ENDING

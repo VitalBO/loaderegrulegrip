@@ -33,6 +33,7 @@ package ru.iac.entity;
 //MP-MANAGED-ADDED-AREA-ENDING @import@
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -159,7 +160,8 @@ public class Ulname implements Serializable {
     //MP-MANAGED-ADDED-AREA-BEGINNING @IDOPF-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDOPF-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDOPF@@
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @Cascade(CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDOPF", nullable = true, unique = true)
     private Spopf idopf;
 //MP-MANAGED-UPDATABLE-ENDING

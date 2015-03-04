@@ -26,41 +26,28 @@ public class TestParser extends Assert {
     }
 
     @Test
-    public void testGetByNaturalId() {
-
-        Spfoms spfoms = new Spfoms();
-        spfoms.setName("asdddd");
-        spfoms.setKod("109");
-        EgrulDAO.saveOrUpdate(spfoms);
-        Spfoms spfoms1 = (Spfoms) EgrulDAO.getFromDBbyNaturalId(Spfoms.class.getName(), "109");
-        assertEquals(spfoms.getKod(), spfoms1.getKod());
-        EgrulDAO.removeFromDB(spfoms);
-    }
-
-/*    @Test
-    public void testNamedQuery() {
-        Session session = HibernateUtil.getSession()
-        Spfoms spfoms = new Spfoms();
-        spfoms.setName("asdddd");
-        spfoms.setKod("109");
-        Spfoms spfoms3 = new Spfoms(
-                name: "asdddd",
-                kod: "109"
-        )
-        spfoms = EgrulDAO.saveOrUpdateRef(spfoms) as Spfoms;
-        Spfoms spfoms1 = (Spfoms) EgrulDAO.getNamedQuery(Spfoms.FIND_BY_NAME, "name", "asdddd", session);
-        spfoms3 = EgrulDAO.saveOrUpdateRef(spfoms3) as Spfoms;
-        assertEquals(spfoms.getKod(), spfoms1.getKod());
-        assertEquals(spfoms.getKod(), spfoms3.getKod())
-        spfoms = EgrulDAO.saveOrUpdateRef(spfoms) as Spfoms;
-        assertEquals(spfoms.getKod(), spfoms1.getKod());
-        EgrulDAO.removeFromDB(spfoms);
-        session.close()
-    }*/
-
-    @Test
     public void testCallProcedure() {
         EgrulDAO.callProcedure();
+    }
+
+    @Test
+    public void testParseFileEgrip() {
+        MainParser mp = new MainParser()
+        HashMap<String, Integer> result = mp.parseFile(filePathEgrip)
+        for (String key : result.keySet()) {
+            println(key + "\t  - " + result.get(key))
+            assertEquals(result.get(key), 0)
+        }
+    }
+
+    @Test
+    public void testParseFileEgrul() {
+        MainParser mp = new MainParser()
+        HashMap<String, Integer> result = mp.parseFile(filePathEgrul)
+        for (String key : result.keySet()) {
+            println(key + "\t  - " + result.get(key))
+            assertEquals(result.get(key), 0)
+        }
     }
 
     @Test
@@ -71,10 +58,13 @@ public class TestParser extends Assert {
         Ct ct2 = new Ct(idc: 10000000000001, name: "123123", kodKl: "123123")
         Ct ct3 = new Ct(idc: 10000000000201, name: "123123", kodKl: "123123")
 
-        ct1 = Util.check(ct1, list)
-        ct2 = Util.check(ct2, list)
-        ct3 = Util.check(ct3, list)
+        ct1 = Util.check(ct1, list) as Ct
+        ct2 = Util.check(ct2, list) as Ct
+        ct3 = Util.check(ct3, list) as Ct
         assertEquals(list.size(), 2)
+        assertTrue(list.contains(ct1))
+        assertTrue(list.contains(ct2))
+        assertTrue(list.contains(ct3))
     }
 
     @Test
@@ -157,7 +147,6 @@ public class TestParser extends Assert {
     public void testPersistEgripUpdate() {
         Ip ip1 = getTestIp()
         EgrulService.saveIpToDB(ip1)
-        ip1 = null
         Ip ip3 = getTestIp()
         ip3.getLicenzs().add(new Licenz(
                 idip: ip3,

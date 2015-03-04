@@ -8,6 +8,7 @@ import org.hibernate.service.ServiceRegistry;
 
 /**
  * Created by konenkov on 12.02.2015.
+ * Service class to open session to DB*
  */
 public class HibernateUtil {
 

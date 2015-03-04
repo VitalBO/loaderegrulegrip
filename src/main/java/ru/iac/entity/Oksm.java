@@ -32,8 +32,6 @@ package ru.iac.entity;
 //MP-MANAGED-ADDED-AREA-BEGINNING @import@
 //MP-MANAGED-ADDED-AREA-ENDING @import@
 
-import org.hibernate.annotations.NaturalId;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -95,7 +93,24 @@ public class Oksm implements Serializable, EgrulEntity {
     @Id @Column(name="ID" )
     private Integer id;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @NAME-field-annotation@
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Oksm)) return false;
+
+        Oksm oksm = (Oksm) o;
+
+        if (!id.equals(oksm.id)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
+    //MP-MANAGED-ADDED-AREA-BEGINNING @NAME-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @NAME-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-NAME@
     @Column(name="NAME"  , length=255 , nullable=true , unique=false)
@@ -105,7 +120,6 @@ public class Oksm implements Serializable, EgrulEntity {
 //MP-MANAGED-ADDED-AREA-BEGINNING @KOD_OKSM-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @KOD_OKSM-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-KOD_OKSM@
-    @NaturalId
     @Column(name="KOD_OKSM"  , length=10 , nullable=true , unique=false)
     private String kodOksm; 
 //MP-MANAGED-UPDATABLE-ENDING
@@ -369,26 +383,7 @@ public class Oksm implements Serializable, EgrulEntity {
         return id.toString();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Oksm)) return false;
-
-        Oksm oksm = (Oksm) o;
-
-        if (!id.equals(oksm.id)) return false;
-        if (kodOksm != null ? !kodOksm.equals(oksm.kodOksm) : oksm.kodOksm != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + (kodOksm != null ? kodOksm.hashCode() : 0);
-        return result;
-    }
-//MP-MANAGED-UPDATABLE-ENDING
+    //MP-MANAGED-UPDATABLE-ENDING
 
 
 

@@ -5,6 +5,7 @@ import ru.iac.entity.*
 
 /**
  * Created by konenkov on 02.03.2015.
+ * Class contains util method to create Reference objects and check uniqueness*
  */
 class UtilParser {
 

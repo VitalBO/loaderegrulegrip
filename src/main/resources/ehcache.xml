@@ -26,6 +26,4 @@
            memoryStoreEvictionPolicy="LRU"
             />
 
-    <!--TODO: add Entities classes properties here for cashing enabling-->
-
 </ehcache>

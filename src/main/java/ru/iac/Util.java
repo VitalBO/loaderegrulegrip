@@ -14,26 +14,12 @@ import java.util.Objects;
 
 /**
  * Created by konenkov on 12.02.2015.
- * Some util methods for converts type*
+ * Some util methods for converts type's *
  */
 public abstract class Util {
 
     public static final int ERROR = 1;
     public static final int SUCCESS = 0;
-
-    public static Date convertToDate(Attributes attribute) {
-        String string = attribute.text();
-        if (string == null) return null;
-        if (Objects.equals(string, "")) return null;
-        Date date = null;
-        DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-        try {
-            date = format.parse(string);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date;
-    }
 
     public static Date convertToDate(String string) {
         if (string == null) return null;
@@ -68,6 +54,14 @@ public abstract class Util {
         return new BigDecimal(attribute.text());
     }
 
+    /**
+     * Method check uniqueness objects, if objects already exists return this *
+     *
+     * @param egrulEntity - objects to checking
+     * @param list        - list where all objects save
+     * @return - same object, or earlier created object
+     */
+    
     public static EgrulEntity check(EgrulEntity egrulEntity, List<EgrulEntity> list) {
         int index = list.indexOf(egrulEntity);
         if (index != -1) {
