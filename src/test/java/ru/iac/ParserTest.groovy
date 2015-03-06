@@ -9,15 +9,12 @@ import ru.iac.entity.*
 /**
  * Created by konenkov on 20.02.2015.
  */
-public class TestParser extends Assert {
+public class ParserTest extends Assert {
 
-    private static File allfiles = new File("d:\\temp2\\all_egrul_test\\")
     private static File filePathEgrip = new File("src\\test\\java\\ru\\iac\\testEGRIP.XML");
     private static File filePathEgrul = new File("src\\test\\java\\ru\\iac\\testEGRUL.XML");
     private static File filePathEgripOneElement = new File("src\\test\\java\\ru\\iac\\testEgripForTestParser.XML");
     private static File filePathEgrulOneElement = new File("src\\test\\java\\ru\\iac\\testEgrulForTestParser.XML");
-    private static File badFile = new File("src\\test\\java\\ru\\iac\\ip.ser");
-
 
     @Test
     public void testSessionFactory() {
@@ -85,14 +82,6 @@ public class TestParser extends Assert {
     }
 
     @Test
-    public void testMainParser() {
-
-        MainParser mp = new MainParser()
-        mp.parse(allfiles)
-
-    }
-
-    @Test
     public void testParseEgrip() {
 
         def EGRIP_IP_DATA = new XmlSlurper().parse(filePathEgripOneElement)
@@ -121,6 +110,8 @@ public class TestParser extends Assert {
         }
     }
 
+    @Ignore
+    // integration test with db
     @Test
     public void testPersistEgrip() {
         Ip ip1 = getTestIp()
@@ -132,6 +123,8 @@ public class TestParser extends Assert {
         EgrulDAO.removeFromDB(ip2)
     }
 
+    @Ignore
+    // integration test with db
     @Test
     public void testPersistEgrul() {
         Ul ul1 = getTestUl()
@@ -143,6 +136,8 @@ public class TestParser extends Assert {
         EgrulDAO.removeFromDB(ul2)
     }
 
+    @Ignore
+    // integration test with db
     @Test
     public void testPersistEgripUpdate() {
         Ip ip1 = getTestIp()
@@ -162,7 +157,7 @@ public class TestParser extends Assert {
     }
 
 /**
- * method return test instance of Ip* 
+ * method return test instance of Ip*
  * @return Ip
  */
     private static Ip getTestIp() {
@@ -189,7 +184,7 @@ public class TestParser extends Assert {
     }
 
     /**
-     * save test objects to file for use in testcases* 
+     * save test objects to file for use in testcases*
      */
     @Ignore
     @Test

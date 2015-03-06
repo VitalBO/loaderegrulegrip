@@ -1,6 +1,8 @@
 package ru.iac;
 
 import groovy.util.slurpersupport.Attributes;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.iac.entity.EgrulEntity;
 
 import java.math.BigDecimal;
@@ -21,6 +23,9 @@ public abstract class Util {
     public static final int ERROR = 1;
     public static final int SUCCESS = 0;
 
+    private static Logger log = LoggerFactory.getLogger(Util.class);
+
+
     public static Date convertToDate(String string) {
         if (string == null) return null;
         if (Objects.equals(string, "")) return null;
@@ -29,7 +34,7 @@ public abstract class Util {
         try {
             date = format.parse(string);
         } catch (ParseException e) {
-            e.printStackTrace();
+            log.error(e.toString(), e);
         }
         return date;
     }

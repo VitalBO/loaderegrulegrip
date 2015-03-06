@@ -132,7 +132,9 @@ public class MainParser {
             return 0
         }
     }
-
+/**
+ * Thread to parse and save UL *
+ */
     public class ThreadUL implements Callable {
         GPathResult gPathResult
         File filePath
@@ -152,7 +154,9 @@ public class MainParser {
             return null
         }
     }
-
+/**
+ * Thread to parse and save IP *
+ */
     public class ThreadIP implements Callable {
         GPathResult gPathResult
         File filePath
