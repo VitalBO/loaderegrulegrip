@@ -13,29 +13,27 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class EgrulDAO {
 
-    private static Logger log = LoggerFactory.getLogger(EgrulDAO.class);
+    private static Logger LOG = LoggerFactory.getLogger(EgrulDAO.class);
 
 
     public static void saveOrUpdate(Object object) {
 
+        Session session = HibernateUtil.getSession();
         try {
-            Session session = HibernateUtil.getSession();
             Transaction tx = session.beginTransaction();
             session.saveOrUpdate(object);
             tx.commit();
-            session.close();
         } catch (Exception ex) {
-            log.error("Error while saving to DB");
-            log.error(ex.getMessage());
+            LOG.error("Error while saving to DB");
+            LOG.error(ex.getMessage());
+        } finally {
+            session.close();
         }
-
     }
 
     public static Object getFromDB(String classname, String id) {
         Session session = HibernateUtil.getSession();
-        Transaction tx = session.beginTransaction();
         Object object = session.get(classname, id);
-        tx.commit();
         session.close();
         return object;
     }
@@ -46,7 +44,6 @@ public abstract class EgrulDAO {
         session.delete(object);
         tx.commit();
         session.close();
-
     }
 
     public static Object getNamedQuery(String queryName, String parametrName, String parametr, Session session) {
@@ -56,7 +53,7 @@ public abstract class EgrulDAO {
         try {
             object = query.uniqueResult();
         } catch (NonUniqueResultException exception) {
-            log.error("Error " + exception.getMessage());
+            LOG.error("Error executing named query ", exception);
             object = null;
         }
         return object;
@@ -67,5 +64,4 @@ public abstract class EgrulDAO {
         session.createSQLQuery("CALL rush.PK.link_all");
         session.close();
     }
-
 }

@@ -19,6 +19,7 @@ public class MainParser {
     HashMap<String, Integer> resultImport = new HashMap<>()
     private int threads = 1
     private int maxthreads = 10
+    private int countFilesToMaxThreads
 
 
     private Properties getProps() {
@@ -30,9 +31,10 @@ public class MainParser {
     public MainParser() {
         properties = new Properties();
         try {
-            properties.load(new FileReader("loadtoegrul.cfg"));
-            threads = this.getProps().get("treadpool") as int
+            properties.load(new FileReader("loadtoegrul.properties"));
+            threads = this.getProps().get("threadpool") as int
             maxthreads = this.getProps().get("maxthreadpool") as int
+            countFilesToMaxThreads = this.getProps().get("countFileToMaxThreads") as int
 
         } catch (IOException e) {
             System.out.println("Config not found.");
@@ -59,7 +61,7 @@ public class MainParser {
         for (File temp : filePath.listFiles(new FileFilter() {
             @Override
             boolean accept(File pathname) {
-                return pathname.getName().endsWith(".XML")
+                return pathname.getName().toUpperCase().endsWith(".XML")
             }
         })) {
             queue.add(temp)
@@ -70,7 +72,7 @@ public class MainParser {
             log.info("Start parsing file " + temp.getName())
             resultImport.putAll(parseFile(temp))
             countFile++
-            if (countFile > 2) threads = maxthreads
+            if (countFile > countFilesToMaxThreads) threads = maxthreads
         }
         int countFail = 0
         for (String key : resultImport.keySet()) {
@@ -125,8 +127,8 @@ public class MainParser {
         int compare(File f1, File f2) {
 
 
-            String o1 = f1.getName().replaceAll("RIV_M_78021_", "").replaceAll("RUV_M_78021_", "").replaceAll("_", "").replaceAll(".XML", "")
-            String o2 = f2.getName().replaceAll("RIV_M_78021_", "").replaceAll("RUV_M_78021_", "").replaceAll("_", "").replaceAll(".XML", "")
+            String o1 = f1.getName().substring(12).replaceAll("_", "").toUpperCase().replaceAll(".XML", "")
+            String o2 = f2.getName().substring(12).replaceAll("_", "").toUpperCase().replaceAll(".XML", "")
             if (Integer.parseInt(o1) > Integer.parseInt(o2)) return 1
             if (Integer.parseInt(o1) < Integer.parseInt(o2)) return -1
             return 0

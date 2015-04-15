@@ -11,22 +11,19 @@ import ru.iac.entity.*
  */
 public class ParserTest extends Assert {
 
-    private static File filePathEgrip = new File("src\\test\\java\\ru\\iac\\testEGRIP.XML");
-    private static File filePathEgrul = new File("src\\test\\java\\ru\\iac\\testEGRUL.XML");
-    private static File filePathEgripOneElement = new File("src\\test\\java\\ru\\iac\\testEgripForTestParser.XML");
-    private static File filePathEgrulOneElement = new File("src\\test\\java\\ru\\iac\\testEgrulForTestParser.XML");
+    private static File filePathEgrip = new File("src\\test\\groovy\\ru\\iac\\testEGRIP.XML");
+    private static File filePathEgrul = new File("src\\test\\groovy\\ru\\iac\\testEGRUL.XML");
+    private static File filePathEgripOneElement = new File("src\\test\\groovy\\ru\\iac\\testEgripForTestParser.XML");
+    private static File filePathEgrulOneElement = new File("src\\test\\groovy\\ru\\iac\\testEgrulForTestParser.XML");
 
+    @Ignore("integration test with db")
     @Test
     public void testSessionFactory() {
-        Session session = EgrulDAO.openSession();
+        Session session = HibernateUtil.getSession();
         session.close();
     }
 
-    @Test
-    public void testCallProcedure() {
-        EgrulDAO.callProcedure();
-    }
-
+    @Ignore("integration test with db")
     @Test
     public void testParseFileEgrip() {
         MainParser mp = new MainParser()
@@ -37,6 +34,7 @@ public class ParserTest extends Assert {
         }
     }
 
+    @Ignore("integration test with db")
     @Test
     public void testParseFileEgrul() {
         MainParser mp = new MainParser()
@@ -64,9 +62,9 @@ public class ParserTest extends Assert {
         assertTrue(list.contains(ct3))
     }
 
+    @Ignore("integration test with db")
     @Test
     public void testAddress() {
-
         Uladr uladr = new Uladr(
                 kodgorod: "12312",
                 fulladdress: new Address(
@@ -74,11 +72,12 @@ public class ParserTest extends Assert {
                 )
         )
         EgrulDAO.saveOrUpdate(uladr)
-        Uladr uladr1 = (Uladr) EgrulDAO.getNamedQuery(Uladr.FIND_BY_KODGOROD, "kodgorod", "12312");
+        Session session = HibernateUtil.getSession();
+        Uladr uladr1 = (Uladr) EgrulDAO.getNamedQuery(Uladr.FIND_BY_KODGOROD, "kodgorod", uladr.getKodgorod(), session);
         assertEquals(uladr.getKodgorod(), uladr1.getKodgorod())
         assertEquals(uladr.getFulladdress().getOkato(), uladr1.getFulladdress().getOkato())
         EgrulDAO.removeFromDB(uladr1)
-
+        session.close()
     }
 
     @Test
@@ -90,7 +89,7 @@ public class ParserTest extends Assert {
             ip = XMLParserEGRIP.parse(it);
             assertEquals(ip.getInn(), "110200037840");
             assertEquals(ip.getIdip(), "100000000000001");
-            assertEquals(ip.getLicenzs().size(), 2);
+            assertEquals(ip.getLicenzs().size(), 10);
             assertEquals(ip.getIpgosregs().size(), 2);
             assertEquals(ip.getIpokved().size(), 2);
             assertEquals(ip.getIpfss().getIdfss().getKod(), "7830");
@@ -104,14 +103,15 @@ public class ParserTest extends Assert {
         Ul ul
         EGRIP_UL_DATA.UL.each {
             ul = XMLParserEGRUL.parse(it)
+            assertNotNull("Ошибка при конвертации объекта, парсер вернул null", ul)
             assertEquals(ul.getLicenzs().size(), 2)
             assertEquals(ul.getUlokved().size(), 2)
             assertEquals(ul.getIdul(), "1000000000002")
+            assertEquals(1, ul.getUlokved().get(1).getMain())
         }
     }
 
-    @Ignore
-    // integration test with db
+    @Ignore("integration test with db")
     @Test
     public void testPersistEgrip() {
         Ip ip1 = getTestIp()
@@ -123,8 +123,7 @@ public class ParserTest extends Assert {
         EgrulDAO.removeFromDB(ip2)
     }
 
-    @Ignore
-    // integration test with db
+    @Ignore("integration test with db")
     @Test
     public void testPersistEgrul() {
         Ul ul1 = getTestUl()
@@ -136,8 +135,7 @@ public class ParserTest extends Assert {
         EgrulDAO.removeFromDB(ul2)
     }
 
-    @Ignore
-    // integration test with db
+    @Ignore("integration test with db")
     @Test
     public void testPersistEgripUpdate() {
         Ip ip1 = getTestIp()
@@ -157,12 +155,12 @@ public class ParserTest extends Assert {
     }
 
 /**
- * method return test instance of Ip*
+ * method return test instance of Ip
  * @return Ip
  */
     private static Ip getTestIp() {
         Ip ip1 = null
-        new File("src\\test\\java\\ru\\iac\\ip.ser").withObjectInputStream { instream ->
+        new File("src\\test\\groovy\\ru\\iac\\ip.ser").withObjectInputStream { instream ->
             instream.eachObject {
                 ip1 = it
             }
@@ -170,12 +168,12 @@ public class ParserTest extends Assert {
         return ip1
     }
 /**
- * method return test instance of Ul*
+ * method return test instance of Ul
  * @return Ul
  */
     private static Ul getTestUl() {
         Ul ul1 = null
-        new File("src\\test\\java\\ru\\iac\\ul.ser").withObjectInputStream { instream ->
+        new File("src\\test\\groovy\\ru\\iac\\ul.ser").withObjectInputStream { instream ->
             instream.eachObject {
                 ul1 = it
             }
@@ -184,7 +182,7 @@ public class ParserTest extends Assert {
     }
 
     /**
-     * save test objects to file for use in testcases*
+     * save test objects to file for use in testcases
      */
     @Ignore
     @Test
@@ -194,26 +192,26 @@ public class ParserTest extends Assert {
         EGRIP_IP_DATA.IP.each {
             ip = XMLParserEGRIP.parse(it);
 
-            new File("src\\test\\java\\ru\\iac\\ip.ser").withObjectOutputStream { out -> out << ip }
+            new File("src\\test\\groovy\\ru\\iac\\ip.ser").withObjectOutputStream { out -> out << ip }
 
         }
         def EGRIP_UL_DATA = new XmlSlurper().parse(filePathEgrulOneElement)
         Ul ul
         EGRIP_UL_DATA.UL.each {
             ul = XMLParserEGRUL.parse(it)
-            new File("src\\test\\java\\ru\\iac\\ul.ser").withObjectOutputStream { out -> out << ul }
+            new File("src\\test\\groovy\\ru\\iac\\ul.ser").withObjectOutputStream { out -> out << ul }
 
         }
 
         Ip ip1
-        new File("src\\test\\java\\ru\\iac\\ip.ser").withObjectInputStream { instream ->
+        new File("src\\test\\groovy\\ru\\iac\\ip.ser").withObjectInputStream { instream ->
             instream.eachObject {
                 ip1 = it
             }
         }
         println("Id ip = " + ip1.getIdip())
         Ul ul1
-        new File("src\\test\\java\\ru\\iac\\ul.ser").withObjectInputStream { instream ->
+        new File("src\\test\\groovy\\ru\\iac\\ul.ser").withObjectInputStream { instream ->
             instream.eachObject {
                 ul1 = it
             }

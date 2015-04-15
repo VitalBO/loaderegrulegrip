@@ -57,7 +57,8 @@ public class XMLParserEGRUL {
                         listUlOkved.add(
                                 new Ulokved(
                                         idokved: okved,
-                                        idul: ul
+                                        idul: ul,
+                                        main: Util.convertToInt(it.@MAIN)
                                 )
                         )
                     }

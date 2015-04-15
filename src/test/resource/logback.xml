@@ -8,18 +8,6 @@
             <Pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</Pattern>
         </layout>
     </appender>
-    <!--Файловый аппендер с ошибками-->
-    <appender name="ERROR" class="ch.qos.logback.core.FileAppender">
-        <file>error.log</file>
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>ERROR</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
-        <layout class="ch.qos.logback.classic.PatternLayout">
-            <Pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</Pattern>
-        </layout>
-    </appender>
     <!--Консольный аппендер -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
@@ -37,13 +25,12 @@
     <root level="debug">
         <appender-ref ref="FILE"/>
         <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="ERROR"/>
     </root>
     <!-- Логгер нашего класса  -->
     <!--logger name="logging.logback.LoggingLogback" level="info">
         <appender-ref ref="CONSOLE"/>
     </logger-->
     <logger name="org.hibernate">
-        <level value="INFO" />
+        <level value="INFO"/>
     </logger>
 </configuration>
