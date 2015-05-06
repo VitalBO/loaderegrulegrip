@@ -50,7 +50,7 @@ import java.util.Date;
         , @NamedQuery(name = "Spfoms.findByName", query = "SELECT spfoms FROM Spfoms spfoms WHERE spfoms.name = :name")
         , @NamedQuery(name = "Spfoms.findByNameContaining", query = "SELECT spfoms FROM Spfoms spfoms WHERE spfoms.name like :name")
 
-        , @NamedQuery(name = "Spfoms.findByKod", query = "SELECT spfoms FROM Spfoms spfoms WHERE spfoms.kod = :kod")
+        , @NamedQuery(name = "Spfoms.findByKod", query = "SELECT spfoms FROM Spfoms spfoms WHERE spfoms.kod = :kod order by 1")
         , @NamedQuery(name = "Spfoms.findByKodContaining", query = "SELECT spfoms FROM Spfoms spfoms WHERE spfoms.kod like :kod")
 
         , @NamedQuery(name = "Spfoms.findByGihdAdate", query = "SELECT spfoms FROM Spfoms spfoms WHERE spfoms.gihdAdate = :gihdAdate")

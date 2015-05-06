@@ -51,7 +51,7 @@ import java.util.Date;
         , @NamedQuery(name = "Spfss.findByName", query = "SELECT spfss FROM Spfss spfss WHERE spfss.name = :name")
         , @NamedQuery(name = "Spfss.findByNameContaining", query = "SELECT spfss FROM Spfss spfss WHERE spfss.name like :name")
 
-        , @NamedQuery(name = "Spfss.findByKod", query = "SELECT spfss FROM Spfss spfss WHERE spfss.kod = :kod")
+        , @NamedQuery(name = "Spfss.findByKod", query = "SELECT spfss FROM Spfss spfss WHERE spfss.kod = :kod order by 1")
         , @NamedQuery(name = "Spfss.findByKodContaining", query = "SELECT spfss FROM Spfss spfss WHERE spfss.kod like :kod")
 
         , @NamedQuery(name = "Spfss.findByGihdAdate", query = "SELECT spfss FROM Spfss spfss WHERE spfss.gihdAdate = :gihdAdate")

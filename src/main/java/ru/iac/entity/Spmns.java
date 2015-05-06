@@ -52,8 +52,8 @@ import java.util.Date;
         , @NamedQuery(name = "Spmns.findByName", query = "SELECT spmns FROM Spmns spmns WHERE spmns.name = :name")
         ,@NamedQuery(name="Spmns.findByNameContaining", query="SELECT spmns FROM Spmns spmns WHERE spmns.name like :name")
 
-	,@NamedQuery(name="Spmns.findByKod", query="SELECT spmns FROM Spmns spmns WHERE spmns.kod = :kod")
-	,@NamedQuery(name="Spmns.findByKodContaining", query="SELECT spmns FROM Spmns spmns WHERE spmns.kod like :kod")
+        , @NamedQuery(name = "Spmns.findByKod", query = "SELECT spmns FROM Spmns spmns WHERE spmns.kod = :kod order by 1")
+        , @NamedQuery(name = "Spmns.findByKodContaining", query = "SELECT spmns FROM Spmns spmns WHERE spmns.kod like :kod")
 
 	,@NamedQuery(name="Spmns.findByGihdAdate", query="SELECT spmns FROM Spmns spmns WHERE spmns.gihdAdate = :gihdAdate")
 

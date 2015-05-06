@@ -1,10 +1,11 @@
 package ru.iac;
 
-import org.hibernate.NonUniqueResultException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 /**
  * Created by konenkov on 12.02.2015.
@@ -47,14 +48,12 @@ public abstract class EgrulDAO {
     }
 
     public static Object getNamedQuery(String queryName, String parametrName, String parametr, Session session) {
-        Object object;
+        Object object = null;
         org.hibernate.Query query = session.getNamedQuery(queryName);
         query.setParameter(parametrName, parametr);
-        try {
-            object = query.uniqueResult();
-        } catch (NonUniqueResultException exception) {
-            LOG.error("Error executing named query ", exception);
-            object = null;
+        List list = query.list();
+        if (list.size() > 0) {
+            object = list.get(0);
         }
         return object;
     }

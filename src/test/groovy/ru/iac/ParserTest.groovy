@@ -106,6 +106,10 @@ public class ParserTest extends Assert {
             assertNotNull("Ошибка при конвертации объекта, парсер вернул null", ul)
             assertEquals(ul.getLicenzs().size(), 2)
             assertEquals(ul.getUlokved().size(), 2)
+            assertEquals(ul.getUlname().getIdopf().getIdopf(), 100047)
+            assertEquals(ul.getUladr().getFulladdress().getDom(), "4")
+            assertEquals(ul.getUladr().getFulladdress().getKorp(), "ЛИТЕР К")
+            assertEquals(ul.getUladr().getFulladdress().getKvart(), "3, 4, 18Н")
             assertEquals(ul.getIdul(), "1000000000002")
             assertEquals(1, ul.getUlokved().get(1).getMain())
         }

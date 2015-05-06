@@ -50,7 +50,7 @@ import java.util.Date;
         , @NamedQuery(name = "Sppf.findByName", query = "SELECT sppf FROM Sppf sppf WHERE sppf.name = :name")
         , @NamedQuery(name = "Sppf.findByNameContaining", query = "SELECT sppf FROM Sppf sppf WHERE sppf.name like :name")
 
-        , @NamedQuery(name = "Sppf.findByKod", query = "SELECT sppf FROM Sppf sppf WHERE sppf.kod = :kod")
+        , @NamedQuery(name = "Sppf.findByKod", query = "SELECT sppf FROM Sppf sppf WHERE sppf.kod = :kod order by 1")
         , @NamedQuery(name = "Sppf.findByKodContaining", query = "SELECT sppf FROM Sppf sppf WHERE sppf.kod like :kod")
 
         , @NamedQuery(name = "Sppf.findByGihdAdate", query = "SELECT sppf FROM Sppf sppf WHERE sppf.gihdAdate = :gihdAdate")

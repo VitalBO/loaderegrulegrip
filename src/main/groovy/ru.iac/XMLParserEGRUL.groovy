@@ -74,15 +74,18 @@ public class XMLParserEGRUL {
                                 namep: it.@NAMEP as String,
                                 namei: it.NAMEI.@NAME as String,
                                 names: it.@NAMES as String,
-                                idlangi: UtilParser.getSplang(it, list),
-                                idopf: new Spopf(
-                                        idopf: Util.convertToInt(it.OPF.@ID),
-                                        spr: it.OPF.@SPR,
-                                        kodOpf: it.OPF.@KOD_OPF,
-                                        name: it.OPF.@NAME
-                                )
-
+                                idlangi: UtilParser.getSplang(it, list)
                         )
+                        if (it.OPF.@ID != "") {
+                            ulname.setIdopf(
+                                    new Spopf(
+                                            idopf: Util.convertToInt(it.OPF.@ID),
+                                            spr: it.OPF.@SPR,
+                                            kodOpf: it.OPF.@KOD_OPF,
+                                            name: it.OPF.@NAME
+                                    )
+                            )
+                        }
                         ul.setUlname(ulname)
                     }
                 }

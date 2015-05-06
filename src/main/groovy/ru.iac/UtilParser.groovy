@@ -65,7 +65,11 @@ class UtilParser {
         gPathResult.each {
             address = new Address(
                     okato: it.@OKATO as String,
-                    indeks: it.@INDEKS as String)
+                    indeks: it.@INDEKS as String,
+                    dom: it.@DOM as String,
+                    korp: it.@KORP as String,
+                    kvart: it.@KVART as String
+            )
 
             if (it.REGION.@ID != "") {
                 Rg rg = new Rg(
@@ -115,6 +119,7 @@ class UtilParser {
                 st = (St) Util.check(st, list)
                 address.setIdstreet(st)
             }
+
         }
         return address
     }
