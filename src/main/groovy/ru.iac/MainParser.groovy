@@ -113,6 +113,7 @@ public class MainParser {
         while (poolExecutor.getActiveCount() != 0) {
             TimeUnit.SECONDS.sleep(10)
         }
+        poolExecutor.shutdown()
 
         return resultImport
     }
