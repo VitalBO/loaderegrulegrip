@@ -166,7 +166,8 @@ class XMLParserEGRIP {
                         listIpOkved.add(
                                 new Ipokved(
                                         idokved: okved,
-                                        idip: ip
+                                        idip: ip,
+                                        main: Util.convertToInt(it.@MAIN)
                                 )
                         )
                     }

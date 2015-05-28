@@ -11,10 +11,10 @@ import ru.iac.entity.*
  */
 public class ParserTest extends Assert {
 
-    private static File filePathEgrip = new File("src\\test\\groovy\\ru\\iac\\testEGRIP.XML");
-    private static File filePathEgrul = new File("src\\test\\groovy\\ru\\iac\\testEGRUL.XML");
-    private static File filePathEgripOneElement = new File("src\\test\\groovy\\ru\\iac\\testEgripForTestParser.XML");
-    private static File filePathEgrulOneElement = new File("src\\test\\groovy\\ru\\iac\\testEgrulForTestParser.XML");
+    private static File filePathEgrip = new File("src/test/groovy/ru/iac/testEGRIP.XML");
+    private static File filePathEgrul = new File("src/test/groovy/ru/iac/testEGRUL.XML");
+    private static File filePathEgripOneElement = new File("src/test/groovy/ru/iac/testEgripForTestParser.XML");
+    private static File filePathEgrulOneElement = new File("src/test/groovy/ru/iac/testEgrulForTestParser.XML");
 
     @Ignore("integration test with db")
     @Test
@@ -93,6 +93,8 @@ public class ParserTest extends Assert {
             assertEquals(ip.getIpgosregs().size(), 2);
             assertEquals(ip.getIpokved().size(), 2);
             assertEquals(ip.getIpfss().getIdfss().getKod(), "7830");
+            assertEquals(1, ip.getIpokved().get(1).getMain())
+
         }
     }
 
@@ -164,7 +166,7 @@ public class ParserTest extends Assert {
  */
     private static Ip getTestIp() {
         Ip ip1 = null
-        new File("src\\test\\groovy\\ru\\iac\\ip.ser").withObjectInputStream { instream ->
+        new File("src/test/groovy/ru/iac/ip.ser").withObjectInputStream { instream ->
             instream.eachObject {
                 ip1 = it
             }
@@ -177,7 +179,7 @@ public class ParserTest extends Assert {
  */
     private static Ul getTestUl() {
         Ul ul1 = null
-        new File("src\\test\\groovy\\ru\\iac\\ul.ser").withObjectInputStream { instream ->
+        new File("src/test/groovy/ru/iac/ul.ser").withObjectInputStream { instream ->
             instream.eachObject {
                 ul1 = it
             }
@@ -196,26 +198,26 @@ public class ParserTest extends Assert {
         EGRIP_IP_DATA.IP.each {
             ip = XMLParserEGRIP.parse(it);
 
-            new File("src\\test\\groovy\\ru\\iac\\ip.ser").withObjectOutputStream { out -> out << ip }
+            new File("src/test/groovy/ru/iac/ip.ser").withObjectOutputStream { out -> out << ip }
 
         }
         def EGRIP_UL_DATA = new XmlSlurper().parse(filePathEgrulOneElement)
         Ul ul
         EGRIP_UL_DATA.UL.each {
             ul = XMLParserEGRUL.parse(it)
-            new File("src\\test\\groovy\\ru\\iac\\ul.ser").withObjectOutputStream { out -> out << ul }
+            new File("src/test/groovy/ru/iac/ul.ser").withObjectOutputStream { out -> out << ul }
 
         }
 
         Ip ip1
-        new File("src\\test\\groovy\\ru\\iac\\ip.ser").withObjectInputStream { instream ->
+        new File("src/test/groovy/ru/iac/ip.ser").withObjectInputStream { instream ->
             instream.eachObject {
                 ip1 = it
             }
         }
         println("Id ip = " + ip1.getIdip())
         Ul ul1
-        new File("src\\test\\groovy\\ru\\iac\\ul.ser").withObjectInputStream { instream ->
+        new File("src/test/groovy/ru/iac/ul.ser").withObjectInputStream { instream ->
             instream.eachObject {
                 ul1 = it
             }

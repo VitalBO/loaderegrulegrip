@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory
 import ru.iac.entity.Ip
 import ru.iac.entity.Ul
 
-import java.util.concurrent.Callable
 import java.util.concurrent.Executors
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
@@ -138,7 +137,7 @@ public class MainParser {
 /**
  * Thread to parse and save UL *
  */
-    public class ThreadUL implements Callable {
+    public class ThreadUL implements Runnable {
         GPathResult gPathResult
         File filePath
         int result
@@ -149,18 +148,17 @@ public class MainParser {
         }
 
         @Override
-        Object call() throws Exception {
+        void run() {
             Ul ul = XMLParserEGRUL.parse(gPathResult)
             if (ul != null) result = EgrulService.saveUlToDB(ul)
             else log.error("Error parse file " + filePath.getName())
             resultImport.put("File: " + filePath.getName() + ", OGRN: " + ul.getOgrn(), result)
-            return null
         }
     }
 /**
  * Thread to parse and save IP *
  */
-    public class ThreadIP implements Callable {
+    public class ThreadIP implements Runnable {
         GPathResult gPathResult
         File filePath
         int result
@@ -171,13 +169,12 @@ public class MainParser {
         }
 
         @Override
-        Object call() throws Exception {
+        void run() {
 
             Ip ip = XMLParserEGRIP.parse(gPathResult);
             if (ip != null) result = EgrulService.saveIpToDB(ip)
             else log.error("Error parse file" + filePath.getName())
             resultImport.put("File: " + filePath.getName() + ", OGRN: " + ip.getOgrn(), result)
-            return null
         }
     }
 }
