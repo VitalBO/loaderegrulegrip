@@ -116,6 +116,7 @@ public class ParserTest extends Assert {
         EGRIP_UL_DATA.UL.each {
             ul = XMLParserEGRUL.parse(it)
             assertNotNull("Ошибка при конвертации объекта, парсер вернул null", ul)
+            assertEquals(ul.getLicenzs().get(1).getIdvidlic().size(), 6)
             assertEquals(ul.getLicenzs().size(), 2)
             assertEquals(ul.getUlokved().size(), 2)
             assertEquals(ul.getUlname().getIdopf().getIdopf(), 100047)

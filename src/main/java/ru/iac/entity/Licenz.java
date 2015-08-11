@@ -37,6 +37,7 @@ import org.hibernate.annotations.Cascade;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * <p>Title: Licenz</p>
@@ -151,10 +152,13 @@ public class Licenz implements Serializable {
     //MP-MANAGED-ADDED-AREA-BEGINNING @IDVIDLIC-field-annotation@
 //MP-MANAGED-ADDED-AREA-ENDING @IDVIDLIC-field-annotation@
 //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDVIDLIC@
-    @ManyToOne
+    @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinColumn(name = "IDVIDLIC")
-    private Spvidlic idvidlic;
+    @JoinTable(name = "VIDLIC", joinColumns = {
+            @JoinColumn(name = "IDLIC", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "IDVIDLIC",
+                    nullable = false, updatable = false)})
+    private Set<Spvidlic> idvidlic;
 //MP-MANAGED-UPDATABLE-ENDING
 
     //MP-MANAGED-ADDED-AREA-BEGINNING @IDSOSTLIC-field-annotation@
@@ -265,7 +269,7 @@ public class Licenz implements Serializable {
             Ip idip,
             String numlic,
             Splicorg idlicorg,
-            Spvidlic idvidlic,
+            Set<Spvidlic> idvidlic,
             Spsostlic idsostlic,
             Date dtstart,
             Date dtend,
@@ -308,7 +312,7 @@ public class Licenz implements Serializable {
             Ip idip,
             String numlic,
             Splicorg idlicorg,
-            Spvidlic idvidlic,
+            Set<Spvidlic> idvidlic,
             Spsostlic idsostlic,
             Date dtstart,
             Date dtend,
@@ -424,14 +428,6 @@ public class Licenz implements Serializable {
 
 //MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDVIDLIC@
-    public Spvidlic getIdvidlic() {
-        return idvidlic;
-    }
-
-    public void setIdvidlic(Spvidlic idvidlic) {
-        this.idvidlic = idvidlic;
-    }
 
 //MP-MANAGED-UPDATABLE-ENDING
 
@@ -478,6 +474,15 @@ public class Licenz implements Serializable {
     }
 
 //MP-MANAGED-UPDATABLE-ENDING
+
+
+    public Set<Spvidlic> getIdvidlic() {
+        return idvidlic;
+    }
+
+    public void setIdvidlic(Set<Spvidlic> idvidlic) {
+        this.idvidlic = idvidlic;
+    }
 
     //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-DTRESTART@
     public Date getDtrestart() {

@@ -88,9 +88,9 @@ public class MainParser {
  * @return - result saving to db
  */
     HashMap parseFile(File filePath) {
-
+        def DATA
         try {
-            def DATA = new XmlSlurper().parse(filePath)
+            DATA = new XmlSlurper().parse(filePath)
         } catch (SAXParseException e) {
             log.error("Error parsing file " + filePath.getName(), e)
             resultImport.put("File: " + filePath.getName() + " error parsing", Util.ERROR)

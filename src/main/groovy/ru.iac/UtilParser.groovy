@@ -9,17 +9,20 @@ import ru.iac.entity.*
  */
 class UtilParser {
 
-    public static Spvidlic getVidlic(GPathResult gPathResult, List list) {
+    public static Set<Spvidlic> getVidlic(GPathResult gPathResult, List list) {
+        Set<Spvidlic> vidlicSet = new HashSet<>()
         Spvidlic spvidlic = null
-        gPathResult.each {
-            if (it.VIDLIC.@ID != "")
+        gPathResult.VIDLIC.each {
+            if (it.@ID != "") {
                 spvidlic = new Spvidlic(
-                        idvidlic: Util.convertToBInt(it.VIDLIC.@ID),
-                        name: it.VIDLIC.@NAME_VLIC
+                        idvidlic: Util.convertToBInt(it.@ID),
+                        name: it.@NAME_VLIC
                 )
+                spvidlic = (Spvidlic) Util.check(spvidlic, list)
+                vidlicSet.add(spvidlic)
+            }
         }
-        spvidlic = (Spvidlic) Util.check(spvidlic, list)
-        return spvidlic
+        return vidlicSet
     }
 
     public static Spsostlic getSostlic(GPathResult gPathResult, List list) {
