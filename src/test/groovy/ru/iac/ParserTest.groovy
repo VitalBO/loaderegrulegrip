@@ -14,6 +14,7 @@ public class ParserTest extends Assert {
     private static File filePathEgrip = new File("src/test/groovy/ru/iac/testEGRIP.XML");
     private static File filePathEgrul = new File("src/test/groovy/ru/iac/testEGRUL.XML");
     private static File filePathEgripOneElement = new File("src/test/groovy/ru/iac/testEgripForTestParser.XML");
+    private static File filePathEgripOneElementErr = new File("src/test/groovy/ru/iac/testEgripForTestParserErr.XML");
     private static File filePathEgrulOneElement = new File("src/test/groovy/ru/iac/testEgrulForTestParser.XML");
 
     @Ignore("integration test with db")
@@ -96,6 +97,15 @@ public class ParserTest extends Assert {
             assertEquals(1, ip.getIpokved().get(1).getMain())
 
         }
+    }
+
+    @Test
+    public void testParseEgripErr() {
+
+        MainParser mainParser = new MainParser()
+        HashMap map = mainParser.parseFile(filePathEgripOneElementErr)
+        assertTrue(map.values().contains(Util.ERROR))
+
     }
 
     @Test

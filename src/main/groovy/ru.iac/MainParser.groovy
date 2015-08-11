@@ -3,6 +3,7 @@ package ru.iac
 import groovy.util.slurpersupport.GPathResult
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.xml.sax.SAXParseException
 import ru.iac.entity.Ip
 import ru.iac.entity.Ul
 
@@ -78,7 +79,7 @@ public class MainParser {
             log.info(key + "\t  - " + resultImport.get(key))
             if (resultImport.get(key) == 1) countFail++
         }
-        log.info("Total amount " + resultImport.size() + "; fails " + countFail + "; percent fails " + countFail / resultImport.size() + "%")
+        log.info("Total amount " + resultImport.size() + "; fails " + countFail + "; percent fails " + resultImport.size() * countFail / 100 + "%")
         System.exit(0)
     }
 /**
@@ -88,7 +89,14 @@ public class MainParser {
  */
     HashMap parseFile(File filePath) {
 
-        def DATA = new XmlSlurper().parse(filePath)
+        try {
+            def DATA = new XmlSlurper().parse(filePath)
+        } catch (SAXParseException e) {
+            log.error("Error parsing file " + filePath.getName(), e)
+            resultImport.put("File: " + filePath.getName() + " error parsing", Util.ERROR)
+            return resultImport
+        }
+
 
         ThreadPoolExecutor poolExecutor = Executors.newFixedThreadPool(threads) as ThreadPoolExecutor
         HibernateUtil.getSession().close()
