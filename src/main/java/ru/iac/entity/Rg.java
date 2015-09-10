@@ -363,23 +363,20 @@ public class Rg implements Serializable, EgrulEntity {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Rg)) return false;
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof Rg)) return false;
 
-        Rg rg = (Rg) o;
+        Rg rg = (Rg) object;
 
-        if (!idr.equals(rg.idr)) return false;
-        if (kodKl != null ? !kodKl.equals(rg.kodKl) : rg.kodKl != null) return false;
-        if (name != null ? !name.equals(rg.name) : rg.name != null) return false;
+        if (idr != null ? !idr.equals(rg.idr) : rg.idr != null) return false;
+        return !(kodKl != null ? !kodKl.equals(rg.kodKl) : rg.kodKl != null);
 
-        return true;
     }
 
     @Override
     public int hashCode() {
-        int result = idr.hashCode();
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        int result = idr != null ? idr.hashCode() : 0;
         result = 31 * result + (kodKl != null ? kodKl.hashCode() : 0);
         return result;
     }
