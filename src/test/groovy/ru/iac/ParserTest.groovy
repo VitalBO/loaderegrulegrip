@@ -16,6 +16,8 @@ public class ParserTest extends Assert {
     private static File filePathEgripOneElement = new File("src/test/groovy/ru/iac/testEgripForTestParser.XML");
     private static File filePathEgripOneElementErr = new File("src/test/groovy/ru/iac/testEgripForTestParserErr.XML");
     private static File filePathEgrulOneElement = new File("src/test/groovy/ru/iac/testEgrulForTestParser.XML");
+    private static File filePathEgrulOneElementErr = new File("src/test/groovy/ru/iac/testEgrulForTestParserErr.XML");
+
 
     @Ignore("integration test with db")
     @Test
@@ -40,6 +42,17 @@ public class ParserTest extends Assert {
     public void testParseFileEgrul() {
         MainParser mp = new MainParser()
         HashMap<String, Integer> result = mp.parseFile(filePathEgrul)
+        for (String key : result.keySet()) {
+            println(key + "\t  - " + result.get(key))
+            assertEquals(result.get(key), 0)
+        }
+    }
+
+    @Ignore("integration test with db")
+    @Test
+    public void testParseFileEgrulErr() {
+        MainParser mp = new MainParser()
+        HashMap<String, Integer> result = mp.parseFile(filePathEgrulOneElementErr)
         for (String key : result.keySet()) {
             println(key + "\t  - " + result.get(key))
             assertEquals(result.get(key), 0)

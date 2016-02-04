@@ -13,11 +13,13 @@
         <project.build.sourceEncoding>windows-1251</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
+
         <groovy.version>2.4.3</groovy.version>
         <gmaven.version>1.5</gmaven.version>
-        <junit.version>4.12</junit.version>
+
         <hibernate.version>4.3.8.Final</hibernate.version>
-        <ehcache.version>2.10.0</ehcache.version>
+
+        <junit.version>4.12</junit.version>
     </properties>
 
     <build>

@@ -396,24 +396,19 @@ public class St implements Serializable, EgrulEntity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof St)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         St st = (St) o;
 
-        if (!ids.equals(st.ids)) return false;
-        if (kodSt != null ? !kodSt.equals(st.kodSt) : st.kodSt != null) return false;
-        if (name != null ? !name.equals(st.name) : st.name != null) return false;
+        return ids.equals(st.ids);
 
-        return true;
     }
 
     @Override
     public int hashCode() {
-        int result = ids.hashCode();
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (kodSt != null ? kodSt.hashCode() : 0);
-        return result;
+        return ids.hashCode();
     }
+
 //MP-MANAGED-UPDATABLE-ENDING
 
 
