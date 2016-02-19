@@ -121,7 +121,7 @@ public class XMLParserEGRUL {
                                         name: it.VIDCAP.@NAME
                                 ),
                                 dtstart: Util.convertToDate(it.@DTSTART as String),
-                                summa: it.@SUMMA.toBigDecimal()
+                                summa: Util.convertToBDec(it.@SUMMA)
                         )
                         ul.setUlcapital(ulcapital)
                     }
