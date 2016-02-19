@@ -29,8 +29,6 @@
  */
 package ru.iac.entity;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @import@
-//MP-MANAGED-ADDED-AREA-ENDING @import@
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -109,122 +107,58 @@ public class Ipgosreg implements Serializable, EgrulEntity {
     @Column(name = "IDREG")
     private String idreg;
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDIP-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDIP-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDIP@
     @ManyToOne
     @JoinColumn(name = "IDIP")
     private Ip idip;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @REGNUM-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @REGNUM-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-REGNUM@
     @Column(name = "REGNUM", length = 20, nullable = true, unique = false)
     private String regnum;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @DTREG-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @DTREG-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-DTREG@
     @Column(name = "DTREG", nullable = true, unique = true)
     private Date dtreg;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDREGORG-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDREGORG-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDREGORG@
     @ManyToOne
     @Cascade(CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDREGORG")
     private Spregorg idregorg;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDVIDREG-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDVIDREG-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDVIDREG@
     @ManyToOne
     @Cascade(CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDVIDREG")
     private Spvidreg idvidreg;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @SERSVID-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @SERSVID-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-SERSVID@
     @Column(name = "SERSVID", nullable = true, unique = false)
     private Integer sersvid;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @NUMSVID-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @NUMSVID-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-NUMSVID@
     @Column(name = "NUMSVID", nullable = true, unique = false)
     private Integer numsvid;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @DTZAP-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @DTZAP-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-DTZAP@
     @Column(name = "DTZAP", nullable = true, unique = false)
     private Date dtzap;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ADATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__ADATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ADATE@
     @Column(name = "GIHD__ADATE", nullable = true, unique = false)
     private Date gihdAdate;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CHDATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__CHDATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CHDATE@
     @Column(name = "GIHD__CHDATE", nullable = true, unique = false)
     private Date gihdChdate;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__DDATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__DDATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__DDATE@
     @Column(name = "GIHD__DDATE", nullable = true, unique = false)
     private Date gihdDdate;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ID_USER-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__ID_USER-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ID_USER@
     @Column(name = "GIHD__ID_USER", nullable = true, unique = false)
     private Integer gihdIdUser;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__A_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__A_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__A_ID_PACKAGE@
     @Column(name = "GIHD__A_ID_PACKAGE", nullable = true, unique = false)
     private Integer gihdAIdPackage;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CH_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__CH_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CH_ID_PACKAGE@
     @Column(name = "GIHD__CH_ID_PACKAGE", nullable = true, unique = false)
     private Integer gihdChIdPackage;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__D_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__D_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__D_ID_PACKAGE@
     @Column(name = "GIHD__D_ID_PACKAGE", nullable = true, unique = false)
     private Integer gihdDIdPackage;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @ROW_CHECK_SUM-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @ROW_CHECK_SUM-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-ROW_CHECK_SUM@
     @Column(name = "ROW_CHECK_SUM", nullable = true, unique = false)
     private String rowCheckSum;
-//MP-MANAGED-UPDATABLE-ENDING
 
     /**
      * Default constructor
@@ -293,9 +227,7 @@ public class Ipgosreg implements Serializable, EgrulEntity {
             Integer gihdDIdPackage,
             String rowCheckSum
             , boolean setRelationship) {
-        //primary keys
         setIdreg(idreg);
-        //attributes
         setIdip(idip);
         setRegnum(regnum);
         setDtreg(dtreg);
@@ -312,7 +244,6 @@ public class Ipgosreg implements Serializable, EgrulEntity {
         setGihdChIdPackage(gihdChIdPackage);
         setGihdDIdPackage(gihdDIdPackage);
         setRowCheckSum(rowCheckSum);
-        //parents
     }
 
     public Ipgosreg flat() {
@@ -346,7 +277,6 @@ public class Ipgosreg implements Serializable, EgrulEntity {
         this.idreg = idreg;
     }
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDIP@
     public Ip getIdip() {
         return idip;
     }
@@ -355,9 +285,7 @@ public class Ipgosreg implements Serializable, EgrulEntity {
         this.idip = idip;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-REGNUM@
     public String getRegnum() {
         return regnum;
     }
@@ -366,9 +294,7 @@ public class Ipgosreg implements Serializable, EgrulEntity {
         this.regnum = regnum;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-DTREG@
     public Date getDtreg() {
         return dtreg;
     }
@@ -377,9 +303,7 @@ public class Ipgosreg implements Serializable, EgrulEntity {
         this.dtreg = dtreg;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDREGORG@
     public Spregorg getIdregorg() {
         return idregorg;
     }
@@ -388,9 +312,7 @@ public class Ipgosreg implements Serializable, EgrulEntity {
         this.idregorg = idregorg;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDVIDREG@
     public Spvidreg getIdvidreg() {
         return idvidreg;
     }
@@ -399,9 +321,7 @@ public class Ipgosreg implements Serializable, EgrulEntity {
         this.idvidreg = idvidreg;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-SERSVID@
     public Integer getSersvid() {
         return sersvid;
     }
@@ -410,9 +330,7 @@ public class Ipgosreg implements Serializable, EgrulEntity {
         this.sersvid = sersvid;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-NUMSVID@
     public Integer getNumsvid() {
         return numsvid;
     }
@@ -421,9 +339,7 @@ public class Ipgosreg implements Serializable, EgrulEntity {
         this.numsvid = numsvid;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-DTZAP@
     public Date getDtzap() {
         return dtzap;
     }
@@ -432,9 +348,7 @@ public class Ipgosreg implements Serializable, EgrulEntity {
         this.dtzap = dtzap;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ADATE@
     public Date getGihdAdate() {
         return gihdAdate;
     }
@@ -443,9 +357,7 @@ public class Ipgosreg implements Serializable, EgrulEntity {
         this.gihdAdate = gihdAdate;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CHDATE@
     public Date getGihdChdate() {
         return gihdChdate;
     }
@@ -454,9 +366,7 @@ public class Ipgosreg implements Serializable, EgrulEntity {
         this.gihdChdate = gihdChdate;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__DDATE@
     public Date getGihdDdate() {
         return gihdDdate;
     }
@@ -465,9 +375,7 @@ public class Ipgosreg implements Serializable, EgrulEntity {
         this.gihdDdate = gihdDdate;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ID_USER@
     public Integer getGihdIdUser() {
         return gihdIdUser;
     }
@@ -476,9 +384,7 @@ public class Ipgosreg implements Serializable, EgrulEntity {
         this.gihdIdUser = gihdIdUser;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__A_ID_PACKAGE@
     public Integer getGihdAIdPackage() {
         return gihdAIdPackage;
     }
@@ -487,9 +393,7 @@ public class Ipgosreg implements Serializable, EgrulEntity {
         this.gihdAIdPackage = gihdAIdPackage;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CH_ID_PACKAGE@
     public Integer getGihdChIdPackage() {
         return gihdChIdPackage;
     }
@@ -498,9 +402,7 @@ public class Ipgosreg implements Serializable, EgrulEntity {
         this.gihdChIdPackage = gihdChIdPackage;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__D_ID_PACKAGE@
     public Integer getGihdDIdPackage() {
         return gihdDIdPackage;
     }
@@ -509,9 +411,7 @@ public class Ipgosreg implements Serializable, EgrulEntity {
         this.gihdDIdPackage = gihdDIdPackage;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-ROW_CHECK_SUM@
     public String getRowCheckSum() {
         return rowCheckSum;
     }
@@ -525,10 +425,23 @@ public class Ipgosreg implements Serializable, EgrulEntity {
         return idreg;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @implementation@
-//MP-MANAGED-ADDED-AREA-ENDING @implementation@
+        Ipgosreg ipgosreg = (Ipgosreg) o;
 
+        if (idreg != null ? !idreg.equals(ipgosreg.idreg) : ipgosreg.idreg != null) return false;
+        return regnum != null ? regnum.equals(ipgosreg.regnum) : ipgosreg.regnum == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idreg != null ? idreg.hashCode() : 0;
+        result = 31 * result + (regnum != null ? regnum.hashCode() : 0);
+        return result;
+    }
 }
