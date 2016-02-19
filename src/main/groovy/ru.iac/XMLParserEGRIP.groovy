@@ -210,7 +210,9 @@ class XMLParserEGRIP {
                             sersvid: Util.convertToInt(it.SVSV.@SER_SV),
                             numsvid: Util.convertToInt(it.SVSV.@NUM_SV)
                     )
-                    ipgosregList.add(ipgosreg)
+                    if (!ipgosregList.contains(ipgosreg)) {
+                        ipgosregList.add(ipgosreg)
+                    }
                 }
                 ip.setIpgosregs(ipgosregList)
 
