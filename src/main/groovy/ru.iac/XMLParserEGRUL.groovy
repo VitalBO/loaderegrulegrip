@@ -93,13 +93,10 @@ public class XMLParserEGRUL {
                 log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode ul_address")
                 if (it.UL_ADDRESS.@DTSTART != "") {
                     it.UL_ADDRESS.each {
+
                         Uladr uladr = new Uladr(
                                 dtstart: Util.convertToDate(it.@DTSTART as String),
                                 idul: ul,
-                                idvidadr: new Spvidadr(
-                                        id: Util.convertToInt(it.VIDADR.@ID),
-                                        name: it.VIDADR.@NAME
-                                ),
                                 fulladdress: UtilParser.getAddress(it.ADDRESS, list),
                                 nameisporg: it.@NAMEISPORG as String,
                                 kodgorod: it.CONTACT.@KODGOROD as String,
@@ -107,6 +104,14 @@ public class XMLParserEGRUL {
                                 fax: it.CONTACT.@FAX as String,
                                 address: it.ADDRESS.REGION.@NAME.text() + " " + (it.ADDRESS.RAION.@NAME.text()) + " " + (it.ADDRESS.GOROD.@NAME.text()) + " " + (it.ADDRESS.NASPUNKT.@NAME.text()) + " " + (it.ADDRESS.STREET.@NAME.text()) + " " + (it.ADDRESS.@DOM.text()) + " " + (it.ADDRESS.@KORP.text()) + " " + (it.ADDRESS.@KVART.text())
                         )
+                        if (it.VIDADR.@ID != "") {
+                            uladr.setIdvidadr(
+                                    new Spvidadr(
+                                            id: Util.convertToInt(it.VIDADR.@ID),
+                                            name: it.VIDADR.@NAME
+                                    )
+                            )
+                        }
                         ul.setUladr(uladr)
                     }
                 }

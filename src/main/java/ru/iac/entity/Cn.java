@@ -279,15 +279,18 @@ public class Cn implements Serializable, EgrulEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Cn cn = (Cn) o;
-        if (idn != null ? !idn.equals(cn.idn) : cn.idn != null) return false;
-        return kodKl != null ? kodKl.equals(cn.kodKl) : cn.kodKl == null;
+
+        if (!idn.equals(cn.idn)) return false;
+        return name.equalsIgnoreCase(cn.name);
+
     }
 
     @Override
     public int hashCode() {
-        int result = idn != null ? idn.hashCode() : 0;
-        result = 31 * result + (kodKl != null ? kodKl.hashCode() : 0);
+        int result = idn.hashCode();
+        result = 31 * result + name.hashCode();
         return result;
     }
 }
