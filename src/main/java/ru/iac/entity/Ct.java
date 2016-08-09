@@ -306,6 +306,7 @@ public class Ct implements Serializable, EgrulEntity {
     }
 
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -313,15 +314,15 @@ public class Ct implements Serializable, EgrulEntity {
 
         Ct ct = (Ct) o;
 
-        if (idc != null ? !idc.equals(ct.idc) : ct.idc != null) return false;
-        return kodKl != null ? kodKl.equals(ct.kodKl) : ct.kodKl == null;
+        if (!idc.equals(ct.idc)) return false;
+        return name.equalsIgnoreCase(ct.name);
 
     }
 
     @Override
     public int hashCode() {
-        int result = idc != null ? idc.hashCode() : 0;
-        result = 31 * result + (kodKl != null ? kodKl.hashCode() : 0);
+        int result = idc.hashCode();
+        result = 33 * result + name.hashCode();
         return result;
     }
 }

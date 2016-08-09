@@ -363,25 +363,6 @@ public class Rg implements Serializable, EgrulEntity {
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (!(object instanceof Rg)) return false;
-
-        Rg rg = (Rg) object;
-
-        if (idr != null ? !idr.equals(rg.idr) : rg.idr != null) return false;
-        return !(kodKl != null ? !kodKl.equals(rg.kodKl) : rg.kodKl != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = idr != null ? idr.hashCode() : 0;
-        result = 31 * result + (kodKl != null ? kodKl.hashCode() : 0);
-        return result;
-    }
-
-    @Override
     public String getIdenti() {
         return idr.toString();
     }
@@ -389,7 +370,24 @@ public class Rg implements Serializable, EgrulEntity {
 //MP-MANAGED-UPDATABLE-ENDING
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Rg rg = (Rg) o;
+
+        if (!idr.equals(rg.idr)) return false;
+        return name.equalsIgnoreCase(rg.name);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idr.hashCode();
+        result = 33 * result + name.hashCode();
+        return result;
+    }
 
 
 
