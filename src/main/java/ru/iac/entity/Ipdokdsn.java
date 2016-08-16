@@ -29,8 +29,6 @@
 */
 package ru.iac.entity;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @import@
-//MP-MANAGED-ADDED-AREA-ENDING @import@
 
 import org.hibernate.annotations.Cascade;
 
@@ -85,8 +83,6 @@ import java.util.Date;
 })
 
 public class Ipdokdsn implements Serializable, EgrulEntity {
-    private static final long serialVersionUID = 1L;
-
     public static final String FIND_ALL = "Ipdokdsn.findAll";
     public static final String FIND_BY_IDIP = "Ipdokdsn.findByIdip";
     public static final String FIND_BY_DTSTART = "Ipdokdsn.findByDtstart";
@@ -106,121 +102,77 @@ public class Ipdokdsn implements Serializable, EgrulEntity {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Ipdokdsn.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Ipdokdsn.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING ="Ipdokdsn.findByRowCheckSumContaining";
-	
+    private static final long serialVersionUID = 1L;
     @SequenceGenerator(name = "IPDOKDSNSEQ", sequenceName ="SEQ_IPDOKDSN", allocationSize=1 )
     @Id @Column(name="IDDOKDSN" ) 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="IPDOKDSNSEQ") 
     private Integer iddokdsn;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @IDIP-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDIP-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDIP@
+
     @OneToOne
     @JoinColumn(name="IDIP"   , nullable=false , unique=true)
-    private Ip idip; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Ip idip;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @DTSTART-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @DTSTART-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-DTSTART@
+
     @Column(name="DTSTART"   , nullable=true , unique=false)
-    private Date dtstart; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Date dtstart;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @IDOSNDN-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDOSNDN-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDOSNDN@
-@ManyToOne
+
+    @ManyToOne
 @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name="IDOSNDN"   , nullable=true , unique=false)
     private Sposndn idosndn;
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @IDDOKDN-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDDOKDN-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDDOKDN@
-@ManyToOne
+
+    @ManyToOne
 @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name="IDDOKDN"   , nullable=true , unique=false)
-    private Spdokdn iddokdn; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Spdokdn iddokdn;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @NUM-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @NUM-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-NUM@
+
     @Column(name="NUM"  , length=30 , nullable=true , unique=false)
-    private String num; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private String num;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @DT-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @DT-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-DT@
+
     @Column(name="DT"   , nullable=true , unique=false)
-    private Date dt; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Date dt;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @NAMEORG-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @NAMEORG-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-NAMEORG@
+
     @Column(name="NAMEORG"  , length=255 , nullable=true , unique=false)
-    private String nameorg; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private String nameorg;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ADATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__ADATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ADATE@
+
     @Column(name="GIHD__ADATE"   , nullable=true , unique=false)
-    private Date gihdAdate; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Date gihdAdate;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CHDATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__CHDATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CHDATE@
+
     @Column(name="GIHD__CHDATE"   , nullable=true , unique=false)
-    private Date gihdChdate; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Date gihdChdate;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__DDATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__DDATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__DDATE@
+
     @Column(name="GIHD__DDATE"   , nullable=true , unique=false)
-    private Date gihdDdate; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Date gihdDdate;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ID_USER-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__ID_USER-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ID_USER@
+
     @Column(name="GIHD__ID_USER"   , nullable=true , unique=false)
-    private Integer gihdIdUser; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Integer gihdIdUser;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__A_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__A_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__A_ID_PACKAGE@
+
     @Column(name="GIHD__A_ID_PACKAGE"   , nullable=true , unique=false)
-    private Integer gihdAIdPackage; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Integer gihdAIdPackage;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CH_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__CH_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CH_ID_PACKAGE@
+
     @Column(name="GIHD__CH_ID_PACKAGE"   , nullable=true , unique=false)
-    private Integer gihdChIdPackage; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Integer gihdChIdPackage;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__D_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__D_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__D_ID_PACKAGE@
+
     @Column(name="GIHD__D_ID_PACKAGE"   , nullable=true , unique=false)
-    private Integer gihdDIdPackage; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Integer gihdDIdPackage;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @ROW_CHECK_SUM-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @ROW_CHECK_SUM-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-ROW_CHECK_SUM@
+
     @Column(name="ROW_CHECK_SUM"   , nullable=true , unique=false)
-    private String rowCheckSum; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private String rowCheckSum;
+
 
     /**
     * Default constructor
@@ -336,8 +288,8 @@ public class Ipdokdsn implements Serializable, EgrulEntity {
     public void setIddokdsn (Integer iddokdsn) {
         this.iddokdsn =  iddokdsn;
     }
-    
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDIP@
+
+
     public Ip getIdip() {
         return idip;
     }
@@ -345,10 +297,8 @@ public class Ipdokdsn implements Serializable, EgrulEntity {
     public void setIdip (Ip idip) {
         this.idip =  idip;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-DTSTART@
+
     public Date getDtstart() {
         return dtstart;
     }
@@ -356,10 +306,8 @@ public class Ipdokdsn implements Serializable, EgrulEntity {
     public void setDtstart (Date dtstart) {
         this.dtstart =  dtstart;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDOSNDN@
+
     public Sposndn getIdosndn() {
         return idosndn;
     }
@@ -367,10 +315,8 @@ public class Ipdokdsn implements Serializable, EgrulEntity {
     public void setIdosndn (Sposndn idosndn) {
         this.idosndn =  idosndn;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDDOKDN@
+
     public Spdokdn getIddokdn() {
         return iddokdn;
     }
@@ -378,10 +324,8 @@ public class Ipdokdsn implements Serializable, EgrulEntity {
     public void setIddokdn (Spdokdn iddokdn) {
         this.iddokdn =  iddokdn;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-NUM@
+
     public String getNum() {
         return num;
     }
@@ -389,10 +333,8 @@ public class Ipdokdsn implements Serializable, EgrulEntity {
     public void setNum (String num) {
         this.num =  num;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-DT@
+
     public Date getDt() {
         return dt;
     }
@@ -400,10 +342,8 @@ public class Ipdokdsn implements Serializable, EgrulEntity {
     public void setDt (Date dt) {
         this.dt =  dt;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-NAMEORG@
+
     public String getNameorg() {
         return nameorg;
     }
@@ -411,10 +351,8 @@ public class Ipdokdsn implements Serializable, EgrulEntity {
     public void setNameorg (String nameorg) {
         this.nameorg =  nameorg;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ADATE@
+
     public Date getGihdAdate() {
         return gihdAdate;
     }
@@ -422,10 +360,8 @@ public class Ipdokdsn implements Serializable, EgrulEntity {
     public void setGihdAdate (Date gihdAdate) {
         this.gihdAdate =  gihdAdate;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CHDATE@
+
     public Date getGihdChdate() {
         return gihdChdate;
     }
@@ -433,10 +369,8 @@ public class Ipdokdsn implements Serializable, EgrulEntity {
     public void setGihdChdate (Date gihdChdate) {
         this.gihdChdate =  gihdChdate;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__DDATE@
+
     public Date getGihdDdate() {
         return gihdDdate;
     }
@@ -444,10 +378,8 @@ public class Ipdokdsn implements Serializable, EgrulEntity {
     public void setGihdDdate (Date gihdDdate) {
         this.gihdDdate =  gihdDdate;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ID_USER@
+
     public Integer getGihdIdUser() {
         return gihdIdUser;
     }
@@ -455,10 +387,8 @@ public class Ipdokdsn implements Serializable, EgrulEntity {
     public void setGihdIdUser (Integer gihdIdUser) {
         this.gihdIdUser =  gihdIdUser;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__A_ID_PACKAGE@
+
     public Integer getGihdAIdPackage() {
         return gihdAIdPackage;
     }
@@ -466,10 +396,8 @@ public class Ipdokdsn implements Serializable, EgrulEntity {
     public void setGihdAIdPackage (Integer gihdAIdPackage) {
         this.gihdAIdPackage =  gihdAIdPackage;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CH_ID_PACKAGE@
+
     public Integer getGihdChIdPackage() {
         return gihdChIdPackage;
     }
@@ -477,10 +405,8 @@ public class Ipdokdsn implements Serializable, EgrulEntity {
     public void setGihdChIdPackage (Integer gihdChIdPackage) {
         this.gihdChIdPackage =  gihdChIdPackage;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__D_ID_PACKAGE@
+
     public Integer getGihdDIdPackage() {
         return gihdDIdPackage;
     }
@@ -488,10 +414,8 @@ public class Ipdokdsn implements Serializable, EgrulEntity {
     public void setGihdDIdPackage (Integer gihdDIdPackage) {
         this.gihdDIdPackage =  gihdDIdPackage;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-ROW_CHECK_SUM@
+
     public String getRowCheckSum() {
         return rowCheckSum;
     }
@@ -505,14 +429,5 @@ public class Ipdokdsn implements Serializable, EgrulEntity {
         return iddokdsn.toString();
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
-
-
-
-
-
-
-//MP-MANAGED-ADDED-AREA-BEGINNING @implementation@
-//MP-MANAGED-ADDED-AREA-ENDING @implementation@
 
 }

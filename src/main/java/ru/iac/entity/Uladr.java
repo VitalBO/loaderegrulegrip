@@ -29,8 +29,6 @@
  */
 package ru.iac.entity;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @import@
-//MP-MANAGED-ADDED-AREA-ENDING @import@
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -117,15 +115,13 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
     @Column(name = "IDULADR")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ULADRSEQ")
     private Integer iduladr;
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDUL-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDUL-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDUL@
+
+
     @OneToOne
     @JoinColumn(name = "IDUL")
     private Ul idul;
-    //MP-MANAGED-ADDED-AREA-BEGINNING @DTSTART-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @DTSTART-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-DTSTART@
+
+
     @Column(name = "DTSTART", nullable = true, unique = false)
     private Date dtstart;
 
@@ -138,78 +134,50 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
     private String address;
 
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @OKATO-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @OKATO-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-OKATO@
-    //MP-MANAGED-ADDED-AREA-BEGINNING @KODGOROD-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @KODGOROD-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-KODGOROD@
     @Column(name = "KODGOROD", length = 5, nullable = true, unique = false)
     private String kodgorod;
-    //MP-MANAGED-UPDATABLE-ENDING
-    //MP-MANAGED-ADDED-AREA-BEGINNING @TELEFON-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @TELEFON-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-TELEFON@
+
+
     @Column(name = "TELEFON", length = 20, nullable = true, unique = false)
     private String telefon;
-    //MP-MANAGED-UPDATABLE-ENDING
-    //MP-MANAGED-ADDED-AREA-BEGINNING @FAX-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @FAX-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-FAX@
+
+
     @Column(name = "FAX", length = 20, nullable = true, unique = false)
     private String fax;
-    //MP-MANAGED-UPDATABLE-ENDING
-    //MP-MANAGED-ADDED-AREA-BEGINNING @NAMEISPORG-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @NAMEISPORG-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-NAMEISPORG@
+
+
     @Column(name = "NAMEISPORG", length = 255, nullable = true, unique = false)
     private String nameisporg;
-    //MP-MANAGED-UPDATABLE-ENDING
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ADATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__ADATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ADATE@
+
+
     @Column(name = "GIHD__ADATE", nullable = true, unique = false)
     private Date gihdAdate;
-    //MP-MANAGED-UPDATABLE-ENDING
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CHDATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__CHDATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CHDATE@
+
+
     @Column(name = "GIHD__CHDATE", nullable = true, unique = false)
     private Date gihdChdate;
-    //MP-MANAGED-UPDATABLE-ENDING
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__DDATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__DDATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__DDATE@
+
+
     @Column(name = "GIHD__DDATE", nullable = true, unique = false)
     private Date gihdDdate;
-    //MP-MANAGED-UPDATABLE-ENDING
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ID_USER-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__ID_USER-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ID_USER@
+
+
     @Column(name = "GIHD__ID_USER", nullable = true, unique = false)
     private Integer gihdIdUser;
-    //MP-MANAGED-UPDATABLE-ENDING
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__A_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__A_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__A_ID_PACKAGE@
+
+
     @Column(name = "GIHD__A_ID_PACKAGE", nullable = true, unique = false)
     private Integer gihdAIdPackage;
-    //MP-MANAGED-UPDATABLE-ENDING
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CH_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__CH_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CH_ID_PACKAGE@
+
+
     @Column(name = "GIHD__CH_ID_PACKAGE", nullable = true, unique = false)
     private Integer gihdChIdPackage;
-    //MP-MANAGED-UPDATABLE-ENDING
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__D_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__D_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__D_ID_PACKAGE@
+
+
     @Column(name = "GIHD__D_ID_PACKAGE", nullable = true, unique = false)
     private Integer gihdDIdPackage;
-    //MP-MANAGED-UPDATABLE-ENDING
-    //MP-MANAGED-ADDED-AREA-BEGINNING @ROW_CHECK_SUM-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @ROW_CHECK_SUM-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-ROW_CHECK_SUM@
+
+
     @Column(name = "ROW_CHECK_SUM", nullable = true, unique = false)
     private String rowCheckSum;
     /**
@@ -256,7 +224,7 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
                 rowCheckSum
                 , true);
     }
-//MP-MANAGED-UPDATABLE-ENDING
+
 
     public Uladr(
             Integer iduladr,
@@ -297,12 +265,12 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
         setRowCheckSum(rowCheckSum);
         //parents
     }
-//MP-MANAGED-UPDATABLE-ENDING
+
 
     public Address getFulladdress() {
         return fulladdress;
     }
-//MP-MANAGED-UPDATABLE-ENDING
+
 
     public void setFulladdress(Address fulladdress) {
         this.fulladdress = fulladdress;
@@ -346,7 +314,7 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
         this.iduladr = iduladr;
     }
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDUL@
+
     public Ul getIdul() {
         return idul;
     }
@@ -355,9 +323,7 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
         this.idul = idul;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-DTSTART@
     public Date getDtstart() {
         return dtstart;
     }
@@ -366,9 +332,7 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
         this.dtstart = dtstart;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDVIDADR@
     public Spvidadr getIdvidadr() {
         return idvidadr;
     }
@@ -377,14 +341,7 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
         this.idvidadr = idvidadr;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-OKATO@
-
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-KODGOROD@
     public String getKodgorod() {
         return kodgorod;
     }
@@ -393,9 +350,7 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
         this.kodgorod = kodgorod;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-TELEFON@
     public String getTelefon() {
         return telefon;
     }
@@ -404,9 +359,7 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
         this.telefon = telefon;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-FAX@
     public String getFax() {
         return fax;
     }
@@ -415,9 +368,7 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
         this.fax = fax;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-NAMEISPORG@
     public String getNameisporg() {
         return nameisporg;
     }
@@ -426,9 +377,7 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
         this.nameisporg = nameisporg;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ADATE@
     public Date getGihdAdate() {
         return gihdAdate;
     }
@@ -437,9 +386,7 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
         this.gihdAdate = gihdAdate;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CHDATE@
     public Date getGihdChdate() {
         return gihdChdate;
     }
@@ -448,9 +395,7 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
         this.gihdChdate = gihdChdate;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__DDATE@
     public Date getGihdDdate() {
         return gihdDdate;
     }
@@ -459,9 +404,7 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
         this.gihdDdate = gihdDdate;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ID_USER@
     public Integer getGihdIdUser() {
         return gihdIdUser;
     }
@@ -470,9 +413,7 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
         this.gihdIdUser = gihdIdUser;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__A_ID_PACKAGE@
     public Integer getGihdAIdPackage() {
         return gihdAIdPackage;
     }
@@ -481,9 +422,7 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
         this.gihdAIdPackage = gihdAIdPackage;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CH_ID_PACKAGE@
     public Integer getGihdChIdPackage() {
         return gihdChIdPackage;
     }
@@ -492,9 +431,7 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
         this.gihdChIdPackage = gihdChIdPackage;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__D_ID_PACKAGE@
     public Integer getGihdDIdPackage() {
         return gihdDIdPackage;
     }
@@ -503,9 +440,7 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
         this.gihdDIdPackage = gihdDIdPackage;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-ROW_CHECK_SUM@
     public String getRowCheckSum() {
         return rowCheckSum;
     }
@@ -528,9 +463,8 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
 
         if (fulladdress != null ? !fulladdress.equals(uladr.fulladdress) : uladr.fulladdress != null) return false;
         if (idul != null ? !idul.equals(uladr.idul) : uladr.idul != null) return false;
-        if (!iduladr.equals(uladr.iduladr)) return false;
+        return iduladr.equals(uladr.iduladr);
 
-        return true;
     }
 
     @Override
@@ -551,10 +485,5 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
         return FIND_BY_NATURALID;
     }
 
-    //MP-MANAGED-UPDATABLE-ENDING
-
-
-//MP-MANAGED-ADDED-AREA-BEGINNING @implementation@
-//MP-MANAGED-ADDED-AREA-ENDING @implementation@
 
 }

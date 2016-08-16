@@ -29,8 +29,6 @@
  */
 package ru.iac.entity;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @import@
-//MP-MANAGED-ADDED-AREA-ENDING @import@
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -89,70 +87,44 @@ public class Spregorg implements Serializable, EgrulEntity {
     @Column(name = "IDSPRO")
     private BigInteger idspro;
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @NAME-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @NAME-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-NAME@
+
     @Column(name = "NAME", length = 255, nullable = true, unique = false)
     private String name;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @ID_RAION-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @ID_RAION-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-ID_RAION@
+
     @Column(name = "ID_RAION", nullable = true, unique = false)
     private Integer idRaion;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ADATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__ADATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ADATE@
+
     @Column(name = "GIHD__ADATE", nullable = true, unique = false)
     private Date gihdAdate;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CHDATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__CHDATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CHDATE@
+
     @Column(name = "GIHD__CHDATE", nullable = true, unique = false)
     private Date gihdChdate;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__DDATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__DDATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__DDATE@
+
     @Column(name = "GIHD__DDATE", nullable = true, unique = false)
     private Date gihdDdate;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ID_USER-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__ID_USER-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ID_USER@
+
     @Column(name = "GIHD__ID_USER", nullable = true, unique = false)
     private Integer gihdIdUser;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__A_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__A_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__A_ID_PACKAGE@
+
     @Column(name = "GIHD__A_ID_PACKAGE", nullable = true, unique = false)
     private Integer gihdAIdPackage;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CH_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__CH_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CH_ID_PACKAGE@
+
     @Column(name = "GIHD__CH_ID_PACKAGE", nullable = true, unique = false)
     private Integer gihdChIdPackage;
-//MP-MANAGED-UPDATABLE-ENDING
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__D_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__D_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__D_ID_PACKAGE@
-@Column(name = "GIHD__D_ID_PACKAGE", nullable = true, unique = false)
+
+
+    @Column(name = "GIHD__D_ID_PACKAGE", nullable = true, unique = false)
 
 private Integer gihdDIdPackage;
-    //MP-MANAGED-ADDED-AREA-BEGINNING @ROW_CHECK_SUM-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @ROW_CHECK_SUM-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-ROW_CHECK_SUM@
+
+
     @Column(name = "ROW_CHECK_SUM", nullable = true, unique = false)
     private String rowCheckSum;
 
@@ -161,7 +133,7 @@ private Integer gihdDIdPackage;
      */
     public Spregorg() {
     }
-//MP-MANAGED-UPDATABLE-ENDING
+
 
     /**
      * All field constructor
@@ -192,7 +164,7 @@ private Integer gihdDIdPackage;
                 rowCheckSum
                 , true);
     }
-//MP-MANAGED-UPDATABLE-ENDING
+
 
     public Spregorg(
             BigInteger idspro,
@@ -230,9 +202,8 @@ private Integer gihdDIdPackage;
 
         Spregorg spregorg = (Spregorg) o;
 
-        if (!idspro.equals(spregorg.idspro)) return false;
+        return idspro.equals(spregorg.idspro);
 
-        return true;
     }
 
     @Override
@@ -265,7 +236,7 @@ private Integer gihdDIdPackage;
         this.idspro = idspro;
     }
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-NAME@
+
     public String getName() {
         return name;
     }
@@ -274,9 +245,7 @@ private Integer gihdDIdPackage;
         this.name = name;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-ID_RAION@
     public Integer getIdRaion() {
         return idRaion;
     }
@@ -285,9 +254,7 @@ private Integer gihdDIdPackage;
         this.idRaion = idRaion;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ADATE@
     public Date getGihdAdate() {
         return gihdAdate;
     }
@@ -296,9 +263,7 @@ private Integer gihdDIdPackage;
         this.gihdAdate = gihdAdate;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CHDATE@
     public Date getGihdChdate() {
         return gihdChdate;
     }
@@ -307,9 +272,7 @@ private Integer gihdDIdPackage;
         this.gihdChdate = gihdChdate;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__DDATE@
     public Date getGihdDdate() {
         return gihdDdate;
     }
@@ -318,9 +281,7 @@ private Integer gihdDIdPackage;
         this.gihdDdate = gihdDdate;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ID_USER@
     public Integer getGihdIdUser() {
         return gihdIdUser;
     }
@@ -329,9 +290,7 @@ private Integer gihdDIdPackage;
         this.gihdIdUser = gihdIdUser;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__A_ID_PACKAGE@
     public Integer getGihdAIdPackage() {
         return gihdAIdPackage;
     }
@@ -340,9 +299,7 @@ private Integer gihdDIdPackage;
         this.gihdAIdPackage = gihdAIdPackage;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CH_ID_PACKAGE@
     public Integer getGihdChIdPackage() {
         return gihdChIdPackage;
     }
@@ -351,9 +308,7 @@ private Integer gihdDIdPackage;
         this.gihdChIdPackage = gihdChIdPackage;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__D_ID_PACKAGE@
     public Integer getGihdDIdPackage() {
         return gihdDIdPackage;
     }
@@ -362,9 +317,7 @@ private Integer gihdDIdPackage;
         this.gihdDIdPackage = gihdDIdPackage;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-ROW_CHECK_SUM@
     public String getRowCheckSum() {
         return rowCheckSum;
     }
@@ -378,10 +331,5 @@ private Integer gihdDIdPackage;
         return idspro.toString();
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
-
-
-//MP-MANAGED-ADDED-AREA-BEGINNING @implementation@
-//MP-MANAGED-ADDED-AREA-ENDING @implementation@
 
 }

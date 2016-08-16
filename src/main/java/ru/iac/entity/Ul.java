@@ -29,8 +29,6 @@
  */
 package ru.iac.entity;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @import@
-//MP-MANAGED-ADDED-AREA-ENDING @import@
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.LazyCollection;
@@ -583,7 +581,7 @@ public class Ul implements Serializable {
         this.idul = idul;
     }
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-OGRN@
+
     public String getOgrn() {
         return ogrn;
     }
@@ -592,9 +590,7 @@ public class Ul implements Serializable {
         this.ogrn = ogrn;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-INN@
     public String getInn() {
         return inn;
     }
@@ -603,9 +599,7 @@ public class Ul implements Serializable {
         this.inn = inn;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-KPP@
     public String getKpp() {
         return kpp;
     }
@@ -614,9 +608,7 @@ public class Ul implements Serializable {
         this.kpp = kpp;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDSTATUS@
     public Spulstat getIdstatus() {
         return idstatus;
     }
@@ -625,9 +617,7 @@ public class Ul implements Serializable {
         this.idstatus = idstatus;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDREGORG@
     public Spregorg getIdregorg() {
         return idregorg;
     }
@@ -636,9 +626,7 @@ public class Ul implements Serializable {
         this.idregorg = idregorg;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDVIDREGSTART@
     public Spvidreg getIdvidregstart() {
         return idvidregstart;
     }
@@ -647,9 +635,7 @@ public class Ul implements Serializable {
         this.idvidregstart = idvidregstart;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-REGNUMSTART@
     public String getRegnumstart() {
         return regnumstart;
     }
@@ -658,9 +644,7 @@ public class Ul implements Serializable {
         this.regnumstart = regnumstart;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-DTREGSTART@
     public Date getDtregstart() {
         return dtregstart;
     }
@@ -669,9 +653,7 @@ public class Ul implements Serializable {
         this.dtregstart = dtregstart;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDREGORGSTART@
     public Spregorg getIdregorgstart() {
         return idregorgstart;
     }
@@ -680,9 +662,7 @@ public class Ul implements Serializable {
         this.idregorgstart = idregorgstart;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDVIDREGEND@
     public Spvidreg getIdvidregend() {
         return idvidregend;
     }
@@ -691,9 +671,7 @@ public class Ul implements Serializable {
         this.idvidregend = idvidregend;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-REGNUMEND@
     public String getRegnumend() {
         return regnumend;
     }
@@ -702,9 +680,7 @@ public class Ul implements Serializable {
         this.regnumend = regnumend;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-DTREGEND@
     public Date getDtregend() {
         return dtregend;
     }
@@ -713,9 +689,7 @@ public class Ul implements Serializable {
         this.dtregend = dtregend;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDREGORGEND@
     public Spregorg getIdregorgend() {
         return idregorgend;
     }
@@ -724,9 +698,7 @@ public class Ul implements Serializable {
         this.idregorgend = idregorgend;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-ID_RAION@
     public Integer getIdRaion() {
         return idRaion;
     }
@@ -735,9 +707,7 @@ public class Ul implements Serializable {
         this.idRaion = idRaion;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ADATE@
     public Date getGihdAdate() {
         return gihdAdate;
     }
@@ -746,9 +716,7 @@ public class Ul implements Serializable {
         this.gihdAdate = gihdAdate;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CHDATE@
     public Date getGihdChdate() {
         return gihdChdate;
     }
@@ -757,9 +725,7 @@ public class Ul implements Serializable {
         this.gihdChdate = gihdChdate;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__DDATE@
     public Date getGihdDdate() {
         return gihdDdate;
     }
@@ -768,9 +734,7 @@ public class Ul implements Serializable {
         this.gihdDdate = gihdDdate;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ID_USER@
     public Integer getGihdIdUser() {
         return gihdIdUser;
     }
@@ -779,9 +743,7 @@ public class Ul implements Serializable {
         this.gihdIdUser = gihdIdUser;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__A_ID_PACKAGE@
     public Integer getGihdAIdPackage() {
         return gihdAIdPackage;
     }
@@ -790,9 +752,7 @@ public class Ul implements Serializable {
         this.gihdAIdPackage = gihdAIdPackage;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CH_ID_PACKAGE@
     public Integer getGihdChIdPackage() {
         return gihdChIdPackage;
     }
@@ -801,9 +761,7 @@ public class Ul implements Serializable {
         this.gihdChIdPackage = gihdChIdPackage;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__D_ID_PACKAGE@
     public Integer getGihdDIdPackage() {
         return gihdDIdPackage;
     }
@@ -812,9 +770,7 @@ public class Ul implements Serializable {
         this.gihdDIdPackage = gihdDIdPackage;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-ROW_CHECK_SUM@
     public String getRowCheckSum() {
         return rowCheckSum;
     }
@@ -823,10 +779,5 @@ public class Ul implements Serializable {
         this.rowCheckSum = rowCheckSum;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
-
-
-//MP-MANAGED-ADDED-AREA-BEGINNING @implementation@
-//MP-MANAGED-ADDED-AREA-ENDING @implementation@
 
 }

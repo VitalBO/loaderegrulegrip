@@ -29,8 +29,6 @@
 */
 package ru.iac.entity;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @import@
-//MP-MANAGED-ADDED-AREA-ENDING @import@
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -78,8 +76,6 @@ import java.util.Date;
 })
 
 public class Ipcitizen implements Serializable, EgrulEntity {
-    private static final long serialVersionUID = 1L;
-
     public static final String FIND_ALL = "Ipcitizen.findAll";
     public static final String FIND_BY_IDIP = "Ipcitizen.findByIdip";
     public static final String FIND_BY_DTSTART = "Ipcitizen.findByDtstart";
@@ -94,100 +90,65 @@ public class Ipcitizen implements Serializable, EgrulEntity {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Ipcitizen.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Ipcitizen.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING ="Ipcitizen.findByRowCheckSumContaining";
-	
+    private static final long serialVersionUID = 1L;
     @SequenceGenerator(name = "IPCITIZENSEQ", sequenceName ="SEQ_IPCITIZEN", allocationSize=1 )
     @Id @Column(name="IDIPCITIZEN" ) 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="IPCITIZENSEQ") 
     private Integer idipcitizen;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @IDIP-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDIP-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDIP@
-@OneToOne
+
+    @OneToOne
 @JoinColumn(name = "IDIP")
     private Ip idip;
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @DTSTART-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @DTSTART-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-DTSTART@
+
     @Column(name="DTSTART"   , nullable=true , unique=false)
-    private Date dtstart; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Date dtstart;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @IDVIDCITIZEN-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDVIDCITIZEN-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDVIDCITIZEN@
-@ManyToOne
+
+    @ManyToOne
 @Cascade(CascadeType.SAVE_UPDATE)
 @JoinColumn(name = "IDVIDCITIZEN")
     private Spvidcitizen idvidcitizen;
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @OKSM-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @OKSM-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-OKSM@
-@OneToOne
+
+    @OneToOne
 @Cascade(CascadeType.SAVE_UPDATE)
 @JoinColumn(name = "OKSM")
     private Oksm oksm;
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ADATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__ADATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ADATE@
+
     @Column(name="GIHD__ADATE"   , nullable=true , unique=false)
-    private Date gihdAdate; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Date gihdAdate;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CHDATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__CHDATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CHDATE@
+
     @Column(name="GIHD__CHDATE"   , nullable=true , unique=false)
-    private Date gihdChdate; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Date gihdChdate;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__DDATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__DDATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__DDATE@
+
     @Column(name="GIHD__DDATE"   , nullable=true , unique=false)
-    private Date gihdDdate; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Date gihdDdate;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ID_USER-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__ID_USER-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ID_USER@
+
     @Column(name="GIHD__ID_USER"   , nullable=true , unique=false)
-    private Integer gihdIdUser; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Integer gihdIdUser;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__A_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__A_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__A_ID_PACKAGE@
+
     @Column(name="GIHD__A_ID_PACKAGE"   , nullable=true , unique=false)
-    private Integer gihdAIdPackage; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Integer gihdAIdPackage;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CH_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__CH_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CH_ID_PACKAGE@
+
     @Column(name="GIHD__CH_ID_PACKAGE"   , nullable=true , unique=false)
-    private Integer gihdChIdPackage; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Integer gihdChIdPackage;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__D_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__D_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__D_ID_PACKAGE@
+
     @Column(name="GIHD__D_ID_PACKAGE"   , nullable=true , unique=false)
-    private Integer gihdDIdPackage; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Integer gihdDIdPackage;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @ROW_CHECK_SUM-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @ROW_CHECK_SUM-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-ROW_CHECK_SUM@
+
     @Column(name="ROW_CHECK_SUM"   , nullable=true , unique=false)
-    private String rowCheckSum; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private String rowCheckSum;
+
 
     /**
     * Default constructor
@@ -288,8 +249,8 @@ public class Ipcitizen implements Serializable, EgrulEntity {
     public void setIdipcitizen (Integer idipcitizen) {
         this.idipcitizen =  idipcitizen;
     }
-    
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDIP@
+
+
     public Ip getIdip() {
         return idip;
     }
@@ -297,10 +258,8 @@ public class Ipcitizen implements Serializable, EgrulEntity {
     public void setIdip (Ip idip) {
         this.idip =  idip;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-DTSTART@
+
     public Date getDtstart() {
         return dtstart;
     }
@@ -308,10 +267,8 @@ public class Ipcitizen implements Serializable, EgrulEntity {
     public void setDtstart (Date dtstart) {
         this.dtstart =  dtstart;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDVIDCITIZEN@
+
     public Spvidcitizen getIdvidcitizen() {
         return idvidcitizen;
     }
@@ -319,10 +276,8 @@ public class Ipcitizen implements Serializable, EgrulEntity {
     public void setIdvidcitizen (Spvidcitizen idvidcitizen) {
         this.idvidcitizen =  idvidcitizen;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-OKSM@
+
     public Oksm getOksm() {
         return oksm;
     }
@@ -330,10 +285,8 @@ public class Ipcitizen implements Serializable, EgrulEntity {
     public void setOksm (Oksm oksm) {
         this.oksm =  oksm;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ADATE@
+
     public Date getGihdAdate() {
         return gihdAdate;
     }
@@ -341,10 +294,8 @@ public class Ipcitizen implements Serializable, EgrulEntity {
     public void setGihdAdate (Date gihdAdate) {
         this.gihdAdate =  gihdAdate;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CHDATE@
+
     public Date getGihdChdate() {
         return gihdChdate;
     }
@@ -352,10 +303,8 @@ public class Ipcitizen implements Serializable, EgrulEntity {
     public void setGihdChdate (Date gihdChdate) {
         this.gihdChdate =  gihdChdate;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__DDATE@
+
     public Date getGihdDdate() {
         return gihdDdate;
     }
@@ -363,10 +312,8 @@ public class Ipcitizen implements Serializable, EgrulEntity {
     public void setGihdDdate (Date gihdDdate) {
         this.gihdDdate =  gihdDdate;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ID_USER@
+
     public Integer getGihdIdUser() {
         return gihdIdUser;
     }
@@ -374,10 +321,8 @@ public class Ipcitizen implements Serializable, EgrulEntity {
     public void setGihdIdUser (Integer gihdIdUser) {
         this.gihdIdUser =  gihdIdUser;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__A_ID_PACKAGE@
+
     public Integer getGihdAIdPackage() {
         return gihdAIdPackage;
     }
@@ -385,10 +330,8 @@ public class Ipcitizen implements Serializable, EgrulEntity {
     public void setGihdAIdPackage (Integer gihdAIdPackage) {
         this.gihdAIdPackage =  gihdAIdPackage;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CH_ID_PACKAGE@
+
     public Integer getGihdChIdPackage() {
         return gihdChIdPackage;
     }
@@ -396,10 +339,8 @@ public class Ipcitizen implements Serializable, EgrulEntity {
     public void setGihdChIdPackage (Integer gihdChIdPackage) {
         this.gihdChIdPackage =  gihdChIdPackage;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__D_ID_PACKAGE@
+
     public Integer getGihdDIdPackage() {
         return gihdDIdPackage;
     }
@@ -407,10 +348,8 @@ public class Ipcitizen implements Serializable, EgrulEntity {
     public void setGihdDIdPackage (Integer gihdDIdPackage) {
         this.gihdDIdPackage =  gihdDIdPackage;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-ROW_CHECK_SUM@
+
     public String getRowCheckSum() {
         return rowCheckSum;
     }
@@ -424,14 +363,5 @@ public class Ipcitizen implements Serializable, EgrulEntity {
         return idipcitizen.toString();
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
-
-
-
-
-
-
-//MP-MANAGED-ADDED-AREA-BEGINNING @implementation@
-//MP-MANAGED-ADDED-AREA-ENDING @implementation@
 
 }

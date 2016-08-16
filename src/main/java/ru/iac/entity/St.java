@@ -29,8 +29,6 @@
 */
 package ru.iac.entity;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @import@
-//MP-MANAGED-ADDED-AREA-ENDING @import@
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -76,8 +74,6 @@ import java.util.Date;
 })
 
 public class St implements Serializable, EgrulEntity {
-    private static final long serialVersionUID = 1L;
-
     public static final String FIND_ALL = "St.findAll";
     public static final String FIND_BY_NAME = "St.findByName";
     public static final String FIND_BY_NAME_CONTAINING ="St.findByNameContaining";
@@ -93,86 +89,54 @@ public class St implements Serializable, EgrulEntity {
     public static final String FIND_BY_GIHDDIDPACKAGE = "St.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "St.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING ="St.findByRowCheckSumContaining";
-	
+    private static final long serialVersionUID = 1L;
     @Id @Column(name="IDS" )
     private BigInteger ids;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @NAME-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @NAME-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-NAME@
+
     @Column(name="NAME"  , length=255 , nullable=true , unique=false)
-    private String name; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private String name;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @KOD_ST-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @KOD_ST-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-KOD_ST@
+
     @Column(name="KOD_ST"  , length=15 , nullable=true , unique=false)
-    private String kodSt; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private String kodSt;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @ID_PREFIKS-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @ID_PREFIKS-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-ID_PREFIKS@
+
     @Column(name="ID_PREFIKS"   , nullable=true , unique=false)
-    private Integer idPrefiks; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Integer idPrefiks;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ADATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__ADATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ADATE@
+
     @Column(name="GIHD__ADATE"   , nullable=true , unique=false)
-    private Date gihdAdate; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Date gihdAdate;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CHDATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__CHDATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CHDATE@
+
     @Column(name="GIHD__CHDATE"   , nullable=true , unique=false)
-    private Date gihdChdate; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Date gihdChdate;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__DDATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__DDATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__DDATE@
+
     @Column(name="GIHD__DDATE"   , nullable=true , unique=false)
-    private Date gihdDdate; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Date gihdDdate;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ID_USER-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__ID_USER-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ID_USER@
+
     @Column(name="GIHD__ID_USER"   , nullable=true , unique=false)
-    private Integer gihdIdUser; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Integer gihdIdUser;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__A_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__A_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__A_ID_PACKAGE@
+
     @Column(name="GIHD__A_ID_PACKAGE"   , nullable=true , unique=false)
-    private Integer gihdAIdPackage; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Integer gihdAIdPackage;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CH_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__CH_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CH_ID_PACKAGE@
+
     @Column(name="GIHD__CH_ID_PACKAGE"   , nullable=true , unique=false)
-    private Integer gihdChIdPackage; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Integer gihdChIdPackage;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__D_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__D_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__D_ID_PACKAGE@
+
     @Column(name="GIHD__D_ID_PACKAGE"   , nullable=true , unique=false)
-    private Integer gihdDIdPackage; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private Integer gihdDIdPackage;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @ROW_CHECK_SUM-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @ROW_CHECK_SUM-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-ROW_CHECK_SUM@
+
     @Column(name="ROW_CHECK_SUM"   , nullable=true , unique=false)
-    private String rowCheckSum; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private String rowCheckSum;
+
 
     /**
     * Default constructor
@@ -268,8 +232,8 @@ public class St implements Serializable, EgrulEntity {
     public void setIds (BigInteger ids) {
         this.ids =  ids;
     }
-    
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-NAME@
+
+
     public String getName() {
         return name;
     }
@@ -277,10 +241,8 @@ public class St implements Serializable, EgrulEntity {
     public void setName (String name) {
         this.name =  name;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-KOD_ST@
+
     public String getKodSt() {
         return kodSt;
     }
@@ -288,10 +250,8 @@ public class St implements Serializable, EgrulEntity {
     public void setKodSt (String kodSt) {
         this.kodSt =  kodSt;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-ID_PREFIKS@
+
     public Integer getIdPrefiks() {
         return idPrefiks;
     }
@@ -299,10 +259,8 @@ public class St implements Serializable, EgrulEntity {
     public void setIdPrefiks (Integer idPrefiks) {
         this.idPrefiks =  idPrefiks;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ADATE@
+
     public Date getGihdAdate() {
         return gihdAdate;
     }
@@ -310,10 +268,8 @@ public class St implements Serializable, EgrulEntity {
     public void setGihdAdate (Date gihdAdate) {
         this.gihdAdate =  gihdAdate;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CHDATE@
+
     public Date getGihdChdate() {
         return gihdChdate;
     }
@@ -321,10 +277,8 @@ public class St implements Serializable, EgrulEntity {
     public void setGihdChdate (Date gihdChdate) {
         this.gihdChdate =  gihdChdate;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__DDATE@
+
     public Date getGihdDdate() {
         return gihdDdate;
     }
@@ -332,10 +286,8 @@ public class St implements Serializable, EgrulEntity {
     public void setGihdDdate (Date gihdDdate) {
         this.gihdDdate =  gihdDdate;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ID_USER@
+
     public Integer getGihdIdUser() {
         return gihdIdUser;
     }
@@ -343,10 +295,8 @@ public class St implements Serializable, EgrulEntity {
     public void setGihdIdUser (Integer gihdIdUser) {
         this.gihdIdUser =  gihdIdUser;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__A_ID_PACKAGE@
+
     public Integer getGihdAIdPackage() {
         return gihdAIdPackage;
     }
@@ -354,10 +304,8 @@ public class St implements Serializable, EgrulEntity {
     public void setGihdAIdPackage (Integer gihdAIdPackage) {
         this.gihdAIdPackage =  gihdAIdPackage;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CH_ID_PACKAGE@
+
     public Integer getGihdChIdPackage() {
         return gihdChIdPackage;
     }
@@ -365,10 +313,8 @@ public class St implements Serializable, EgrulEntity {
     public void setGihdChIdPackage (Integer gihdChIdPackage) {
         this.gihdChIdPackage =  gihdChIdPackage;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__D_ID_PACKAGE@
+
     public Integer getGihdDIdPackage() {
         return gihdDIdPackage;
     }
@@ -376,10 +322,8 @@ public class St implements Serializable, EgrulEntity {
     public void setGihdDIdPackage (Integer gihdDIdPackage) {
         this.gihdDIdPackage =  gihdDIdPackage;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-ROW_CHECK_SUM@
+
     public String getRowCheckSum() {
         return rowCheckSum;
     }
@@ -409,14 +353,5 @@ public class St implements Serializable, EgrulEntity {
         return ids.hashCode();
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
-
-
-
-
-
-
-//MP-MANAGED-ADDED-AREA-BEGINNING @implementation@
-//MP-MANAGED-ADDED-AREA-ENDING @implementation@
 
 }

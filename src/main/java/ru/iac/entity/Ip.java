@@ -372,7 +372,7 @@ public class Ip implements Serializable, EgrulEntity {
     public void setIpregold(Ipregold ipregold) {
         this.ipregold = ipregold;
     }
-//MP-MANAGED-UPDATABLE-ENDING
+
 
     public List<Licenz> getLicenzs() {
         if (licenzs == null) {
@@ -380,12 +380,12 @@ public class Ip implements Serializable, EgrulEntity {
         }
         return licenzs;
     }
-//MP-MANAGED-UPDATABLE-ENDING
+
 
     public void setLicenzs(List<Licenz> licenzs) {
         this.licenzs = licenzs;
     }
-//MP-MANAGED-UPDATABLE-ENDING
+
 
     @Override
     public String toString() {

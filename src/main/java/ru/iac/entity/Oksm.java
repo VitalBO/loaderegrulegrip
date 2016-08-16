@@ -29,8 +29,6 @@
 */
 package ru.iac.entity;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @import@
-//MP-MANAGED-ADDED-AREA-ENDING @import@
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -73,8 +71,6 @@ import java.util.Date;
 })
 
 public class Oksm implements Serializable, EgrulEntity {
-    private static final long serialVersionUID = 1L;
-
     public static final String FIND_ALL = "Oksm.findAll";
     public static final String FIND_BY_NAME = "Oksm.findByName";
     public static final String FIND_BY_NAME_CONTAINING ="Oksm.findByNameContaining";
@@ -89,96 +85,30 @@ public class Oksm implements Serializable, EgrulEntity {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Oksm.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Oksm.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING ="Oksm.findByRowCheckSumContaining";
-	
+    private static final long serialVersionUID = 1L;
     @Id @Column(name="ID" )
     private Integer id;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Oksm)) return false;
-
-        Oksm oksm = (Oksm) o;
-
-        if (!id.equals(oksm.id)) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
-
-    //MP-MANAGED-ADDED-AREA-BEGINNING @NAME-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @NAME-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-NAME@
     @Column(name="NAME"  , length=255 , nullable=true , unique=false)
-    private String name; 
-//MP-MANAGED-UPDATABLE-ENDING
-
-//MP-MANAGED-ADDED-AREA-BEGINNING @KOD_OKSM-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @KOD_OKSM-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-KOD_OKSM@
+    private String name;
     @Column(name="KOD_OKSM"  , length=10 , nullable=true , unique=false)
-    private String kodOksm; 
-//MP-MANAGED-UPDATABLE-ENDING
-
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ADATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__ADATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ADATE@
+    private String kodOksm;
     @Column(name="GIHD__ADATE"   , nullable=true , unique=false)
-    private Date gihdAdate; 
-//MP-MANAGED-UPDATABLE-ENDING
-
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CHDATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__CHDATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CHDATE@
+    private Date gihdAdate;
     @Column(name="GIHD__CHDATE"   , nullable=true , unique=false)
-    private Date gihdChdate; 
-//MP-MANAGED-UPDATABLE-ENDING
-
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__DDATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__DDATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__DDATE@
+    private Date gihdChdate;
     @Column(name="GIHD__DDATE"   , nullable=true , unique=false)
-    private Date gihdDdate; 
-//MP-MANAGED-UPDATABLE-ENDING
-
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ID_USER-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__ID_USER-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ID_USER@
+    private Date gihdDdate;
     @Column(name="GIHD__ID_USER"   , nullable=true , unique=false)
-    private Integer gihdIdUser; 
-//MP-MANAGED-UPDATABLE-ENDING
-
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__A_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__A_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__A_ID_PACKAGE@
+    private Integer gihdIdUser;
     @Column(name="GIHD__A_ID_PACKAGE"   , nullable=true , unique=false)
-    private Integer gihdAIdPackage; 
-//MP-MANAGED-UPDATABLE-ENDING
-
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CH_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__CH_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CH_ID_PACKAGE@
+    private Integer gihdAIdPackage;
     @Column(name="GIHD__CH_ID_PACKAGE"   , nullable=true , unique=false)
-    private Integer gihdChIdPackage; 
-//MP-MANAGED-UPDATABLE-ENDING
-
-//MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__D_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__D_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__D_ID_PACKAGE@
+    private Integer gihdChIdPackage;
     @Column(name="GIHD__D_ID_PACKAGE"   , nullable=true , unique=false)
-    private Integer gihdDIdPackage; 
-//MP-MANAGED-UPDATABLE-ENDING
-
-//MP-MANAGED-ADDED-AREA-BEGINNING @ROW_CHECK_SUM-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @ROW_CHECK_SUM-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-ROW_CHECK_SUM@
+    private Integer gihdDIdPackage;
     @Column(name="ROW_CHECK_SUM"   , nullable=true , unique=false)
-    private String rowCheckSum; 
-//MP-MANAGED-UPDATABLE-ENDING
+    private String rowCheckSum;
+
 
     /**
     * Default constructor
@@ -186,9 +116,10 @@ public class Oksm implements Serializable, EgrulEntity {
     public Oksm() {
     }
 
-	/**
-	* All field constructor 
-	*/
+
+    /**
+     * All field constructor
+     */
     public Oksm(
        Integer id,
        String name,
@@ -215,19 +146,20 @@ public class Oksm implements Serializable, EgrulEntity {
        rowCheckSum
 	 ,true);
 	}
-    
-	public Oksm(
-       Integer id,
-       String name,
-       String kodOksm,
-       Date gihdAdate,
-       Date gihdChdate,
-       Date gihdDdate,
-       Integer gihdIdUser,
-       Integer gihdAIdPackage,
-       Integer gihdChIdPackage,
-       Integer gihdDIdPackage,
-       String rowCheckSum	
+
+
+    public Oksm(
+            Integer id,
+            String name,
+            String kodOksm,
+            Date gihdAdate,
+            Date gihdChdate,
+            Date gihdDdate,
+            Integer gihdIdUser,
+            Integer gihdAIdPackage,
+            Integer gihdChIdPackage,
+            Integer gihdDIdPackage,
+            String rowCheckSum
     , boolean setRelationship) {
        //primary keys
        setId (id);
@@ -243,6 +175,22 @@ public class Oksm implements Serializable, EgrulEntity {
        setGihdDIdPackage (gihdDIdPackage);
        setRowCheckSum (rowCheckSum);
        //parents
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Oksm)) return false;
+
+        Oksm oksm = (Oksm) o;
+
+        return id.equals(oksm.id);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 
 	public Oksm flat() {
@@ -269,8 +217,8 @@ public class Oksm implements Serializable, EgrulEntity {
     public void setId (Integer id) {
         this.id =  id;
     }
-    
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-NAME@
+
+
     public String getName() {
         return name;
     }
@@ -278,10 +226,8 @@ public class Oksm implements Serializable, EgrulEntity {
     public void setName (String name) {
         this.name =  name;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-KOD_OKSM@
+
     public String getKodOksm() {
         return kodOksm;
     }
@@ -289,10 +235,8 @@ public class Oksm implements Serializable, EgrulEntity {
     public void setKodOksm (String kodOksm) {
         this.kodOksm =  kodOksm;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ADATE@
+
     public Date getGihdAdate() {
         return gihdAdate;
     }
@@ -300,10 +244,8 @@ public class Oksm implements Serializable, EgrulEntity {
     public void setGihdAdate (Date gihdAdate) {
         this.gihdAdate =  gihdAdate;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CHDATE@
+
     public Date getGihdChdate() {
         return gihdChdate;
     }
@@ -311,10 +253,8 @@ public class Oksm implements Serializable, EgrulEntity {
     public void setGihdChdate (Date gihdChdate) {
         this.gihdChdate =  gihdChdate;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__DDATE@
+
     public Date getGihdDdate() {
         return gihdDdate;
     }
@@ -322,10 +262,8 @@ public class Oksm implements Serializable, EgrulEntity {
     public void setGihdDdate (Date gihdDdate) {
         this.gihdDdate =  gihdDdate;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ID_USER@
+
     public Integer getGihdIdUser() {
         return gihdIdUser;
     }
@@ -333,10 +271,8 @@ public class Oksm implements Serializable, EgrulEntity {
     public void setGihdIdUser (Integer gihdIdUser) {
         this.gihdIdUser =  gihdIdUser;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__A_ID_PACKAGE@
+
     public Integer getGihdAIdPackage() {
         return gihdAIdPackage;
     }
@@ -344,10 +280,8 @@ public class Oksm implements Serializable, EgrulEntity {
     public void setGihdAIdPackage (Integer gihdAIdPackage) {
         this.gihdAIdPackage =  gihdAIdPackage;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CH_ID_PACKAGE@
+
     public Integer getGihdChIdPackage() {
         return gihdChIdPackage;
     }
@@ -355,10 +289,8 @@ public class Oksm implements Serializable, EgrulEntity {
     public void setGihdChIdPackage (Integer gihdChIdPackage) {
         this.gihdChIdPackage =  gihdChIdPackage;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__D_ID_PACKAGE@
+
     public Integer getGihdDIdPackage() {
         return gihdDIdPackage;
     }
@@ -366,10 +298,8 @@ public class Oksm implements Serializable, EgrulEntity {
     public void setGihdDIdPackage (Integer gihdDIdPackage) {
         this.gihdDIdPackage =  gihdDIdPackage;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-ROW_CHECK_SUM@
+
     public String getRowCheckSum() {
         return rowCheckSum;
     }
@@ -383,14 +313,5 @@ public class Oksm implements Serializable, EgrulEntity {
         return id.toString();
     }
 
-    //MP-MANAGED-UPDATABLE-ENDING
-
-
-
-
-
-
-//MP-MANAGED-ADDED-AREA-BEGINNING @implementation@
-//MP-MANAGED-ADDED-AREA-ENDING @implementation@
 
 }

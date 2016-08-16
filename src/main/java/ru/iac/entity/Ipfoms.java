@@ -35,8 +35,6 @@
  */
 package ru.iac.entity;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @import@
-//MP-MANAGED-ADDED-AREA-ENDING @import@
 
 import org.hibernate.annotations.NaturalId;
 
@@ -108,99 +106,61 @@ public class Ipfoms implements Serializable, EgrulEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "IPFOMSSEQ")
     private Integer idipfoms;
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDIP-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDIP-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDIP@
+
     @OneToOne
     @JoinColumn(name = "IDIP")
     @NaturalId
     private Ip idip;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDFOMS-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDFOMS-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDFOMS@
+
     @ManyToOne
     @JoinColumn(name = "IDFOMS")
     private Spfoms idfoms;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @REGNOM_FOMS-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @REGNOM_FOMS-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-REGNOM_FOMS@
+
     @Column(name = "REGNOM_FOMS", length = 40, nullable = true, unique = false)
     private String regnomFoms;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @DTSTART-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @DTSTART-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-DTSTART@
+
     @Column(name = "DTSTART", nullable = true, unique = false)
     private Date dtstart;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @DTEND-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @DTEND-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-DTEND@
+
     @Column(name = "DTEND", nullable = true, unique = false)
     private Date dtend;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ADATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__ADATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ADATE@
+
     @Column(name = "GIHD__ADATE", nullable = true, unique = false)
     private Date gihdAdate;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CHDATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__CHDATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CHDATE@
+
     @Column(name = "GIHD__CHDATE", nullable = true, unique = false)
     private Date gihdChdate;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__DDATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__DDATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__DDATE@
+
     @Column(name = "GIHD__DDATE", nullable = true, unique = false)
     private Date gihdDdate;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ID_USER-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__ID_USER-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ID_USER@
+
     @Column(name = "GIHD__ID_USER", nullable = true, unique = false)
     private Integer gihdIdUser;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__A_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__A_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__A_ID_PACKAGE@
+
     @Column(name = "GIHD__A_ID_PACKAGE", nullable = true, unique = false)
     private Integer gihdAIdPackage;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CH_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__CH_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CH_ID_PACKAGE@
+
     @Column(name = "GIHD__CH_ID_PACKAGE", nullable = true, unique = false)
     private Integer gihdChIdPackage;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__D_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__D_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__D_ID_PACKAGE@
+
     @Column(name = "GIHD__D_ID_PACKAGE", nullable = true, unique = false)
     private Integer gihdDIdPackage;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @ROW_CHECK_SUM-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @ROW_CHECK_SUM-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-ROW_CHECK_SUM@
+
     @Column(name = "ROW_CHECK_SUM", nullable = true, unique = false)
     private String rowCheckSum;
-//MP-MANAGED-UPDATABLE-ENDING
+
 
     /**
      * Default constructor
@@ -307,7 +267,7 @@ public class Ipfoms implements Serializable, EgrulEntity {
         this.idipfoms = idipfoms;
     }
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDIP@
+
     public Ip getIdip() {
         return idip;
     }
@@ -316,9 +276,7 @@ public class Ipfoms implements Serializable, EgrulEntity {
         this.idip = idip;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDFOMS@
     public Spfoms getIdfoms() {
         return idfoms;
     }
@@ -327,9 +285,7 @@ public class Ipfoms implements Serializable, EgrulEntity {
         this.idfoms = idfoms;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-REGNOM_FOMS@
     public String getRegnomFoms() {
         return regnomFoms;
     }
@@ -338,9 +294,7 @@ public class Ipfoms implements Serializable, EgrulEntity {
         this.regnomFoms = regnomFoms;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-DTSTART@
     public Date getDtstart() {
         return dtstart;
     }
@@ -349,9 +303,7 @@ public class Ipfoms implements Serializable, EgrulEntity {
         this.dtstart = dtstart;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-DTEND@
     public Date getDtend() {
         return dtend;
     }
@@ -360,9 +312,7 @@ public class Ipfoms implements Serializable, EgrulEntity {
         this.dtend = dtend;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ADATE@
     public Date getGihdAdate() {
         return gihdAdate;
     }
@@ -371,9 +321,7 @@ public class Ipfoms implements Serializable, EgrulEntity {
         this.gihdAdate = gihdAdate;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CHDATE@
     public Date getGihdChdate() {
         return gihdChdate;
     }
@@ -382,9 +330,7 @@ public class Ipfoms implements Serializable, EgrulEntity {
         this.gihdChdate = gihdChdate;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__DDATE@
     public Date getGihdDdate() {
         return gihdDdate;
     }
@@ -393,9 +339,7 @@ public class Ipfoms implements Serializable, EgrulEntity {
         this.gihdDdate = gihdDdate;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ID_USER@
     public Integer getGihdIdUser() {
         return gihdIdUser;
     }
@@ -404,9 +348,7 @@ public class Ipfoms implements Serializable, EgrulEntity {
         this.gihdIdUser = gihdIdUser;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__A_ID_PACKAGE@
     public Integer getGihdAIdPackage() {
         return gihdAIdPackage;
     }
@@ -415,9 +357,7 @@ public class Ipfoms implements Serializable, EgrulEntity {
         this.gihdAIdPackage = gihdAIdPackage;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CH_ID_PACKAGE@
     public Integer getGihdChIdPackage() {
         return gihdChIdPackage;
     }
@@ -426,9 +366,7 @@ public class Ipfoms implements Serializable, EgrulEntity {
         this.gihdChIdPackage = gihdChIdPackage;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__D_ID_PACKAGE@
     public Integer getGihdDIdPackage() {
         return gihdDIdPackage;
     }
@@ -437,9 +375,7 @@ public class Ipfoms implements Serializable, EgrulEntity {
         this.gihdDIdPackage = gihdDIdPackage;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-ROW_CHECK_SUM@
     public String getRowCheckSum() {
         return rowCheckSum;
     }
@@ -453,9 +389,5 @@ public class Ipfoms implements Serializable, EgrulEntity {
         return idipfoms.toString();
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-
-//MP-MANAGED-ADDED-AREA-BEGINNING @implementation@
-//MP-MANAGED-ADDED-AREA-ENDING @implementation@
 }

@@ -29,8 +29,6 @@
  */
 package ru.iac.entity;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @import@
-//MP-MANAGED-ADDED-AREA-ENDING @import@
 
 import org.hibernate.annotations.Cascade;
 
@@ -117,41 +115,27 @@ public class Licenz implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LICENZSEQ")
     private Integer idlic;
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDUL-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDUL-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDUL@
+
     @ManyToOne
     @JoinColumn(name = "IDUL")
     private Ul idul;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDIP-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDIP-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDIP@
+
     @ManyToOne
     @JoinColumn(name = "IDIP")
     private Ip idip;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @NUMLIC-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @NUMLIC-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-NUMLIC@
+
     @Column(name = "NUMLIC", length = 50, nullable = true, unique = false)
     private String numlic;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDLICORG-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDLICORG-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDLICORG@
+
     @ManyToOne
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDLICORG")
     private Splicorg idlicorg;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDVIDLIC-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDVIDLIC-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDVIDLIC@
+
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(name = "VIDLIC", joinColumns = {
@@ -159,100 +143,61 @@ public class Licenz implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "IDVIDLIC",
                     nullable = false, updatable = false)})
     private Set<Spvidlic> idvidlic;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @IDSOSTLIC-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @IDSOSTLIC-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-IDSOSTLIC@
+
     @ManyToOne
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "IDSOSTLIC")
     private Spsostlic idsostlic;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @DTSTART-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @DTSTART-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-DTSTART@
+
     @Column(name = "DTSTART", nullable = true, unique = false)
     private Date dtstart;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @DTEND-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @DTEND-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-DTEND@
+
     @Column(name = "DTEND", nullable = true, unique = false)
     private Date dtend;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @DTSTOP-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @DTSTOP-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-DTSTOP@
+
     @Column(name = "DTSTOP", nullable = true, unique = false)
     private Date dtstop;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @DTRESTART-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @DTRESTART-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-DTRESTART@
+
     @Column(name = "DTRESTART", nullable = true, unique = false)
     private Date dtrestart;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ADATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__ADATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ADATE@
+
     @Column(name = "GIHD__ADATE", nullable = true, unique = false)
     private Date gihdAdate;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CHDATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__CHDATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CHDATE@
+
     @Column(name = "GIHD__CHDATE", nullable = true, unique = false)
     private Date gihdChdate;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__DDATE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__DDATE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__DDATE@
+
     @Column(name = "GIHD__DDATE", nullable = true, unique = false)
     private Date gihdDdate;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__ID_USER-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__ID_USER-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__ID_USER@
+
     @Column(name = "GIHD__ID_USER", nullable = true, unique = false)
     private Integer gihdIdUser;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__A_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__A_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__A_ID_PACKAGE@
+
     @Column(name = "GIHD__A_ID_PACKAGE", nullable = true, unique = false)
     private Integer gihdAIdPackage;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__CH_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__CH_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__CH_ID_PACKAGE@
+
     @Column(name = "GIHD__CH_ID_PACKAGE", nullable = true, unique = false)
     private Integer gihdChIdPackage;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @GIHD__D_ID_PACKAGE-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @GIHD__D_ID_PACKAGE-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-GIHD__D_ID_PACKAGE@
+
     @Column(name = "GIHD__D_ID_PACKAGE", nullable = true, unique = false)
     private Integer gihdDIdPackage;
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-ADDED-AREA-BEGINNING @ROW_CHECK_SUM-field-annotation@
-//MP-MANAGED-ADDED-AREA-ENDING @ROW_CHECK_SUM-field-annotation@
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @ATTRIBUTE-ROW_CHECK_SUM@
+
     @Column(name = "ROW_CHECK_SUM", nullable = true, unique = false)
     private String rowCheckSum;
-//MP-MANAGED-UPDATABLE-ENDING
+
 
     /**
      * Default constructor
@@ -384,7 +329,7 @@ public class Licenz implements Serializable {
         this.idlic = idlic;
     }
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDUL@
+
     public Ul getIdul() {
         return idul;
     }
@@ -393,9 +338,7 @@ public class Licenz implements Serializable {
         this.idul = idul;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDIP@
     public Ip getIdip() {
         return idip;
     }
@@ -404,9 +347,7 @@ public class Licenz implements Serializable {
         this.idip = idip;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-NUMLIC@
     public String getNumlic() {
         return numlic;
     }
@@ -415,9 +356,7 @@ public class Licenz implements Serializable {
         this.numlic = numlic;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDLICORG@
     public Splicorg getIdlicorg() {
         return idlicorg;
     }
@@ -426,12 +365,7 @@ public class Licenz implements Serializable {
         this.idlicorg = idlicorg;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-
-//MP-MANAGED-UPDATABLE-ENDING
-
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDSOSTLIC@
     public Spsostlic getIdsostlic() {
         return idsostlic;
     }
@@ -440,9 +374,7 @@ public class Licenz implements Serializable {
         this.idsostlic = idsostlic;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-DTSTART@
     public Date getDtstart() {
         return dtstart;
     }
@@ -451,9 +383,7 @@ public class Licenz implements Serializable {
         this.dtstart = dtstart;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-DTEND@
     public Date getDtend() {
         return dtend;
     }
@@ -462,9 +392,7 @@ public class Licenz implements Serializable {
         this.dtend = dtend;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-DTSTOP@
     public Date getDtstop() {
         return dtstop;
     }
@@ -472,8 +400,6 @@ public class Licenz implements Serializable {
     public void setDtstop(Date dtstop) {
         this.dtstop = dtstop;
     }
-
-//MP-MANAGED-UPDATABLE-ENDING
 
 
     public Set<Spvidlic> getIdvidlic() {
@@ -484,7 +410,7 @@ public class Licenz implements Serializable {
         this.idvidlic = idvidlic;
     }
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-DTRESTART@
+
     public Date getDtrestart() {
         return dtrestart;
     }
@@ -493,9 +419,7 @@ public class Licenz implements Serializable {
         this.dtrestart = dtrestart;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ADATE@
     public Date getGihdAdate() {
         return gihdAdate;
     }
@@ -504,9 +428,7 @@ public class Licenz implements Serializable {
         this.gihdAdate = gihdAdate;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CHDATE@
     public Date getGihdChdate() {
         return gihdChdate;
     }
@@ -515,9 +437,7 @@ public class Licenz implements Serializable {
         this.gihdChdate = gihdChdate;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__DDATE@
     public Date getGihdDdate() {
         return gihdDdate;
     }
@@ -526,9 +446,7 @@ public class Licenz implements Serializable {
         this.gihdDdate = gihdDdate;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ID_USER@
     public Integer getGihdIdUser() {
         return gihdIdUser;
     }
@@ -537,9 +455,7 @@ public class Licenz implements Serializable {
         this.gihdIdUser = gihdIdUser;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__A_ID_PACKAGE@
     public Integer getGihdAIdPackage() {
         return gihdAIdPackage;
     }
@@ -548,9 +464,7 @@ public class Licenz implements Serializable {
         this.gihdAIdPackage = gihdAIdPackage;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CH_ID_PACKAGE@
     public Integer getGihdChIdPackage() {
         return gihdChIdPackage;
     }
@@ -559,9 +473,7 @@ public class Licenz implements Serializable {
         this.gihdChIdPackage = gihdChIdPackage;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__D_ID_PACKAGE@
     public Integer getGihdDIdPackage() {
         return gihdDIdPackage;
     }
@@ -570,9 +482,7 @@ public class Licenz implements Serializable {
         this.gihdDIdPackage = gihdDIdPackage;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
 
-    //MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-ROW_CHECK_SUM@
     public String getRowCheckSum() {
         return rowCheckSum;
     }
@@ -581,10 +491,5 @@ public class Licenz implements Serializable {
         this.rowCheckSum = rowCheckSum;
     }
 
-//MP-MANAGED-UPDATABLE-ENDING
-
-
-//MP-MANAGED-ADDED-AREA-BEGINNING @implementation@
-//MP-MANAGED-ADDED-AREA-ENDING @implementation@
 
 }

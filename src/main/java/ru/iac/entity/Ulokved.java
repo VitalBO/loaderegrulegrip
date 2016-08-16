@@ -29,8 +29,6 @@
 */
 package ru.iac.entity;
 
-//MP-MANAGED-ADDED-AREA-BEGINNING @import@
-//MP-MANAGED-ADDED-AREA-ENDING @import@
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -73,8 +71,6 @@ import java.util.Date;
 })
 
 public class Ulokved implements Serializable {
-    private static final long serialVersionUID = 1L;
-
     public static final String FIND_ALL = "Ulokved.findAll";
     public static final String FIND_BY_IDUL = "Ulokved.findByIdul";
     public static final String FIND_BY_IDOKVED = "Ulokved.findByIdokved";
@@ -88,7 +84,7 @@ public class Ulokved implements Serializable {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Ulokved.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Ulokved.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING ="Ulokved.findByRowCheckSumContaining";
-	
+    private static final long serialVersionUID = 1L;
     @SequenceGenerator(name = "ULOKVEDSEQ", sequenceName ="SEQ_ULOKVED", allocationSize=1 )
     @Id @Column(name="IDULOKVED" ) 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="ULOKVEDSEQ") 
@@ -223,8 +219,8 @@ public class Ulokved implements Serializable {
     public void setIdulokved (Integer idulokved) {
         this.idulokved =  idulokved;
     }
-    
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDUL@
+
+
     public Ul getIdul() {
         return idul;
     }
@@ -232,10 +228,8 @@ public class Ulokved implements Serializable {
     public void setIdul (Ul idul) {
         this.idul =  idul;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-IDOKVED@
+
     public Okved getIdokved() {
         return idokved;
     }
@@ -243,10 +237,8 @@ public class Ulokved implements Serializable {
     public void setIdokved (Okved idokved) {
         this.idokved =  idokved;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-MAIN@
+
     public Integer getMain() {
         return main;
     }
@@ -254,10 +246,8 @@ public class Ulokved implements Serializable {
     public void setMain (Integer main) {
         this.main =  main;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ADATE@
+
     public Date getGihdAdate() {
         return gihdAdate;
     }
@@ -265,10 +255,8 @@ public class Ulokved implements Serializable {
     public void setGihdAdate (Date gihdAdate) {
         this.gihdAdate =  gihdAdate;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CHDATE@
+
     public Date getGihdChdate() {
         return gihdChdate;
     }
@@ -276,10 +264,8 @@ public class Ulokved implements Serializable {
     public void setGihdChdate (Date gihdChdate) {
         this.gihdChdate =  gihdChdate;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__DDATE@
+
     public Date getGihdDdate() {
         return gihdDdate;
     }
@@ -287,10 +273,8 @@ public class Ulokved implements Serializable {
     public void setGihdDdate (Date gihdDdate) {
         this.gihdDdate =  gihdDdate;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__ID_USER@
+
     public Integer getGihdIdUser() {
         return gihdIdUser;
     }
@@ -298,10 +282,8 @@ public class Ulokved implements Serializable {
     public void setGihdIdUser (Integer gihdIdUser) {
         this.gihdIdUser =  gihdIdUser;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__A_ID_PACKAGE@
+
     public Integer getGihdAIdPackage() {
         return gihdAIdPackage;
     }
@@ -309,10 +291,8 @@ public class Ulokved implements Serializable {
     public void setGihdAIdPackage (Integer gihdAIdPackage) {
         this.gihdAIdPackage =  gihdAIdPackage;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__CH_ID_PACKAGE@
+
     public Integer getGihdChIdPackage() {
         return gihdChIdPackage;
     }
@@ -320,10 +300,8 @@ public class Ulokved implements Serializable {
     public void setGihdChIdPackage (Integer gihdChIdPackage) {
         this.gihdChIdPackage =  gihdChIdPackage;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-GIHD__D_ID_PACKAGE@
+
     public Integer getGihdDIdPackage() {
         return gihdDIdPackage;
     }
@@ -331,10 +309,8 @@ public class Ulokved implements Serializable {
     public void setGihdDIdPackage (Integer gihdDIdPackage) {
         this.gihdDIdPackage =  gihdDIdPackage;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-//MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @GETTER-SETTER-ROW_CHECK_SUM@
+
     public String getRowCheckSum() {
         return rowCheckSum;
     }
@@ -342,15 +318,6 @@ public class Ulokved implements Serializable {
     public void setRowCheckSum (String rowCheckSum) {
         this.rowCheckSum =  rowCheckSum;
     }
-	
-//MP-MANAGED-UPDATABLE-ENDING
 
-
-
-
-
-
-//MP-MANAGED-ADDED-AREA-BEGINNING @implementation@
-//MP-MANAGED-ADDED-AREA-ENDING @implementation@
 
 }
