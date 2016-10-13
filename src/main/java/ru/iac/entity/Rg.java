@@ -324,17 +324,12 @@ public class Rg implements Serializable, EgrulEntity {
 
         Rg rg = (Rg) o;
 
-        if (!idr.equals(rg.idr)) return false;
-        return name.equalsIgnoreCase(rg.name);
+        return idr.equals(rg.idr);
 
     }
 
     @Override
     public int hashCode() {
-        int result = idr.hashCode();
-        result = 33 * result + name.hashCode();
-        return result;
+        return idr.hashCode();
     }
-
-
 }
