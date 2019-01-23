@@ -5,7 +5,8 @@
 <hibernate-configuration>
     <session-factory>
 
-        <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        <!--property name="dialect">org.hibernate.dialect.Oracle10gDialect</property-->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
 

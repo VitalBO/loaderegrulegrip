@@ -4,9 +4,10 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        <!--property name="dialect">org.hibernate.dialect.Oracle10gDialect</property-->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <!-- DB schema will be updated if needed -->
-        <!-- <property name="hbm2ddl.auto">update</property> -->
+        <!--property name="hbm2ddl.auto">update</property-->
 
         <mapping class="ru.iac.entity.Cn"/>
         <mapping class="ru.iac.entity.Ct"/>

@@ -20,6 +20,8 @@
         <hibernate.version>4.3.8.Final</hibernate.version>
 
         <junit.version>4.12</junit.version>
+
+        <postgres.version>42.2.4</postgres.version>
     </properties>
 
     <build>
@@ -128,7 +130,12 @@
             <artifactId>oracle</artifactId>
             <version>15</version>
         </dependency>
-
+        <!-- PostgreSql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgres.version}</version>
+        </dependency>
         <!-- logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
