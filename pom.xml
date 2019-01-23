@@ -22,6 +22,7 @@
         <junit.version>4.12</junit.version>
 
         <postgres.version>42.2.4</postgres.version>
+        <liquibase.version>3.6.2</liquibase.version>
     </properties>
 
     <build>
@@ -84,6 +85,22 @@
                             <goal>compile</goal>
                             <goal>generateTestStubs</goal>
                             <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>${liquibase.version}</version>
+                <configuration>
+                    <propertyFile>${project.basedir}/src/liquibase/properties/liquibase.properties</propertyFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>update</goal>
                         </goals>
                     </execution>
                 </executions>

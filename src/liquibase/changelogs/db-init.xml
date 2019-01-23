@@ -1,0 +1,10 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="init_schema" author="v.bogdanov" dbms="postgresql" failOnError="true" logicalFilePath="sql_scripts/gripegrul-init.sql">
+        <comment>Initial schema settings</comment>
+        <sqlFile path="sql_scripts/gripegrul-init.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+</databaseChangeLog>
