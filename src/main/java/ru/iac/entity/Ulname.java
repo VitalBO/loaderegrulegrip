@@ -80,6 +80,8 @@ import java.util.Date;
         , @NamedQuery(name = "Ulname.findByRowCheckSum", query = "SELECT ulname FROM Ulname ulname WHERE ulname.rowCheckSum = :rowCheckSum")
         , @NamedQuery(name = "Ulname.findByRowCheckSumContaining", query = "SELECT ulname FROM Ulname ulname WHERE ulname.rowCheckSum like :rowCheckSum")
 
+        , @NamedQuery(name = "Ulname.findByRegnum", query = "SELECT ulname FROM Ulname ulname WHERE ulname.regnum = :regnum")
+
 })
 
 public class Ulname implements Serializable {
@@ -103,6 +105,7 @@ public class Ulname implements Serializable {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Ulname.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Ulname.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING = "Ulname.findByRowCheckSumContaining";
+    public static final String FIND_BY_REGNUM = "Ulname.findByRegnum";
     private static final long serialVersionUID = 1L;
     @SequenceGenerator(name = "ULNAMESEQ", sequenceName = "SEQ_ULNAME", allocationSize = 1)
     @Id
@@ -175,6 +178,8 @@ public class Ulname implements Serializable {
     @Column(name = "ROW_CHECK_SUM", nullable = true, unique = false)
     private String rowCheckSum;
 
+    @Column(name = "REGNUM", nullable = true, unique = false)
+    private String regnum;
 
     /**
      * Default constructor
@@ -201,7 +206,8 @@ public class Ulname implements Serializable {
             Integer gihdAIdPackage,
             Integer gihdChIdPackage,
             Integer gihdDIdPackage,
-            String rowCheckSum) {
+            String rowCheckSum,
+            String regnum) {
         this(
                 idulname,
                 idul,
@@ -218,7 +224,8 @@ public class Ulname implements Serializable {
                 gihdAIdPackage,
                 gihdChIdPackage,
                 gihdDIdPackage,
-                rowCheckSum
+                rowCheckSum,
+                regnum
                 , true);
     }
 
@@ -238,7 +245,8 @@ public class Ulname implements Serializable {
             Integer gihdAIdPackage,
             Integer gihdChIdPackage,
             Integer gihdDIdPackage,
-            String rowCheckSum
+            String rowCheckSum,
+            String regnum
             , boolean setRelationship) {
         //primary keys
         setIdulname(idulname);
@@ -258,6 +266,7 @@ public class Ulname implements Serializable {
         setGihdChIdPackage(gihdChIdPackage);
         setGihdDIdPackage(gihdDIdPackage);
         setRowCheckSum(rowCheckSum);
+        setRegnum(regnum);
         //parents
     }
 
@@ -278,7 +287,8 @@ public class Ulname implements Serializable {
                 getGihdAIdPackage(),
                 getGihdChIdPackage(),
                 getGihdDIdPackage(),
-                getRowCheckSum()
+                getRowCheckSum(),
+                getRegnum()
                 , false
         );
     }
@@ -426,5 +436,13 @@ public class Ulname implements Serializable {
         this.rowCheckSum = rowCheckSum;
     }
 
+
+    public String getRegnum() {
+        return regnum;
+    }
+
+    public void setRegnum(String regnum) {
+        this.regnum = regnum;
+    }
 
 }

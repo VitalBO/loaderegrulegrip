@@ -21,7 +21,6 @@ public class MainParser {
     private int maxthreads = 10
     private int countFilesToMaxThreads
 
-
     private Properties getProps() {
         return properties
     }
@@ -49,9 +48,9 @@ public class MainParser {
 
     }
 /**
- * Method to create files queue * 
+ * Method to create files queue *
  * @param filePath - directory with files
- */
+*/
     public void parse(File filePath) {
 
         Comparator<File> comparator = new DataFileComparator();
@@ -83,7 +82,7 @@ public class MainParser {
         System.exit(0)
     }
 /**
- * Main method to create threads and parsing files* 
+ * Main method to create threads and parsing files*
  * @param filePath - concrete file
  * @return - result saving to db
  */
@@ -96,50 +95,57 @@ public class MainParser {
             resultImport.put("File: " + filePath.getName() + " error parsing", Util.ERROR)
             return resultImport
         }
-
-
         ThreadPoolExecutor poolExecutor = Executors.newFixedThreadPool(threads) as ThreadPoolExecutor
         HibernateUtil.getSession().close()
-
         if (DATA.IP.@IDDOK != "") {
             DATA.IP.each {
-
                 poolExecutor.submit(new ThreadIP(filePath, it))
             }
-
-
         } else if (DATA.UL.@IDDOK != "") {
             DATA.UL.each {
-
                 poolExecutor.submit(new ThreadUL(filePath, it))
+            }
+        } else if (DATA.@ИдФайл ==~ /VO_RUGFO.*/){
+            DATA.Документ.each{
+                poolExecutor.submit(new ThreadULnew(filePath, it))
+            }
+        } else if (DATA.@ИдФайл ==~ /VO_RIGFO.*/){
+            DATA.Документ.each {
+                poolExecutor.submit(new ThreadIPnew(filePath, it))
             }
         } else {
             log.error("Incorrect file structure")
         }
-
         while (poolExecutor.getActiveCount() != 0) {
             TimeUnit.SECONDS.sleep(10)
         }
         poolExecutor.shutdown()
-
         return resultImport
     }
-
-    /**
-     * Comparator for create queue files to load* 
-     */
-
+/**
+ * Comparator for create queue files to load*
+ */
     private class DataFileComparator implements Comparator<File> {
 
         @Override
         int compare(File f1, File f2) {
 
-
-            String o1 = f1.getName().substring(12).replaceAll("_", "").toUpperCase().replaceAll(".XML", "")
-            String o2 = f2.getName().substring(12).replaceAll("_", "").toUpperCase().replaceAll(".XML", "")
-            if (Integer.parseInt(o1) > Integer.parseInt(o2)) return 1
-            if (Integer.parseInt(o1) < Integer.parseInt(o2)) return -1
-            return 0
+            if(f1.getName().length()<40 & f2.getName().length()<40){
+                String o1 = f1.getName().substring(12).replaceAll("_", "").toUpperCase().replaceAll(".XML", "")
+                String o2 = f2.getName().substring(12).replaceAll("_", "").toUpperCase().replaceAll(".XML", "")
+                if (Integer.parseInt(o1) > Integer.parseInt(o2)) return 1
+                if (Integer.parseInt(o1) < Integer.parseInt(o2)) return -1
+                return 0
+            }
+            if (f1.getName().length()>40 & f2.getName().length()>40){
+                String o1 = f1.getName().substring(28).replaceAll("-","").toUpperCase().replaceAll(".XML", "")
+                String o2 = f2.getName().substring(28).replaceAll("-","").toUpperCase().replaceAll(".XML", "")
+                if (o1.compareTo(o2)>0) return 1
+                if (o1.compareTo(o2)<0) return -1
+                return 0
+            }
+            if (f1.getName().length()<40 & f2.getName().length()>40) return 1
+            if (f1.getName().length()>40 & f2.getName().length()<40) return -1
         }
     }
 /**
@@ -159,7 +165,28 @@ public class MainParser {
         void run() {
             Ul ul = XMLParserEGRUL.parse(gPathResult)
             if (ul != null) result = EgrulService.saveUlToDB(ul)
-            else log.error("Error parse file " + filePath.getName())
+            else log.error("Error parse file: " + filePath.getName())
+            resultImport.put("File: " + filePath.getName() + ", OGRN: " + ul.getOgrn(), result)
+        }
+    }
+/**
+ * Thread to parse and save UL (New Formats)*
+ */
+    public class ThreadULnew implements Runnable {
+        GPathResult gPathResult
+        File filePath
+        int result
+
+        ThreadULnew(File filePath, GPathResult gPathResult) {
+            this.filePath = filePath
+            this.gPathResult = gPathResult
+        }
+
+        @Override
+        void run() {
+            Ul ul = XMLParserEGRULNF.parse(gPathResult)
+            if (ul != null) result = EgrulService.saveUlToDB(ul)
+            else log.error("Error parse file: " + filePath.getName())
             resultImport.put("File: " + filePath.getName() + ", OGRN: " + ul.getOgrn(), result)
         }
     }
@@ -181,7 +208,29 @@ public class MainParser {
 
             Ip ip = XMLParserEGRIP.parse(gPathResult);
             if (ip != null) result = EgrulService.saveIpToDB(ip)
-            else log.error("Error parse file" + filePath.getName())
+            else log.error("Error parse file: " + filePath.getName())
+            resultImport.put("File: " + filePath.getName() + ", OGRN: " + ip.getOgrn(), result)
+        }
+    }
+/**
+ * Thread to parse and save IP (New Formats)*
+ */
+    public class ThreadIPnew implements Runnable {
+        GPathResult gPathResult
+        File filePath
+        int result
+
+        ThreadIPnew(File filePath, GPathResult gPathResult) {
+            this.filePath = filePath
+            this.gPathResult = gPathResult
+        }
+
+        @Override
+        void run() {
+
+            Ip ip = XMLParserEGRIPNF.parse(gPathResult);
+            if (ip != null) result = EgrulService.saveIpToDB(ip)
+            else log.error("Error parse file: " + filePath.getName())
             resultImport.put("File: " + filePath.getName() + ", OGRN: " + ip.getOgrn(), result)
         }
     }

@@ -71,6 +71,18 @@ import java.util.Date;
 	,@NamedQuery(name="Fldolgn.findByRowCheckSum", query="SELECT fldolgn FROM Fldolgn fldolgn WHERE fldolgn.rowCheckSum = :rowCheckSum")
 	,@NamedQuery(name="Fldolgn.findByRowCheckSumContaining", query="SELECT fldolgn FROM Fldolgn fldolgn WHERE fldolgn.rowCheckSum like :rowCheckSum")
 
+    ,@NamedQuery(name="Fldolgn.findByRegnum", query="SELECT fldolgn FROM Fldolgn fldolgn WHERE fldolgn.regnum = :regnum")
+
+    ,@NamedQuery(name="Fldolgn.findByDolgnvid", query="SELECT fldolgn FROM Fldolgn fldolgn WHERE fldolgn.dolgnvid = :dolgnvid")
+    ,@NamedQuery(name="Fldolgn.findByDolgnvidContaining", query="SELECT fldolgn FROM Fldolgn fldolgn WHERE fldolgn.dolgnvid like :dolgnvid")
+
+    ,@NamedQuery(name="Fldolgn.findByDolgnvidname", query="SELECT fldolgn FROM Fldolgn fldolgn WHERE fldolgn.dolgnvidname = :dolgnvidname")
+    ,@NamedQuery(name="Fldolgn.findByDolgnvidnameContaining", query="SELECT fldolgn FROM Fldolgn fldolgn WHERE fldolgn.dolgnvidname like :dolgnvidname")
+
+    ,@NamedQuery(name="Fldolgn.findByRegnumd", query="SELECT fldolgn FROM Fldolgn fldolgn WHERE fldolgn.regnumd = :regnumd")
+
+    ,@NamedQuery(name="Fldolgn.findByDtstartd", query="SELECT fldolgn FROM Fldolgn fldolgn WHERE fldolgn.dtstartd = :dtstartd")
+
 })
 
 public class Fldolgn implements Serializable, EgrulEntity {
@@ -89,6 +101,13 @@ public class Fldolgn implements Serializable, EgrulEntity {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Fldolgn.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Fldolgn.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING ="Fldolgn.findByRowCheckSumContaining";
+    public static final String FIND_BY_REGNUM = "Fldolgn.findByRegnum";
+    public static final String FIND_BY_DOLGNVID = "Fldolgn.findByDolgnvid";
+    public static final String FIND_BY_DOLGNVID_CONTAINING ="Fldolgn.findByDolgnvidContaining";
+    public static final String FIND_BY_DOLGNVIDNAME = "Fldolgn.findByDolgnvidname";
+    public static final String FIND_BY_DOLGNVIDNAME_CONTAINING ="Fldolgn.findByDolgnvidnameContaining";
+    public static final String FIND_BY_REGNUMD = "Fldolgn.findByRegnumd";
+    public static final String FIND_BY_DTSTARTD = "Fldolgn.findByDtstartd";
     private static final long serialVersionUID = 1L;
     @SequenceGenerator(name = "FLDOLGNSEQ", sequenceName ="SEQ_FLDOLGN", allocationSize=1 )
     @Id @Column(name="IDFLDOLGN" ) 
@@ -146,6 +165,26 @@ public class Fldolgn implements Serializable, EgrulEntity {
     private String rowCheckSum;
 
 
+    @Column(name="REGNUM"   , nullable=true , unique=false)
+    private String regnum;
+
+
+    @Column(name="DOLGNVID"   , nullable=true , unique=false)
+    private String dolgnvid;
+
+
+    @Column(name="DOLGNVIDNAME"   , nullable=true , unique=false)
+    private String dolgnvidname;
+
+
+    @Column(name="REGNUMD"   , nullable=true , unique=false)
+    private String regnumd;
+
+
+    @Column(name="DTSTARTD"   , nullable=true , unique=false)
+    private Date dtstartd;
+
+
     /**
     * Default constructor
     */
@@ -168,7 +207,12 @@ public class Fldolgn implements Serializable, EgrulEntity {
        Integer gihdAIdPackage,
        Integer gihdChIdPackage,
        Integer gihdDIdPackage,
-       String rowCheckSum) {
+       String rowCheckSum,
+       String regnum,
+       String dolgnvid,
+       String dolgnvidname,
+       String regnumd,
+       Date dtstartd) {
 	 this(
        idfldolgn,
        idul,
@@ -182,7 +226,12 @@ public class Fldolgn implements Serializable, EgrulEntity {
        gihdAIdPackage,
        gihdChIdPackage,
        gihdDIdPackage,
-       rowCheckSum
+       rowCheckSum,
+	   regnum,
+	   dolgnvid,
+	   dolgnvidname,
+	   regnumd,
+	   dtstartd
 	 ,true);
 	}
     
@@ -199,7 +248,12 @@ public class Fldolgn implements Serializable, EgrulEntity {
        Integer gihdAIdPackage,
        Integer gihdChIdPackage,
        Integer gihdDIdPackage,
-       String rowCheckSum	
+       String rowCheckSum,
+       String regnum,
+       String dolgnvid,
+       String dolgnvidname,
+       String regnumd,
+       Date dtstartd
     , boolean setRelationship) {
        //primary keys
        setIdfldolgn (idfldolgn);
@@ -216,6 +270,11 @@ public class Fldolgn implements Serializable, EgrulEntity {
        setGihdChIdPackage (gihdChIdPackage);
        setGihdDIdPackage (gihdDIdPackage);
        setRowCheckSum (rowCheckSum);
+       setRegnum(regnum);
+       setDolgnvid(dolgnvid);
+       setDolgnvidname(dolgnvidname);
+       setRegnumd(regnumd);
+       setDtstartd(dtstartd);
        //parents
     }
 
@@ -233,7 +292,12 @@ public class Fldolgn implements Serializable, EgrulEntity {
           getGihdAIdPackage(),
           getGihdChIdPackage(),
           getGihdDIdPackage(),
-          getRowCheckSum()
+          getRowCheckSum(),
+          getRegnum(),
+          getDolgnvid(),
+          getDolgnvidname(),
+          getRegnumd(),
+          getDtstartd()
        , false
 	   );
 	}
@@ -352,6 +416,49 @@ public class Fldolgn implements Serializable, EgrulEntity {
 	
     public void setRowCheckSum (String rowCheckSum) {
         this.rowCheckSum =  rowCheckSum;
+    }
+
+
+    public String getRegnum() {
+        return regnum;
+    }
+
+    public void setRegnum (String regnum) {
+        this.regnum =  regnum;
+    }
+
+
+    public String getDolgnvid() {
+        return dolgnvid;
+    }
+
+    public void setDolgnvid (String dolgnvid) {
+        this.dolgnvid =  dolgnvid;
+    }
+
+
+    public String getDolgnvidname() {
+        return dolgnvidname;
+    }
+
+    public void setDolgnvidname (String dolgnvidname) {
+        this.dolgnvidname =  dolgnvidname;
+    }
+
+
+    public String getRegnumd() { return regnumd;  }
+
+    public void setRegnumd (String regnumd) {
+        this.regnumd =  regnumd;
+    }
+
+
+    public Date getDtstartd() {
+        return dtstartd;
+    }
+
+    public void setDtstartd (Date dtstartd) {
+        this.dtstartd =  dtstartd;
     }
 
     @Override

@@ -49,6 +49,7 @@ public class Spregorg_ {
     public static volatile SingularAttribute<Spregorg, Integer> gihdChIdPackage;
     public static volatile SingularAttribute<Spregorg, Integer> gihdDIdPackage;
     public static volatile SingularAttribute<Spregorg, String> rowCheckSum;
+	public static volatile SingularAttribute<Spregorg, String> address;
 
 
 

@@ -50,6 +50,8 @@ public class St_ {
     public static volatile SingularAttribute<St, Integer> gihdChIdPackage;
     public static volatile SingularAttribute<St, Integer> gihdDIdPackage;
     public static volatile SingularAttribute<St, String> rowCheckSum;
+	public static volatile SingularAttribute<St, String> typeSt;
+	public static volatile SingularAttribute<St, String> nameSt;
 
 
 

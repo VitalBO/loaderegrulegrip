@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 /**
  * Created by konenkov on 12.02.2015.
@@ -30,7 +31,11 @@ public abstract class Util {
         if (string == null) return null;
         if (Objects.equals(string, "")) return null;
         Date date = null;
-        DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        DateFormat format=null;
+        if( Pattern.matches("^\\d{4}-\\d{2}-\\d{2}$",string))
+            format = new SimpleDateFormat("yyyy-MM-dd");
+        else if (Pattern.matches("^\\d{2}.\\d{2}.\\d{4}$",string))
+            format = new SimpleDateFormat("dd.MM.yyyy");
         try {
             date = format.parse(string);
         } catch (ParseException e) {

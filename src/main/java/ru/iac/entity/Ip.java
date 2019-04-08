@@ -81,6 +81,41 @@ import java.util.List;
         , @NamedQuery(name = "Ip.findByRowCheckSum", query = "SELECT ip FROM Ip ip WHERE ip.rowCheckSum = :rowCheckSum")
         , @NamedQuery(name = "Ip.findByRowCheckSumContaining", query = "SELECT ip FROM Ip ip WHERE ip.rowCheckSum like :rowCheckSum")
 
+        , @NamedQuery(name = "Ip.findByDtogrn", query = "SELECT ip FROM Ip ip WHERE ip.dtogrn = :dtogrn")
+
+        , @NamedQuery(name = "Ip.findByRegnum", query = "SELECT ip FROM Ip ip WHERE ip.regnum = :regnum")
+
+        , @NamedQuery(name = "Ip.findByDtreg", query = "SELECT ip FROM Ip ip WHERE ip.dtreg = :dtreg")
+
+        , @NamedQuery(name = "Ip.findByRegorgname", query = "SELECT ip FROM Ip ip WHERE ip.regorgname = :regorgname")
+        , @NamedQuery(name = "Ip.findByRegorgnameContaining", query = "SELECT ip FROM Ip ip WHERE ip.regorgname like :regorgname")
+
+        , @NamedQuery(name = "Ip.findByKodstatusend", query = "SELECT ip FROM Ip ip WHERE ip.kodstatusend = :kodstatusend")
+
+        , @NamedQuery(name = "Ip.findByNamestatusend", query = "SELECT ip FROM Ip ip WHERE ip.namestatusend = :namestatusend")
+        , @NamedQuery(name = "Ip.findByNamestatusendContaining", query = "SELECT ip FROM Ip ip WHERE ip.namestatusend like :namestatusend")
+
+        , @NamedQuery(name = "Ip.findByDtend", query = "SELECT ip FROM Ip ip WHERE ip.dtend = :dtend")
+
+        , @NamedQuery(name = "Ip.findByRegnumend", query = "SELECT ip FROM Ip ip WHERE ip.regnumend = :regnumend")
+
+        , @NamedQuery(name = "Ip.findByDtregend", query = "SELECT ip FROM Ip ip WHERE ip.dtregend = :dtregend")
+
+        , @NamedQuery(name = "Ip.findByOgrnul", query = "SELECT ip FROM Ip ip WHERE ip.ogrnul = :ogrnul")
+
+        , @NamedQuery(name = "Ip.findByInnul", query = "SELECT ip FROM Ip ip WHERE ip.innul = :innul")
+
+        , @NamedQuery(name = "Ip.findByNamepul", query = "SELECT ip FROM Ip ip WHERE ip.namepul = :namepul")
+        , @NamedQuery(name = "Ip.findByNamepulContaining", query = "SELECT ip FROM Ip ip WHERE ip.namepul like :namepul")
+
+        , @NamedQuery(name = "Ip.findByGrnzap", query = "SELECT ip FROM Ip ip WHERE ip.grnzap = :grnzap")
+
+        , @NamedQuery(name = "Ip.findByDtzap", query = "SELECT ip FROM Ip ip WHERE ip.dtzap = :dtzap")
+
+        , @NamedQuery(name = "Ip.findByGrncor", query = "SELECT ip FROM Ip ip WHERE ip.grncor = :grncor")
+
+        , @NamedQuery(name = "Ip.findByDtcor", query = "SELECT ip FROM Ip ip WHERE ip.dtcor = :dtcor")
+
 })
 
 public class Ip implements Serializable, EgrulEntity {
@@ -103,6 +138,27 @@ public class Ip implements Serializable, EgrulEntity {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Ip.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Ip.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING = "Ip.findByRowCheckSumContaining";
+    public static final String FIND_BY_DTOGRN = "Ip.findByDtogrn";
+    public static final String FIND_BY_REGNUM = "Ip.findByRegnum";
+    public static final String FIND_BY_DTREG = "Ip.findByDtreg";
+    public static final String FIND_BY_REGORGNAME = "Ip.findByRegorgname";
+    public static final String FIND_BY_REGORGNAME_CONTAINING = "Ip.findByRegorgnameContaining";
+    public static final String FIND_BY_KODSTATUSEND = "Ip.findByKodstatusend";
+    public static final String FIND_BY_NAMESTATUSEND = "Ip.findByNamestatusend";
+    public static final String FIND_BY_NAMESTATUSEND_CONTAINING = "Ip.findByNamestatusendContaining";
+    public static final String FIND_BY_DTEND = "Ip.findByDtend";
+    public static final String FIND_BY_REGNUMEND = "Ip.findByRegnumend";
+    public static final String FIND_BY_DTREGEND = "Ip.findByDtregend";
+    public static final String FIND_BY_OGRNUL = "Ip.findByOgrnul";
+    public static final String FIND_BY_INNUL = "Ip.findByInnul";
+    public static final String FIND_BY_NAMEPUL = "Ip.findByNamepul";
+    public static final String FIND_BY_NAMEPUL_CONTAINING = "Ip.findByNamepulContaining";
+    public static final String FIND_BY_GRNZAP = "Ip.findByGrnzap";
+    public static final String FIND_BY_DTZAP = "Ip.findByDtzap";
+    public static final String FIND_BY_GRNCOR = "Ip.findByGrncor";
+    public static final String FIND_BY_DTCOR = "Ip.findByDtcor";
+
+
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "IDIP")
@@ -162,8 +218,62 @@ public class Ip implements Serializable, EgrulEntity {
     @Column(name = "ROW_CHECK_SUM", nullable = true, unique = false)
     private String rowCheckSum;
 
+    @Column(name = "DTOGRN", nullable = true, unique = false)
+    private Date dtogrn;
+
+    @Column(name = "REGNUM", nullable = true, unique = false)
+    private String regnum;
+
+    @Column(name = "DTREG", nullable = true, unique = false)
+    private Date dtreg;
+
+    @Column(name = "REGORGNAME", nullable = true, unique = false)
+    private String regorgname;
+
+    @Column(name = "KODSTATUSEND", nullable = true, unique = false)
+    private String kodstatusend;
+
+    @Column(name = "NAMESTATUSEND", nullable = true, unique = false)
+    private String namestatusend;
+
+    @Column(name = "DTEND", nullable = true, unique = false)
+    private Date dtend;
+
+    @Column(name = "REGNUMEND", nullable = true, unique = false)
+    private String regnumend;
+
+    @Column(name = "DTREGEND", nullable = true, unique = false)
+    private Date dtregend;
+
+    @Column(name = "OGRN_UL", nullable = true, unique = false)
+    private String ogrnul;
+
+    @Column(name = "INN_UL", nullable = true, unique = false)
+    private String innul;
+
+    @Column(name = "NAMEP_UL", nullable = true, unique = false)
+    private String namepul;
+
+    @Column(name = "GRNZAP", nullable = true, unique = false)
+    private String grnzap;
+
+    @Column(name = "DTZAP", nullable = true, unique = false)
+    private Date dtzap;
+
+    @Column(name = "GRNCOR", nullable = true, unique = false)
+    private String grncor;
+
+    @Column(name = "DTCOR", nullable = true, unique = false)
+    private Date dtcor;
+
     @OneToOne(mappedBy = "idip", cascade = CascadeType.ALL)
     private Ipname ipname;
+
+    @OneToOne(mappedBy = "idip", cascade = CascadeType.ALL)
+    private Ipadr ipadr;
+
+    @OneToOne(mappedBy = "idip", cascade = CascadeType.ALL)
+    private Ipemail ipemail;
 
     @OneToMany(mappedBy = "idip")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
@@ -221,7 +331,23 @@ public class Ip implements Serializable, EgrulEntity {
             Integer gihdAIdPackage,
             Integer gihdChIdPackage,
             Integer gihdDIdPackage,
-            String rowCheckSum) {
+            String rowCheckSum,
+            Date dtogrn,
+            String regnum,
+            Date dtreg,
+            String regorgname,
+            String kodstatusend,
+            String namestatusend,
+            Date dtend,
+            String regnumend,
+            Date dtregend,
+            String ogrnul,
+            String innul,
+            String namepul,
+            String grnzap,
+            Date dtzap,
+            String grncor,
+            Date dtcor) {
         this(
                 idip,
                 ogrn,
@@ -238,7 +364,23 @@ public class Ip implements Serializable, EgrulEntity {
                 gihdAIdPackage,
                 gihdChIdPackage,
                 gihdDIdPackage,
-                rowCheckSum
+                rowCheckSum,
+                dtogrn,
+                regnum,
+                dtreg,
+                regorgname,
+                kodstatusend,
+                namestatusend,
+                dtend,
+                regnumend,
+                dtregend,
+                ogrnul,
+                innul,
+                namepul,
+                grnzap,
+                dtzap,
+                grncor,
+                dtcor
                 , true);
     }
 
@@ -290,7 +432,23 @@ public class Ip implements Serializable, EgrulEntity {
             Integer gihdAIdPackage,
             Integer gihdChIdPackage,
             Integer gihdDIdPackage,
-            String rowCheckSum
+            String rowCheckSum,
+            Date dtogrn,
+            String regnum,
+            Date dtreg,
+            String regorgname,
+            String kodstatusend,
+            String namestatusend,
+            Date dtend,
+            String regnumend,
+            Date dtregend,
+            String ogrnul,
+            String innul,
+            String namepul,
+            String grnzap,
+            Date dtzap,
+            String grncor,
+            Date dtcor
             , boolean setRelationship) {
         //primary keys
         setIdip(idip);
@@ -311,6 +469,22 @@ public class Ip implements Serializable, EgrulEntity {
         setGihdChIdPackage(gihdChIdPackage);
         setGihdDIdPackage(gihdDIdPackage);
         setRowCheckSum(rowCheckSum);
+        setDtogrn(dtogrn);
+        setRegnum(regnum);
+        setDtreg(dtreg);
+        setRegorgname(regorgname);
+        setKodstatusend(kodstatusend);
+        setNamestatusend(namestatusend);
+        setDtend(dtend);
+        setRegnumend(regnumend);
+        setDtregend(dtregend);
+        setOgrnul(ogrnul);
+        setInnul(innul);
+        setNamep(namepul);
+        setGrnzap(grnzap);
+        setDtzap(dtzap);
+        setGrncor(grncor);
+        setDtcor(dtcor);
         //parents
     }
 
@@ -411,6 +585,22 @@ public class Ip implements Serializable, EgrulEntity {
         this.ipname = ipname;
     }
 
+    public Ipadr getIpadr() {
+        return ipadr;
+    }
+
+    public void setIpadr(Ipadr ipadr) {
+        this.ipadr = ipadr;
+    }
+
+    public Ipemail getIpemail() {
+        return ipemail;
+    }
+
+    public void setIpemail(Ipemail ipemail) {
+        this.ipemail = ipemail;
+    }
+
     public Ipcitizen getIpcitizen() {
         return ipcitizen;
     }
@@ -447,7 +637,23 @@ public class Ip implements Serializable, EgrulEntity {
                 getGihdAIdPackage(),
                 getGihdChIdPackage(),
                 getGihdDIdPackage(),
-                getRowCheckSum()
+                getRowCheckSum(),
+                getDtogrn(),
+                getRegnum(),
+                getDtreg(),
+                getRegorgname(),
+                getKodstatusend(),
+                getNamestatusend(),
+                getDtend(),
+                getRegnumend(),
+                getDtregend(),
+                getOgrnul(),
+                getInnul(),
+                getNamep(),
+                getGrnzap(),
+                getDtzap(),
+                getGrncor(),
+                getDtcor()
                 , false
         );
     }
@@ -579,6 +785,96 @@ public class Ip implements Serializable, EgrulEntity {
     public void setRowCheckSum(String rowCheckSum) {
         this.rowCheckSum = rowCheckSum;
     }
+
+    public Date getDtogrn() {
+        return dtogrn;
+    }
+
+    public void setDtogrn(Date dtogrn) {
+        this.dtogrn = dtogrn;
+    }
+
+    public String getRegnum() {
+        return regnum;
+    }
+
+    public void setRegnum(String regnum) {
+        this.regnum = regnum;
+    }
+
+    public Date getDtreg() {
+        return dtreg;
+    }
+
+    public void setDtreg(Date dtreg) {
+        this.dtreg = dtreg;
+    }
+
+    public String getRegorgname() {
+        return regorgname;
+    }
+
+    public void setRegorgname(String regorgname) {
+        this.regorgname = regorgname;
+    }
+
+    public String getKodstatusend() {
+        return kodstatusend;
+    }
+
+    public void setKodstatusend(String kodstatusend) {
+        this.kodstatusend = kodstatusend;
+    }
+
+    public String getNamestatusend() {
+        return namestatusend;
+    }
+
+    public void setNamestatusend(String namestatusend) {
+        this.namestatusend = namestatusend;
+    }
+
+    public Date getDtend() {
+        return dtend;
+    }
+
+    public void setDtend(Date dtend) { this.dtend = dtend; }
+
+    public String getRegnumend() { return regnumend; }
+
+    public void setRegnumend(String regnumend) { this.regnumend = regnumend; }
+
+    public Date getDtregend() { return dtregend; }
+
+    public void setDtregend(Date dtregend) { this.dtregend = dtregend; }
+
+    public String getOgrnul() { return ogrnul; }
+
+    public void setOgrnul(String ogrnul) { this.ogrnul = ogrnul; }
+
+    public String getInnul() { return innul; }
+
+    public void setInnul(String innul) { this.innul = innul; }
+
+    public String getNamep() { return namepul; }
+
+    public void setNamep(String namepul) { this.namepul = namepul; }
+
+    public String getGrnzap() { return grnzap; }
+
+    public void setGrnzap(String grnzap) { this.grnzap = grnzap; }
+
+    public Date getDtzap() { return dtzap; }
+
+    public void setDtzap(Date dtzap) { this.dtzap = dtzap; }
+
+    public String getGrncor() { return grncor; }
+
+    public void setGrncor(String grncor) { this.grncor = grncor; }
+
+    public Date getDtcor() { return dtcor; }
+
+    public void setDtcor(Date dtcor) { this.dtcor = dtcor; }
 
     @Override
     public String getIdenti() {

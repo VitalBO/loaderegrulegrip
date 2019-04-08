@@ -53,10 +53,11 @@ import java.util.Date;
 
 	,@NamedQuery(name="Fl.findByOtchfl", query="SELECT fl FROM Fl fl WHERE fl.otchfl = :otchfl")
 	,@NamedQuery(name="Fl.findByOtchflContaining", query="SELECT fl FROM Fl fl WHERE fl.otchfl like :otchfl")
-        , @NamedQuery(name = "Fl.findByInn", query = "SELECT fl FROM Fl fl WHERE fl.inn = :inn")
 
-        , @NamedQuery(name = "Fl.findByInnNId", query = "SELECT fl FROM Fl fl WHERE fl.inn = :kod")
-        ,@NamedQuery(name="Fl.findByInnContaining", query="SELECT fl FROM Fl fl WHERE fl.inn like :inn")
+    , @NamedQuery(name = "Fl.findByInn", query = "SELECT fl FROM Fl fl WHERE fl.inn = :inn")
+
+    , @NamedQuery(name = "Fl.findByInnNId", query = "SELECT fl FROM Fl fl WHERE fl.inn = :kod")
+    ,@NamedQuery(name="Fl.findByInnContaining", query="SELECT fl FROM Fl fl WHERE fl.inn like :inn")
 
 	,@NamedQuery(name="Fl.findByGihdAdate", query="SELECT fl FROM Fl fl WHERE fl.gihdAdate = :gihdAdate")
 
@@ -74,6 +75,10 @@ import java.util.Date;
 
 	,@NamedQuery(name="Fl.findByRowCheckSum", query="SELECT fl FROM Fl fl WHERE fl.rowCheckSum = :rowCheckSum")
 	,@NamedQuery(name="Fl.findByRowCheckSumContaining", query="SELECT fl FROM Fl fl WHERE fl.rowCheckSum like :rowCheckSum")
+
+    ,@NamedQuery(name="Fl.findByRegnumfl", query="SELECT fl FROM Fl fl WHERE fl.regnumfl = :regnumfl")
+
+    ,@NamedQuery(name="Fl.findByDtstartfl", query="SELECT fl FROM Fl fl WHERE fl.dtstartfl = :dtstartfl")
 
 })
 
@@ -97,6 +102,8 @@ public class Fl implements Serializable, EgrulEntity, EgrulWithNaturalId {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Fl.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Fl.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING ="Fl.findByRowCheckSumContaining";
+    public static final String FIND_BY_REGNUMFL = "Fl.findByRegnumfl";
+    public static final String FIND_BY_DTSTARTFL = "Fl.findByDtstartfl";
     private static final long serialVersionUID = 1L;
     @SequenceGenerator(name = "FLSEQ", sequenceName ="SEQ_FL", allocationSize=1 )
     @Id @Column(name="IDFL" )
@@ -152,6 +159,14 @@ public class Fl implements Serializable, EgrulEntity, EgrulWithNaturalId {
     private String rowCheckSum;
 
 
+    @Column(name="REGNUMFL"   , nullable=true , unique=false)
+    private String regnumfl;
+
+
+    @Column(name="DTSTARTFL"   , nullable=true , unique=false)
+    private Date dtstartfl;
+
+
     /**
     * Default constructor
     */
@@ -174,7 +189,9 @@ public class Fl implements Serializable, EgrulEntity, EgrulWithNaturalId {
        Integer gihdAIdPackage,
        Integer gihdChIdPackage,
        Integer gihdDIdPackage,
-       String rowCheckSum) {
+       String rowCheckSum,
+       String regnumfl,
+       Date dtstartfl) {
 	 this(
        famfl,
        namefl,
@@ -188,7 +205,9 @@ public class Fl implements Serializable, EgrulEntity, EgrulWithNaturalId {
        gihdAIdPackage,
        gihdChIdPackage,
        gihdDIdPackage,
-       rowCheckSum
+       rowCheckSum,
+	   regnumfl,
+	   dtstartfl
 	 ,true);
 	}
     
@@ -205,7 +224,9 @@ public class Fl implements Serializable, EgrulEntity, EgrulWithNaturalId {
        Integer gihdAIdPackage,
        Integer gihdChIdPackage,
        Integer gihdDIdPackage,
-       String rowCheckSum	
+       String rowCheckSum,
+       String regnumfl,
+       Date dtstartfl
     , boolean setRelationship) {
        //primary keys
        setIdfl (idfl);
@@ -222,6 +243,8 @@ public class Fl implements Serializable, EgrulEntity, EgrulWithNaturalId {
        setGihdChIdPackage (gihdChIdPackage);
        setGihdDIdPackage (gihdDIdPackage);
        setRowCheckSum (rowCheckSum);
+       setRegnumfl(regnumfl);
+       setDtstartfl(dtstartfl);
        //parents
     }
 
@@ -239,7 +262,9 @@ public class Fl implements Serializable, EgrulEntity, EgrulWithNaturalId {
           getGihdAIdPackage(),
           getGihdChIdPackage(),
           getGihdDIdPackage(),
-          getRowCheckSum()
+          getRowCheckSum(),
+          getRegnumfl(),
+          getDtstartfl()
        , false
 	   );
 	}
@@ -360,6 +385,23 @@ public class Fl implements Serializable, EgrulEntity, EgrulWithNaturalId {
         this.rowCheckSum =  rowCheckSum;
     }
 
+
+    public String getRegnumfl() {
+        return regnumfl;
+    }
+
+    public void setRegnumfl (String regnumfl) {
+        this.regnumfl =  regnumfl;
+    }
+
+
+    public Date getDtstartfl() {
+        return dtstartfl;
+    }
+
+    public void setDtstartfl (Date dtstartfl) {
+        this.dtstartfl =  dtstartfl;
+    }
     @Override
     public String getIdenti() {
         return idfl == null ? null : idfl.toString();

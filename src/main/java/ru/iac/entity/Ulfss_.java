@@ -52,6 +52,8 @@ public class Ulfss_ {
     public static volatile SingularAttribute<Ulfss, Integer> gihdChIdPackage;
     public static volatile SingularAttribute<Ulfss, Integer> gihdDIdPackage;
     public static volatile SingularAttribute<Ulfss, String> rowCheckSum;
+	public static volatile SingularAttribute<Ulfss, String> regnum;
+	public static volatile SingularAttribute<Ulfss, Date> dtzap;
 
 
 

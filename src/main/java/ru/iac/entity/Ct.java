@@ -72,6 +72,11 @@ import java.util.Date;
         , @NamedQuery(name = "Ct.findByRowCheckSum", query = "SELECT ct FROM Ct ct WHERE ct.rowCheckSum = :rowCheckSum")
         , @NamedQuery(name = "Ct.findByRowCheckSumContaining", query = "SELECT ct FROM Ct ct WHERE ct.rowCheckSum like :rowCheckSum")
 
+        , @NamedQuery(name = "Ct.findByTypeCt", query = "SELECT ct FROM Ct ct WHERE ct.typeCt = :typeCt")
+        , @NamedQuery(name = "Ct.findByTypeCtContaining", query = "SELECT ct FROM Ct ct WHERE ct.typeCt like :typeCt")
+
+        , @NamedQuery(name = "Ct.findByNameCt", query = "SELECT ct FROM Ct ct WHERE ct.nameCt = :nameCt")
+        , @NamedQuery(name = "Ct.findByNameCtContaining", query = "SELECT ct FROM Ct ct WHERE ct.nameCt like :nameCt")
 })
 
 public class Ct implements Serializable, EgrulEntity {
@@ -89,6 +94,10 @@ public class Ct implements Serializable, EgrulEntity {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Ct.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Ct.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING = "Ct.findByRowCheckSumContaining";
+    public static final String FIND_BY_TYPECT = "Ct.findByTypeCt";
+    public static final String FIND_BY_TYPECT_CONTAINING = "Ct.findByTypeCtContaining";
+    public static final String FIND_BY_NAMECT = "Ct.findByNameCt";
+    public static final String FIND_BY_NAMECT_CONTAINING = "Ct.findByNameCtContaining";
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "IDC")
@@ -124,6 +133,12 @@ public class Ct implements Serializable, EgrulEntity {
     @Column(name = "ROW_CHECK_SUM", nullable = true, unique = false)
     private String rowCheckSum;
 
+    @Column(name = "TYPECT", nullable = true, unique = false)
+    private String typeCt;
+
+    @Column(name = "NAMECT", nullable = true, unique = false)
+    private String nameCt;
+
     /**
      * Default constructor
      */
@@ -144,7 +159,9 @@ public class Ct implements Serializable, EgrulEntity {
             Integer gihdAIdPackage,
             Integer gihdChIdPackage,
             Integer gihdDIdPackage,
-            String rowCheckSum) {
+            String rowCheckSum,
+            String typeCt,
+            String nameCt) {
         this(
                 idc,
                 name,
@@ -156,7 +173,9 @@ public class Ct implements Serializable, EgrulEntity {
                 gihdAIdPackage,
                 gihdChIdPackage,
                 gihdDIdPackage,
-                rowCheckSum
+                rowCheckSum,
+                typeCt,
+                nameCt
                 , true);
     }
 
@@ -171,7 +190,9 @@ public class Ct implements Serializable, EgrulEntity {
             Integer gihdAIdPackage,
             Integer gihdChIdPackage,
             Integer gihdDIdPackage,
-            String rowCheckSum
+            String rowCheckSum,
+            String typeCt,
+            String nameCt
             , boolean setRelationship) {
         setIdc(idc);
         setName(name);
@@ -184,6 +205,8 @@ public class Ct implements Serializable, EgrulEntity {
         setGihdChIdPackage(gihdChIdPackage);
         setGihdDIdPackage(gihdDIdPackage);
         setRowCheckSum(rowCheckSum);
+        setTypeCt(typeCt);
+        setNameCt(nameCt);
     }
 
     public Ct flat() {
@@ -198,7 +221,9 @@ public class Ct implements Serializable, EgrulEntity {
                 getGihdAIdPackage(),
                 getGihdChIdPackage(),
                 getGihdDIdPackage(),
-                getRowCheckSum()
+                getRowCheckSum(),
+                getTypeCt(),
+                getNameCt()
                 , false
         );
     }
@@ -298,6 +323,24 @@ public class Ct implements Serializable, EgrulEntity {
 
     public void setRowCheckSum(String rowCheckSum) {
         this.rowCheckSum = rowCheckSum;
+    }
+
+
+    public String getTypeCt() {
+        return typeCt;
+    }
+
+    public void setTypeCt(String typeCt) {
+        this.typeCt = typeCt;
+    }
+
+
+    public String getNameCt() {
+        return nameCt;
+    }
+
+    public void setNameCt(String nameCt) {
+        this.nameCt = nameCt;
     }
 
     @Override

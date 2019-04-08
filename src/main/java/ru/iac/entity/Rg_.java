@@ -49,6 +49,8 @@ public class Rg_ {
     public static volatile SingularAttribute<Rg, Integer> gihdChIdPackage;
     public static volatile SingularAttribute<Rg, Integer> gihdDIdPackage;
     public static volatile SingularAttribute<Rg, String> rowCheckSum;
+	public static volatile SingularAttribute<Rg, String> typeRg;
+	public static volatile SingularAttribute<Rg, String> nameRg;
 
 
 

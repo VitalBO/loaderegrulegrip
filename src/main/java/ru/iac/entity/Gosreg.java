@@ -31,10 +31,15 @@ package ru.iac.entity;
 
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
 
 /**
  * <p>Title: Gosreg</p>
@@ -144,6 +149,19 @@ public class Gosreg implements Serializable, EgrulEntity {
     @Column(name = "DTZAP", nullable = true, unique = false)
     private Date dtzap;
 
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(name = "regdok", joinColumns = {
+            @JoinColumn(name = "IDREG", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "IDDOK",
+                    nullable = false, updatable = false)})
+    private List<Sppreddok> sppreddoks;
+
+    /*
+    @ManyToMany(cascade = CascadeType.ALL)///////
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Sppreddok> sppreddoks;
+    */
 
     @Column(name = "GIHD__ADATE", nullable = true, unique = false)
     private Date gihdAdate;
@@ -369,6 +387,11 @@ public class Gosreg implements Serializable, EgrulEntity {
         this.dtzap = dtzap;
     }
 
+    public List<Sppreddok> getSppreddoks(){return sppreddoks;}
+
+    public void setSppreddoks(List<Sppreddok> sppreddoks) {
+        this.sppreddoks = sppreddoks;
+    }
 
     public Date getGihdAdate() {
         return gihdAdate;

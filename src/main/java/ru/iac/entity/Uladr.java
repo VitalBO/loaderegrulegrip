@@ -46,6 +46,7 @@ import java.util.Date;
 @Table(name = "\"ULADR\"")
 @NamedQueries({
         @NamedQuery(name = "Uladr.findAll", query = "SELECT uladr FROM Uladr uladr")
+
         , @NamedQuery(name = "Uladr.findByIdul", query = "SELECT uladr FROM Uladr uladr WHERE uladr.idul = :idul")
         , @NamedQuery(name = "Uladr.findbyNaturalId", query = "SELECT uladr FROM Uladr uladr WHERE uladr.idul = :kod")
 
@@ -82,6 +83,10 @@ import java.util.Date;
         , @NamedQuery(name = "Uladr.findByRowCheckSum", query = "SELECT uladr FROM Uladr uladr WHERE uladr.rowCheckSum = :rowCheckSum")
         , @NamedQuery(name = "Uladr.findByRowCheckSumContaining", query = "SELECT uladr FROM Uladr uladr WHERE uladr.rowCheckSum like :rowCheckSum")
 
+        , @NamedQuery(name = "Uladr.findByRegnum", query = "SELECT uladr FROM Uladr uladr WHERE uladr.regnum = :regnum")
+
+        , @NamedQuery(name = "Uladr.findByKodKl", query = "SELECT uladr FROM Uladr uladr WHERE uladr.kodKl = :kodKl")
+
 })
 
 public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
@@ -107,6 +112,8 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Uladr.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Uladr.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING = "Uladr.findByRowCheckSumContaining";
+    public static final String FIND_BY_REGNUM = "Uladr.findByRegnum";
+    public static final String FIND_BY_KODKL = "Uladr.findByKodKl";
     private static final long serialVersionUID = 1L;
     @Embedded
     Address fulladdress;
@@ -180,6 +187,12 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
 
     @Column(name = "ROW_CHECK_SUM", nullable = true, unique = false)
     private String rowCheckSum;
+
+    @Column(name = "REGNUM", nullable = true, unique = false)
+    private String regnum;
+
+    @Column(name = "KOD_KL", nullable = true, unique = false)
+    private String kodKl;
     /**
      * Default constructor
      */
@@ -204,7 +217,9 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
             Integer gihdAIdPackage,
             Integer gihdChIdPackage,
             Integer gihdDIdPackage,
-            String rowCheckSum) {
+            String rowCheckSum,
+            String regnum,
+            String kodKl) {
         this(
                 iduladr,
                 idul,
@@ -221,7 +236,9 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
                 gihdAIdPackage,
                 gihdChIdPackage,
                 gihdDIdPackage,
-                rowCheckSum
+                rowCheckSum,
+                regnum,
+                kodKl
                 , true);
     }
 
@@ -243,7 +260,9 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
             Integer gihdAIdPackage,
             Integer gihdChIdPackage,
             Integer gihdDIdPackage,
-            String rowCheckSum
+            String rowCheckSum,
+            String regnum,
+            String kodKl
             , boolean setRelationship) {
         //primary keys
         setIduladr(iduladr);
@@ -263,6 +282,8 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
         setGihdChIdPackage(gihdChIdPackage);
         setGihdDIdPackage(gihdDIdPackage);
         setRowCheckSum(rowCheckSum);
+        setRegnum(regnum);
+        setKodKl(kodKl);
         //parents
     }
 
@@ -301,7 +322,9 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
                 getGihdAIdPackage(),
                 getGihdChIdPackage(),
                 getGihdDIdPackage(),
-                getRowCheckSum()
+                getRowCheckSum(),
+                getRegnum(),
+                getKodKl()
                 , false
         );
     }
@@ -447,6 +470,24 @@ public class Uladr implements Serializable, EgrulEntity, EgrulWithNaturalId {
 
     public void setRowCheckSum(String rowCheckSum) {
         this.rowCheckSum = rowCheckSum;
+    }
+
+
+    public String getRegnum() {
+        return regnum;
+    }
+
+    public void setRegnum(String regnum) {
+        this.regnum = regnum;
+    }
+
+
+    public String getKodKl() {
+        return kodKl;
+    }
+
+    public void setKodKl(String kodKl) {
+        this.kodKl = kodKl;
     }
 
     @Override

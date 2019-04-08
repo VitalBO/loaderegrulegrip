@@ -12,13 +12,15 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET row_security = off;
 
-DROP DATABASE IF EXISTS gripegrul;
+--DROP DATABASE IF EXISTS gripegrul;
+DROP DATABASE IF EXISTS egrulgrip_test;
 
 --
 -- Name: gripegrul; Type: DATABASE; Schema: -; Owner: EGRUL_DEV2
 --
 
-CREATE DATABASE gripegrul WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Russian_Russia.1251' LC_CTYPE = 'Russian_Russia.1251';
+--CREATE DATABASE gripegrul WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Russian_Russia.1251' LC_CTYPE = 'Russian_Russia.1251';
+CREATE DATABASE egrulgrip_test WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Russian_Russia.1251' LC_CTYPE = 'Russian_Russia.1251';
 
-
-ALTER DATABASE gripegrul OWNER TO "EGRUL_DEV2";
+--ALTER DATABASE gripegrul OWNER TO "EGRUL_DEV2";
+ALTER DATABASE egrulgrip_test OWNER TO "EGRUL_DEV2";

@@ -1,0 +1,62 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="createTable-SPPREDDOK" author="v.bogdanov" dbms="postgresql" failOnError="true" logicalFilePath="sql_scripts/createTable-SPPREDDOK.sql">
+        <comment>Создание таблицы "SPPREDDOK"</comment>
+        <sqlFile encoding="utf8" path="sql_scripts/createTable-SPPREDDOK.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="reset_1" author="v.bogdanov">
+        <tagDatabase tag="reset_1"/>
+    </changeSet>
+    <changeSet id="createSeq-seq_sppreddok" author="v.bogdanov" dbms="postgresql" failOnError="true" logicalFilePath="sql_scripts/createSeq-seq_sppreddok.sql">
+    <comment>Создание последовательности "seq_sppreddok"</comment>
+    <sqlFile path="sql_scripts/createSeq-seq_sppreddok.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="reset_2" author="v.bogdanov">
+        <tagDatabase tag="reset_2"/>
+    </changeSet>
+    <changeSet id="alterTables-create_columns" author="v.bogdanov" dbms="postgresql" failOnError="true" logicalFilePath="sql_scripts/alterTables-create_columns.sql">
+        <comment>"Добавление столбцов"</comment>
+        <sqlFile path="sql_scripts/alterTables-create_columns.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="reset_3" author="v.bogdanov">
+        <tagDatabase tag="reset_3"/>
+    </changeSet>
+    <changeSet id="createTable-regdok" author="v.bogdanov" dbms="postgresql" failOnError="true" logicalFilePath="sql_scripts/createTable-regdok.sql">
+        <comment>Создание таблицы "regdok"</comment>
+        <sqlFile path="sql_scripts/createTable-regdok.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="reset_4" author="v.bogdanov">
+        <tagDatabase tag="reset_4"/>
+    </changeSet>
+    <changeSet id="createTable-IPADR" author="v.bogdanov" dbms="postgresql" failOnError="true" logicalFilePath="sql_scripts/createTable-IPADR.sql">
+        <comment>Создание таблицы "IPADR"</comment>
+        <sqlFile path="sql_scripts/createTable-IPADR.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="reset_5" author="v.bogdanov">
+        <tagDatabase tag="reset_5"/>
+    </changeSet>
+    <changeSet id="createSeq-seq_ipadr" author="v.bogdanov" dbms="postgresql" failOnError="true" logicalFilePath="sql_scripts/createSeq-seq_ipadr.sql">
+        <comment>Создание последовательности "seq_ipadr"</comment>
+        <sqlFile path="sql_scripts/createSeq-seq_ipadr.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="reset_6" author="v.bogdanov">
+        <tagDatabase tag="reset_6"/>
+    </changeSet>
+    <changeSet id="createTable-IPEMAIL" author="v.bogdanov" dbms="postgresql" failOnError="true" logicalFilePath="sql_scripts/createTable-IPEMAIL.sql">
+        <comment>Создание таблицы "IPEMAIL"</comment>
+        <sqlFile path="sql_scripts/createTable-IPEMAIL.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="reset_7" author="v.bogdanov">
+        <tagDatabase tag="reset_7"/>
+    </changeSet>
+    <changeSet id="createSeq-seq_ipemail" author="v.bogdanov" dbms="postgresql" failOnError="true" logicalFilePath="sql_scripts/createSeq-seq_ipemail.sql">
+        <comment>Создание последовательности "seq_ipemail"</comment>
+        <sqlFile path="sql_scripts/createSeq-seq_ipemail.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="reset_8" author="v.bogdanov">
+        <tagDatabase tag="reset_8"/>
+    </changeSet>
+</databaseChangeLog>

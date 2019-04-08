@@ -48,6 +48,11 @@ import java.util.List;
 @Table(name = "\"UL\"")
 @NamedQueries({
         @NamedQuery(name = "Ul.findAll", query = "SELECT ul FROM Ul ul")
+
+        , @NamedQuery(name = "Ul.findByDtform", query = "SELECT ul FROM Ul ul WHERE ul.dtform = :dtform")
+
+        , @NamedQuery(name = "Ul.findByDtogrn", query = "SELECT ul FROM Ul ul WHERE ul.dtogrn = :dtogrn")
+
         , @NamedQuery(name = "Ul.findByOgrn", query = "SELECT ul FROM Ul ul WHERE ul.ogrn = :ogrn")
         , @NamedQuery(name = "Ul.findByOgrnContaining", query = "SELECT ul FROM Ul ul WHERE ul.ogrn like :ogrn")
 
@@ -102,6 +107,8 @@ import java.util.List;
 
 public class Ul implements Serializable {
     public static final String FIND_ALL = "Ul.findAll";
+    public static final String FIND_BY_DTFORM = "Ul.findByDtform";
+    public static final String FIND_BY_DTOGRN = "Ul.findByDtogrn";
     public static final String FIND_BY_OGRN = "Ul.findByOgrn";
     public static final String FIND_BY_OGRN_CONTAINING = "Ul.findByOgrnContaining";
     public static final String FIND_BY_INN = "Ul.findByInn";
@@ -134,6 +141,12 @@ public class Ul implements Serializable {
     @Id
     @Column(name = "IDUL")
     private String idul;
+
+    @Column(name = "DTFORM", nullable = true, unique = true)
+    private Date dtform;
+
+    @Column(name = "DTOGRN", nullable = true, unique = true)
+    private Date dtogrn;
 
     @Column(name = "OGRN", length = 20, nullable = true, unique = true)
     private String ogrn;
@@ -290,6 +303,8 @@ public class Ul implements Serializable {
      */
     public Ul(
             String idul,
+            Date dtform,
+            Date dtogrn,
             String ogrn,
             String inn,
             String kpp,
@@ -314,6 +329,8 @@ public class Ul implements Serializable {
             String rowCheckSum) {
         this(
                 idul,
+                dtform,
+                dtogrn,
                 ogrn,
                 inn,
                 kpp,
@@ -341,6 +358,8 @@ public class Ul implements Serializable {
 
     public Ul(
             String idul,
+            Date dtform,
+            Date dtogrn,
             String ogrn,
             String inn,
             String kpp,
@@ -367,6 +386,8 @@ public class Ul implements Serializable {
         //primary keys
         setIdul(idul);
         //attributes
+        setDtform(dtform);
+        setDtogrn(dtogrn);
         setOgrn(ogrn);
         setInn(inn);
         setKpp(kpp);
@@ -547,6 +568,8 @@ public class Ul implements Serializable {
     public Ul flat() {
         return new Ul(
                 getIdul(),
+                getDtform(),
+                getDtogrn(),
                 getOgrn(),
                 getInn(),
                 getKpp(),
@@ -581,6 +604,13 @@ public class Ul implements Serializable {
         this.idul = idul;
     }
 
+    public Date getDtform() { return dtform; }
+
+    public void setDtform(Date dtform) { this.dtform = dtform; }
+
+    public Date getDtogrn() { return dtogrn; }
+
+    public void setDtogrn(Date dtogrn) { this.dtogrn = dtogrn; }
 
     public String getOgrn() {
         return ogrn;

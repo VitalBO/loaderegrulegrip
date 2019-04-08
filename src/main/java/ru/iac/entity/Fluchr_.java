@@ -29,6 +29,7 @@
 */
 package ru.iac.entity;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
@@ -51,6 +52,10 @@ public class Fluchr_ {
     public static volatile SingularAttribute<Fluchr, Integer> gihdChIdPackage;
     public static volatile SingularAttribute<Fluchr, Integer> gihdDIdPackage;
     public static volatile SingularAttribute<Fluchr, String> rowCheckSum;
+	public static volatile SingularAttribute<Fluchr, String> regnum;
+	public static volatile SingularAttribute<Fluchr, String> regnumd;
+	public static volatile SingularAttribute<Fluchr, Date> dtstartd;
+	public static volatile SingularAttribute<Fluchr, BigDecimal> percent;
 
 
 

@@ -62,6 +62,12 @@ import java.util.Date;
         , @NamedQuery(name = "Cn.findByGihdDIdPackage", query = "SELECT cn FROM Cn cn WHERE cn.gihdDIdPackage = :gihdDIdPackage")
         , @NamedQuery(name = "Cn.findByRowCheckSum", query = "SELECT cn FROM Cn cn WHERE cn.rowCheckSum = :rowCheckSum")
         , @NamedQuery(name = "Cn.findByRowCheckSumContaining", query = "SELECT cn FROM Cn cn WHERE cn.rowCheckSum like :rowCheckSum")
+
+        , @NamedQuery(name = "Cn.findByTypeCn", query = "SELECT cn FROM Cn cn WHERE cn.typeCn = :typeCn")
+        , @NamedQuery(name = "Cn.findByTypeCnContaining", query = "SELECT cn FROM Cn cn WHERE cn.typeCn like :typeCn")
+
+        , @NamedQuery(name = "Cn.findByNameCn", query = "SELECT cn FROM Cn cn WHERE cn.nameCn = :nameCn")
+        , @NamedQuery(name = "Cn.findByNameCnContaining", query = "SELECT cn FROM Cn cn WHERE cn.nameCn like :nameCn")
 })
 public class Cn implements Serializable, EgrulEntity {
     public static final String FIND_ALL = "Cn.findAll";
@@ -78,6 +84,10 @@ public class Cn implements Serializable, EgrulEntity {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Cn.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Cn.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING = "Cn.findByRowCheckSumContaining";
+    public static final String FIND_BY_TYPECN = "Cn.findByTypeCn";
+    public static final String FIND_BY_TYPECN_CONTAINING = "Cn.findByTypeCnContaining";
+    public static final String FIND_BY_NAMECN = "Cn.findNameCn";
+    public static final String FIND_BY_NAMECN_CONTAINING = "Cn.findByNameCnContaining";
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "IDN")
@@ -103,6 +113,12 @@ public class Cn implements Serializable, EgrulEntity {
     @Column(name = "ROW_CHECK_SUM", nullable = true, unique = false)
     private String rowCheckSum;
 
+    @Column(name = "TYPECN", nullable = true, unique = false)
+    private String typeCn;
+
+    @Column(name = "NAMECN", nullable = true, unique = false)
+    private String nameCn;
+
     /**
      * Default constructor
      */
@@ -123,7 +139,9 @@ public class Cn implements Serializable, EgrulEntity {
             Integer gihdAIdPackage,
             Integer gihdChIdPackage,
             Integer gihdDIdPackage,
-            String rowCheckSum) {
+            String rowCheckSum,
+            String typeCn,
+            String nameCn) {
         this(
                 idn,
                 name,
@@ -135,7 +153,9 @@ public class Cn implements Serializable, EgrulEntity {
                 gihdAIdPackage,
                 gihdChIdPackage,
                 gihdDIdPackage,
-                rowCheckSum
+                rowCheckSum,
+                typeCn,
+                nameCn
                 , true);
     }
 
@@ -150,7 +170,9 @@ public class Cn implements Serializable, EgrulEntity {
             Integer gihdAIdPackage,
             Integer gihdChIdPackage,
             Integer gihdDIdPackage,
-            String rowCheckSum
+            String rowCheckSum,
+            String typeCn,
+            String nameCn
             , boolean setRelationship) {
         setIdn(idn);
         setName(name);
@@ -163,6 +185,8 @@ public class Cn implements Serializable, EgrulEntity {
         setGihdChIdPackage(gihdChIdPackage);
         setGihdDIdPackage(gihdDIdPackage);
         setRowCheckSum(rowCheckSum);
+        setTypeCn(typeCn);
+        setNameCn(nameCn);
     }
 
     public Cn flat() {
@@ -177,7 +201,9 @@ public class Cn implements Serializable, EgrulEntity {
                 getGihdAIdPackage(),
                 getGihdChIdPackage(),
                 getGihdDIdPackage(),
-                getRowCheckSum()
+                getRowCheckSum(),
+                getTypeCn(),
+                getNameCn()
                 , false
         );
     }
@@ -268,6 +294,22 @@ public class Cn implements Serializable, EgrulEntity {
 
     public void setRowCheckSum(String rowCheckSum) {
         this.rowCheckSum = rowCheckSum;
+    }
+
+    public String getTypeCn() {
+        return typeCn;
+    }
+
+    public void setTypeCn(String typeCn) {
+        this.typeCn = typeCn;
+    }
+
+    public String getNameCn() {
+        return nameCn;
+    }
+
+    public void setNameCn(String nameCn) {
+        this.nameCn = nameCn;
     }
 
     @Override

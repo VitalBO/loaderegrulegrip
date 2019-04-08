@@ -51,6 +51,8 @@ public class Fl_ {
     public static volatile SingularAttribute<Fl, Integer> gihdChIdPackage;
     public static volatile SingularAttribute<Fl, Integer> gihdDIdPackage;
     public static volatile SingularAttribute<Fl, String> rowCheckSum;
+	public static volatile SingularAttribute<Fl, String> regnumfl;
+	public static volatile SingularAttribute<Fl, String> dtstartfl;
 
 
 

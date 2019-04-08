@@ -84,6 +84,9 @@ import java.util.Set;
         , @NamedQuery(name = "Licenz.findByRowCheckSum", query = "SELECT licenz FROM Licenz licenz WHERE licenz.rowCheckSum = :rowCheckSum")
         , @NamedQuery(name = "Licenz.findByRowCheckSumContaining", query = "SELECT licenz FROM Licenz licenz WHERE licenz.rowCheckSum like :rowCheckSum")
 
+        , @NamedQuery(name = "Licenz.findByOrgstopname", query = "SELECT licenz FROM Licenz licenz WHERE licenz.orgstopname = :orgstopname")
+        , @NamedQuery(name = "Licenz.findByOrgstopnameContaining", query = "SELECT licenz FROM Licenz licenz WHERE licenz.orgstopname like :orgstopname")
+
 })
 
 public class Licenz implements Serializable {
@@ -108,6 +111,8 @@ public class Licenz implements Serializable {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Licenz.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Licenz.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING = "Licenz.findByRowCheckSumContaining";
+    public static final String FIND_BY_ORGSTOPNAME = "Licenz.findByOrgstopname";
+    public static final String FIND_BY_ORGSTOPNAME_CONTAINING = "Licenz.findByOrgstopnameContaining";
     private static final long serialVersionUID = 1L;
     @SequenceGenerator(name = "LICENZSEQ", sequenceName = "SEQ_LICENZ", allocationSize = 1)
     @Id
@@ -199,6 +204,9 @@ public class Licenz implements Serializable {
     private String rowCheckSum;
 
 
+    @Column(name = "ORGSTOPNAME", nullable = true, unique = false)
+    private String orgstopname;
+
     /**
      * Default constructor
      */
@@ -227,7 +235,8 @@ public class Licenz implements Serializable {
             Integer gihdAIdPackage,
             Integer gihdChIdPackage,
             Integer gihdDIdPackage,
-            String rowCheckSum) {
+            String rowCheckSum,
+            String orgstopname) {
         this(
                 idlic,
                 idul,
@@ -247,7 +256,8 @@ public class Licenz implements Serializable {
                 gihdAIdPackage,
                 gihdChIdPackage,
                 gihdDIdPackage,
-                rowCheckSum
+                rowCheckSum,
+                orgstopname
                 , true);
     }
 
@@ -270,7 +280,8 @@ public class Licenz implements Serializable {
             Integer gihdAIdPackage,
             Integer gihdChIdPackage,
             Integer gihdDIdPackage,
-            String rowCheckSum
+            String rowCheckSum,
+            String orgstopname
             , boolean setRelationship) {
         //primary keys
         setIdlic(idlic);
@@ -293,6 +304,7 @@ public class Licenz implements Serializable {
         setGihdChIdPackage(gihdChIdPackage);
         setGihdDIdPackage(gihdDIdPackage);
         setRowCheckSum(rowCheckSum);
+        setOrgstopname(orgstopname);
         //parents
     }
 
@@ -316,7 +328,8 @@ public class Licenz implements Serializable {
                 getGihdAIdPackage(),
                 getGihdChIdPackage(),
                 getGihdDIdPackage(),
-                getRowCheckSum()
+                getRowCheckSum(),
+                getOrgstopname()
                 , false
         );
     }
@@ -491,5 +504,13 @@ public class Licenz implements Serializable {
         this.rowCheckSum = rowCheckSum;
     }
 
+
+    public String getOrgstopname() {
+        return orgstopname;
+    }
+
+    public void setOrgstopname(String orgstopname) {
+        this.orgstopname = orgstopname;
+    }
 
 }

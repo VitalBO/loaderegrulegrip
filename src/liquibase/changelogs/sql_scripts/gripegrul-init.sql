@@ -185,7 +185,7 @@ COMMENT ON TABLE public."CN" IS 'Справочник "Населенные пу
 -- Name: COLUMN "CN".idn; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."CN".idn IS 'Идентификатор населенного пунк';
+COMMENT ON COLUMN public."CN".idn IS 'Идентификатор населенного пункта';
 
 
 --
@@ -772,7 +772,7 @@ COMMENT ON COLUMN public."FLUCHR".gihd__id_user IS 'Идентификатор �
 -- Name: COLUMN "FLUCHR".summa; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."FLUCHR".summa IS 'Размер вклада в уставной капит';
+COMMENT ON COLUMN public."FLUCHR".summa IS 'Размер вклада в уставный капитал';
 
 
 --
@@ -2439,14 +2439,14 @@ COMMENT ON COLUMN public."IUL".inadr IS 'Адрес';
 -- Name: COLUMN "IUL".namep; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."IUL".namep IS 'Полное наименование иностранно';
+COMMENT ON COLUMN public."IUL".namep IS 'Полное наименование иностранного ЮЛ';
 
 
 --
 -- Name: COLUMN "IUL".summa; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."IUL".summa IS 'Размер вклада в уставной капит';
+COMMENT ON COLUMN public."IUL".summa IS 'Размер вклада в уставный капитал';
 
 
 --
@@ -2517,7 +2517,7 @@ COMMENT ON COLUMN public."LICENZ".dtend IS 'Дата окончания дейс
 -- Name: COLUMN "LICENZ".dtrestart; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."LICENZ".dtrestart IS 'Дата возобновления действия ли';
+COMMENT ON COLUMN public."LICENZ".dtrestart IS 'Дата возобновления действия лицензии';
 
 
 --
@@ -2531,7 +2531,7 @@ COMMENT ON COLUMN public."LICENZ".dtstart IS 'Дата начала действ
 -- Name: COLUMN "LICENZ".dtstop; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."LICENZ".dtstop IS 'Дата приостановки действия лиц';
+COMMENT ON COLUMN public."LICENZ".dtstop IS 'Дата приостановки действия лицензии';
 
 
 --
@@ -2601,7 +2601,7 @@ COMMENT ON COLUMN public."LICENZ".idip IS 'IDIP';
 -- Name: COLUMN "LICENZ".idlicorg; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."LICENZ".idlicorg IS 'Идентификатор лицензирующего о';
+COMMENT ON COLUMN public."LICENZ".idlicorg IS 'Идентификатор лицензирующего органа';
 
 
 --
@@ -2611,7 +2611,7 @@ COMMENT ON COLUMN public."LICENZ".idlicorg IS 'Идентификатор лиц
 COMMENT ON COLUMN public."LICENZ".idsostlic IS 'Статус лицензии';
 
 
---
+--COMMENT ON TABLE public."REESTRAO"
 -- Name: COLUMN "LICENZ".idul; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
@@ -3223,7 +3223,7 @@ ALTER TABLE public."REESTRAO" OWNER TO "EGRUL_DEV2";
 -- Name: TABLE "REESTRAO"; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON TABLE public."REESTRAO" IS 'Держатели реестра акционеров А';
+COMMENT ON TABLE public."REESTRAO" IS 'Держатели реестра акционеров АО';
 
 
 --
@@ -3286,7 +3286,7 @@ COMMENT ON COLUMN public."REESTRAO".gihd__id_user IS 'Идентификатор
 -- Name: COLUMN "REESTRAO".namep; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."REESTRAO".namep IS 'Полное наименование ЮЛ (держат';
+COMMENT ON COLUMN public."REESTRAO".namep IS 'Полное наименование ЮЛ (держателя реестра АО)';
 
 
 --
@@ -3599,7 +3599,7 @@ COMMENT ON COLUMN public."RUL".regnumst IS 'Регистрационный но�
 -- Name: COLUMN "RUL".summa; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."RUL".summa IS 'Размер вклада в уставной капит';
+COMMENT ON COLUMN public."RUL".summa IS 'Размер вклада в уставный капитал';
 
 
 --
@@ -3613,7 +3613,7 @@ COMMENT ON COLUMN public."RUL".idgorod IS 'Город (идентификато�
 -- Name: COLUMN "RUL".idnasp; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."RUL".idnasp IS 'Населенный пункт (идентификато';
+COMMENT ON COLUMN public."RUL".idnasp IS 'Населенный пункт (идентификатор)';
 
 
 --
@@ -3641,7 +3641,7 @@ COMMENT ON COLUMN public."RUL".idstreet IS 'Улица (идентификато
 -- Name: COLUMN "RUL".idregorg; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."RUL".idregorg IS 'Идентификатор регистрирующего ';
+COMMENT ON COLUMN public."RUL".idregorg IS 'Идентификатор регистрирующего органа';
 
 
 --
@@ -4212,7 +4212,7 @@ COMMENT ON COLUMN public."SPLICORG".gihd__id_user IS 'Идентификатор
 -- Name: COLUMN "SPLICORG".name; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."SPLICORG".name IS 'Наименование лицензирующего ор';
+COMMENT ON COLUMN public."SPLICORG".name IS 'Наименование лицензирующего органа';
 
 
 --
@@ -4303,7 +4303,7 @@ COMMENT ON COLUMN public."SPMNS".gihd__id_user IS 'Идентификатор п
 -- Name: COLUMN "SPMNS".kod; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."SPMNS".kod IS 'Код органа (по справочнику СОУ';
+COMMENT ON COLUMN public."SPMNS".kod IS 'Код органа (по справочнику СОУН)';
 
 
 --
@@ -4402,7 +4402,7 @@ COMMENT ON COLUMN public."SPOPF".gihd__id_user IS 'Идентификатор п
 -- Name: COLUMN "SPOPF".kod_opf; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."SPOPF".kod_opf IS 'Код по справочнику ОКОПФ или К';
+COMMENT ON COLUMN public."SPOPF".kod_opf IS 'Код по справочнику ОКОПФ или КОПФ';
 
 
 --
@@ -4702,7 +4702,7 @@ COMMENT ON COLUMN public."SPREGORG".id_raion IS 'Код района СПб';
 -- Name: COLUMN "SPREGORG".name; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."SPREGORG".name IS 'Наименование регистрирующего о';
+COMMENT ON COLUMN public."SPREGORG".name IS 'Наименование регистрирующего органа';
 
 
 --
@@ -5575,7 +5575,7 @@ COMMENT ON TABLE public."UL" IS 'Юридические лица';
 -- Name: COLUMN "UL".idul; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."UL".idul IS 'Идентификатор ЮЛ';
+COMMENT ON COLUMN public."UL".idul IS 'Идентификатор ЮЛ в базе данных';
 
 
 --
@@ -5673,35 +5673,35 @@ COMMENT ON COLUMN public."UL".ogrn IS 'ОГРН';
 -- Name: COLUMN "UL".regnumend; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."UL".regnumend IS 'Регистрационный номер записи о';
+COMMENT ON COLUMN public."UL".regnumend IS 'Регистрационный номер записи';
 
 
 --
 -- Name: COLUMN "UL".regnumstart; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."UL".regnumstart IS 'ОГРН или Рег. номер для ЮЛ, со';
+COMMENT ON COLUMN public."UL".regnumstart IS 'ОГРН или Рег. номер для ЮЛ, созданных до 01.07.2002';
 
 
 --
 -- Name: COLUMN "UL".idregorg; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."UL".idregorg IS 'Регистрирующий орган (идентифи';
+COMMENT ON COLUMN public."UL".idregorg IS 'Регистрирующий орган (идентификатор)';
 
 
 --
 -- Name: COLUMN "UL".idregorgend; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."UL".idregorgend IS 'Рег. орган, зарегистр. прекращ';
+COMMENT ON COLUMN public."UL".idregorgend IS 'Рег. орган, зарегистр. прекращение деятельности ЮЛ';
 
 
 --
 -- Name: COLUMN "UL".idregorgstart; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."UL".idregorgstart IS 'Рег. орган, зарегистрировавший';
+COMMENT ON COLUMN public."UL".idregorgstart IS 'Рег. орган, зарегистрировавший создание ЮЛ';
 
 
 --
@@ -5715,14 +5715,14 @@ COMMENT ON COLUMN public."UL".idstatus IS 'Статус ЮЛ (идентифик
 -- Name: COLUMN "UL".idvidregend; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."UL".idvidregend IS 'Способ прекращения деятельност';
+COMMENT ON COLUMN public."UL".idvidregend IS 'Способ прекращения деятельности';
 
 
 --
 -- Name: COLUMN "UL".idvidregstart; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."UL".idvidregstart IS 'Способ образования БЛ (идентиф';
+COMMENT ON COLUMN public."UL".idvidregstart IS 'Способ образования ЮЛ (идентификатор)';
 
 
 --
@@ -5885,7 +5885,7 @@ COMMENT ON COLUMN public."ULADR".kodgorod IS 'Код города (телефо�
 -- Name: COLUMN "ULADR".nameisporg; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."ULADR".nameisporg IS 'Наименование органа, адрес кот';
+COMMENT ON COLUMN public."ULADR".nameisporg IS 'Наименование органа, адрес которого является адресом (местом нахождения) ЮЛ';
 
 
 --
@@ -5906,7 +5906,7 @@ COMMENT ON COLUMN public."ULADR".idgorod IS 'Город (идентификат�
 -- Name: COLUMN "ULADR".idnasp; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."ULADR".idnasp IS 'Населенный пункт (идентификато';
+COMMENT ON COLUMN public."ULADR".idnasp IS 'Населенный пункт (идентификатор)';
 
 
 --
@@ -6041,7 +6041,7 @@ COMMENT ON COLUMN public."ULCAPITAL".gihd__id_user IS 'Идентификато�
 -- Name: COLUMN "ULCAPITAL".summa; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."ULCAPITAL".summa IS 'Размер уставного капитала (руб';
+COMMENT ON COLUMN public."ULCAPITAL".summa IS 'Размер уставного капитала (в рублях)';
 
 
 --
@@ -6055,7 +6055,7 @@ COMMENT ON COLUMN public."ULCAPITAL".idul IS 'Идентификатор ЮЛ';
 -- Name: COLUMN "ULCAPITAL".idvidcap; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."ULCAPITAL".idvidcap IS 'Вид уставного капитала (иденти';
+COMMENT ON COLUMN public."ULCAPITAL".idvidcap IS 'Вид уставного капитала (идентификатор)';
 
 
 --
@@ -6406,7 +6406,7 @@ COMMENT ON COLUMN public."ULMNS".gihd__id_user IS 'Идентификатор п
 -- Name: COLUMN "ULMNS".idmns; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."ULMNS".idmns IS 'Налоговый орган (идентификатор';
+COMMENT ON COLUMN public."ULMNS".idmns IS 'Налоговый орган (идентификатор)';
 
 
 --
@@ -6523,7 +6523,7 @@ COMMENT ON COLUMN public."ULNAME".namei IS 'Наименование ЮЛ на �
 -- Name: COLUMN "ULNAME".namep; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."ULNAME".namep IS 'Полное наименование юридическо';
+COMMENT ON COLUMN public."ULNAME".namep IS 'Полное наименование юридического лица';
 
 
 --
@@ -6537,7 +6537,7 @@ COMMENT ON COLUMN public."ULNAME".names IS 'Сокращенное наимен�
 -- Name: COLUMN "ULNAME".idlangi; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."ULNAME".idlangi IS 'Иностранный язык (идентификато';
+COMMENT ON COLUMN public."ULNAME".idlangi IS 'Иностранный язык (идентификатор)';
 
 
 --
@@ -6803,7 +6803,7 @@ COMMENT ON COLUMN public."ULOB".idgorod IS 'Город (идентификато
 -- Name: COLUMN "ULOB".idnasp; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."ULOB".idnasp IS 'Населенный пункт (идентификато';
+COMMENT ON COLUMN public."ULOB".idnasp IS 'Населенный пункт (идентификатор)';
 
 
 --
@@ -6923,14 +6923,14 @@ COMMENT ON COLUMN public."ULOKVED".gihd__id_user IS 'Идентификатор 
 -- Name: COLUMN "ULOKVED".main; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."ULOKVED".main IS 'Признак "Основной вид деятельн';
+COMMENT ON COLUMN public."ULOKVED".main IS 'Признак "Основной вид деятельности';
 
 
 --
 -- Name: COLUMN "ULOKVED".idokved; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."ULOKVED".idokved IS 'Идентификатор вида деятельност';
+COMMENT ON COLUMN public."ULOKVED".idokved IS 'Идентификатор вида деятельности';
 
 
 --
@@ -7230,7 +7230,7 @@ COMMENT ON COLUMN public."ULPREDSH".kpp IS 'КПП';
 -- Name: COLUMN "ULPREDSH".namep; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."ULPREDSH".namep IS 'Полное наименование предшестве';
+COMMENT ON COLUMN public."ULPREDSH".namep IS 'Полное наименование предшественника ЮЛ';
 
 
 --
@@ -7244,7 +7244,7 @@ COMMENT ON COLUMN public."ULPREDSH".ogrn IS 'ОГРН';
 -- Name: COLUMN "ULPREDSH".regnumst; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."ULPREDSH".regnumst IS 'Регистрационный номер предшест';
+COMMENT ON COLUMN public."ULPREDSH".regnumst IS 'Регистрационный номер предшественника ЮЛ';
 
 
 --
@@ -7258,7 +7258,7 @@ COMMENT ON COLUMN public."ULPREDSH".idgorod IS 'Город (идентифика
 -- Name: COLUMN "ULPREDSH".idnasp; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."ULPREDSH".idnasp IS 'Населенный пункт (идентификато';
+COMMENT ON COLUMN public."ULPREDSH".idnasp IS 'Населенный пункт (идентификатор)';
 
 
 --
@@ -7286,7 +7286,7 @@ COMMENT ON COLUMN public."ULPREDSH".idstreet IS 'Улица (идентифик�
 -- Name: COLUMN "ULPREDSH".idregorg; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."ULPREDSH".idregorg IS 'Регистрирующий орган (идентифи';
+COMMENT ON COLUMN public."ULPREDSH".idregorg IS 'Регистрирующий орган (идентификатор)';
 
 
 --
@@ -7464,7 +7464,7 @@ COMMENT ON COLUMN public."ULPREEM".kpp IS 'КПП';
 -- Name: COLUMN "ULPREEM".namep; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."ULPREEM".namep IS 'Полное наименование правопреем';
+COMMENT ON COLUMN public."ULPREEM".namep IS 'Полное наименование правопреемника';
 
 
 --
@@ -7492,7 +7492,7 @@ COMMENT ON COLUMN public."ULPREEM".idgorod IS 'Город (идентифика�
 -- Name: COLUMN "ULPREEM".idnasp; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."ULPREEM".idnasp IS 'Населенный пункт (идентификато';
+COMMENT ON COLUMN public."ULPREEM".idnasp IS 'Населенный пункт (идентификатор)';
 
 
 --
@@ -7520,7 +7520,7 @@ COMMENT ON COLUMN public."ULPREEM".idstreet IS 'Улица (идентифика
 -- Name: COLUMN "ULPREEM".idregorg; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."ULPREEM".idregorg IS 'Регистрирующий орган (идентифи';
+COMMENT ON COLUMN public."ULPREEM".idregorg IS 'Регистрирующий орган (идентификатор)';
 
 
 --
@@ -7713,7 +7713,7 @@ COMMENT ON COLUMN public."ULUPR".kpp IS 'КПП';
 -- Name: COLUMN "ULUPR".namep; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."ULUPR".namep IS 'Полное наименование управляюще';
+COMMENT ON COLUMN public."ULUPR".namep IS 'Полное наименование управляющей компании';
 
 
 --
@@ -7741,7 +7741,7 @@ COMMENT ON COLUMN public."ULUPR".idgorod IS 'Город (идентификат�
 -- Name: COLUMN "ULUPR".idnasp; Type: COMMENT; Schema: public; Owner: EGRUL_DEV2
 --
 
-COMMENT ON COLUMN public."ULUPR".idnasp IS 'Населенный пункт (идентификато';
+COMMENT ON COLUMN public."ULUPR".idnasp IS 'Населенный пункт (идентификатор)';
 
 
 --

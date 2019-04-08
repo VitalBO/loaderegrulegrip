@@ -66,6 +66,9 @@ import java.util.Date;
         , @NamedQuery(name = "Spregorg.findByRowCheckSum", query = "SELECT spregorg FROM Spregorg spregorg WHERE spregorg.rowCheckSum = :rowCheckSum")
         , @NamedQuery(name = "Spregorg.findByRowCheckSumContaining", query = "SELECT spregorg FROM Spregorg spregorg WHERE spregorg.rowCheckSum like :rowCheckSum")
 
+        , @NamedQuery(name = "Spregorg.findByAddress", query = "SELECT spregorg FROM Spregorg spregorg WHERE spregorg.address = :address")
+        , @NamedQuery(name = "Spregorg.findByAddressContaining", query = "SELECT spregorg FROM Spregorg spregorg WHERE spregorg.address like :address")
+
 })
 
 public class Spregorg implements Serializable, EgrulEntity {
@@ -82,6 +85,8 @@ public class Spregorg implements Serializable, EgrulEntity {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Spregorg.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Spregorg.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING = "Spregorg.findByRowCheckSumContaining";
+    public static final String FIND_BY_ADDRESS = "Spregorg.findByAddress";
+    public static final String FIND_BY_ADDRESS_CONTAINING = "Spregorg.findByAddressContaining";
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "IDSPRO")
@@ -121,12 +126,14 @@ public class Spregorg implements Serializable, EgrulEntity {
 
 
     @Column(name = "GIHD__D_ID_PACKAGE", nullable = true, unique = false)
-
-private Integer gihdDIdPackage;
+    private Integer gihdDIdPackage;
 
 
     @Column(name = "ROW_CHECK_SUM", nullable = true, unique = false)
     private String rowCheckSum;
+
+    @Column(name = "ADDRESS", nullable = true, unique = false)
+    private String address;
 
     /**
      * Default constructor
@@ -149,7 +156,8 @@ private Integer gihdDIdPackage;
             Integer gihdAIdPackage,
             Integer gihdChIdPackage,
             Integer gihdDIdPackage,
-            String rowCheckSum) {
+            String rowCheckSum,
+            String address) {
         this(
                 idspro,
                 name,
@@ -161,7 +169,8 @@ private Integer gihdDIdPackage;
                 gihdAIdPackage,
                 gihdChIdPackage,
                 gihdDIdPackage,
-                rowCheckSum
+                rowCheckSum,
+                address
                 , true);
     }
 
@@ -177,7 +186,8 @@ private Integer gihdDIdPackage;
             Integer gihdAIdPackage,
             Integer gihdChIdPackage,
             Integer gihdDIdPackage,
-            String rowCheckSum
+            String rowCheckSum,
+            String address
             , boolean setRelationship) {
         //primary keys
         setIdspro(idspro);
@@ -192,6 +202,7 @@ private Integer gihdDIdPackage;
         setGihdChIdPackage(gihdChIdPackage);
         setGihdDIdPackage(gihdDIdPackage);
         setRowCheckSum(rowCheckSum);
+        setAddress(address);
         //parents
     }
 
@@ -223,7 +234,8 @@ private Integer gihdDIdPackage;
                 getGihdAIdPackage(),
                 getGihdChIdPackage(),
                 getGihdDIdPackage(),
-                getRowCheckSum()
+                getRowCheckSum(),
+                getAddress()
                 , false
         );
     }
@@ -324,6 +336,15 @@ private Integer gihdDIdPackage;
 
     public void setRowCheckSum(String rowCheckSum) {
         this.rowCheckSum = rowCheckSum;
+    }
+
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override

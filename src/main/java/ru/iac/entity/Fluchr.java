@@ -32,6 +32,7 @@ package ru.iac.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 
@@ -71,6 +72,14 @@ import java.util.Date;
 	,@NamedQuery(name="Fluchr.findByRowCheckSum", query="SELECT fluchr FROM Fluchr fluchr WHERE fluchr.rowCheckSum = :rowCheckSum")
 	,@NamedQuery(name="Fluchr.findByRowCheckSumContaining", query="SELECT fluchr FROM Fluchr fluchr WHERE fluchr.rowCheckSum like :rowCheckSum")
 
+    ,@NamedQuery(name="Fluchr.findByRegnum", query="SELECT fluchr FROM Fluchr fluchr WHERE fluchr.regnum = :regnum")
+
+    ,@NamedQuery(name="Fluchr.findByRegnumd", query="SELECT fluchr FROM Fluchr fluchr WHERE fluchr.regnumd = :regnumd")
+
+    ,@NamedQuery(name="Fluchr.findByDtstartd", query="SELECT fluchr FROM Fluchr fluchr WHERE fluchr.dtstartd = :dtstartd")
+
+    ,@NamedQuery(name="Fluchr.findByPercent", query="SELECT fluchr FROM Fluchr fluchr WHERE fluchr.percent = :percent")
+
 })
 
 public class Fluchr implements Serializable, EgrulEntity {
@@ -88,6 +97,10 @@ public class Fluchr implements Serializable, EgrulEntity {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Fluchr.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Fluchr.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING ="Fluchr.findByRowCheckSumContaining";
+    public static final String FIND_BY_REGNUM = "Fluchr.findByRegnum";
+    public static final String FIND_BY_REGNUMD = "Fluchr.findByRegnumd";
+    public static final String FIND_BY_DTSTARTD = "Fluchr.findByDtstartd";
+    public static final String FIND_BY_PERCENT = "Fluchr.findByPercent";
     private static final long serialVersionUID = 1L;
     @SequenceGenerator(name = "FLUCHRSEQ", sequenceName ="SEQ_FLUCHR", allocationSize=1 )
     @Id @Column(name="IDFLUCHR" ) 
@@ -145,6 +158,22 @@ public class Fluchr implements Serializable, EgrulEntity {
     private String rowCheckSum;
 
 
+    @Column(name="REGNUM"   , nullable=true , unique=false)
+    private String regnum;
+
+
+    @Column(name="REGNUMD"   , nullable=true , unique=false)
+    private String regnumd;
+
+
+    @Column(name="DTSTARTD"   , nullable=true , unique=false)
+    private Date dtstartd;
+
+
+    @Column(name="PERCENT"   , nullable=true , unique=false)
+    private BigDecimal percent;
+
+
     /**
     * Default constructor
     */
@@ -167,7 +196,11 @@ public class Fluchr implements Serializable, EgrulEntity {
        Integer gihdAIdPackage,
        Integer gihdChIdPackage,
        Integer gihdDIdPackage,
-       String rowCheckSum) {
+       String rowCheckSum,
+       String regnum,
+       String regnumd,
+       Date dtstartd,
+       BigDecimal percent) {
 	 this(
        idfluchr,
        idul,
@@ -181,7 +214,11 @@ public class Fluchr implements Serializable, EgrulEntity {
        gihdAIdPackage,
        gihdChIdPackage,
        gihdDIdPackage,
-       rowCheckSum
+       rowCheckSum,
+	   regnum,
+	   regnumd,
+	   dtstartd,
+	   percent
 	 ,true);
 	}
     
@@ -198,7 +235,11 @@ public class Fluchr implements Serializable, EgrulEntity {
        Integer gihdAIdPackage,
        Integer gihdChIdPackage,
        Integer gihdDIdPackage,
-       String rowCheckSum	
+       String rowCheckSum,
+       String regnum,
+       String regnumd,
+       Date dtstartd,
+       BigDecimal percent
     , boolean setRelationship) {
        //primary keys
        setIdfluchr (idfluchr);
@@ -215,6 +256,10 @@ public class Fluchr implements Serializable, EgrulEntity {
        setGihdChIdPackage (gihdChIdPackage);
        setGihdDIdPackage (gihdDIdPackage);
        setRowCheckSum (rowCheckSum);
+       setRegnum(regnum);
+       setRegnumd(regnumd);
+       setDtstartd(dtstartd);
+       setPercent(percent);
        //parents
     }
 
@@ -232,7 +277,11 @@ public class Fluchr implements Serializable, EgrulEntity {
           getGihdAIdPackage(),
           getGihdChIdPackage(),
           getGihdDIdPackage(),
-          getRowCheckSum()
+          getRowCheckSum(),
+          getRegnum(),
+          getRegnumd(),
+          getDtstartd(),
+          getPercent()
        , false
 	   );
 	}
@@ -351,6 +400,42 @@ public class Fluchr implements Serializable, EgrulEntity {
 	
     public void setRowCheckSum (String rowCheckSum) {
         this.rowCheckSum =  rowCheckSum;
+    }
+
+
+    public String getRegnum() {
+        return regnum;
+    }
+
+    public void setRegnum (String regnum) {
+        this.regnum =  regnum;
+    }
+
+
+    public String getRegnumd() {
+        return regnumd;
+    }
+
+    public void setRegnumd (String regnumd) {
+        this.regnumd =  regnumd;
+    }
+
+
+    public Date getDtstartd() {
+        return dtstartd;
+    }
+
+    public void setDtstartd (Date dtstartd) {
+        this.dtstartd =  dtstartd;
+    }
+
+
+    public BigDecimal getPercent() {
+        return percent;
+    }
+
+    public void setPercent (BigDecimal percent) {
+        this.percent =  percent;
     }
 
     @Override

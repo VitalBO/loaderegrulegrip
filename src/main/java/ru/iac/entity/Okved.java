@@ -45,8 +45,10 @@ import java.util.Date;
 @Table(name = "\"OKVED\"")
 @NamedQueries({
         @NamedQuery(name = "Okved.findAll", query = "SELECT okved FROM Okved okved")
+
         , @NamedQuery(name = "Okved.findByName", query = "SELECT okved FROM Okved okved WHERE okved.name = :name")
         , @NamedQuery(name = "Okved.findByNameContaining", query = "SELECT okved FROM Okved okved WHERE okved.name like :name")
+
         , @NamedQuery(name = "Okved.findByCodeOkvedNId", query = "SELECT okved FROM Okved okved WHERE okved.codeOkved = :kod")
 
         , @NamedQuery(name = "Okved.findByCodeOkved", query = "SELECT okved FROM Okved okved WHERE okved.codeOkved = :codeOkved")
@@ -69,6 +71,12 @@ import java.util.Date;
         , @NamedQuery(name = "Okved.findByRowCheckSum", query = "SELECT okved FROM Okved okved WHERE okved.rowCheckSum = :rowCheckSum")
         , @NamedQuery(name = "Okved.findByRowCheckSumContaining", query = "SELECT okved FROM Okved okved WHERE okved.rowCheckSum like :rowCheckSum")
 
+        , @NamedQuery(name = "Okved.findByVersOkved", query = "SELECT okved FROM Okved okved WHERE okved.versOkved = :versOkved")
+
+        , @NamedQuery(name = "Okved.findByRegnum", query = "SELECT okved FROM Okved okved WHERE okved.regnum = :regnum")
+
+        , @NamedQuery(name = "Okved.findByDtreg", query = "SELECT okved FROM Okved okved WHERE okved.dtreg = :dtreg")
+
 })
 
 public class Okved implements Serializable, EgrulEntity, EgrulWithNaturalId {
@@ -87,6 +95,9 @@ public class Okved implements Serializable, EgrulEntity, EgrulWithNaturalId {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Okved.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Okved.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING = "Okved.findByRowCheckSumContaining";
+    public static final String FIND_BY_VERSOKVED = "Okved.findByVersOkved";
+    public static final String FIND_BY_REGNUM = "Okved.findByRegnum";
+    public static final String FIND_BY_DTREG = "Okved.findByDtreg";
     private static final long serialVersionUID = 1L;
     @SequenceGenerator(name = "OKVEDSEQ", sequenceName = "SEQ_OKVED", allocationSize = 1)
     @Id
@@ -135,6 +146,15 @@ public class Okved implements Serializable, EgrulEntity, EgrulWithNaturalId {
     @Column(name = "ROW_CHECK_SUM", nullable = true, unique = false)
     private String rowCheckSum;
 
+    @Column(name = "VERS_OKVED", nullable = true, unique = false)
+    private String versOkved;
+
+    @Column(name = "REGNUM", nullable = true, unique = false)
+    private String regnum;
+
+    @Column(name = "DTREG", nullable = true, unique = false)
+    private Date dtreg;
+
 
     /**
      * Default constructor
@@ -156,7 +176,10 @@ public class Okved implements Serializable, EgrulEntity, EgrulWithNaturalId {
             Integer gihdAIdPackage,
             Integer gihdChIdPackage,
             Integer gihdDIdPackage,
-            String rowCheckSum) {
+            String rowCheckSum,
+            String versOkved,
+            String regnum,
+            Date dtreg) {
         this(
                 idokved,
                 name,
@@ -168,7 +191,10 @@ public class Okved implements Serializable, EgrulEntity, EgrulWithNaturalId {
                 gihdAIdPackage,
                 gihdChIdPackage,
                 gihdDIdPackage,
-                rowCheckSum
+                rowCheckSum,
+                versOkved,
+                regnum,
+                dtreg
                 , true);
     }
 
@@ -183,7 +209,10 @@ public class Okved implements Serializable, EgrulEntity, EgrulWithNaturalId {
             Integer gihdAIdPackage,
             Integer gihdChIdPackage,
             Integer gihdDIdPackage,
-            String rowCheckSum
+            String rowCheckSum,
+            String versOkved,
+            String regnum,
+            Date dtreg
             , boolean setRelationship) {
         //primary keys
         setIdokved(idokved);
@@ -198,6 +227,9 @@ public class Okved implements Serializable, EgrulEntity, EgrulWithNaturalId {
         setGihdChIdPackage(gihdChIdPackage);
         setGihdDIdPackage(gihdDIdPackage);
         setRowCheckSum(rowCheckSum);
+        setVersOkved(versOkved);
+        setRegnum(regnum);
+        setDtreg(dtreg);
         //parents
     }
 
@@ -213,7 +245,10 @@ public class Okved implements Serializable, EgrulEntity, EgrulWithNaturalId {
                 getGihdAIdPackage(),
                 getGihdChIdPackage(),
                 getGihdDIdPackage(),
-                getRowCheckSum()
+                getRowCheckSum(),
+                getVersOkved(),
+                getRegnum(),
+                getDtreg()
                 , false
         );
     }
@@ -314,6 +349,33 @@ public class Okved implements Serializable, EgrulEntity, EgrulWithNaturalId {
 
     public void setRowCheckSum(String rowCheckSum) {
         this.rowCheckSum = rowCheckSum;
+    }
+
+
+    public String getVersOkved() {
+        return versOkved;
+    }
+
+    public void setVersOkved(String versOkved) {
+        this.versOkved = versOkved;
+    }
+
+
+    public String getRegnum() {
+        return regnum;
+    }
+
+    public void setRegnum(String regnum) {
+        this.regnum = regnum;
+    }
+
+
+    public Date getDtreg() {
+        return dtreg;
+    }
+
+    public void setDtreg(Date dtreg) {
+        this.dtreg = dtreg;
     }
 
     @Override

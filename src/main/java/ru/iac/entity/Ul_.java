@@ -39,6 +39,8 @@ public class Ul_ {
 
     public static volatile SingularAttribute<Ul, Integer> idul;
 
+	public static volatile SingularAttribute<Ul, Date> dtform;
+	public static volatile SingularAttribute<Ul, Date> dtogrn;
     public static volatile SingularAttribute<Ul, String> ogrn;
     public static volatile SingularAttribute<Ul, String> inn;
     public static volatile SingularAttribute<Ul, String> kpp;

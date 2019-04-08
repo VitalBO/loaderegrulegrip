@@ -7,6 +7,7 @@
 
         <!--property name="dialect">org.hibernate.dialect.Oracle10gDialect</property-->
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
 
@@ -18,8 +19,10 @@
         <mapping class="ru.iac.entity.Fluchr"/>
         <mapping class="ru.iac.entity.Gosreg"/>
         <mapping class="ru.iac.entity.Ip"/>
+        <mapping class="ru.iac.entity.Ipadr"/>
         <mapping class="ru.iac.entity.Ipcitizen"/>
         <mapping class="ru.iac.entity.Ipdokdsn"/>
+        <mapping class="ru.iac.entity.Ipemail"/>
         <mapping class="ru.iac.entity.Ipfoms"/>
         <mapping class="ru.iac.entity.Ipfss"/>
         <mapping class="ru.iac.entity.Ipgosreg"/>
@@ -49,6 +52,7 @@
         <mapping class="ru.iac.entity.Spopf"/>
         <mapping class="ru.iac.entity.Sposndn"/>
         <mapping class="ru.iac.entity.Sppf"/>
+        <mapping class="ru.iac.entity.Sppreddok"/>
         <mapping class="ru.iac.entity.Spregorg"/>
         <mapping class="ru.iac.entity.Spsostlic"/>
         <mapping class="ru.iac.entity.Spulstat"/>

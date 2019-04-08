@@ -38,7 +38,6 @@ import javax.persistence.metamodel.StaticMetamodel;
 public class Ip_ {
 
     public static volatile SingularAttribute<Ip, Integer> idip;
-
     public static volatile SingularAttribute<Ip, String> ogrn;
     public static volatile SingularAttribute<Ip, String> inn;
     public static volatile SingularAttribute<Ip, Integer> idvidip;
@@ -54,8 +53,21 @@ public class Ip_ {
     public static volatile SingularAttribute<Ip, Integer> gihdChIdPackage;
     public static volatile SingularAttribute<Ip, Integer> gihdDIdPackage;
     public static volatile SingularAttribute<Ip, String> rowCheckSum;
-
-
-
+	public static volatile SingularAttribute<Ip, Date> dtogrn;
+	public static volatile SingularAttribute<Ip, String> regnum;
+	public static volatile SingularAttribute<Ip, Date> dtreg;
+	public static volatile SingularAttribute<Ip, String> regorgname;
+	public static volatile SingularAttribute<Ip, String> kodstatusend;
+	public static volatile SingularAttribute<Ip, String> namestatusend;
+	public static volatile SingularAttribute<Ip, Date> dtend;
+	public static volatile SingularAttribute<Ip, String> regnumend;
+	public static volatile SingularAttribute<Ip, Date> dtregend;
+	public static volatile SingularAttribute<Ip, String> ogrnul;
+	public static volatile SingularAttribute<Ip, String> innul;
+	public static volatile SingularAttribute<Ip, String> namepul;
+	public static volatile SingularAttribute<Ip, String> grnzap;
+	public static volatile SingularAttribute<Ip, Date> dtzap;
+	public static volatile SingularAttribute<Ip, String> grncor;
+	public static volatile SingularAttribute<Ip, Date> dtcor;
 
 }

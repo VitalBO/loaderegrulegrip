@@ -51,6 +51,9 @@ public class Ulmns_ {
     public static volatile SingularAttribute<Ulmns, Integer> gihdChIdPackage;
     public static volatile SingularAttribute<Ulmns, Integer> gihdDIdPackage;
     public static volatile SingularAttribute<Ulmns, String> rowCheckSum;
+	public static volatile SingularAttribute<Ulmns, String> regnum;
+	public static volatile SingularAttribute<Ulmns, String> dtzap;
+
 
 
 

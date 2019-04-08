@@ -51,6 +51,11 @@ public class Fldolgn_ {
     public static volatile SingularAttribute<Fldolgn, Integer> gihdChIdPackage;
     public static volatile SingularAttribute<Fldolgn, Integer> gihdDIdPackage;
     public static volatile SingularAttribute<Fldolgn, String> rowCheckSum;
+	public static volatile SingularAttribute<Fldolgn, String> regnum;
+	public static volatile SingularAttribute<Fldolgn, String> dolgnvid;
+	public static volatile SingularAttribute<Fldolgn, String> dolgnvidname;
+	public static volatile SingularAttribute<Fldolgn, String> regnumd;
+	public static volatile SingularAttribute<Fldolgn, String> dtstartd;
 
 
 

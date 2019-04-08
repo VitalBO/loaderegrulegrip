@@ -7,4 +7,7 @@
         <comment>Initial schema settings</comment>
         <sqlFile path="sql_scripts/gripegrul-init.sql" relativeToChangelogFile="true"/>
     </changeSet>
+    <changeSet id="reset_to_initial" author="v.bogdanov">
+        <tagDatabase tag="reset"/>
+    </changeSet>
 </databaseChangeLog>

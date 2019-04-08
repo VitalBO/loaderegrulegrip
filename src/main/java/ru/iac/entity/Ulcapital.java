@@ -74,6 +74,8 @@ import java.util.Date;
 	,@NamedQuery(name="Ulcapital.findByRowCheckSum", query="SELECT ulcapital FROM Ulcapital ulcapital WHERE ulcapital.rowCheckSum = :rowCheckSum")
 	,@NamedQuery(name="Ulcapital.findByRowCheckSumContaining", query="SELECT ulcapital FROM Ulcapital ulcapital WHERE ulcapital.rowCheckSum like :rowCheckSum")
 
+    ,@NamedQuery(name="Ulcapital.findByRegnum", query="SELECT ulcapital FROM Ulcapital ulcapital WHERE ulcapital.regnum = :regnum")
+
 })
 
 public class Ulcapital implements Serializable {
@@ -91,6 +93,7 @@ public class Ulcapital implements Serializable {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Ulcapital.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Ulcapital.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING ="Ulcapital.findByRowCheckSumContaining";
+    public static final String FIND_BY_REGNUM = "Ulcapital.findByRegnum";
     private static final long serialVersionUID = 1L;
     @SequenceGenerator(name = "ULCAPITALSEQ", sequenceName ="SEQ_ULCAPITAL", allocationSize=1 )
     @Id @Column(name="IDULCAPITAL" ) 
@@ -99,7 +102,7 @@ public class Ulcapital implements Serializable {
 
 
     @OneToOne
-@JoinColumn(name = "IDUL")
+    @JoinColumn(name = "IDUL")
     private Ul idul;
 
 
@@ -112,8 +115,8 @@ public class Ulcapital implements Serializable {
 
 
     @ManyToOne
-@Cascade(CascadeType.SAVE_UPDATE)
-@JoinColumn(name = "IDVIDCAP")
+    @Cascade(CascadeType.SAVE_UPDATE)
+    @JoinColumn(name = "IDVIDCAP")
     private Spvidcap idvidcap;
 
 
@@ -149,6 +152,10 @@ public class Ulcapital implements Serializable {
     private String rowCheckSum;
 
 
+    @Column(name="REGNUM", nullable=true , unique=false)
+    private String regnum;
+
+
     /**
     * Default constructor
     */
@@ -171,7 +178,8 @@ public class Ulcapital implements Serializable {
        Integer gihdAIdPackage,
        Integer gihdChIdPackage,
        Integer gihdDIdPackage,
-       String rowCheckSum) {
+       String rowCheckSum,
+       String regnum) {
 	 this(
        idulcapital,
        idul,
@@ -185,7 +193,8 @@ public class Ulcapital implements Serializable {
        gihdAIdPackage,
        gihdChIdPackage,
        gihdDIdPackage,
-       rowCheckSum
+       rowCheckSum,
+	   regnum
 	 ,true);
 	}
     
@@ -202,7 +211,8 @@ public class Ulcapital implements Serializable {
        Integer gihdAIdPackage,
        Integer gihdChIdPackage,
        Integer gihdDIdPackage,
-       String rowCheckSum	
+       String rowCheckSum,
+       String regnum
     , boolean setRelationship) {
        //primary keys
        setIdulcapital (idulcapital);
@@ -219,6 +229,7 @@ public class Ulcapital implements Serializable {
        setGihdChIdPackage (gihdChIdPackage);
        setGihdDIdPackage (gihdDIdPackage);
        setRowCheckSum (rowCheckSum);
+       setRegNum(regnum);
        //parents
     }
 
@@ -236,7 +247,8 @@ public class Ulcapital implements Serializable {
           getGihdAIdPackage(),
           getGihdChIdPackage(),
           getGihdDIdPackage(),
-          getRowCheckSum()
+          getRowCheckSum(),
+          getRegnum()
        , false
 	   );
 	}
@@ -355,6 +367,15 @@ public class Ulcapital implements Serializable {
 	
     public void setRowCheckSum (String rowCheckSum) {
         this.rowCheckSum =  rowCheckSum;
+    }
+
+
+    public String getRegnum() {
+        return regnum;
+    }
+
+    public void setRegNum (String regnum) {
+        this.regnum =  regnum;
     }
 
 

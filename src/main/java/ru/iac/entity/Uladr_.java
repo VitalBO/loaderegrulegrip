@@ -64,6 +64,8 @@ public class Uladr_ {
     public static volatile SingularAttribute<Uladr, Integer> gihdChIdPackage;
     public static volatile SingularAttribute<Uladr, Integer> gihdDIdPackage;
     public static volatile SingularAttribute<Uladr, String> rowCheckSum;
+    public static volatile SingularAttribute<Uladr, String> regnum;
+    public static volatile SingularAttribute<Uladr, String> kodKl;
 
 
 

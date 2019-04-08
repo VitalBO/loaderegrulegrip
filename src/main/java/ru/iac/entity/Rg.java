@@ -69,6 +69,12 @@ import java.util.Date;
 	,@NamedQuery(name="Rg.findByRowCheckSum", query="SELECT rg FROM Rg rg WHERE rg.rowCheckSum = :rowCheckSum")
 	,@NamedQuery(name="Rg.findByRowCheckSumContaining", query="SELECT rg FROM Rg rg WHERE rg.rowCheckSum like :rowCheckSum")
 
+    ,@NamedQuery(name="Rg.findByTypeRg", query="SELECT rg FROM Rg rg WHERE rg.typeRg = :typeRg")
+    ,@NamedQuery(name="Rg.findByTypeRgContaining", query="SELECT rg FROM Rg rg WHERE rg.typeRg like :typeRg")
+
+    ,@NamedQuery(name="Rg.findByNameRg", query="SELECT rg FROM Rg rg WHERE rg.nameRg = :nameRg")
+    ,@NamedQuery(name="Rg.findByNameRgContaining", query="SELECT rg FROM Rg rg WHERE rg.nameRg like :nameRg")
+
 })
 
 public class Rg implements Serializable, EgrulEntity {
@@ -86,6 +92,10 @@ public class Rg implements Serializable, EgrulEntity {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Rg.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Rg.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING ="Rg.findByRowCheckSumContaining";
+    public static final String FIND_BY_TYPERG = "Rg.findByTypeRg";
+    public static final String FIND_BY_TYPERG_CONTAINING ="Rg.findByTypeRgContaining";
+    public static final String FIND_BY_NAMERG = "Rg.findByNameRg";
+    public static final String FIND_BY_NAMERG_CONTAINING ="Rg.findByNameRgContaining";
     private static final long serialVersionUID = 1L;
     @Id @Column(name="IDR" )
     private BigInteger idr;
@@ -130,6 +140,12 @@ public class Rg implements Serializable, EgrulEntity {
     @Column(name="ROW_CHECK_SUM"   , nullable=true , unique=false)
     private String rowCheckSum;
 
+    @Column(name="TYPERG"   , nullable=true , unique=false)
+    private String typeRg;
+
+    @Column(name="NAMERG"   , nullable=true , unique=false)
+    private String nameRg;
+
 
     /**
     * Default constructor
@@ -151,7 +167,9 @@ public class Rg implements Serializable, EgrulEntity {
        Integer gihdAIdPackage,
        Integer gihdChIdPackage,
        Integer gihdDIdPackage,
-       String rowCheckSum) {
+       String rowCheckSum,
+       String typeRg,
+       String nameRg) {
 	 this(
        idr,
        name,
@@ -163,7 +181,9 @@ public class Rg implements Serializable, EgrulEntity {
        gihdAIdPackage,
        gihdChIdPackage,
        gihdDIdPackage,
-       rowCheckSum
+       rowCheckSum,
+	   typeRg,
+	   nameRg
 	 ,true);
 	}
     
@@ -178,7 +198,9 @@ public class Rg implements Serializable, EgrulEntity {
        Integer gihdAIdPackage,
        Integer gihdChIdPackage,
        Integer gihdDIdPackage,
-       String rowCheckSum	
+       String rowCheckSum,
+       String typeRg,
+       String nameRg
     , boolean setRelationship) {
        //primary keys
        setIdr (idr);
@@ -193,6 +215,8 @@ public class Rg implements Serializable, EgrulEntity {
        setGihdChIdPackage (gihdChIdPackage);
        setGihdDIdPackage (gihdDIdPackage);
        setRowCheckSum (rowCheckSum);
+       setTypeRg(typeRg);
+       setNameRg(nameRg);
        //parents
     }
 
@@ -208,7 +232,10 @@ public class Rg implements Serializable, EgrulEntity {
           getGihdAIdPackage(),
           getGihdChIdPackage(),
           getGihdDIdPackage(),
-          getRowCheckSum()
+          getRowCheckSum(),
+          getTypeRg(),
+          getNameRg()
+
        , false
 	   );
 	}
@@ -309,6 +336,24 @@ public class Rg implements Serializable, EgrulEntity {
 	
     public void setRowCheckSum (String rowCheckSum) {
         this.rowCheckSum =  rowCheckSum;
+    }
+
+
+    public String getTypeRg() {
+        return typeRg;
+    }
+
+    public void setTypeRg (String rowCheckSum) {
+        this.typeRg =  typeRg;
+    }
+
+
+    public String getNameRg() {
+        return nameRg;
+    }
+
+    public void setNameRg (String nameRg) {
+        this.nameRg =  nameRg;
     }
 
     @Override

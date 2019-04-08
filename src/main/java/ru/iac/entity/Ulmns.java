@@ -70,6 +70,10 @@ import java.util.Date;
 	,@NamedQuery(name="Ulmns.findByRowCheckSum", query="SELECT ulmns FROM Ulmns ulmns WHERE ulmns.rowCheckSum = :rowCheckSum")
 	,@NamedQuery(name="Ulmns.findByRowCheckSumContaining", query="SELECT ulmns FROM Ulmns ulmns WHERE ulmns.rowCheckSum like :rowCheckSum")
 
+    ,@NamedQuery(name="Ulmns.findByRegnum", query="SELECT ulmns FROM Ulmns ulmns WHERE ulmns.regnum = :regnum")
+
+    ,@NamedQuery(name="Ulmns.findByDtzap", query="SELECT ulmns FROM Ulmns ulmns WHERE ulmns.dtzap = :dtzap")
+
 })
 
 public class Ulmns implements Serializable {
@@ -87,6 +91,8 @@ public class Ulmns implements Serializable {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Ulmns.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Ulmns.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING ="Ulmns.findByRowCheckSumContaining";
+    public static final String FIND_BY_REGNUM = "Ulmns.findByRegnum";
+    public static final String FIND_BY_DTZAP = "Ulmns.findByDtzap";
     private static final long serialVersionUID = 1L;
     @SequenceGenerator(name = "ULMNSSEQ", sequenceName ="SEQ_ULMNS", allocationSize=1 )
     @Id @Column(name="IDULMNS" ) 
@@ -143,6 +149,12 @@ public class Ulmns implements Serializable {
     @Column(name="ROW_CHECK_SUM"   , nullable=true , unique=false)
     private String rowCheckSum;
 
+    @Column(name="REGNUM"   , nullable=true , unique=false)
+    private String regnum;
+
+    @Column(name="DTZAP"   , nullable=true , unique=false)
+    private Date dtzap;
+
 
     /**
     * Default constructor
@@ -166,7 +178,9 @@ public class Ulmns implements Serializable {
        Integer gihdAIdPackage,
        Integer gihdChIdPackage,
        Integer gihdDIdPackage,
-       String rowCheckSum) {
+       String rowCheckSum,
+       String regnum,
+       Date dtzap) {
 	 this(
        idulmns,
        idul,
@@ -180,7 +194,9 @@ public class Ulmns implements Serializable {
        gihdAIdPackage,
        gihdChIdPackage,
        gihdDIdPackage,
-       rowCheckSum
+       rowCheckSum,
+	   regnum,
+	   dtzap
 	 ,true);
 	}
     
@@ -197,7 +213,9 @@ public class Ulmns implements Serializable {
        Integer gihdAIdPackage,
        Integer gihdChIdPackage,
        Integer gihdDIdPackage,
-       String rowCheckSum	
+       String rowCheckSum,
+       String regnum,
+       Date dtzap
     , boolean setRelationship) {
        //primary keys
        setIdulmns (idulmns);
@@ -214,6 +232,8 @@ public class Ulmns implements Serializable {
        setGihdChIdPackage (gihdChIdPackage);
        setGihdDIdPackage (gihdDIdPackage);
        setRowCheckSum (rowCheckSum);
+       setRegnum(regnum);
+       setDtzap(dtzap);
        //parents
     }
 
@@ -231,7 +251,9 @@ public class Ulmns implements Serializable {
           getGihdAIdPackage(),
           getGihdChIdPackage(),
           getGihdDIdPackage(),
-          getRowCheckSum()
+          getRowCheckSum(),
+          getRegnum(),
+          getDtzap()
        , false
 	   );
 	}
@@ -344,13 +366,17 @@ public class Ulmns implements Serializable {
     }
 
 
-    public String getRowCheckSum() {
-        return rowCheckSum;
-    }
-	
-    public void setRowCheckSum (String rowCheckSum) {
-        this.rowCheckSum =  rowCheckSum;
-    }
+    public String getRowCheckSum() { return rowCheckSum;  }
+
+    public void setRowCheckSum (String rowCheckSum) { this.rowCheckSum =  rowCheckSum; }
 
 
+    public String getRegnum() { return regnum;  }
+
+    public void setRegnum (String regnum) { this.regnum =  regnum; }
+
+
+    public Date getDtzap() { return dtzap;  }
+
+    public void setDtzap (Date dtzap) { this.dtzap =  dtzap; }
 }

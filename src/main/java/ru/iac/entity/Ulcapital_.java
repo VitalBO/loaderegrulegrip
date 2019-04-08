@@ -51,6 +51,7 @@ public class Ulcapital_ {
     public static volatile SingularAttribute<Ulcapital, Integer> gihdChIdPackage;
     public static volatile SingularAttribute<Ulcapital, Integer> gihdDIdPackage;
     public static volatile SingularAttribute<Ulcapital, String> rowCheckSum;
+	public static volatile SingularAttribute<Ulcapital, String> regnum;
 
 
 

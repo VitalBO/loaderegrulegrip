@@ -52,6 +52,8 @@ public class Ulpf_ {
     public static volatile SingularAttribute<Ulpf, Integer> gihdChIdPackage;
     public static volatile SingularAttribute<Ulpf, Integer> gihdDIdPackage;
     public static volatile SingularAttribute<Ulpf, String> rowCheckSum;
+	public static volatile SingularAttribute<Ulpf, String> regnum;
+	public static volatile SingularAttribute<Ulpf, Date> dtzap;
 
 
 

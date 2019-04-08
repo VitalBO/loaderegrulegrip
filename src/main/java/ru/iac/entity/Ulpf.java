@@ -73,6 +73,10 @@ import java.util.Date;
 	,@NamedQuery(name="Ulpf.findByRowCheckSum", query="SELECT ulpf FROM Ulpf ulpf WHERE ulpf.rowCheckSum = :rowCheckSum")
 	,@NamedQuery(name="Ulpf.findByRowCheckSumContaining", query="SELECT ulpf FROM Ulpf ulpf WHERE ulpf.rowCheckSum like :rowCheckSum")
 
+    ,@NamedQuery(name="Ulpf.findByRegnum", query="SELECT ulpf FROM Ulpf ulpf WHERE ulpf.regnum = :regnum")
+
+    ,@NamedQuery(name="Ulpf.findByDtzap", query="SELECT ulpf FROM Ulpf ulpf WHERE ulpf.dtzap = :dtzap")
+
 })
 
 public class Ulpf implements Serializable {
@@ -92,6 +96,8 @@ public class Ulpf implements Serializable {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Ulpf.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Ulpf.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING ="Ulpf.findByRowCheckSumContaining";
+    public static final String FIND_BY_REGNUM = "Ulpf.findByRegnum";
+    public static final String FIND_BY_DTZAP = "Ulpf.findByDtzap";
     private static final long serialVersionUID = 1L;
     @SequenceGenerator(name = "ULPFSEQ", sequenceName ="SEQ_ULPF", allocationSize=1 )
     @Id @Column(name="IDULPF" ) 
@@ -152,6 +158,11 @@ public class Ulpf implements Serializable {
     @Column(name="ROW_CHECK_SUM"   , nullable=true , unique=false)
     private String rowCheckSum;
 
+    @Column(name="REGNUM"   , nullable=true , unique=false)
+    private String regnum;
+
+    @Column(name="DTZAP"   , nullable=true , unique=false)
+    private Date dtzap;
 
     /**
     * Default constructor
@@ -176,7 +187,9 @@ public class Ulpf implements Serializable {
        Integer gihdAIdPackage,
        Integer gihdChIdPackage,
        Integer gihdDIdPackage,
-       String rowCheckSum) {
+       String rowCheckSum,
+       String regnum,
+       Date dtzap) {
 	 this(
        idulpf,
        idul,
@@ -191,7 +204,9 @@ public class Ulpf implements Serializable {
        gihdAIdPackage,
        gihdChIdPackage,
        gihdDIdPackage,
-       rowCheckSum
+       rowCheckSum,
+	   regnum,
+	   dtzap
 	 ,true);
 	}
     
@@ -209,7 +224,9 @@ public class Ulpf implements Serializable {
        Integer gihdAIdPackage,
        Integer gihdChIdPackage,
        Integer gihdDIdPackage,
-       String rowCheckSum	
+       String rowCheckSum,
+       String regnum,
+       Date dtzap
     , boolean setRelationship) {
        //primary keys
        setIdulpf (idulpf);
@@ -227,6 +244,8 @@ public class Ulpf implements Serializable {
        setGihdChIdPackage (gihdChIdPackage);
        setGihdDIdPackage (gihdDIdPackage);
        setRowCheckSum (rowCheckSum);
+       setRegnum(regnum);
+       setDtzap(dtzap);
        //parents
     }
 
@@ -245,7 +264,9 @@ public class Ulpf implements Serializable {
           getGihdAIdPackage(),
           getGihdChIdPackage(),
           getGihdDIdPackage(),
-          getRowCheckSum()
+          getRowCheckSum(),
+          getRegnum(),
+          getDtzap()
        , false
 	   );
 	}
@@ -376,4 +397,20 @@ public class Ulpf implements Serializable {
     }
 
 
+    public String getRegnum() {
+        return regnum;
+    }
+
+    public void setRegnum (String regnum) {
+        this.regnum =  regnum;
+    }
+
+
+    public Date getDtzap() {
+        return dtzap;
+    }
+
+    public void setDtzap (Date dtzap) {
+        this.dtzap =  dtzap;
+    }
 }

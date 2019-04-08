@@ -67,6 +67,12 @@ import java.util.Date;
         , @NamedQuery(name = "Ds.findByRowCheckSum", query = "SELECT ds FROM Ds ds WHERE ds.rowCheckSum = :rowCheckSum")
         , @NamedQuery(name = "Ds.findByRowCheckSumContaining", query = "SELECT ds FROM Ds ds WHERE ds.rowCheckSum like :rowCheckSum")
 
+        ,@NamedQuery(name="Ds.findByTypeDs", query="SELECT ds FROM Ds ds WHERE ds.typeDs = :typeDs")
+        ,@NamedQuery(name="Ds.findByTypeDsContaining", query="SELECT ds FROM Ds ds WHERE ds.typeDs like :typeDs")
+
+        ,@NamedQuery(name="Ds.findByNameDs", query="SELECT ds FROM Ds ds WHERE ds.nameDs = :nameDs")
+        ,@NamedQuery(name="Ds.findByNameDsContaining", query="SELECT ds FROM Ds ds WHERE ds.nameDs like :nameDs")
+
 })
 
 public class Ds implements Serializable, EgrulEntity {
@@ -84,6 +90,10 @@ public class Ds implements Serializable, EgrulEntity {
     public static final String FIND_BY_GIHDDIDPACKAGE = "Ds.findByGihdDIdPackage";
     public static final String FIND_BY_ROWCHECKSUM = "Ds.findByRowCheckSum";
     public static final String FIND_BY_ROWCHECKSUM_CONTAINING = "Ds.findByRowCheckSumContaining";
+    public static final String FIND_BY_TYPEDS = "Ds.findByTypeDs";
+    public static final String FIND_BY_TYPEDS_CONTAINING ="Ds.findByTypeDsContaining";
+    public static final String FIND_BY_NAMEDS = "Ds.findByNameDs";
+    public static final String FIND_BY_NAMEDS_CONTAINING ="Ds.findByNameDsContaining";
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "IDD")
@@ -129,6 +139,11 @@ public class Ds implements Serializable, EgrulEntity {
     @Column(name = "ROW_CHECK_SUM", nullable = true, unique = false)
     private String rowCheckSum;
 
+    @Column(name="TYPEDS"   , nullable=true , unique=false)
+    private String typeDs;
+
+    @Column(name="NAMEDS"   , nullable=true , unique=false)
+    private String nameDs;
 
     /**
      * Default constructor
@@ -150,7 +165,9 @@ public class Ds implements Serializable, EgrulEntity {
             Integer gihdAIdPackage,
             Integer gihdChIdPackage,
             Integer gihdDIdPackage,
-            String rowCheckSum) {
+            String rowCheckSum,
+            String typeDs,
+            String nameDs) {
         this(
                 idd,
                 name,
@@ -162,7 +179,9 @@ public class Ds implements Serializable, EgrulEntity {
                 gihdAIdPackage,
                 gihdChIdPackage,
                 gihdDIdPackage,
-                rowCheckSum
+                rowCheckSum,
+                typeDs,
+                nameDs
                 , true);
     }
 
@@ -177,7 +196,9 @@ public class Ds implements Serializable, EgrulEntity {
             Integer gihdAIdPackage,
             Integer gihdChIdPackage,
             Integer gihdDIdPackage,
-            String rowCheckSum
+            String rowCheckSum,
+            String typeDs,
+            String nameDs
             , boolean setRelationship) {
         //primary keys
         setIdd(idd);
@@ -192,6 +213,8 @@ public class Ds implements Serializable, EgrulEntity {
         setGihdChIdPackage(gihdChIdPackage);
         setGihdDIdPackage(gihdDIdPackage);
         setRowCheckSum(rowCheckSum);
+        setTypeDs(typeDs);
+        setNameDs(nameDs);
         //parents
     }
 
@@ -207,7 +230,9 @@ public class Ds implements Serializable, EgrulEntity {
                 getGihdAIdPackage(),
                 getGihdChIdPackage(),
                 getGihdDIdPackage(),
-                getRowCheckSum()
+                getRowCheckSum(),
+                getTypeDs(),
+                getNameDs()
                 , false
         );
     }
@@ -308,6 +333,24 @@ public class Ds implements Serializable, EgrulEntity {
 
     public void setRowCheckSum(String rowCheckSum) {
         this.rowCheckSum = rowCheckSum;
+    }
+
+
+    public String getTypeDs() {
+        return typeDs;
+    }
+
+    public void setTypeDs(String typeDs) {
+        this.typeDs = typeDs;
+    }
+
+
+    public String getNameDs() {
+        return nameDs;
+    }
+
+    public void setNameDs(String nameDs) {
+        this.nameDs = nameDs;
     }
 
     @Override

@@ -49,7 +49,9 @@ public class Okved_ {
     public static volatile SingularAttribute<Okved, Integer> gihdChIdPackage;
     public static volatile SingularAttribute<Okved, Integer> gihdDIdPackage;
     public static volatile SingularAttribute<Okved, String> rowCheckSum;
-
+	public static volatile SingularAttribute<Okved, String> versOkved;
+	public static volatile SingularAttribute<Okved, String> regnum;
+	public static volatile SingularAttribute<Okved, Date> dtreg;
 
 
 
