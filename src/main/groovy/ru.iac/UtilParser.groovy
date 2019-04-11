@@ -177,22 +177,22 @@ class UtilParser {
     public static Spvidcap getVidcapNew(String captypename){
         def id;
         switch(captypename) {
-            case "Уставный капитал":
+            case "РЈСЃС‚Р°РІРЅС‹Р№ РєР°РїРёС‚Р°Р»":
                 id = 1
                 break
-            case "Складочный капитал":
+            case "РЎРєР»Р°РґРѕС‡РЅС‹Р№ РєР°РїРёС‚Р°Р»":
                 id = 2
                 break
-            case "Уставный фонд":
+            case "РЈСЃС‚Р°РІРЅС‹Р№ С„РѕРЅРґ":
                 id = 3
                 break
-            case "Паевые взносы":
+            case "РџР°РµРІС‹Рµ РІР·РЅРѕСЃС‹":
                 id = 4
                 break
-            case "Паевой фонд":
+            case "РџР°РµРІРѕР№ С„РѕРЅРґ":
                 id = 5
                 break
-            case "Отсутствует":
+            case "РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚":
                 id = 6
                 break
             default:
@@ -210,15 +210,15 @@ class UtilParser {
     public static Spregorg getRegorgNew(GPathResult gPathResult, List list) {
         Spregorg spregorg = null
         gPathResult.each {
-            if (it.@КодНО != "")
+            if (it.@РљРѕРґРќРћ != "")
                 spregorg = Util.check(new Spregorg(
-                        idspro: Util.convertToBInt(it.@КодНО),
-                        name: it.@НаимНО,
-                        address: it.@АдрРО), list)
-            else if (it.@РегНом != "")
+                        idspro: Util.convertToBInt(it.@РљРѕРґРќРћ),
+                        name: it.@РќР°РёРјРќРћ,
+                        address: it.@РђРґСЂР Рћ), list)
+            else if (it.@Р РµРіРќРѕРј != "")
                 spregorg = Util.check(new Spregorg(
-                        idspro: Util.convertToBInt(it.@РегНом),
-                        name: it.@НаимРО,
+                        idspro: Util.convertToBInt(it.@Р РµРіРќРѕРј),
+                        name: it.@РќР°РёРјР Рћ,
                         address: null), list)
         }
         spregorg = (Spregorg) Util.check(spregorg, list)
@@ -229,20 +229,20 @@ class UtilParser {
     static Spvidreg getVidregNew(GPathResult gPathResult, List list) {
         Spvidreg spvidreg = null
         gPathResult.each {
-            if (it.@КодСпОбрЮЛ != "")
+            if (it.@РљРѕРґРЎРїРћР±СЂР®Р› != "")
                 spvidreg = new Spvidreg(
-                        idvidreg: Util.convertToInt(it.@КодСпОбрЮЛ),
-                        name: it.@НаимСпОбрЮЛ
+                        idvidreg: Util.convertToInt(it.@РљРѕРґРЎРїРћР±СЂР®Р›),
+                        name: it.@РќР°РёРјРЎРїРћР±СЂР®Р›
                 )
-            if (it.@КодСпПрекрЮЛ != "")
+            if (it.@РљРѕРґРЎРїРџСЂРµРєСЂР®Р› != "")
                 spvidreg = new Spvidreg(
-                        idvidreg: Util.convertToInt(it.@КодСпПрекрЮЛ),
-                        name: it.@НаимСпПрекрЮЛ
+                        idvidreg: Util.convertToInt(it.@РљРѕРґРЎРїРџСЂРµРєСЂР®Р›),
+                        name: it.@РќР°РёРјРЎРїРџСЂРµРєСЂР®Р›
                 )
-            if (it.@КодСПВЗ != "")
+            if (it.@РљРѕРґРЎРџР’Р— != "")
                 spvidreg = new Spvidreg(
-                        idvidreg: Util.convertToInt(it.@КодСПВЗ),
-                        name: it.@НаимВидЗап
+                        idvidreg: Util.convertToInt(it.@РљРѕРґРЎРџР’Р—),
+                        name: it.@РќР°РёРјР’РёРґР—Р°Рї
                 )
             spvidreg = (Spvidreg) Util.check(spvidreg, list)
         }
@@ -255,67 +255,67 @@ class UtilParser {
         Address address = null
         gPathResult.each {
             address = new Address(
-                    //okato: it.@ОКАТО as String,//no tag in new formats
-                    indeks: it.@Индекс as String,
-                    dom: it.@Дом as String,
-                    korp: it.@Корпус as String,
-                    kvart: it.@Кварт as String
+                    //okato: it.@РћРљРђРўРћ as String,//no tag in new formats
+                    indeks: it.@РРЅРґРµРєСЃ as String,
+                    dom: it.@Р”РѕРј as String,
+                    korp: it.@РљРѕСЂРїСѓСЃ as String,
+                    kvart: it.@РљРІР°СЂС‚ as String
             )
 
-            if (it.Регион.@НаимРегион != "") {
+            if (it.Р РµРіРёРѕРЅ.@РќР°РёРјР РµРіРёРѕРЅ != "") {
                 Rg rg = new Rg(
-                        idr: new BigInteger((it.Регион.@НаимРегион.text() +" "+ it.Регион.@ТипРегион.text()).hashCode()),//Util.convertToBInt(it.@КодРегион) +1100000,//no appropriate tag in new format
-                        name: (it.Регион.@НаимРегион as String) +" "+(it.Регион.@ТипРегион as String),
-                        kodKl: it.@КодРегион as String,
-                        typeRg: it.Регион.@ТипРегион as String,
-                        nameRg: it.Регион.@НаимРегион as String
+                        idr: new BigInteger((it.Р РµРіРёРѕРЅ.@РќР°РёРјР РµРіРёРѕРЅ.text() +" "+ it.Р РµРіРёРѕРЅ.@РўРёРїР РµРіРёРѕРЅ.text()).hashCode()),//Util.convertToBInt(it.@РљРѕРґР РµРіРёРѕРЅ) +1100000,//no appropriate tag in new format
+                        name: (it.Р РµРіРёРѕРЅ.@РќР°РёРјР РµРіРёРѕРЅ as String) +" "+(it.Р РµРіРёРѕРЅ.@РўРёРїР РµРіРёРѕРЅ as String),
+                        kodKl: it.@РљРѕРґР РµРіРёРѕРЅ as String,
+                        typeRg: it.Р РµРіРёРѕРЅ.@РўРёРїР РµРіРёРѕРЅ as String,
+                        nameRg: it.Р РµРіРёРѕРЅ.@РќР°РёРјР РµРіРёРѕРЅ as String
                 )
                 rg = (Rg) Util.check(rg, list)
                 address.setIdregion(rg)
             }
-            if (it.Район.@НаимРайон != "") {
+            if (it.Р Р°Р№РѕРЅ.@РќР°РёРјР Р°Р№РѕРЅ != "") {
                 Ds ds = new Ds(
-                        idd: new BigInteger((it.Район.@НаимРайон.text() +" "+ it.Район.@ТипРайон.text()).hashCode()),//Util.convertToBInt(it.@КодАдрКладр),//no appropriate tag in new format
-                        name: (it.Район.@НаимРайон as String) +" "+(it.Район.@ТипРайон as String),
-                        typeDs: it.Район.@ТипРайон as String,
-                        nameDs: it.Район.@НаимРайон as String
-                        //kodKl: null//it.@КодАдрКладр as String//no appropriate tag in new format. КодАдрКладр ???
+                        idd: new BigInteger((it.Р Р°Р№РѕРЅ.@РќР°РёРјР Р°Р№РѕРЅ.text() +" "+ it.Р Р°Р№РѕРЅ.@РўРёРїР Р°Р№РѕРЅ.text()).hashCode()),//Util.convertToBInt(it.@РљРѕРґРђРґСЂРљР»Р°РґСЂ),//no appropriate tag in new format
+                        name: (it.Р Р°Р№РѕРЅ.@РќР°РёРјР Р°Р№РѕРЅ as String) +" "+(it.Р Р°Р№РѕРЅ.@РўРёРїР Р°Р№РѕРЅ as String),
+                        typeDs: it.Р Р°Р№РѕРЅ.@РўРёРїР Р°Р№РѕРЅ as String,
+                        nameDs: it.Р Р°Р№РѕРЅ.@РќР°РёРјР Р°Р№РѕРЅ as String
+                        //kodKl: null//it.@РљРѕРґРђРґСЂРљР»Р°РґСЂ as String//no appropriate tag in new format. РљРѕРґРђРґСЂРљР»Р°РґСЂ ???
 
                 )
                 ds = (Ds) Util.check(ds, list)
                 address.setIdraion(ds)
             }
-            if (it.Город.@НаимГород != "") {
+            if (it.Р“РѕСЂРѕРґ.@РќР°РёРјР“РѕСЂРѕРґ != "") {
                 Ct ct = new Ct(
-                        idc: new BigInteger((it.Город.@НаимГород.text() +" "+ it.Город.@ТипГород.text()).hashCode()),//Util.convertToBInt(it.@КодАдрКладр),//no appropriate tag in new format
-                        name: (it.Город.@НаимГород as String)+" "+(it.Город.@ТипГород as String),
-                        typeCt: it.Город.@ТипГород as String,
-                        nameCt: it.Город.@НаимГород as String
-                        //kodKl: null//it.@КодАдрКладр as String//no appropriate tag in new format. КодАдрКладр ???
+                        idc: new BigInteger((it.Р“РѕСЂРѕРґ.@РќР°РёРјР“РѕСЂРѕРґ.text() +" "+ it.Р“РѕСЂРѕРґ.@РўРёРїР“РѕСЂРѕРґ.text()).hashCode()),//Util.convertToBInt(it.@РљРѕРґРђРґСЂРљР»Р°РґСЂ),//no appropriate tag in new format
+                        name: (it.Р“РѕСЂРѕРґ.@РќР°РёРјР“РѕСЂРѕРґ as String)+" "+(it.Р“РѕСЂРѕРґ.@РўРёРїР“РѕСЂРѕРґ as String),
+                        typeCt: it.Р“РѕСЂРѕРґ.@РўРёРїР“РѕСЂРѕРґ as String,
+                        nameCt: it.Р“РѕСЂРѕРґ.@РќР°РёРјР“РѕСЂРѕРґ as String
+                        //kodKl: null//it.@РљРѕРґРђРґСЂРљР»Р°РґСЂ as String//no appropriate tag in new format. РљРѕРґРђРґСЂРљР»Р°РґСЂ ???
 
                 )
                 ct = (Ct) Util.check(ct, list)
                 address.setIdgorod(ct)
             }
-            if (it.НаселПункт.@НаимНаселПункт != "") {
+            if (it.РќР°СЃРµР»РџСѓРЅРєС‚.@РќР°РёРјРќР°СЃРµР»РџСѓРЅРєС‚ != "") {
                 Cn cn = new Cn(
-                        idn: new BigInteger((it.НаселПункт.@НаимНаселПункт.text() + " "+ it.НаселПункт.@ТипНаселПункт.text()).hashCode()),//Util.convertToBInt(it.@КодАдрКладр),//no appropriate tag in new format
-                        name: (it.НаселПункт.@НаимНаселПункт as String)+ " "+(it.НаселПункт.@ТипНаселПункт),//find appropriate tag for new formats
-                        typeCn: it.НаселПункт.@ТипНаселПункт as String,
-                        nameCn: it.НаселПункт.@НаимНаселПункт as String
-                        //kodKl: null//it.@КодАдрКладр as String//find appropriate tag for new formats
+                        idn: new BigInteger((it.РќР°СЃРµР»РџСѓРЅРєС‚.@РќР°РёРјРќР°СЃРµР»РџСѓРЅРєС‚.text() + " "+ it.РќР°СЃРµР»РџСѓРЅРєС‚.@РўРёРїРќР°СЃРµР»РџСѓРЅРєС‚.text()).hashCode()),//Util.convertToBInt(it.@РљРѕРґРђРґСЂРљР»Р°РґСЂ),//no appropriate tag in new format
+                        name: (it.РќР°СЃРµР»РџСѓРЅРєС‚.@РќР°РёРјРќР°СЃРµР»РџСѓРЅРєС‚ as String)+ " "+(it.РќР°СЃРµР»РџСѓРЅРєС‚.@РўРёРїРќР°СЃРµР»РџСѓРЅРєС‚),//find appropriate tag for new formats
+                        typeCn: it.РќР°СЃРµР»РџСѓРЅРєС‚.@РўРёРїРќР°СЃРµР»РџСѓРЅРєС‚ as String,
+                        nameCn: it.РќР°СЃРµР»РџСѓРЅРєС‚.@РќР°РёРјРќР°СЃРµР»РџСѓРЅРєС‚ as String
+                        //kodKl: null//it.@РљРѕРґРђРґСЂРљР»Р°РґСЂ as String//find appropriate tag for new formats
 
                 )
                 cn = (Cn) Util.check(cn, list)
                 address.setIdnasp(cn)
             }
-            if (it.Улица.@НаимУлица != "") {
+            if (it.РЈР»РёС†Р°.@РќР°РёРјРЈР»РёС†Р° != "") {
                 St st = new St(
-                        ids: new BigInteger((it.Улица.@НаимУлица.text() +" "+ it.Улица.@ТипУлица.text()).hashCode()),//Util.convertToBInt(it.@КодАдрКладр),//no appropriate tag in new format
-                        name: (it.Улица.@НаимУлица as String)+" "+(it.Улица.@ТипУлица as String),
-                        kodSt: it.@КодАдрКладр as String,//АдресРФ.КодАдрКладр ???
-                        typeSt: it.Улица.@ТипУлица as String,
-                        nameSt: it.Улица.@НаимУлица as String
+                        ids: new BigInteger((it.РЈР»РёС†Р°.@РќР°РёРјРЈР»РёС†Р°.text() +" "+ it.РЈР»РёС†Р°.@РўРёРїРЈР»РёС†Р°.text()).hashCode()),//Util.convertToBInt(it.@РљРѕРґРђРґСЂРљР»Р°РґСЂ),//no appropriate tag in new format
+                        name: (it.РЈР»РёС†Р°.@РќР°РёРјРЈР»РёС†Р° as String)+" "+(it.РЈР»РёС†Р°.@РўРёРїРЈР»РёС†Р° as String),
+                        kodSt: it.@РљРѕРґРђРґСЂРљР»Р°РґСЂ as String,//РђРґСЂРµСЃР Р¤.РљРѕРґРђРґСЂРљР»Р°РґСЂ ???
+                        typeSt: it.РЈР»РёС†Р°.@РўРёРїРЈР»РёС†Р° as String,
+                        nameSt: it.РЈР»РёС†Р°.@РќР°РёРјРЈР»РёС†Р° as String
                 )
                 st = (St) Util.check(st, list)
                 address.setIdstreet(st)
@@ -329,11 +329,11 @@ class UtilParser {
     static Oksm getOksmNew(GPathResult gPathResult, List list) {
         Oksm oksm = null
         gPathResult.each {
-            if (it.@ОКСМ != "")
+            if (it.@РћРљРЎРњ != "")
                 oksm = new Oksm(
-                        id: Util.convertToInt(it.@ОКСМ),
-                        kodOksm: it.@ОКСМ,
-                        name: it.@НаимСтран
+                        id: Util.convertToInt(it.@РћРљРЎРњ),
+                        kodOksm: it.@РћРљРЎРњ,
+                        name: it.@РќР°РёРјРЎС‚СЂР°РЅ
                 )
             oksm = (Oksm) Util.check(oksm, list)
         }
@@ -345,10 +345,10 @@ class UtilParser {
     public static Splicorg getLicorgNew(GPathResult gPathResult, List list) {
         Splicorg splicorg = null
         gPathResult.each {
-            if (it.ЛицОргВыдЛиц.text() != "")
+            if (it.Р›РёС†РћСЂРіР’С‹РґР›РёС†.text() != "")
                 splicorg = new Splicorg(
-                        id: new BigInteger(it.ЛицОргВыдЛиц.text().hashCode()),//not found
-                        name: it.ЛицОргВыдЛиц.text()
+                        id: new BigInteger(it.Р›РёС†РћСЂРіР’С‹РґР›РёС†.text().hashCode()),//not found
+                        name: it.Р›РёС†РћСЂРіР’С‹РґР›РёС†.text()
                 )
         }
         splicorg = (Splicorg) Util.check(splicorg, list)
@@ -361,10 +361,10 @@ class UtilParser {
         Set<Spvidlic> vidlicSet = new HashSet<>()
         Spvidlic spvidlic = null
         gPathResult.each {
-            if (it.НаимЛицВидДеят.text() != "") {
+            if (it.РќР°РёРјР›РёС†Р’РёРґР”РµСЏС‚.text() != "") {
                 spvidlic = new Spvidlic(
-                        idvidlic: new BigInteger(it.НаимЛицВидДеят.text().hashCode()),//not found
-                        name: it.НаимЛицВидДеят.text()
+                        idvidlic: new BigInteger(it.РќР°РёРјР›РёС†Р’РёРґР”РµСЏС‚.text().hashCode()),//not found
+                        name: it.РќР°РёРјР›РёС†Р’РёРґР”РµСЏС‚.text()
                 )
                 spvidlic = (Spvidlic) Util.check(spvidlic, list)
                 vidlicSet.add(spvidlic)

@@ -2486,7 +2486,7 @@ CREATE TABLE public."LICENZ" (
     idlicorg text,
     idsostlic integer,
     idul text,
-    idvidlic numeric(38,0)
+    idvidlic bigint
 );
 
 
