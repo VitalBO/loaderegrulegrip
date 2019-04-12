@@ -23,6 +23,8 @@
 
         <postgres.version>42.2.4</postgres.version>
         <liquibase.version>3.6.2</liquibase.version>
+        <loadtoegrul.properties>${project.basedir}/loadtoegrul.properties</loadtoegrul.properties>
+        <liquibase.propertiesFile>${project.basedir}/src/liquibase/properties/liquibase.properties</liquibase.propertiesFile>
     </properties>
 
     <build>
@@ -32,6 +34,25 @@
             </resource>
         </resources>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <!--delete file="${project.basedir}/loadtoegrul.properties"/-->
+                                <copy file="${loadtoegrul.properties}"
+                                      tofile="${project.basedir}/loadtoegrul.properties"/>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -94,7 +115,7 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>${liquibase.version}</version>
                 <configuration>
-                    <propertyFile>${project.basedir}/src/liquibase/properties/liquibase.properties</propertyFile>
+                    <propertyFile>${liquibase.propertiesFile}</propertyFile>
                 </configuration>
                 <executions>
                     <execution>
@@ -107,6 +128,30 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>test</id>
+            <properties>
+                <liquibase.propertiesFile>${project.basedir}/src/liquibase/properties/liquibase.properties-test</liquibase.propertiesFile>
+                <loadtoegrul.properties>${project.basedir}/loadtoegrul.properties-test</loadtoegrul.properties>
+            </properties>
+        </profile>
+        <profile>
+            <id>predrelease</id>
+            <properties>
+                <liquibase.propertiesFile>${project.basedir}/src/liquibase/properties/liquibase.properties-predrelease</liquibase.propertiesFile>
+                <loadtoegrul.properties>${project.basedir}/loadtoegrul.properties-predrelease</loadtoegrul.properties>
+            </properties>
+        </profile>
+        <profile>
+            <id>production</id>
+            <properties>
+                <liquibase.propertiesFile>${project.basedir}/src/liquibase/properties/liquibase.properties-production</liquibase.propertiesFile>
+                <loadtoegrul.properties>${project.basedir}/loadtoegrul.properties-production</loadtoegrul.properties>
+            </properties>
+        </profile>
+    </profiles>
 
     <dependencies>
 
@@ -128,8 +173,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-
         <!-- hibernate -->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -169,7 +212,6 @@
             <artifactId>logback-core</artifactId>
             <version>RELEASE</version>
         </dependency>
-        
         <!-- Tests -->
         <dependency>
             <groupId>junit</groupId>
