@@ -170,7 +170,7 @@ public class ParserTest extends Assert {
 
         def EGRIP_IP_DATA = new XmlSlurper().parse(filePathEgripNFOneElement)
         Ip ip;
-        EGRIP_IP_DATA.Äîêóìåíò.each {
+        EGRIP_IP_DATA.Ğ”Ğ¾ĞºÑƒĞ¼ĞµĞ½Ñ‚.each {
             ip = XMLParserEGRIPNF.parse(it);
             assertEquals(ip.getInn(), "781435122782");
             assertEquals(ip.getIdip(), "308784733200657");
@@ -191,14 +191,14 @@ public class ParserTest extends Assert {
         Ul ul
         EGRIP_UL_DATA.UL.each {
             ul = XMLParserEGRUL.parse(it)
-            assertNotNull("Îøèáêà ïğè êîíâåğòàöèè îáúåêòà, ïàğñåğ âåğíóë null", ul)
+            assertNotNull("ĞÑˆĞ¸Ğ±ĞºĞ° Ğ¿Ñ€Ğ¸ ĞºĞ¾Ğ½Ğ²ĞµÑ€Ñ‚Ğ°Ñ†Ğ¸Ğ¸ Ğ¾Ğ±ÑŠĞµĞºÑ‚Ğ°, Ğ¿Ğ°Ñ€ÑĞµÑ€ Ğ²ĞµÑ€Ğ½ÑƒĞ» null", ul)
             assertEquals(ul.getLicenzs().get(1).getIdvidlic().size(), 6)
             assertEquals(ul.getLicenzs().size(), 2)
             assertEquals(ul.getUlokved().size(), 2)
             assertEquals(ul.getUlname().getIdopf().getIdopf(), 100047)
             assertEquals(ul.getUladr().getFulladdress().getDom(), "4")
-            assertEquals(ul.getUladr().getFulladdress().getKorp(), "ËÈÒÅĞ Ê")
-            assertEquals(ul.getUladr().getFulladdress().getKvart(), "3, 4, 18Í")
+            assertEquals(ul.getUladr().getFulladdress().getKorp(), "Ğ›Ğ˜Ğ¢Ğ•Ğ  Ğš")
+            assertEquals(ul.getUladr().getFulladdress().getKvart(), "3, 4, 18Ğ")
             assertEquals(ul.getIdul(), "1000000000002")
             assertEquals(1, ul.getUlokved().get(1).getMain())
         }
@@ -210,13 +210,13 @@ public class ParserTest extends Assert {
 
         def EGRIP_UL_DATA = new XmlSlurper().parse(filePathEgrulNFOneElement)
         Ul ul
-        EGRIP_UL_DATA.Äîêóìåíò.each {
+        EGRIP_UL_DATA.Ğ”Ğ¾ĞºÑƒĞ¼ĞµĞ½Ñ‚.each {
             ul = XMLParserEGRULNF.parse(it)
-            assertNotNull("Îøèáêà ïğè êîíâåğòàöèè îáúåêòà, ïàğñåğ âåğíóë null", ul)
+            assertNotNull("ĞÑˆĞ¸Ğ±ĞºĞ° Ğ¿Ñ€Ğ¸ ĞºĞ¾Ğ½Ğ²ĞµÑ€Ñ‚Ğ°Ñ†Ğ¸Ğ¸ Ğ¾Ğ±ÑŠĞµĞºÑ‚Ğ°, Ğ¿Ğ°Ñ€ÑĞµÑ€ Ğ²ĞµÑ€Ğ½ÑƒĞ» null", ul)
             assertEquals(ul.getUlokved().size(), 11)
             assertEquals(ul.getUlname().getIdopf().getIdopf(), 12300)
-            assertEquals(ul.getUladr().getFulladdress().getDom(), "ÄÎÌ 31")
-            assertEquals(ul.getUladr().getFulladdress().getKvart(), "ÊÂÀĞÒÈĞÀ 5")
+            assertEquals(ul.getUladr().getFulladdress().getDom(), "Ğ”ĞĞœ 31")
+            assertEquals(ul.getUladr().getFulladdress().getKvart(), "ĞšĞ’ĞĞ Ğ¢Ğ˜Ğ Ğ 5")
             assertEquals(ul.getIdul(), "1147847267039")
             assertEquals(1, ul.getUlokved().get(0).getMain())
         }
@@ -434,7 +434,7 @@ public class ParserTest extends Assert {
     public void serializeTestObjectsNF() {
         def EGRIP_IP_DATA = new XmlSlurper().parse(filePathEgripNFOneElement)
         Ip ip;
-        EGRIP_IP_DATA.Äîêóìåíò.each {
+        EGRIP_IP_DATA.Ğ”Ğ¾ĞºÑƒĞ¼ĞµĞ½Ñ‚.each {
             ip = XMLParserEGRIPNF.parse(it);
 
             new File("src/test/groovy/ru/iac/ipNF.ser").withObjectOutputStream { out -> out << ip }
@@ -443,7 +443,7 @@ public class ParserTest extends Assert {
 
         def EGRIP_UL_DATA = new XmlSlurper().parse(filePathEgrulNFOneElement)
         Ul ul
-        EGRIP_UL_DATA.Äîêóìåíò.each {
+        EGRIP_UL_DATA.Ğ”Ğ¾ĞºÑƒĞ¼ĞµĞ½Ñ‚.each {
             ul = XMLParserEGRULNF.parse(it)
             new File("src/test/groovy/ru/iac/ulNF.ser").withObjectOutputStream { out -> out << ul }
 

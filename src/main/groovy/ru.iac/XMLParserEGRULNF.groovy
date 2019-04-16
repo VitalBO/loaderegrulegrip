@@ -19,37 +19,33 @@ class XMLParserEGRULNF {
         Ul ul = null
         try {
 
-            gPathResult.СвЮЛ.each {
+            gPathResult.РЎРІР®Р›.each {
 
-                log.debug("Start decoding UL with OGRN " + it.@ОГРН)
+                log.debug("Start decoding UL with OGRN " + it.@РћР“Р Рќ)
 
-                log.trace("Decoding UL with OGRN " + it.@ОГРН + " begin decode UL")
+                log.trace("Decoding UL with OGRN " + it.@РћР“Р Рќ + " begin decode UL")
                 //------------------ UL
                 ul = new Ul(
-                        idul: it.@ОГРН,
-                        dtform: Util.convertToDate(it.@ДатаВып as String),////
-                        ogrn: it.@ОГРН,
-                        inn: it.@ИНН,
-                        kpp: it.@КПП,
-                        dtogrn: Util.convertToDate(it.@ДатаОГРН as String),////
-                        /*idstatus: null,new Spulstat(
-                                id: Util.convertToInt(it.СвСтатус.СвСтатус.@КодСтатусЮЛ),
-                                name: it.СвСтатус.СвСтатус.@НаимСтатусЮЛ
-                        ),*/
-                        idregorg: UtilParser.getRegorgNew(it.СвРегОрг as GPathResult, list),
-                        idvidregstart: UtilParser.getVidregNew(it.СвОбрЮЛ.СпОбрЮЛ, list),
-                        regnumstart: it.СвОбрЮЛ.ГРНДата.@ГРН as String,
-                        dtregstart: Util.convertToDate(it.СвОбрЮЛ.ГРНДата.@ДатаЗаписи as String),
-                        idregorgstart: UtilParser.getRegorgNew(it.СвОбрЮЛ, list),
-                        idvidregend: UtilParser.getVidregNew(it.СвПрекрЮЛ.СпПрекрЮЛ, list),
-                        regnumend: it.СвПрекрЮЛ.ГРНДата.@ГРН as String,
-                        dtregend: Util.convertToDate(it.СвПрекрЮЛ.ГРНДата.@ДатаЗаписи as String),
-                        idregorgend: UtilParser.getRegorgNew(it.СвПрекрЮЛ.СвРегОрг, list)
+                        idul: it.@РћР“Р Рќ,
+                        dtform: Util.convertToDate(it.@Р”Р°С‚Р°Р’С‹Рї as String),
+                        ogrn: it.@РћР“Р Рќ,
+                        inn: it.@РРќРќ,
+                        kpp: it.@РљРџРџ,
+                        dtogrn: Util.convertToDate(it.@Р”Р°С‚Р°РћР“Р Рќ as String),
+                        idregorg: UtilParser.getRegorgNew(it.РЎРІР РµРіРћСЂРі as GPathResult, list),
+                        idvidregstart: UtilParser.getVidregNew(it.РЎРІРћР±СЂР®Р›.РЎРїРћР±СЂР®Р›, list),
+                        regnumstart: it.РЎРІРћР±СЂР®Р›.Р“Р РќР”Р°С‚Р°.@Р“Р Рќ as String,
+                        dtregstart: Util.convertToDate(it.РЎРІРћР±СЂР®Р›.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                        idregorgstart: UtilParser.getRegorgNew(it.РЎРІРћР±СЂР®Р›, list),
+                        idvidregend: UtilParser.getVidregNew(it.РЎРІРџСЂРµРєСЂР®Р›.РЎРїРџСЂРµРєСЂР®Р›, list),
+                        regnumend: it.РЎРІРџСЂРµРєСЂР®Р›.Р“Р РќР”Р°С‚Р°.@Р“Р Рќ as String,
+                        dtregend: Util.convertToDate(it.РЎРІРџСЂРµРєСЂР®Р›.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                        idregorgend: UtilParser.getRegorgNew(it.РЎРІРџСЂРµРєСЂР®Р›.РЎРІР РµРіРћСЂРі, list)
                 )
-                if(it.СвСтатус.СвСтатус.@КодСтатусЮЛ!=""){
+                if(it.РЎРІРЎС‚Р°С‚СѓСЃ.РЎРІРЎС‚Р°С‚СѓСЃ.@РљРѕРґРЎС‚Р°С‚СѓСЃР®Р›!=""){
                     Spulstat ulstat = new Spulstat(
-                            id: Util.convertToInt(it.СвСтатус.СвСтатус.@КодСтатусЮЛ),
-                            name: it.СвСтатус.СвСтатус.@НаимСтатусЮЛ
+                            id: Util.convertToInt(it.РЎРІРЎС‚Р°С‚СѓСЃ.РЎРІРЎС‚Р°С‚СѓСЃ.@РљРѕРґРЎС‚Р°С‚СѓСЃР®Р›),
+                            name: it.РЎРІРЎС‚Р°С‚СѓСЃ.РЎРІРЎС‚Р°С‚СѓСЃ.@РќР°РёРјРЎС‚Р°С‚СѓСЃР®Р›
                     )
                     ul.setIdstatus(ulstat)
                 }
@@ -57,15 +53,15 @@ class XMLParserEGRULNF {
                 //------------------ OKVED, ULOKVED
                 log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode okved")
                 ArrayList<Ulokved> listUlOkved = new ArrayList<>()
-                if (it.СвОКВЭД.СвОКВЭДОсн.@КодОКВЭД != "") {
+                if (it.РЎРІРћРљР’Р­Р”.РЎРІРћРљР’Р­Р”РћСЃРЅ.@РљРѕРґРћРљР’Р­Р” != "") {
                     Okved okved
-                    it.СвОКВЭД.СвОКВЭДОсн.each {
+                    it.РЎРІРћРљР’Р­Р”.РЎРІРћРљР’Р­Р”РћСЃРЅ.each {
                         okved = new Okved(
-                                codeOkved: it.@КодОКВЭД,
-                                name: it.@НаимОКВЭД,
-                                regnum: it.ГРНДата.@ГРН,
-                                dtreg: Util.convertToDate(it.ГРНДата.@ДатаЗаписи as String),
-                                versOkved: it.@ПрВерсОКВЭД
+                                codeOkved: it.@РљРѕРґРћРљР’Р­Р”,
+                                name: it.@РќР°РёРјРћРљР’Р­Р”,
+                                regnum: it.Р“Р РќР”Р°С‚Р°.@Р“Р Рќ,
+                                dtreg: Util.convertToDate(it.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                versOkved: it.@РџСЂР’РµСЂСЃРћРљР’Р­Р”
                         )
 
                         listUlOkved.add(
@@ -77,15 +73,15 @@ class XMLParserEGRULNF {
                         )
                     }
                 }
-                if (it.СвОКВЭД.СвОКВЭДДоп.@КодОКВЭД != "") {
+                if (it.РЎРІРћРљР’Р­Р”.РЎРІРћРљР’Р­Р”Р”РѕРї.@РљРѕРґРћРљР’Р­Р” != "") {
                     Okved okved
-                    it.СвОКВЭД.СвОКВЭДДоп.each {
+                    it.РЎРІРћРљР’Р­Р”.РЎРІРћРљР’Р­Р”Р”РѕРї.each {
                         okved = new Okved(
-                                codeOkved: it.@КодОКВЭД,
-                                name: it.@НаимОКВЭД,
-                                regnum: it.ГРНДата.@ГРН,
-                                dtreg: Util.convertToDate(it.ГРНДата.@ДатаЗаписи as String),
-                                versOkved: it.@ПрВерсОКВЭД
+                                codeOkved: it.@РљРѕРґРћРљР’Р­Р”,
+                                name: it.@РќР°РёРјРћРљР’Р­Р”,
+                                regnum: it.Р“Р РќР”Р°С‚Р°.@Р“Р Рќ,
+                                dtreg: Util.convertToDate(it.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                versOkved: it.@РџСЂР’РµСЂСЃРћРљР’Р­Р”
                         )
 
                         listUlOkved.add(
@@ -102,24 +98,22 @@ class XMLParserEGRULNF {
 
                 //------------------ ULNAME, SPOPF
                 log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode ulname")
-                if (it.СвНаимЮЛ.ГРНДата.@ДатаЗаписи != "") {
+                if (it.РЎРІРќР°РёРјР®Р›.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё != "") {
                     it.each {
                         Ulname ulname = new Ulname(
                                 idul: ul,
-                                dtstart: Util.convertToDate(it.СвНаимЮЛ.ГРНДата.@ДатаЗаписи as String),
-                                regnum: it.СвНаимЮЛ.ГРНДата.@ГРН,
-                                namep: it.СвНаимЮЛ.@НаимЮЛПолн as String,
-                                //namei: it.NAMEI.@NAME as String,//not found in NewFormats !!!
-                                names: it.СвНаимЮЛ.@НаимЮЛСокр as String
-                                //idlangi: UtilParser.getSplang(it, list)//not found in NewFormats !!!
+                                dtstart: Util.convertToDate(it.РЎРІРќР°РёРјР®Р›.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                regnum: it.РЎРІРќР°РёРјР®Р›.Р“Р РќР”Р°С‚Р°.@Р“Р Рќ,
+                                namep: it.РЎРІРќР°РёРјР®Р›.@РќР°РёРјР®Р›РџРѕР»РЅ as String,
+                                names: it.РЎРІРќР°РёРјР®Р›.@РќР°РёРјР®Р›РЎРѕРєСЂ as String
                         )
-                        if (it.@КодОПФ != "") {
+                        if (it.@РљРѕРґРћРџР¤ != "") {
                             ulname.setIdopf(
                                     new Spopf(
-                                            idopf: Util.convertToInt(it.@КодОПФ),//!!!!!!
-                                            spr: it.@СпрОПФ,
-                                            kodOpf: it.@КодОПФ,
-                                            name: it.@ПолнНаимОПФ
+                                            idopf: Util.convertToInt(it.@РљРѕРґРћРџР¤),
+                                            spr: it.@РЎРїСЂРћРџР¤,
+                                            kodOpf: it.@РљРѕРґРћРџР¤,
+                                            name: it.@РџРѕР»РЅРќР°РёРјРћРџР¤
                                     )
                             )
                         }
@@ -128,48 +122,40 @@ class XMLParserEGRULNF {
                 }
                 //------------------ ULADR, SPVIADR
                 log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode ul_address")
-                if (it.СвАдресЮЛ.АдресРФ.ГРНДата.@ДатаЗаписи != "") {
-                    it.СвАдресЮЛ.each {
+                if (it.РЎРІРђРґСЂРµСЃР®Р›.РђРґСЂРµСЃР Р¤.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё != "") {
+                    it.РЎРІРђРґСЂРµСЃР®Р›.each {
                         Uladr uladr = new Uladr(
-                                dtstart: Util.convertToDate(it.АдресРФ.ГРНДата.@ДатаЗаписи as String),
+                                dtstart: Util.convertToDate(it.РђРґСЂРµСЃР Р¤.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
                                 idul: ul,
-                                regnum: it.ГРНДата.@ГРН,
-                                kodKl: it.АдресРФ.@КодАдрКладр,
-                                fulladdress: UtilParser.getAddressNew(it.АдресРФ, list),//
-                                //nameisporg: it.@NAMEISPORG as String, //not found in new formats
-                                //kodgorod: it.CONTACT.@KODGOROD as String, //not found in new formats
-                                //telefon: it.CONTACT.@TELEFON as String, //not found in new formats
-                                //fax: it.CONTACT.@FAX as String, //not found in new formats
-                                address: it.АдресРФ.Регион.@НаимРегион.text() + " "
-                                        + it.АдресРФ.Регион.@ТипРегион.text() + " "
-                                        + it.АдресРФ.Район.@НаимРайон.text() + " "
-                                        + it.АдресРФ.Город.@ТипГород.text() + " "
-                                        + it.АдресРФ.Город.@НаимГород.text() + " "
-                                        + it.АдресРФ.НаселПункт.@ТипНаселПункт.text() + " "
-                                        + it.АдресРФ.НаселПункт.@НаимНаселПункт.text() + " "
-                                        + it.АдресРФ.Улица.@ТипУлица.text() + " "
-                                        + it.АдресРФ.Улица.@НаимУлица.text() + " "
-                                        + it.АдресРФ.@Дом.text() + " "
-                                        + it.АдресРФ.@Корп.text() + " "
-                                        + it.АдресРФ.@Кварт.text()
+                                regnum: it.Р“Р РќР”Р°С‚Р°.@Р“Р Рќ,
+                                kodKl: it.РђРґСЂРµСЃР Р¤.@РљРѕРґРђРґСЂРљР»Р°РґСЂ,
+                                fulladdress: UtilParser.getAddressNew(it.РђРґСЂРµСЃР Р¤, list),
+                                address: it.РђРґСЂРµСЃР Р¤.Р РµРіРёРѕРЅ.@РќР°РёРјР РµРіРёРѕРЅ.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.Р РµРіРёРѕРЅ.@РўРёРїР РµРіРёРѕРЅ.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.Р Р°Р№РѕРЅ.@РќР°РёРјР Р°Р№РѕРЅ.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.Р“РѕСЂРѕРґ.@РўРёРїР“РѕСЂРѕРґ.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.Р“РѕСЂРѕРґ.@РќР°РёРјР“РѕСЂРѕРґ.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.РќР°СЃРµР»РџСѓРЅРєС‚.@РўРёРїРќР°СЃРµР»РџСѓРЅРєС‚.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.РќР°СЃРµР»РџСѓРЅРєС‚.@РќР°РёРјРќР°СЃРµР»РџСѓРЅРєС‚.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.РЈР»РёС†Р°.@РўРёРїРЈР»РёС†Р°.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.РЈР»РёС†Р°.@РќР°РёРјРЈР»РёС†Р°.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.@Р”РѕРј.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.@РљРѕСЂРї.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.@РљРІР°СЂС‚.text()
                         )
                         ul.setUladr(uladr)
                     }
                 }
                 //------------------ ULCAPITAL
                 log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode ul_capital")
-                if (it.СвУстКап.ГРНДата.@ДатаЗаписи != "") {
-                    it.СвУстКап.each {
+                if (it.РЎРІРЈСЃС‚РљР°Рї.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё != "") {
+                    it.РЎРІРЈСЃС‚РљР°Рї.each {
                         Ulcapital ulcapital = new Ulcapital(
                                 idul: ul,
-                                regnum: it.ГРНДата.@ГРН,
-                                idvidcap: UtilParser.getVidcapNew(it.@НаимВидКап as String),//new Spvidcap(
-                                       // id: 1,
-                                        //null, //Util.convertToInt(it.VIDCAP.@ID),//not found
-                                        //name: it.@НаимВидКап
-                                //),
-                                dtstart: Util.convertToDate(it.ГРНДата.@ДатаЗаписи as String),
-                                summa: Util.convertToBDec(it.@СумКап)
+                                regnum: it.Р“Р РќР”Р°С‚Р°.@Р“Р Рќ,
+                                idvidcap: UtilParser.getVidcapNew(it.@РќР°РёРјР’РёРґРљР°Рї as String),
+                                dtstart: Util.convertToDate(it.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                summa: Util.convertToBDec(it.@РЎСѓРјРљР°Рї)
 
                         )
                         ul.setUlcapital(ulcapital)
@@ -177,22 +163,22 @@ class XMLParserEGRULNF {
                 }
                 //------------------ UCHR_RUL
                 log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode uchr_rul")
-                if (it.СвУчредит.УчрЮЛРос.ГРНДатаПерв.@ДатаЗаписи != "") {
+                if (it.РЎРІРЈС‡СЂРµРґРёС‚.РЈС‡СЂР®Р›Р РѕСЃ.Р“Р РќР”Р°С‚Р°РџРµСЂРІ.@Р”Р°С‚Р°Р—Р°РїРёСЃРё != "") {
                     ArrayList<Rul> ruls = new ArrayList<>()
-                    it.СвУчредит.УчрЮЛРос.each {
+                    it.РЎРІРЈС‡СЂРµРґРёС‚.РЈС‡СЂР®Р›Р РѕСЃ.each {
                         Rul rul = new Rul(
                                 idul: ul,
-                                dtstart: Util.convertToDate(it.ГРНДатаПерв.@ДатаЗаписи as String),
-                                namep: it.НаимИННЮЛ.@НаимЮЛПолн,
-                                ogrn: it.НаимИННЮЛ.@ОГРН,
-                                inn: it.НаимИННЮЛ.@ИНН,
-                                kpp: it.НаимИННЮЛ.@КПП,
-                                dtreg: Util.convertToDate(it.НаимИННЮЛ.ДоляУстКап.ГРНДата.@ДатаЗаписи as String),
-                                summa: Util.convertToBDec(it.НаимИННЮЛ.ДоляУстКап.@НоминСтоим),
-                                dtogrn: Util.convertToDate(it.НаимИННЮЛ.ГРНДата.@ДатаЗаписи as String),
-                                regnumst: it.НаимИННЮЛ.ГРНДата.@ГРН,
-                                fulladdress: null,//UtilParser.getAddress(it.ADDRESS, list),//not found
-                                idregorg: null //UtilParser.getRegorg(it, list)//not found
+                                dtstart: Util.convertToDate(it.Р“Р РќР”Р°С‚Р°РџРµСЂРІ.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                namep: it.РќР°РёРјРРќРќР®Р›.@РќР°РёРјР®Р›РџРѕР»РЅ,
+                                ogrn: it.РќР°РёРјРРќРќР®Р›.@РћР“Р Рќ,
+                                inn: it.РќР°РёРјРРќРќР®Р›.@РРќРќ,
+                                kpp: it.РќР°РёРјРРќРќР®Р›.@РљРџРџ,
+                                dtreg: Util.convertToDate(it.РќР°РёРјРРќРќР®Р›.Р”РѕР»СЏРЈСЃС‚РљР°Рї.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                summa: Util.convertToBDec(it.РќР°РёРјРРќРќР®Р›.Р”РѕР»СЏРЈСЃС‚РљР°Рї.@РќРѕРјРёРЅРЎС‚РѕРёРј),
+                                dtogrn: Util.convertToDate(it.РќР°РёРјРРќРќР®Р›.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                regnumst: it.РќР°РёРјРРќРќР®Р›.Р“Р РќР”Р°С‚Р°.@Р“Р Рќ,
+                                fulladdress: null,
+                                idregorg: null
                         )
                         ruls.add(rul)
                     }
@@ -200,17 +186,17 @@ class XMLParserEGRULNF {
                 }
                 //------------------ UCHR_IUL
                 log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode uchr_iul")
-                if (it.СвУчредит.УчрЮЛИн.ДоляУстКап.ГРНДата.@ДатаЗаписи != "") {
+                if (it.РЎРІРЈС‡СЂРµРґРёС‚.РЈС‡СЂР®Р›РРЅ.Р”РѕР»СЏРЈСЃС‚РљР°Рї.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё != "") {
                     ArrayList<Iul> iuls = new ArrayList<>()
-                    it.СвУчредит.УчрЮЛИн.each {
+                    it.РЎРІРЈС‡СЂРµРґРёС‚.РЈС‡СЂР®Р›РРЅ.each {
                         Iul iul = new Iul(
                                 idul: ul,
-                                dtstart: Util.convertToDate(it.ДоляУстКап.ГРНДата.@ДатаЗаписи as String),//!!!
-                                namep: it.НаимИННЮЛ.@НаимЮЛПолн,
-                                dtreg: Util.convertToDate(it.СвРегИн.@ДатаРег as String),
-                                summa: Util.convertToBDec(it.ДоляУстКап.@НоминСтоим),
-                                inadr: it.СвРегИн.@АдрСтр,
-                                idoksm: UtilParser.getOksmNew(it.СвУчредит.УчрЮЛИн.СвРегИн, list)
+                                dtstart: Util.convertToDate(it.Р”РѕР»СЏРЈСЃС‚РљР°Рї.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                namep: it.РќР°РёРјРРќРќР®Р›.@РќР°РёРјР®Р›РџРѕР»РЅ,
+                                dtreg: Util.convertToDate(it.РЎРІР РµРіРРЅ.@Р”Р°С‚Р°Р РµРі as String),
+                                summa: Util.convertToBDec(it.Р”РѕР»СЏРЈСЃС‚РљР°Рї.@РќРѕРјРёРЅРЎС‚РѕРёРј),
+                                inadr: it.РЎРІР РµРіРРЅ.@РђРґСЂРЎС‚СЂ,
+                                idoksm: UtilParser.getOksmNew(it.РЎРІРЈС‡СЂРµРґРёС‚.РЈС‡СЂР®Р›РРЅ.РЎРІР РµРіРРЅ, list)
                         )
                         iuls.add(iul)
                     }
@@ -218,24 +204,24 @@ class XMLParserEGRULNF {
                 }
                 //------------------ UCHR_UCHRFL
                 log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode uchr_uchrfl")
-                if (it.СвУчредит.УчрФЛ.ДоляУстКап.ГРНДата.@ДатаЗаписи != "") {
+                if (it.РЎРІРЈС‡СЂРµРґРёС‚.РЈС‡СЂР¤Р›.Р”РѕР»СЏРЈСЃС‚РљР°Рї.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё != "") {
                     ArrayList<Fluchr> fluchrs = new ArrayList<>()
-                    it.СвЮЛ.СвУчредит.УчрФЛ.each {
+                    it.РЎРІР®Р›.РЎРІРЈС‡СЂРµРґРёС‚.РЈС‡СЂР¤Р›.each {
                         Fluchr fluchr = new Fluchr(
                                 idul: ul,
-                                regnum: it.ГРНДатаПерв.@ГРН,
-                                dtstart: Util.convertToDate(it.ГРНДатаПерв.@ДатаЗаписи as String),
-                                regnumd: it.ДоляУстКап.ГРНДата.@ГРН,
-                                dtstartd: Util.convertToDate(it.ДоляУстКап.ГРНДата.@ДатаЗаписи as String),
-                                summa: Util.convertToBDec(it.ДоляУстКап.@НоминСтоим),
-                                percent: Util.convertToBDec(it.ДоляУстКап.РазмерДоли.@Процент),
+                                regnum: it.Р“Р РќР”Р°С‚Р°РџРµСЂРІ.@Р“Р Рќ,
+                                dtstart: Util.convertToDate(it.Р“Р РќР”Р°С‚Р°РџРµСЂРІ.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                regnumd: it.Р”РѕР»СЏРЈСЃС‚РљР°Рї.Р“Р РќР”Р°С‚Р°.@Р“Р Рќ,
+                                dtstartd: Util.convertToDate(it.Р”РѕР»СЏРЈСЃС‚РљР°Рї.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                summa: Util.convertToBDec(it.Р”РѕР»СЏРЈСЃС‚РљР°Рї.@РќРѕРјРёРЅРЎС‚РѕРёРј),
+                                percent: Util.convertToBDec(it.Р”РѕР»СЏРЈСЃС‚РљР°Рї.Р Р°Р·РјРµСЂР”РѕР»Рё.@РџСЂРѕС†РµРЅС‚),
                                 idfl: new Fl(
-                                        famfl: it.СвФЛ.@Фамилия,
-                                        namefl: it.СвФЛ.@Имя,
-                                        otchfl: it.СвФЛ.@Отчество,
-                                        inn: it.СвФЛ.@ИННФЛ,
-                                        regnumfl: it.СвФЛ.ГРНДатаПерв.@ГРН,
-                                        dtstartfl: Util.convertToDate(it.СвФЛ.ГРНДатаПерв.@ДатаЗаписи as String)
+                                        famfl: it.РЎРІР¤Р›.@Р¤Р°РјРёР»РёСЏ,
+                                        namefl: it.РЎРІР¤Р›.@РРјСЏ,
+                                        otchfl: it.РЎРІР¤Р›.@РћС‚С‡РµСЃС‚РІРѕ,
+                                        inn: it.РЎРІР¤Р›.@РРќРќР¤Р›,
+                                        regnumfl: it.РЎРІР¤Р›.Р“Р РќР”Р°С‚Р°РџРµСЂРІ.@Р“Р Рќ,
+                                        dtstartfl: Util.convertToDate(it.РЎРІР¤Р›.Р“Р РќР”Р°С‚Р°РџРµСЂРІ.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String)
 
                                 )
                         )
@@ -245,37 +231,37 @@ class XMLParserEGRULNF {
                 }
                 //------------------ REESTR_AO
                 log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode reestrao")
-                if (it.СвДержРеестрАО.ДержРеестрАО.@ОГРН != "") {
-                    it.СвДержРеестрАО.ДержРеестрАО.each {
+                if (it.РЎРІР”РµСЂР¶Р РµРµСЃС‚СЂРђРћ.Р”РµСЂР¶Р РµРµСЃС‚СЂРђРћ.@РћР“Р Рќ != "") {
+                    it.РЎРІР”РµСЂР¶Р РµРµСЃС‚СЂРђРћ.Р”РµСЂР¶Р РµРµСЃС‚СЂРђРћ.each {
                         Reestrao reestrao = new Reestrao(
                                 idul: ul,
-                                ogrn: it.@ОГРН as String,
-                                namep: it.@НаимЮЛПолн as String
+                                ogrn: it.@РћР“Р Рќ as String,
+                                namep: it.@РќР°РёРјР®Р›РџРѕР»РЅ as String
                         )
                         ul.setReestrao(reestrao)
                     }
                 }
                 //------------------ DOLGNFL
                 log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode dolgnfl")
-                if (it.СведДолжнФЛ.СвДолжн.ГРНДата.@ДатаЗаписи != "") {
+                if (it.РЎРІРµРґР”РѕР»Р¶РЅР¤Р›.РЎРІР”РѕР»Р¶РЅ.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё != "") {
                     ArrayList<Fldolgn> fldolgns = new ArrayList<>()
-                    it.СведДолжнФЛ.each {
+                    it.РЎРІРµРґР”РѕР»Р¶РЅР¤Р›.each {
                         Fldolgn fldolgn = new Fldolgn(
                                 idul: ul,
-                                regnum: it.ГРНДатаПерв.@ГРН,
-                                dtstart: Util.convertToDate(it.ГРНДатаПерв.@ДатаЗаписи as String),
-                                dolgn: it.СвДолжн.@НаимДолжн,
-                                dolgnvid: it.СвДолжн.@ВидДолжн,
-                                dolgnvidname: it.СвДолжн.@НаимВидДолжн,
-                                regnumd: it.СвДолжн.ГРНДата.@ГРН,
-                                dtstartd: Util.convertToDate(it.СвДолжн.ГРНДата.@ДатаЗаписи as String),
+                                regnum: it.Р“Р РќР”Р°С‚Р°РџРµСЂРІ.@Р“Р Рќ,
+                                dtstart: Util.convertToDate(it.Р“Р РќР”Р°С‚Р°РџРµСЂРІ.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                dolgn: it.РЎРІР”РѕР»Р¶РЅ.@РќР°РёРјР”РѕР»Р¶РЅ,
+                                dolgnvid: it.РЎРІР”РѕР»Р¶РЅ.@Р’РёРґР”РѕР»Р¶РЅ,
+                                dolgnvidname: it.РЎРІР”РѕР»Р¶РЅ.@РќР°РёРјР’РёРґР”РѕР»Р¶РЅ,
+                                regnumd: it.РЎРІР”РѕР»Р¶РЅ.Р“Р РќР”Р°С‚Р°.@Р“Р Рќ,
+                                dtstartd: Util.convertToDate(it.РЎРІР”РѕР»Р¶РЅ.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
                                 idfl: new Fl(
-                                        famfl: it.СвФЛ.@Фамилия,
-                                        namefl: it.СвФЛ.@Имя,
-                                        otchfl: it.СвФЛ.@Отчество,
-                                        inn: it.СвФЛ.@ИННФЛ,
-                                        regnumfl: it.СвФЛ.ГРНДатаПерв.@ГРН,
-                                        dtstartfl: Util.convertToDate(it.СвФЛ.ГРНДатаПерв.@ДатаЗаписи as String)
+                                        famfl: it.РЎРІР¤Р›.@Р¤Р°РјРёР»РёСЏ,
+                                        namefl: it.РЎРІР¤Р›.@РРјСЏ,
+                                        otchfl: it.РЎРІР¤Р›.@РћС‚С‡РµСЃС‚РІРѕ,
+                                        inn: it.РЎРІР¤Р›.@РРќРќР¤Р›,
+                                        regnumfl: it.РЎРІР¤Р›.Р“Р РќР”Р°С‚Р°РџРµСЂРІ.@Р“Р Рќ,
+                                        dtstartfl: Util.convertToDate(it.РЎРІР¤Р›.Р“Р РќР”Р°С‚Р°РџРµСЂРІ.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String)
                                 )
                         )
                         fldolgns.add(fldolgn)
@@ -284,39 +270,33 @@ class XMLParserEGRULNF {
                 }
                 //------------------ UL_UPR
                 log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode ul_upr")
-                if (it.СвУпрОрг.НаимИННЮЛ.ГРНДата.@ДатаЗаписи != "") {
-                    it.СвУпрОрг.each {
+                if (it.РЎРІРЈРїСЂРћСЂРі.РќР°РёРјРРќРќР®Р›.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё != "") {
+                    it.РЎРІРЈРїСЂРћСЂРі.each {
                         Ulupr ulupr = new Ulupr(
                                 idul: ul,
-                                dtstart: Util.convertToDate(it.НаимИННЮЛ.ГРНДата.@ДатаЗаписи as String),
-                                namep: it.НаимИННЮЛ.@НаимЮЛПолн,
-                                ogrn: it.НаимИННЮЛ.@ОГРН,
-                                inn: it.НаимИННЮЛ.@ИНН,
-                                kpp: it.НаимИННЮЛ.@КПП,
-                                dtreg: Util.convertToDate(it.ГРНДатаПерв.@ДатаЗаписи as String),
-                                fulladdress: null, //UtilParser.getAddress(it.ADDRESS, list),//not found
-                                kodgorod: null, //it.CONTACT.@KODGOROD,//not found
-                                telefon: null, //it.CONTACT.@TELEFON,//not found
-                                fax: null //it.CONTACT.@FAX//not found
+                                dtstart: Util.convertToDate(it.РќР°РёРјРРќРќР®Р›.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                namep: it.РќР°РёРјРРќРќР®Р›.@РќР°РёРјР®Р›РџРѕР»РЅ,
+                                ogrn: it.РќР°РёРјРРќРќР®Р›.@РћР“Р Рќ,
+                                inn: it.РќР°РёРјРРќРќР®Р›.@РРќРќ,
+                                kpp: it.РќР°РёРјРРќРќР®Р›.@РљРџРџ,
+                                dtreg: Util.convertToDate(it.Р“Р РќР”Р°С‚Р°РџРµСЂРІ.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String)
                         )
                         ul.setUlupr(ulupr)
                     }
                 }
                 //------------------ PREDSH
                 log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode predsh")
-                if (it.СвПредш.@НаимЮЛПолн != "") {
+                if (it.РЎРІРџСЂРµРґС€.@РќР°РёРјР®Р›РџРѕР»РЅ != "") {
                     ArrayList<Ulpredsh> ulpredshs = new ArrayList<>()
-                    it.СвПредш.each {
+                    it.РЎРІРџСЂРµРґС€.each {
                         Ulpredsh ulpredsh = new Ulpredsh(
                                 idul: ul,
-                                dtogrn: Util.convertToDate(it.ГРНДата.@ДатаЗаписи as String),
-                                namep: it.@НаимЮЛПолн,
-                                ogrn: it.@ОГРН,
-                                inn: it.@ИНН,
-                                kpp: it.@КПП,
-                                dtreg: Util.convertToDate(it.ГРНДата.@ДатаЗаписи as String),
-                                fulladdress: null, //UtilParser.getAddress(it.ADDRESS, list),//not found
-                                idregorg:  null //UtilParser.getRegorg(it, list)//not found
+                                dtogrn: Util.convertToDate(it.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                namep: it.@РќР°РёРјР®Р›РџРѕР»РЅ,
+                                ogrn: it.@РћР“Р Рќ,
+                                inn: it.@РРќРќ,
+                                kpp: it.@РљРџРџ,
+                                dtreg: Util.convertToDate(it.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String)
                         )
                         ulpredshs.add(ulpredsh)
                     }
@@ -324,20 +304,18 @@ class XMLParserEGRULNF {
                 }
                 //------------------ PREEM
                 log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode preem")
-                if (it.СвПреем.@НаимЮЛПолн != "") {
+                if (it.РЎРІРџСЂРµРµРј.@РќР°РёРјР®Р›РџРѕР»РЅ != "") {
                     ArrayList<Ulpreem> ulpreems = new ArrayList<>()
-                    it.СвПреем.each {
+                    it.РЎРІРџСЂРµРµРј.each {
 
                         Ulpreem ulpreem = new Ulpreem(
                                 idul: ul,
-                                dtogrn: Util.convertToDate(it.ГРНДата.@ДатаЗаписи as String),
-                                namep: it.@НаимЮЛПолн,
-                                ogrn: it.@ОГРН,
-                                inn: it.@ИНН,
-                                kpp: it.@КПП,
-                                dtreg: Util.convertToDate(it.ГРНДата.@ДатаЗаписи as String),
-                                fulladdress: null, //UtilParser.getAddress(it.ADDRESS, list),//not found
-                                idregorg: null //UtilParser.getRegorg(it, list)//not found
+                                dtogrn: Util.convertToDate(it.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                namep: it.@РќР°РёРјР®Р›РџРѕР»РЅ,
+                                ogrn: it.@РћР“Р Рќ,
+                                inn: it.@РРќРќ,
+                                kpp: it.@РљРџРџ,
+                                dtreg: Util.convertToDate(it.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String)
                         )
                         ulpreems.add(ulpreem)
                     }
@@ -345,20 +323,20 @@ class XMLParserEGRULNF {
                 }
                 //------------------ LICENZ
                 log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode licenz")
-                if (it.СвЛицензия.@НомЛиц != "") {
+                if (it.РЎРІР›РёС†РµРЅР·РёСЏ.@РќРѕРјР›РёС† != "") {
                     List<Licenz> licenzsList = new ArrayList<>()
                     Licenz licenz;
-                    it.СвЛицензия.each {
+                    it.РЎРІР›РёС†РµРЅР·РёСЏ.each {
                         licenz = new Licenz(
                                 idul: ul,
-                                numlic: it.@НомЛиц,
-                                dtrestart: Util.convertToDate(it.@ДатаЛиц as String),
+                                numlic: it.@РќРѕРјР›РёС†,
+                                dtrestart: Util.convertToDate(it.@Р”Р°С‚Р°Р›РёС† as String),
                                 idlicorg: UtilParser.getLicorgNew(it, list),
                                 idvidlic: UtilParser.getVidlicNew(it, list),
-                                idsostlic: null, //UtilParser.getSostlic(it, list),//not found
-                                dtstart: Util.convertToDate(it.@ДатаНачЛиц as String),
-                                dtend: Util.convertToDate(it.@ДатаОкончЛиц as String),
-                                dtstop: Util.convertToDate(it.СвПриостЛиц.@ДатаПриостЛиц as String)
+                                idsostlic: null, //UtilParser.getSostlic(it, list),
+                                dtstart: Util.convertToDate(it.@Р”Р°С‚Р°РќР°С‡Р›РёС† as String),
+                                dtend: Util.convertToDate(it.@Р”Р°С‚Р°РћРєРѕРЅС‡Р›РёС† as String),
+                                dtstop: Util.convertToDate(it.РЎРІРџСЂРёРѕСЃС‚Р›РёС†.@Р”Р°С‚Р°РџСЂРёРѕСЃС‚Р›РёС† as String)
                         )
 
                         licenzsList.add(licenz)
@@ -367,32 +345,26 @@ class XMLParserEGRULNF {
                 }
                 //------------------ UL_OB
                 log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode ul_ob")
-                if (it.СвПодразд.isEmpty() == false){
+                if (it.РЎРІРџРѕРґСЂР°Р·Рґ.isEmpty() == false){
                     List<Ulob> ulobs = new ArrayList<>()
-                    if (it.СвПодразд.СвФилиал.ГРНДата.@ДатаЗаписи != "") {
-                        it.СвПодразд.СвФилиал.each {
+                    if (it.РЎРІРџРѕРґСЂР°Р·Рґ.РЎРІР¤РёР»РёР°Р».Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё != "") {
+                        it.РЎРІРџРѕРґСЂР°Р·Рґ.РЎРІР¤РёР»РёР°Р».each {
                             Ulob ulob = new Ulob(
                                     idul: ul,
-                                    dtstart: Util.convertToDate(it.ГРНДата.@ДатаЗаписи as String),
-                                    vidob: 100080, //Код вида подразделения (Филиал)
-                                    fulladdress: UtilParser.getAddressNew(it.АдрМНРФ, list),
-                                    kodgorod: null, //it.CONTACT.@KODGOROD,//not found
-                                    telefon: null, //it.CONTACT.@TELEFON,//not found
-                                    fax: null //it.CONTACT.@FAX//not found
+                                    dtstart: Util.convertToDate(it.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                    vidob: 100080, //РљРѕРґ РІРёРґР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ (Р¤РёР»РёР°Р»)
+                                    fulladdress: UtilParser.getAddressNew(it.РђРґСЂРњРќР Р¤, list)
                             )
                             ulobs.add(ulob)
                         }
                     }
-                    if (it.СвПодразд.СвПредстав.@ДатаЗаписи != "") {
+                    if (it.РЎРІРџРѕРґСЂР°Р·Рґ.РЎРІРџСЂРµРґСЃС‚Р°РІ.@Р”Р°С‚Р°Р—Р°РїРёСЃРё != "") {
                         it.UL_OB.each {
                             Ulob ulob = new Ulob(
                                     idul: ul,
-                                    dtstart: Util.convertToDate(it.ГРНДата.@ДатаЗаписи as String),
-                                    vidob: 100081, //Код вида подразделения (Представительство)
-                                    fulladdress: UtilParser.getAddressNew(it.АдрМНРФ, list),
-                                    kodgorod: null, //it.CONTACT.@KODGOROD,//not found
-                                    telefon: null, //it.CONTACT.@TELEFON,//not found
-                                    fax: null //it.CONTACT.@FAX//not found
+                                    dtstart: Util.convertToDate(it.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                    vidob: 100081, //РљРѕРґ РІРёРґР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ (РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊСЃС‚РІРѕ)
+                                    fulladdress: UtilParser.getAddressNew(it.РђРґСЂРњРќР Р¤, list)
                             )
                             ulobs.add(ulob)
                         }
@@ -403,25 +375,24 @@ class XMLParserEGRULNF {
                 //------------------ REGEGRUL
                 log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode gosreg")
                 List<Gosreg> gosregs = new ArrayList<>()
-                it.СвЗапЕГРЮЛ.each {
+                it.РЎРІР—Р°РїР•Р“Р Р®Р›.each {
                     Gosreg gosreg = new Gosreg(
                             idul: ul,
-                            idreg: it.@ИдЗап,
-                            regnum: it.@ГРН,
-                            dtreg: Util.convertToDate(it.СвСвид.@ДатаВыдСвид as String),
-                            dtzap: Util.convertToDate(it.@ДатаЗап as String),
-                            idvidreg: UtilParser.getVidregNew(it.ВидЗап, list),
-                            idregorg: UtilParser.getRegorgNew(it.СвРегОрг, list),
-                            sersvid: Util.convertToInt(it.СвСвид.@Серия),
-                            numsvid: Util.convertToInt(it.СвСвид.@Номер)
+                            idreg: it.@РРґР—Р°Рї,
+                            regnum: it.@Р“Р Рќ,
+                            dtreg: Util.convertToDate(it.РЎРІРЎРІРёРґ.@Р”Р°С‚Р°Р’С‹РґРЎРІРёРґ as String),
+                            dtzap: Util.convertToDate(it.@Р”Р°С‚Р°Р—Р°Рї as String),
+                            idvidreg: UtilParser.getVidregNew(it.Р’РёРґР—Р°Рї, list),
+                            idregorg: UtilParser.getRegorgNew(it.РЎРІР РµРіРћСЂРі, list),
+                            sersvid: Util.convertToInt(it.РЎРІРЎРІРёРґ.@РЎРµСЂРёСЏ),
+                            numsvid: Util.convertToInt(it.РЎРІРЎРІРёРґ.@РќРѕРјРµСЂ)
                     )
                     List<Sppreddok> preddoks = new ArrayList<>()
-                    it.СведПредДок.each {
+                    it.РЎРІРµРґРџСЂРµРґР”РѕРє.each {
                         Sppreddok preddok = new Sppreddok(
-                                //idreg: gosreg,
-                                numdok: it.НомДок.text(),
-                                name: it.НаимДок.text(),
-                                dtdok: Util.convertToDate(it.ДатаДок as String),
+                                numdok: it.РќРѕРјР”РѕРє.text(),
+                                name: it.РќР°РёРјР”РѕРє.text(),
+                                dtdok: Util.convertToDate(it.Р”Р°С‚Р°Р”РѕРє as String),
                         )
                         preddoks.add(preddok)
                     }
@@ -431,35 +402,34 @@ class XMLParserEGRULNF {
                 ul.setGosregs(gosregs)
                 //------------------ MNS
                 log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode mns")
-                if (it.СвУчетНО.@ДатаПостУч != "") {
-                    it.СвУчетНО.each {
+                if (it.РЎРІРЈС‡РµС‚РќРћ.@Р”Р°С‚Р°РџРѕСЃС‚РЈС‡ != "") {
+                    it.РЎРІРЈС‡РµС‚РќРћ.each {
                         Ulmns ipmns = new Ulmns(
                                 idul: ul,
-                                dtstart: Util.convertToDate(it.@ДатаПостУч as String),
-                                regnum: it.ГРНДата.@ГРН,
-                                dtzap: Util.convertToDate(it.ГРНДата.@ДатаЗаписи as String),
+                                dtstart: Util.convertToDate(it.@Р”Р°С‚Р°РџРѕСЃС‚РЈС‡ as String),
+                                regnum: it.Р“Р РќР”Р°С‚Р°.@Р“Р Рќ,
+                                dtzap: Util.convertToDate(it.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
                                 idmns: new Spmns(
-                                        kod: it.СвНО.@КодНО,
-                                        name: it.СвНО.@НаимНО
+                                        kod: it.РЎРІРќРћ.@РљРѕРґРќРћ,
+                                        name: it.РЎРІРќРћ.@РќР°РёРјРќРћ
                                 )
-                                //dtend: null //Util.convertToDate(it.@DTEND as String)//not found
                         )
                         ul.setUlmns(ipmns)
                     }
                 }
                 //------------------ PF
                 log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode pf")
-                if (it.СвРегПФ.@ДатаРег != "") {
-                    it.СвРегПФ.each {
+                if (it.РЎРІР РµРіРџР¤.@Р”Р°С‚Р°Р РµРі != "") {
+                    it.РЎРІР РµРіРџР¤.each {
                         Ulpf ulpf = new Ulpf(
                                 idul: ul,
-                                dtstart: Util.convertToDate(it.@ДатаРег as String),
-                                regnomPf: it.@РегНомПФ as String,
-                                regnum: it.ГРНДата.@ГРН,
-                                dtzap: Util.convertToDate(it.ГРНДата.@ДатаЗаписи as String),
+                                dtstart: Util.convertToDate(it.@Р”Р°С‚Р°Р РµРі as String),
+                                regnomPf: it.@Р РµРіРќРѕРјРџР¤ as String,
+                                regnum: it.Р“Р РќР”Р°С‚Р°.@Р“Р Рќ,
+                                dtzap: Util.convertToDate(it.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
                                 idpf: new Sppf(
-                                        kod: Util.convertToInt(it.СвОргПФ.@КодПФ),
-                                        name: it.СвОргПФ.@НаимПФ
+                                        kod: Util.convertToInt(it.РЎРІРћСЂРіРџР¤.@РљРѕРґРџР¤),
+                                        name: it.РЎРІРћСЂРіРџР¤.@РќР°РёРјРџР¤
                                 )
 
                         )
@@ -468,39 +438,22 @@ class XMLParserEGRULNF {
                 }
                 //------------------ FSS
                 log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode fss")
-                if (it.СвРегФСС.@РегНомФСС != "") {
-                    it.СвРегФСС.each {
+                if (it.РЎРІР РµРіР¤РЎРЎ.@Р РµРіРќРѕРјР¤РЎРЎ != "") {
+                    it.РЎРІР РµРіР¤РЎРЎ.each {
                         Ulfss ulfss = new Ulfss(
                                 idul: ul,
-                                dtstart: Util.convertToDate(it.@ДатаРег as String),
-                                regnomFss: it.@РегНомФСС as String,
-                                regnum: it.ГРНДата.@ГРН,
-                                dtzap: Util.convertToDate(it.ГРНДата.@ДатаЗаписи as String),
+                                dtstart: Util.convertToDate(it.@Р”Р°С‚Р°Р РµРі as String),
+                                regnomFss: it.@Р РµРіРќРѕРјР¤РЎРЎ as String,
+                                regnum: it.Р“Р РќР”Р°С‚Р°.@Р“Р Рќ,
+                                dtzap: Util.convertToDate(it.Р“Р РќР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
                                 idfss: new Spfss(
-                                        kod: it.СвОргФСС.@КодФСС,
-                                        name: it.СвОргФСС.@НаимФСС
+                                        kod: it.РЎРІРћСЂРіР¤РЎРЎ.@РљРѕРґР¤РЎРЎ,
+                                        name: it.РЎРІРћСЂРіР¤РЎРЎ.@РќР°РёРјР¤РЎРЎ
                                 )
                         )
                         ul.setUlfss(ulfss)
                     }
                 }
-                //------------------ FOMS
-                /*log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode foms")
-                if (it.FOMS.@REGN_FOMS != "") {
-                    it.FOMS.each {
-                        Ulfoms ipfoms = new Ulfoms(
-                                idul: ul,
-                                dtstart: Util.convertToDate(it.@DTSTART as String),
-                                dtend: Util.convertToDate(it.@DTEND as String),
-                                regnomFoms: it.@REGN_FOMS as String,
-                                idfoms: new Spfoms(
-                                        kod: it.ORGAN_FOMS.@KOD,
-                                        name: it.ORGAN_FOMS.@NAME
-                                )
-                        )
-                        ul.setUlfoms(ipfoms)
-                    }
-                }*/
             }
         } catch (Exception ex) {
             log.error("Exception while parsing UL with OGRN = " + ul.getOgrn())

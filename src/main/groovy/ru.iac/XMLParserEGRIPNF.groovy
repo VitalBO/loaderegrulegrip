@@ -3,7 +3,6 @@ package ru.iac
 import groovy.util.slurpersupport.GPathResult
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import ru.iac.UtilParser
 import ru.iac.entity.*
 
 /**
@@ -19,71 +18,71 @@ class XMLParserEGRIPNF {
 
         Ip ip = null;
         try {
-            gPathResult.СвИП.each {
-                log.debug("Start decoding IP with OGRN " + it.@ОГРНИП)
+            gPathResult.РЎРІРРџ.each {
+                log.debug("Start decoding IP with OGRN " + it.@РћР“Р РќРРџ)
 
                 //------------------ IP
                 ip = new Ip(
-                        idip: it.@ОГРНИП,
-                        inn: it.@ИННФЛ,
-                        ogrn: it.@ОГРНИП,
-                        dtogrn: Util.convertToDate(it.СвРегИП.@ДатаОГРНИП as String),
-                        regnum: it.СвРегИП.@РегНом,
-                        dtreg: Util.convertToDate(it.СвРегИП.@ДатаРег as String),
-                        regorgname: it.СвРегИП.@НаимРО,
-                        kodstatusend: it.СвПрекращ.СвСтатус.@КодСтатус,
-                        namestatusend: it.СвПрекращ.СвСтатус.@НаимСтатус,
-                        dtend: Util.convertToDate(it.СвПрекращ.СвСтатус.@ДатаПрекращ as String),
-                        regnumend: it.СвПрекращ.ГРНИПДатаТип.@ГРНИП,
-                        dtregend: Util.convertToDate(it.СвПрекращ.ГРНИПДатаТип.@датаЗаписи as String),
+                        idip: it.@РћР“Р РќРРџ,
+                        inn: it.@РРќРќР¤Р›,
+                        ogrn: it.@РћР“Р РќРРџ,
+                        dtogrn: Util.convertToDate(it.РЎРІР РµРіРРџ.@Р”Р°С‚Р°РћР“Р РќРРџ as String),
+                        regnum: it.РЎРІР РµРіРРџ.@Р РµРіРќРѕРј,
+                        dtreg: Util.convertToDate(it.РЎРІР РµРіРРџ.@Р”Р°С‚Р°Р РµРі as String),
+                        regorgname: it.РЎРІР РµРіРРџ.@РќР°РёРјР Рћ,
+                        kodstatusend: it.РЎРІРџСЂРµРєСЂР°С‰.РЎРІРЎС‚Р°С‚СѓСЃ.@РљРѕРґРЎС‚Р°С‚СѓСЃ,
+                        namestatusend: it.РЎРІРџСЂРµРєСЂР°С‰.РЎРІРЎС‚Р°С‚СѓСЃ.@РќР°РёРјРЎС‚Р°С‚СѓСЃ,
+                        dtend: Util.convertToDate(it.РЎРІРџСЂРµРєСЂР°С‰.РЎРІРЎС‚Р°С‚СѓСЃ.@Р”Р°С‚Р°РџСЂРµРєСЂР°С‰ as String),
+                        regnumend: it.РЎРІРџСЂРµРєСЂР°С‰.Р“Р РќРРџР”Р°С‚Р°РўРёРї.@Р“Р РќРРџ,
+                        dtregend: Util.convertToDate(it.РЎРІРџСЂРµРєСЂР°С‰.Р“Р РќРРџР”Р°С‚Р°РўРёРї.@РґР°С‚Р°Р—Р°РїРёСЃРё as String),
                         idregorg: UtilParser.getRegorgNew(it as GPathResult, list),
-                        ogrnul: it.СвПрекращ.СвНовЮЛ.@ОГРН,
-                        innul: it.СвПрекращ.СвНовЮЛ.@ИНН,
-                        namepul: it.СвПрекращ.СвНовЮЛ.@НаимЮЛПолн,
-                        grnzap: it.СвПрекращ.СвНовЮЛ.ГРНИПДата.@ГРНИП,
-                        dtzap: Util.convertToDate(it.СвПрекращ.СвНовЮЛ.ГРНИПДата.@ДатаЗаписи as String),
-                        grncor: it.СвПрекращ.СвНовЮЛ.ГРНИПДатаИспр.@ГРНИП,
-                        dtcor: Util.convertToDate(it.СвПрекращ.СвНовЮЛ.ГРНИПДатаИспр.@ДатаЗаписи as String),
+                        ogrnul: it.РЎРІРџСЂРµРєСЂР°С‰.РЎРІРќРѕРІР®Р›.@РћР“Р Рќ,
+                        innul: it.РЎРІРџСЂРµРєСЂР°С‰.РЎРІРќРѕРІР®Р›.@РРќРќ,
+                        namepul: it.РЎРІРџСЂРµРєСЂР°С‰.РЎРІРќРѕРІР®Р›.@РќР°РёРјР®Р›РџРѕР»РЅ,
+                        grnzap: it.РЎРІРџСЂРµРєСЂР°С‰.РЎРІРќРѕРІР®Р›.Р“Р РќРРџР”Р°С‚Р°.@Р“Р РќРРџ,
+                        dtzap: Util.convertToDate(it.РЎРІРџСЂРµРєСЂР°С‰.РЎРІРќРѕРІР®Р›.Р“Р РќРРџР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                        grncor: it.РЎРІРџСЂРµРєСЂР°С‰.РЎРІРќРѕРІР®Р›.Р“Р РќРРџР”Р°С‚Р°РСЃРїСЂ.@Р“Р РќРРџ,
+                        dtcor: Util.convertToDate(it.РЎРІРџСЂРµРєСЂР°С‰.РЎРІРќРѕРІР®Р›.Р“Р РќРРџР”Р°С‚Р°РСЃРїСЂ.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
                         idvidip: new Spvidip(
-                                        id: Util.convertToInt(it.@КодВидИП),
-                                        name: it.@НаимВидИП
+                                        id: Util.convertToInt(it.@РљРѕРґР’РёРґРРџ),
+                                        name: it.@РќР°РёРјР’РёРґРРџ
                                 )
 
                 )
-                if(it.СвСтатус.СвСтатус.@КодСтатус!="") {
+                if(it.РЎРІРЎС‚Р°С‚СѓСЃ.РЎРІРЎС‚Р°С‚СѓСЃ.@РљРѕРґРЎС‚Р°С‚СѓСЃ!="") {
                     Spipstat ipstat = new Spipstat(
-                            id: Util.convertToInt(it.СвСтатус.СвСтатус.@КодСтатус),
-                            name: it.СвСтатус.СвСтатус.@НаимСтатус
+                            id: Util.convertToInt(it.РЎРІРЎС‚Р°С‚СѓСЃ.РЎРІРЎС‚Р°С‚СѓСЃ.@РљРѕРґРЎС‚Р°С‚СѓСЃ),
+                            name: it.РЎРІРЎС‚Р°С‚СѓСЃ.РЎРІРЎС‚Р°С‚СѓСЃ.@РќР°РёРјРЎС‚Р°С‚СѓСЃ
                     )
                     ip.setIdstatus(ipstat)
                 }
 
                 //------------------ IPADR
                 log.trace("Decoding IP with OGRN " + ip.getIdip() + " begin decode ip_address")
-                if (it.СвАдрМЖ.ГРНИПДата.@ДатаЗаписи != "") {
-                    it.СвАдрМЖ.each {
+                if (it.РЎРІРђРґСЂРњР–.Р“Р РќРРџР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё != "") {
+                    it.РЎРІРђРґСЂРњР–.each {
                         Ipadr ipadr = new Ipadr(
                                 idip: ip,
-                                regnum: it.ГРНИПДата.@ГРНИП,
-                                dtstart: Util.convertToDate(it.ГРНИПДата.@ДатаЗаписи as String),
-                                regnumcor: it.ГРНИПДатаИспр.@ГРНИП,
-                                dtcor: Util.convertToDate(it.ГРНИПДатаИспр.@ДатаЗаписи as String),
-                                kodrg: it.АдресРФ.@КодРегион,
-                                kodKl: it.АдресРФ.@КодАдрКладр,
-                                fulladdress: UtilParser.getAddressNew(it.АдресРФ, list),
-                                address:  it.АдресРФ.Регион.@НаимРегион.text() + " "
-                                        + it.АдресРФ.Регион.@ТипРегион.text() + " "
-                                        + it.АдресРФ.Район.@НаимРайон.text() + " "
-                                        + it.АдресРФ.Район.@ТипРайон.text() + " "
-                                        + it.АдресРФ.Город.@НаимГород.text() + " "
-                                        + it.АдресРФ.Город.@ТипГород.text() + " "
-                                        + it.АдресРФ.НаселПункт.@НаимНаселПункт.text() + " "
-                                        + it.АдресРФ.НаселПункт.@ТипНаселПункт.text() + " "
-                                        + it.АдресРФ.Улица.@НаимУлица.text() + " "
-                                        + it.АдресРФ.Улица.@ТипУлица.text() + " "
-                                        + it.АдресРФ.@Дом.text() + " "
-                                        + it.АдресРФ.@Корп.text() + " "
-                                        + it.АдресРФ.@Кварт.text()
+                                regnum: it.Р“Р РќРРџР”Р°С‚Р°.@Р“Р РќРРџ,
+                                dtstart: Util.convertToDate(it.Р“Р РќРРџР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                regnumcor: it.Р“Р РќРРџР”Р°С‚Р°РСЃРїСЂ.@Р“Р РќРРџ,
+                                dtcor: Util.convertToDate(it.Р“Р РќРРџР”Р°С‚Р°РСЃРїСЂ.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                kodrg: it.РђРґСЂРµСЃР Р¤.@РљРѕРґР РµРіРёРѕРЅ,
+                                kodKl: it.РђРґСЂРµСЃР Р¤.@РљРѕРґРђРґСЂРљР»Р°РґСЂ,
+                                fulladdress: UtilParser.getAddressNew(it.РђРґСЂРµСЃР Р¤, list),
+                                address:  it.РђРґСЂРµСЃР Р¤.Р РµРіРёРѕРЅ.@РќР°РёРјР РµРіРёРѕРЅ.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.Р РµРіРёРѕРЅ.@РўРёРїР РµРіРёРѕРЅ.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.Р Р°Р№РѕРЅ.@РќР°РёРјР Р°Р№РѕРЅ.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.Р Р°Р№РѕРЅ.@РўРёРїР Р°Р№РѕРЅ.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.Р“РѕСЂРѕРґ.@РќР°РёРјР“РѕСЂРѕРґ.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.Р“РѕСЂРѕРґ.@РўРёРїР“РѕСЂРѕРґ.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.РќР°СЃРµР»РџСѓРЅРєС‚.@РќР°РёРјРќР°СЃРµР»РџСѓРЅРєС‚.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.РќР°СЃРµР»РџСѓРЅРєС‚.@РўРёРїРќР°СЃРµР»РџСѓРЅРєС‚.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.РЈР»РёС†Р°.@РќР°РёРјРЈР»РёС†Р°.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.РЈР»РёС†Р°.@РўРёРїРЈР»РёС†Р°.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.@Р”РѕРј.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.@РљРѕСЂРї.text() + " "
+                                        + it.РђРґСЂРµСЃР Р¤.@РљРІР°СЂС‚.text()
                         )
                         ip.setIpadr(ipadr)
                     }
@@ -91,15 +90,15 @@ class XMLParserEGRIPNF {
 
                 //------------------ IPEMAIL
                 log.trace("Decoding IP with OGRN " + ip.getIdip() + " begin decode ip_address")
-                if (it.СвАдрЭлПочты.ГРНИПДата.@ДатаЗаписи != "") {
-                    it.СвАдрЭлПочты.each {
+                if (it.РЎРІРђРґСЂР­Р»РџРѕС‡С‚С‹.Р“Р РќРРџР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё != "") {
+                    it.РЎРІРђРґСЂР­Р»РџРѕС‡С‚С‹.each {
                         Ipemail ipemail = new Ipemail(
                                 idip: ip,
                                 email: it.@'E-mail',
-                                regnum: it.ГРНИПДата.@ГРНИП,
-                                dtzap: Util.convertToDate(it.ГРНИПДата.@ДатаЗаписи as String),
-                                regnumcor: it.ГРНИПДатаИспр.@ГРНИП,
-                                dtcor: Util.convertToDate(it.ГРНИПДатаИспр.@ДатаЗаписи as String)
+                                regnum: it.Р“Р РќРРџР”Р°С‚Р°.@Р“Р РќРРџ,
+                                dtzap: Util.convertToDate(it.Р“Р РќРРџР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                regnumcor: it.Р“Р РќРРџР”Р°С‚Р°РСЃРїСЂ.@Р“Р РќРРџ,
+                                dtcor: Util.convertToDate(it.Р“Р РќРРџР”Р°С‚Р°РСЃРїСЂ.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String)
                         )
                         ip.setIpemail(ipemail)
                     }
@@ -107,16 +106,16 @@ class XMLParserEGRIPNF {
 
                 //------------------ FSS
                 log.trace("Decoding IP with OGRN " + ip.getIdip() + " begin decode REGN_FSS")
-                if (it.СвРегФСС.@РегНомФСС != "") {
-                    it.СвРегФСС.each {
+                if (it.РЎРІР РµРіР¤РЎРЎ.@Р РµРіРќРѕРјР¤РЎРЎ != "") {
+                    it.РЎРІР РµРіР¤РЎРЎ.each {
                         Ipfss ipfss = new Ipfss(
                                 idip: ip,
                                 idfss: new Spfss(
-                                        kod: it.СвОргФСС.@КодФСС,
-                                        name: it.СвОргФСС.@НаимФСС
+                                        kod: it.РЎРІРћСЂРіР¤РЎРЎ.@РљРѕРґР¤РЎРЎ,
+                                        name: it.РЎРІРћСЂРіР¤РЎРЎ.@РќР°РёРјР¤РЎРЎ
                                 ),
-                                regnomFss: it.@РегНомФСС as String,
-                                dtstart: Util.convertToDate(it.@ДатаРег as String),
+                                regnomFss: it.@Р РµРіРќРѕРјР¤РЎРЎ as String,
+                                dtstart: Util.convertToDate(it.@Р”Р°С‚Р°Р РµРі as String),
                                 dtend: null
                         )
                         ip.setIpfss(ipfss)
@@ -125,15 +124,15 @@ class XMLParserEGRIPNF {
 
                 //------------------ MNS
                 log.trace("Decoding IP with OGRN " + ip.getIdip() + " begin decode MNS")
-                if (it.СвУчетНО.@ДатаПостУч != "") {
-                    it.СвУчетНО.each {
+                if (it.РЎРІРЈС‡РµС‚РќРћ.@Р”Р°С‚Р°РџРѕСЃС‚РЈС‡ != "") {
+                    it.РЎРІРЈС‡РµС‚РќРћ.each {
                         Ipmns ipmns = new Ipmns(
                                 idip: ip,
                                 idmns: new Spmns(
-                                        kod: it.СвНО.@КодНО,
-                                        name: it.СвНО.@НаимНО
+                                        kod: it.РЎРІРќРћ.@РљРѕРґРќРћ,
+                                        name: it.РЎРІРќРћ.@РќР°РёРјРќРћ
                                 ),
-                                dtstart: Util.convertToDate(it.@ДатаПостУч as String),
+                                dtstart: Util.convertToDate(it.@Р”Р°С‚Р°РџРѕСЃС‚РЈС‡ as String),
                                 dtend: null
                         )
                         ip.setIpmns(ipmns)
@@ -142,15 +141,15 @@ class XMLParserEGRIPNF {
 
                 //------------------ PF
                 log.trace("Decoding IP with OGRN " + ip.getIdip() + " begin decode REGN_PF")
-                if (it.СвРегПФ.@ДатаРег != "") {
-                    it.СвРегПФ.each {
+                if (it.РЎРІР РµРіРџР¤.@Р”Р°С‚Р°Р РµРі != "") {
+                    it.РЎРІР РµРіРџР¤.each {
                         Ippf ippf = new Ippf(
                                 idip: ip,
                                 idpf: new Sppf(
-                                        kod: Util.convertToInt(it.СвОргПФ.@КодПФ),
-                                        name: it.СвОргПФ.@НаимПФ
+                                        kod: Util.convertToInt(it.РЎРІРћСЂРіРџР¤.@РљРѕРґРџР¤),
+                                        name: it.РЎРІРћСЂРіРџР¤.@РќР°РёРјРџР¤
                                 ),
-                                dtstart: Util.convertToDate(it.@ДатаРег as String),
+                                dtstart: Util.convertToDate(it.@Р”Р°С‚Р°Р РµРі as String),
                                 dtend: null
                         )
                         ip.setIppf(ippf)
@@ -159,18 +158,18 @@ class XMLParserEGRIPNF {
 
                 //------------------ IPNAME
                 log.trace("Decoding IP with OGRN " + ip.getIdip() + " begin decode FL")
-                if (it.СвФЛ.ГРНИПДата.@ДатаЗаписи != "") {
-                    it.СвФЛ.each {
+                if (it.РЎРІР¤Р›.Р“Р РќРРџР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё != "") {
+                    it.РЎРІР¤Р›.each {
                         Ipname ipname = new Ipname(
                                 idip: ip,
-                                dtstart: Util.convertToDate(it.ГРНИПДата.@ДатаЗаписи as String),
-                                famfl: it.ФИОРус.@Фамилия as String,
-                                namefl: it.ФИОРус.@Имя as String,
-                                otchfl: it.ФИОРус.@Отчество as String,
-                                famlat: it.ФИОЛат.@Фамилия as String,
-                                namelat: it.ФИОЛат.@Имя as String,
-                                otchlat: it.ФИОЛат.@Отчество as String,
-                                sex: Util.convertToInt(it.@Пол)
+                                dtstart: Util.convertToDate(it.Р“Р РќРРџР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
+                                famfl: it.Р¤РРћР СѓСЃ.@Р¤Р°РјРёР»РёСЏ as String,
+                                namefl: it.Р¤РРћР СѓСЃ.@РРјСЏ as String,
+                                otchfl: it.Р¤РРћР СѓСЃ.@РћС‚С‡РµСЃС‚РІРѕ as String,
+                                famlat: it.Р¤РРћР›Р°С‚.@Р¤Р°РјРёР»РёСЏ as String,
+                                namelat: it.Р¤РРћР›Р°С‚.@РРјСЏ as String,
+                                otchlat: it.Р¤РРћР›Р°С‚.@РћС‚С‡РµСЃС‚РІРѕ as String,
+                                sex: Util.convertToInt(it.@РџРѕР»)
                         )
                         ip.setIpname(ipname)
                     }
@@ -178,13 +177,13 @@ class XMLParserEGRIPNF {
 
                 //------------------ CITIZEN
                 log.trace("Decoding IP with OGRN " + ip.getIdip() + " begin decode CITIZEN")
-                if (it.СвГражд.ГРНИПДата.@ДатаЗаписи != "") {
-                    it.СвГражд.each {
+                if (it.РЎРІР“СЂР°Р¶Рґ.Р“Р РќРРџР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё != "") {
+                    it.РЎРІР“СЂР°Р¶Рґ.each {
                         Ipcitizen ipcitizen = new Ipcitizen(
                                 idip: ip,
-                                dtstart: Util.convertToDate(it.ГРНИПДата.@ДатаЗаписи as String),
+                                dtstart: Util.convertToDate(it.Р“Р РќРРџР”Р°С‚Р°.@Р”Р°С‚Р°Р—Р°РїРёСЃРё as String),
                                 idvidcitizen: new Spvidcitizen(
-                                        id: Util.convertToInt(it.@ВидГражд),
+                                        id: Util.convertToInt(it.@Р’РёРґР“СЂР°Р¶Рґ),
                                         name: null
                                 ),
                                 oksm: UtilParser.getOksmNew(it, list)
@@ -196,12 +195,12 @@ class XMLParserEGRIPNF {
                 //------------------ OKVED
                 log.trace("Decoding IP with OGRN " + ip.getIdip() + " begin decode okved")
                 ArrayList<Ipokved> listIpOkved = new ArrayList<>()
-                if (it.СвОКВЭД.СвОКВЭДОсн.@КодОКВЭД != "") {
+                if (it.РЎРІРћРљР’Р­Р”.РЎРІРћРљР’Р­Р”РћСЃРЅ.@РљРѕРґРћРљР’Р­Р” != "") {
                     Okved okved
-                    it.СвОКВЭД.СвОКВЭДОсн.each {
+                    it.РЎРІРћРљР’Р­Р”.РЎРІРћРљР’Р­Р”РћСЃРЅ.each {
                         okved = new Okved(
-                                codeOkved: it.@КодОКВЭД,
-                                name: it.@НаимОКВЭД
+                                codeOkved: it.@РљРѕРґРћРљР’Р­Р”,
+                                name: it.@РќР°РёРјРћРљР’Р­Р”
                         )
 
                         listIpOkved.add(
@@ -213,12 +212,12 @@ class XMLParserEGRIPNF {
                         )
                     }
                 }
-                if (it.СвОКВЭД.СвОКВЭДДоп.@КодОКВЭД != "") {
+                if (it.РЎРІРћРљР’Р­Р”.РЎРІРћРљР’Р­Р”Р”РѕРї.@РљРѕРґРћРљР’Р­Р” != "") {
                     Okved okved
-                    it.СвОКВЭД.СвОКВЭДДоп.each {
+                    it.РЎРІРћРљР’Р­Р”.РЎРІРћРљР’Р­Р”Р”РѕРї.each {
                         okved = new Okved(
-                                codeOkved: it.@КодОКВЭД,
-                                name: it.@НаимОКВЭД
+                                codeOkved: it.@РљРѕРґРћРљР’Р­Р”,
+                                name: it.@РќР°РёРјРћРљР’Р­Р”
                         )
 
                         listIpOkved.add(
@@ -235,17 +234,17 @@ class XMLParserEGRIPNF {
                 //------------------ REGEGRIP
                 log.trace("Decoding IP with OGRN " + ip.getIdip() + " begin decode REGEGRIP")
                 List<Ipgosreg> ipgosregList = new ArrayList<>()
-                it.СвЗапЕГРИП.each {
+                it.РЎРІР—Р°РїР•Р“Р РРџ.each {
                     Ipgosreg ipgosreg = new Ipgosreg(
                             idip: ip,
-                            idreg: it.@ИдЗап,
-                            regnum: it.@ГРНИП,
-                            dtreg: Util.convertToDate(it.СвСвид.@ДатаВыдСвид as String),
-                            dtzap: Util.convertToDate(it.@ДатаЗап as String),
+                            idreg: it.@РРґР—Р°Рї,
+                            regnum: it.@Р“Р РќРРџ,
+                            dtreg: Util.convertToDate(it.РЎРІРЎРІРёРґ.@Р”Р°С‚Р°Р’С‹РґРЎРІРёРґ as String),
+                            dtzap: Util.convertToDate(it.@Р”Р°С‚Р°Р—Р°Рї as String),
                             idvidreg: UtilParser.getVidregNew(it, list),
                             idregorg: UtilParser.getRegorgNew(it, list),
-                            sersvid: Util.convertToInt(it.СвСвид.@Серия),
-                            numsvid: Util.convertToInt(it.СвСвид.@Номер)
+                            sersvid: Util.convertToInt(it.РЎРІРЎРІРёРґ.@РЎРµСЂРёСЏ),
+                            numsvid: Util.convertToInt(it.РЎРІРЎРІРёРґ.@РќРѕРјРµСЂ)
                     )
                     if (!ipgosregList.contains(ipgosreg)) {
                         ipgosregList.add(ipgosreg)
@@ -255,21 +254,21 @@ class XMLParserEGRIPNF {
 
                 //------------------ LICENZ
                 log.trace("Decoding IP with OGRN " + ip.getIdip() + " begin decode LICENZ")
-                if (it.СвЛицензия.@НомЛиц != "") {
+                if (it.РЎРІР›РёС†РµРЅР·РёСЏ.@РќРѕРјР›РёС† != "") {
                     List<Licenz> licenzsList = new ArrayList<>()
                     Licenz licenz;
-                    it.СвЛицензия.each {
+                    it.РЎРІР›РёС†РµРЅР·РёСЏ.each {
                         licenz = new Licenz(
                                 idip: ip,
-                                numlic: it.@НомЛиц,
-                                dtrestart: Util.convertToDate(it.@ДатаЛиц as String),
+                                numlic: it.@РќРѕРјР›РёС†,
+                                dtrestart: Util.convertToDate(it.@Р”Р°С‚Р°Р›РёС† as String),
                                 idlicorg: UtilParser.getLicorgNew(it, list),
                                 idvidlic: UtilParser.getVidlicNew(it, list),
                                 idsostlic: null, //UtilParser.getSostlic(it, list),//not found
-                                dtstart: Util.convertToDate(it.@ДатаНачЛиц as String),
-                                dtend: Util.convertToDate(it.@ДатаОкончЛиц as String),
-                                dtstop: Util.convertToDate(it.СвПриостЛиц.@ЛицОргПриостЛиц as String),
-                                orgstopname: it.СвПриостЛиц.@ЛицОргПриостЛиц
+                                dtstart: Util.convertToDate(it.@Р”Р°С‚Р°РќР°С‡Р›РёС† as String),
+                                dtend: Util.convertToDate(it.@Р”Р°С‚Р°РћРєРѕРЅС‡Р›РёС† as String),
+                                dtstop: Util.convertToDate(it.РЎРІРџСЂРёРѕСЃС‚Р›РёС†.@Р›РёС†РћСЂРіРџСЂРёРѕСЃС‚Р›РёС† as String),
+                                orgstopname: it.РЎРІРџСЂРёРѕСЃС‚Р›РёС†.@Р›РёС†РћСЂРіРџСЂРёРѕСЃС‚Р›РёС†
                         )
 
                         licenzsList.add(licenz)

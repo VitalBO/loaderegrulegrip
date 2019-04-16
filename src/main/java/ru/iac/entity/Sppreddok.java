@@ -92,11 +92,8 @@ public class Sppreddok implements Serializable, EgrulEntity {
     @Column(name = "IDDOK")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PREDDOKSEQ")
     private Integer iddok;
-/*
-    @ManyToOne
-    @JoinColumn(name = "IDREG", nullable = true, unique = true)
-    private Gosreg idreg;
-*/
+
+
     @Column(name = "NUMDOK", length = 50, nullable = true, unique = false)
     private String numdok;
 
@@ -156,7 +153,6 @@ public class Sppreddok implements Serializable, EgrulEntity {
             String numdok,
             String name,
             Date dtdok,
-            //Gosreg idreg,
             Date gihdAdate,
             Date gihdChdate,
             Date gihdDdate,
@@ -170,7 +166,6 @@ public class Sppreddok implements Serializable, EgrulEntity {
                 numdok,
                 name,
                 dtdok,
-                //idreg,
                 gihdAdate,
                 gihdChdate,
                 gihdDdate,
@@ -188,7 +183,6 @@ public class Sppreddok implements Serializable, EgrulEntity {
             String numdok,
             String name,
             Date dtdok,
-            //Gosreg idreg,
             Date gihdAdate,
             Date gihdChdate,
             Date gihdDdate,
@@ -204,7 +198,6 @@ public class Sppreddok implements Serializable, EgrulEntity {
         setNumdok(numdok);
         setName(name);
         setDtdok(dtdok);
-        //setIdreg(idreg);
         setGihdAdate(gihdAdate);
         setGihdChdate(gihdChdate);
         setGihdDdate(gihdDdate);
@@ -238,7 +231,6 @@ public class Sppreddok implements Serializable, EgrulEntity {
                 getNumdok(),
                 getName(),
                 getDtdok(),
-                //getIdreg(),
                 getGihdAdate(),
                 getGihdChdate(),
                 getGihdDdate(),
@@ -285,15 +277,8 @@ public class Sppreddok implements Serializable, EgrulEntity {
     public void setDtdok(Date dtdok) {
         this.dtdok = dtdok;
     }
-/*
-    public Gosreg getIdreg() {
-        return idreg;
-    }
 
-    public void setIdreg(Gosreg idreg) {
-        this.idreg=idreg;
-    }
-*/
+
     public Date getGihdAdate() {
         return gihdAdate;
     }

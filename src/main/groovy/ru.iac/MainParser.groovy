@@ -105,12 +105,12 @@ public class MainParser {
             DATA.UL.each {
                 poolExecutor.submit(new ThreadUL(filePath, it))
             }
-        } else if (DATA.@ИдФайл ==~ /VO_RUGFO.*/){
-            DATA.Документ.each{
+        } else if (DATA.@РРґР¤Р°Р№Р» ==~ /VO_RUGFO.*/){
+            DATA.Р”РѕРєСѓРјРµРЅС‚.each{
                 poolExecutor.submit(new ThreadULnew(filePath, it))
             }
-        } else if (DATA.@ИдФайл ==~ /VO_RIGFO.*/){
-            DATA.Документ.each {
+        } else if (DATA.@РРґР¤Р°Р№Р» ==~ /VO_RIGFO.*/){
+            DATA.Р”РѕРєСѓРјРµРЅС‚.each {
                 poolExecutor.submit(new ThreadIPnew(filePath, it))
             }
         } else {
