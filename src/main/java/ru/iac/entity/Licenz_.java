@@ -32,18 +32,18 @@ package ru.iac.entity;
 import java.sql.*;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
+import javax.persistence.metamodel.SetAttribute;
 
 
 @StaticMetamodel(Licenz.class)
 public class Licenz_ {
 
     public static volatile SingularAttribute<Licenz, Integer> idlic;
-
     public static volatile SingularAttribute<Licenz, Integer> idul;
     public static volatile SingularAttribute<Licenz, Integer> idip;
     public static volatile SingularAttribute<Licenz, String> numlic;
     public static volatile SingularAttribute<Licenz, Integer> idlicorg;
-    public static volatile SingularAttribute<Licenz, Integer> idvidlic;
+    public static volatile SetAttribute<Licenz, Integer> idvidlic;
     public static volatile SingularAttribute<Licenz, Integer> idsostlic;
     public static volatile SingularAttribute<Licenz, Date> dtstart;
     public static volatile SingularAttribute<Licenz, Date> dtend;

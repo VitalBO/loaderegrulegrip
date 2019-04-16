@@ -17,7 +17,7 @@
         <groovy.version>2.4.3</groovy.version>
         <gmaven.version>1.5</gmaven.version>
 
-        <hibernate.version>4.3.8.Final</hibernate.version>
+        <hibernate.version>5.4.2.Final</hibernate.version>
 
         <junit.version>4.12</junit.version>
 
@@ -176,20 +176,20 @@
         <!-- hibernate -->
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
+            <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
+            <artifactId>hibernate-c3p0</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
         <!-- oracle -->
-        <dependency>
+        <!--dependency>
             <groupId>com.oracle</groupId>
             <artifactId>oracle</artifactId>
             <version>15</version>
-        </dependency>
+        </dependency-->
         <!-- PostgreSql -->
         <dependency>
             <groupId>org.postgresql</groupId>

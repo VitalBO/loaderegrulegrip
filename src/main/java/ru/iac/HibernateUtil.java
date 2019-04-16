@@ -8,9 +8,7 @@ import org.hibernate.service.ServiceRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
+import java.io.File;
 
 /**
  * Created by konenkov on 12.02.2015.
@@ -25,18 +23,14 @@ public class HibernateUtil {
     private final SessionFactory factory;
 
     private HibernateUtil() {
-        Properties properties = new Properties();
-        try {
-            properties.load(new FileInputStream("loadtoegrul.properties"));
-        } catch (IOException e) {
-            LOG.error("Not found hibernate config file (loadtoegrul.properties) exception");
+        File propertiesFile = new File("loadtoegrul.properties");
+        ServiceRegistry registry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").loadProperties(propertiesFile).build();
+        try{
+            factory = new Configuration().buildSessionFactory(registry);
+        } catch (Exception e) {
+            StandardServiceRegistryBuilder.destroy(registry);
+            throw new RuntimeException(e);
         }
-        Configuration configuration = new Configuration();
-        configuration.configure("hibernate.cfg.xml").addProperties(properties);
-        StandardServiceRegistryBuilder srBuilder = new StandardServiceRegistryBuilder();
-        srBuilder.applySettings(configuration.getProperties());
-        ServiceRegistry serviceRegistry = srBuilder.build();
-        factory = configuration.buildSessionFactory(serviceRegistry);
     }
 
     public static Session getSession() {

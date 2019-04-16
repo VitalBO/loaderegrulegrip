@@ -49,7 +49,7 @@ public abstract class EgrulDAO {
 
     public static Object getNamedQuery(String queryName, String parametrName, String parametr, Session session) {
         Object object = null;
-        org.hibernate.Query query = session.getNamedQuery(queryName);
+        org.hibernate.query.Query query = session.getNamedQuery(queryName);
         query.setParameter(parametrName, parametr);
         List list = query.list();
         if (list.size() > 0) {
