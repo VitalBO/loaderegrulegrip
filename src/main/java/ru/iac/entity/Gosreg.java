@@ -157,12 +157,6 @@ public class Gosreg implements Serializable, EgrulEntity {
                     nullable = false, updatable = false)})
     private List<Sppreddok> sppreddoks;
 
-    /*
-    @ManyToMany(cascade = CascadeType.ALL)///////
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Sppreddok> sppreddoks;
-    */
-
     @Column(name = "GIHD__ADATE", nullable = true, unique = false)
     private Date gihdAdate;
 

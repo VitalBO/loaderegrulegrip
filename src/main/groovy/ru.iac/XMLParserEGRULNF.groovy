@@ -27,15 +27,11 @@ class XMLParserEGRULNF {
                 //------------------ UL
                 ul = new Ul(
                         idul: it.@ОГРН,
-                        dtform: Util.convertToDate(it.@ДатаВып as String),////
+                        dtform: Util.convertToDate(it.@ДатаВып as String),
                         ogrn: it.@ОГРН,
                         inn: it.@ИНН,
                         kpp: it.@КПП,
-                        dtogrn: Util.convertToDate(it.@ДатаОГРН as String),////
-                        /*idstatus: null,new Spulstat(
-                                id: Util.convertToInt(it.СвСтатус.СвСтатус.@КодСтатусЮЛ),
-                                name: it.СвСтатус.СвСтатус.@НаимСтатусЮЛ
-                        ),*/
+                        dtogrn: Util.convertToDate(it.@ДатаОГРН as String),
                         idregorg: UtilParser.getRegorgNew(it.СвРегОрг as GPathResult, list),
                         idvidregstart: UtilParser.getVidregNew(it.СвОбрЮЛ.СпОбрЮЛ, list),
                         regnumstart: it.СвОбрЮЛ.ГРНДата.@ГРН as String,
@@ -109,14 +105,12 @@ class XMLParserEGRULNF {
                                 dtstart: Util.convertToDate(it.СвНаимЮЛ.ГРНДата.@ДатаЗаписи as String),
                                 regnum: it.СвНаимЮЛ.ГРНДата.@ГРН,
                                 namep: it.СвНаимЮЛ.@НаимЮЛПолн as String,
-                                //namei: it.NAMEI.@NAME as String,//not found in NewFormats !!!
                                 names: it.СвНаимЮЛ.@НаимЮЛСокр as String
-                                //idlangi: UtilParser.getSplang(it, list)//not found in NewFormats !!!
                         )
                         if (it.@КодОПФ != "") {
                             ulname.setIdopf(
                                     new Spopf(
-                                            idopf: Util.convertToInt(it.@КодОПФ),//!!!!!!
+                                            idopf: Util.convertToInt(it.@КодОПФ),
                                             spr: it.@СпрОПФ,
                                             kodOpf: it.@КодОПФ,
                                             name: it.@ПолнНаимОПФ
@@ -135,11 +129,7 @@ class XMLParserEGRULNF {
                                 idul: ul,
                                 regnum: it.ГРНДата.@ГРН,
                                 kodKl: it.АдресРФ.@КодАдрКладр,
-                                fulladdress: UtilParser.getAddressNew(it.АдресРФ, list),//
-                                //nameisporg: it.@NAMEISPORG as String, //not found in new formats
-                                //kodgorod: it.CONTACT.@KODGOROD as String, //not found in new formats
-                                //telefon: it.CONTACT.@TELEFON as String, //not found in new formats
-                                //fax: it.CONTACT.@FAX as String, //not found in new formats
+                                fulladdress: UtilParser.getAddressNew(it.АдресРФ, list),
                                 address: it.АдресРФ.Регион.@НаимРегион.text() + " "
                                         + it.АдресРФ.Регион.@ТипРегион.text() + " "
                                         + it.АдресРФ.Район.@НаимРайон.text() + " "
@@ -163,11 +153,7 @@ class XMLParserEGRULNF {
                         Ulcapital ulcapital = new Ulcapital(
                                 idul: ul,
                                 regnum: it.ГРНДата.@ГРН,
-                                idvidcap: UtilParser.getVidcapNew(it.@НаимВидКап as String),//new Spvidcap(
-                                       // id: 1,
-                                        //null, //Util.convertToInt(it.VIDCAP.@ID),//not found
-                                        //name: it.@НаимВидКап
-                                //),
+                                idvidcap: UtilParser.getVidcapNew(it.@НаимВидКап as String),
                                 dtstart: Util.convertToDate(it.ГРНДата.@ДатаЗаписи as String),
                                 summa: Util.convertToBDec(it.@СумКап)
 
@@ -191,8 +177,8 @@ class XMLParserEGRULNF {
                                 summa: Util.convertToBDec(it.НаимИННЮЛ.ДоляУстКап.@НоминСтоим),
                                 dtogrn: Util.convertToDate(it.НаимИННЮЛ.ГРНДата.@ДатаЗаписи as String),
                                 regnumst: it.НаимИННЮЛ.ГРНДата.@ГРН,
-                                fulladdress: null,//UtilParser.getAddress(it.ADDRESS, list),//not found
-                                idregorg: null //UtilParser.getRegorg(it, list)//not found
+                                fulladdress: null,
+                                idregorg: null
                         )
                         ruls.add(rul)
                     }
@@ -205,7 +191,7 @@ class XMLParserEGRULNF {
                     it.СвУчредит.УчрЮЛИн.each {
                         Iul iul = new Iul(
                                 idul: ul,
-                                dtstart: Util.convertToDate(it.ДоляУстКап.ГРНДата.@ДатаЗаписи as String),//!!!
+                                dtstart: Util.convertToDate(it.ДоляУстКап.ГРНДата.@ДатаЗаписи as String),
                                 namep: it.НаимИННЮЛ.@НаимЮЛПолн,
                                 dtreg: Util.convertToDate(it.СвРегИн.@ДатаРег as String),
                                 summa: Util.convertToBDec(it.ДоляУстКап.@НоминСтоим),
@@ -293,11 +279,7 @@ class XMLParserEGRULNF {
                                 ogrn: it.НаимИННЮЛ.@ОГРН,
                                 inn: it.НаимИННЮЛ.@ИНН,
                                 kpp: it.НаимИННЮЛ.@КПП,
-                                dtreg: Util.convertToDate(it.ГРНДатаПерв.@ДатаЗаписи as String),
-                                fulladdress: null, //UtilParser.getAddress(it.ADDRESS, list),//not found
-                                kodgorod: null, //it.CONTACT.@KODGOROD,//not found
-                                telefon: null, //it.CONTACT.@TELEFON,//not found
-                                fax: null //it.CONTACT.@FAX//not found
+                                dtreg: Util.convertToDate(it.ГРНДатаПерв.@ДатаЗаписи as String)
                         )
                         ul.setUlupr(ulupr)
                     }
@@ -314,9 +296,7 @@ class XMLParserEGRULNF {
                                 ogrn: it.@ОГРН,
                                 inn: it.@ИНН,
                                 kpp: it.@КПП,
-                                dtreg: Util.convertToDate(it.ГРНДата.@ДатаЗаписи as String),
-                                fulladdress: null, //UtilParser.getAddress(it.ADDRESS, list),//not found
-                                idregorg:  null //UtilParser.getRegorg(it, list)//not found
+                                dtreg: Util.convertToDate(it.ГРНДата.@ДатаЗаписи as String)
                         )
                         ulpredshs.add(ulpredsh)
                     }
@@ -335,9 +315,7 @@ class XMLParserEGRULNF {
                                 ogrn: it.@ОГРН,
                                 inn: it.@ИНН,
                                 kpp: it.@КПП,
-                                dtreg: Util.convertToDate(it.ГРНДата.@ДатаЗаписи as String),
-                                fulladdress: null, //UtilParser.getAddress(it.ADDRESS, list),//not found
-                                idregorg: null //UtilParser.getRegorg(it, list)//not found
+                                dtreg: Util.convertToDate(it.ГРНДата.@ДатаЗаписи as String)
                         )
                         ulpreems.add(ulpreem)
                     }
@@ -355,7 +333,7 @@ class XMLParserEGRULNF {
                                 dtrestart: Util.convertToDate(it.@ДатаЛиц as String),
                                 idlicorg: UtilParser.getLicorgNew(it, list),
                                 idvidlic: UtilParser.getVidlicNew(it, list),
-                                idsostlic: null, //UtilParser.getSostlic(it, list),//not found
+                                idsostlic: null, //UtilParser.getSostlic(it, list),
                                 dtstart: Util.convertToDate(it.@ДатаНачЛиц as String),
                                 dtend: Util.convertToDate(it.@ДатаОкончЛиц as String),
                                 dtstop: Util.convertToDate(it.СвПриостЛиц.@ДатаПриостЛиц as String)
@@ -375,10 +353,7 @@ class XMLParserEGRULNF {
                                     idul: ul,
                                     dtstart: Util.convertToDate(it.ГРНДата.@ДатаЗаписи as String),
                                     vidob: 100080, //Код вида подразделения (Филиал)
-                                    fulladdress: UtilParser.getAddressNew(it.АдрМНРФ, list),
-                                    kodgorod: null, //it.CONTACT.@KODGOROD,//not found
-                                    telefon: null, //it.CONTACT.@TELEFON,//not found
-                                    fax: null //it.CONTACT.@FAX//not found
+                                    fulladdress: UtilParser.getAddressNew(it.АдрМНРФ, list)
                             )
                             ulobs.add(ulob)
                         }
@@ -389,10 +364,7 @@ class XMLParserEGRULNF {
                                     idul: ul,
                                     dtstart: Util.convertToDate(it.ГРНДата.@ДатаЗаписи as String),
                                     vidob: 100081, //Код вида подразделения (Представительство)
-                                    fulladdress: UtilParser.getAddressNew(it.АдрМНРФ, list),
-                                    kodgorod: null, //it.CONTACT.@KODGOROD,//not found
-                                    telefon: null, //it.CONTACT.@TELEFON,//not found
-                                    fax: null //it.CONTACT.@FAX//not found
+                                    fulladdress: UtilParser.getAddressNew(it.АдрМНРФ, list)
                             )
                             ulobs.add(ulob)
                         }
@@ -418,7 +390,6 @@ class XMLParserEGRULNF {
                     List<Sppreddok> preddoks = new ArrayList<>()
                     it.СведПредДок.each {
                         Sppreddok preddok = new Sppreddok(
-                                //idreg: gosreg,
                                 numdok: it.НомДок.text(),
                                 name: it.НаимДок.text(),
                                 dtdok: Util.convertToDate(it.ДатаДок as String),
@@ -442,7 +413,6 @@ class XMLParserEGRULNF {
                                         kod: it.СвНО.@КодНО,
                                         name: it.СвНО.@НаимНО
                                 )
-                                //dtend: null //Util.convertToDate(it.@DTEND as String)//not found
                         )
                         ul.setUlmns(ipmns)
                     }
@@ -484,23 +454,6 @@ class XMLParserEGRULNF {
                         ul.setUlfss(ulfss)
                     }
                 }
-                //------------------ FOMS
-                /*log.trace("Decoding UL with OGRN " + ul.getIdul() + " begin decode foms")
-                if (it.FOMS.@REGN_FOMS != "") {
-                    it.FOMS.each {
-                        Ulfoms ipfoms = new Ulfoms(
-                                idul: ul,
-                                dtstart: Util.convertToDate(it.@DTSTART as String),
-                                dtend: Util.convertToDate(it.@DTEND as String),
-                                regnomFoms: it.@REGN_FOMS as String,
-                                idfoms: new Spfoms(
-                                        kod: it.ORGAN_FOMS.@KOD,
-                                        name: it.ORGAN_FOMS.@NAME
-                                )
-                        )
-                        ul.setUlfoms(ipfoms)
-                    }
-                }*/
             }
         } catch (Exception ex) {
             log.error("Exception while parsing UL with OGRN = " + ul.getOgrn())

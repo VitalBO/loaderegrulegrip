@@ -3,7 +3,6 @@ package ru.iac
 import groovy.util.slurpersupport.GPathResult
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import ru.iac.UtilParser
 import ru.iac.entity.*
 
 /**

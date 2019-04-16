@@ -1,6 +1,7 @@
 package ru.iac
 
 import groovy.util.slurpersupport.GPathResult
+import ru.iac.Util
 import ru.iac.entity.*
 
 import javax.xml.stream.events.Attribute
@@ -171,7 +172,6 @@ class UtilParser {
         }
         return oksm
     }
-////////////////////////////////////////////////////////////////////////////////////////////
 
     //-------------- getVidcap for new format ---------------------------------
     public static Spvidcap getVidcapNew(String captypename){
@@ -204,7 +204,6 @@ class UtilParser {
                 name:captypename
         )
     }
-    //--------------------------------------------------------------------------
 
     //-------------- getRegorg for new format ---------------------------------
     public static Spregorg getRegorgNew(GPathResult gPathResult, List list) {
@@ -224,7 +223,7 @@ class UtilParser {
         spregorg = (Spregorg) Util.check(spregorg, list)
         return spregorg
     }
-    //--------------------------------------------------------------------------
+
     //--------------------------- getVidreg for new format --------------------
     static Spvidreg getVidregNew(GPathResult gPathResult, List list) {
         Spvidreg spvidreg = null
@@ -249,7 +248,6 @@ class UtilParser {
         return spvidreg
     }
 
-    //-------------------------------------------------------------------------
     //-------------- getAddress for new format ---------------------------------
     static Address getAddressNew(GPathResult gPathResult, List list) {
         Address address = null
@@ -264,8 +262,7 @@ class UtilParser {
 
             if (it.Регион.@НаимРегион != "") {
                 Rg rg = new Rg(
-                        idr: new BigInteger((it.Регион.@НаимРегион.text() +" "+ it.Регион.@ТипРегион.text()).hashCode()),//Util.convertToBInt(it.@КодРегион) +1100000,//no appropriate tag in new format
-                        name: (it.Регион.@НаимРегион as String) +" "+(it.Регион.@ТипРегион as String),
+                        idr: new BigInteger((it.Регион.@НаимРегион.text() +" "+ it.Регион.@ТипРегион.text()).hashCode()),                        name: (it.Регион.@НаимРегион as String) +" "+(it.Регион.@ТипРегион as String),
                         kodKl: it.@КодРегион as String,
                         typeRg: it.Регион.@ТипРегион as String,
                         nameRg: it.Регион.@НаимРегион as String
@@ -275,32 +272,28 @@ class UtilParser {
             }
             if (it.Район.@НаимРайон != "") {
                 Ds ds = new Ds(
-                        idd: new BigInteger((it.Район.@НаимРайон.text() +" "+ it.Район.@ТипРайон.text()).hashCode()),//Util.convertToBInt(it.@КодАдрКладр),//no appropriate tag in new format
+                        idd: new BigInteger((it.Район.@НаимРайон.text() +" "+ it.Район.@ТипРайон.text()).hashCode()),
                         name: (it.Район.@НаимРайон as String) +" "+(it.Район.@ТипРайон as String),
                         typeDs: it.Район.@ТипРайон as String,
                         nameDs: it.Район.@НаимРайон as String
-                        //kodKl: null//it.@КодАдрКладр as String//no appropriate tag in new format. КодАдрКладр ???
-
-                )
+                 )
                 ds = (Ds) Util.check(ds, list)
                 address.setIdraion(ds)
             }
             if (it.Город.@НаимГород != "") {
                 Ct ct = new Ct(
-                        idc: new BigInteger((it.Город.@НаимГород.text() +" "+ it.Город.@ТипГород.text()).hashCode()),//Util.convertToBInt(it.@КодАдрКладр),//no appropriate tag in new format
+                        idc: new BigInteger((it.Город.@НаимГород.text() +" "+ it.Город.@ТипГород.text()).hashCode()),
                         name: (it.Город.@НаимГород as String)+" "+(it.Город.@ТипГород as String),
                         typeCt: it.Город.@ТипГород as String,
                         nameCt: it.Город.@НаимГород as String
-                        //kodKl: null//it.@КодАдрКладр as String//no appropriate tag in new format. КодАдрКладр ???
-
                 )
                 ct = (Ct) Util.check(ct, list)
                 address.setIdgorod(ct)
             }
             if (it.НаселПункт.@НаимНаселПункт != "") {
                 Cn cn = new Cn(
-                        idn: new BigInteger((it.НаселПункт.@НаимНаселПункт.text() + " "+ it.НаселПункт.@ТипНаселПункт.text()).hashCode()),//Util.convertToBInt(it.@КодАдрКладр),//no appropriate tag in new format
-                        name: (it.НаселПункт.@НаимНаселПункт as String)+ " "+(it.НаселПункт.@ТипНаселПункт),//find appropriate tag for new formats
+                        idn: new BigInteger((it.НаселПункт.@НаимНаселПункт.text() + " "+ it.НаселПункт.@ТипНаселПункт.text()).hashCode()),
+                        name: (it.НаселПункт.@НаимНаселПункт as String)+ " "+(it.НаселПункт.@ТипНаселПункт),
                         typeCn: it.НаселПункт.@ТипНаселПункт as String,
                         nameCn: it.НаселПункт.@НаимНаселПункт as String
                         //kodKl: null//it.@КодАдрКладр as String//find appropriate tag for new formats
@@ -311,7 +304,7 @@ class UtilParser {
             }
             if (it.Улица.@НаимУлица != "") {
                 St st = new St(
-                        ids: new BigInteger((it.Улица.@НаимУлица.text() +" "+ it.Улица.@ТипУлица.text()).hashCode()),//Util.convertToBInt(it.@КодАдрКладр),//no appropriate tag in new format
+                        ids: new BigInteger((it.Улица.@НаимУлица.text() +" "+ it.Улица.@ТипУлица.text()).hashCode()),
                         name: (it.Улица.@НаимУлица as String)+" "+(it.Улица.@ТипУлица as String),
                         kodSt: it.@КодАдрКладр as String,//АдресРФ.КодАдрКладр ???
                         typeSt: it.Улица.@ТипУлица as String,
@@ -324,7 +317,7 @@ class UtilParser {
         }
         return address
     }
-    //-------------------------------------------------------------------------
+
     //-------------- getOksm for new format -----------------------------------
     static Oksm getOksmNew(GPathResult gPathResult, List list) {
         Oksm oksm = null
@@ -339,7 +332,6 @@ class UtilParser {
         }
         return oksm
     }
-    //-------------------------------------------------------------------------
 
     //-----------------------getLicorg for new formats-----------------------
     public static Splicorg getLicorgNew(GPathResult gPathResult, List list) {
@@ -347,14 +339,13 @@ class UtilParser {
         gPathResult.each {
             if (it.ЛицОргВыдЛиц.text() != "")
                 splicorg = new Splicorg(
-                        id: new BigInteger(it.ЛицОргВыдЛиц.text().hashCode()),//not found
+                        id: new BigInteger(it.ЛицОргВыдЛиц.text().hashCode()),
                         name: it.ЛицОргВыдЛиц.text()
                 )
         }
         splicorg = (Splicorg) Util.check(splicorg, list)
         return splicorg
     }
-    //-------------------------------------------------------------------------
 
     //----------------------getVidlic for new formats--------------------------
     public static Set<Spvidlic> getVidlicNew(GPathResult gPathResult, List list) {
@@ -363,7 +354,7 @@ class UtilParser {
         gPathResult.each {
             if (it.НаимЛицВидДеят.text() != "") {
                 spvidlic = new Spvidlic(
-                        idvidlic: new BigInteger(it.НаимЛицВидДеят.text().hashCode()),//not found
+                        idvidlic: new BigInteger(it.НаимЛицВидДеят.text().hashCode()),
                         name: it.НаимЛицВидДеят.text()
                 )
                 spvidlic = (Spvidlic) Util.check(spvidlic, list)
@@ -372,5 +363,4 @@ class UtilParser {
         }
         return vidlicSet
     }
-    //-------------------------------------------------------------------------
 }
