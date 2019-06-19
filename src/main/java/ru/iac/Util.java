@@ -64,6 +64,11 @@ public abstract class Util {
         return new BigDecimal(attribute.text());
     }
 
+    public static String convertToString(Attributes attribute) {
+        if (attribute.text() == null) return null;
+        if (Objects.equals(attribute.text(), "")) return null;
+        return attribute.text();
+    }
     /**
      * Method check uniqueness objects, if objects already exists return this *
      *

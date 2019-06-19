@@ -211,12 +211,12 @@ class UtilParser {
         gPathResult.each {
             if (it.@КодНО != "")
                 spregorg = Util.check(new Spregorg(
-                        idspro: Util.convertToBInt(it.@КодНО),
+                        idspro: Util.convertToString(it.@КодНО),///////convertToBInt->convertToString
                         name: it.@НаимНО,
                         address: it.@АдрРО), list)
             else if (it.@РегНом != "")
                 spregorg = Util.check(new Spregorg(
-                        idspro: Util.convertToBInt(it.@РегНом),
+                        idspro: Util.convertToString(it.@РегНом),///////convertToBInt->convertToString
                         name: it.@НаимРО,
                         address: null), list)
         }

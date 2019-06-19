@@ -90,7 +90,7 @@ public class Spregorg implements Serializable, EgrulEntity {
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "IDSPRO")
-    private BigInteger idspro;
+    private String idspro;
 
 
     @Column(name = "NAME", length = 255, nullable = true, unique = false)
@@ -146,7 +146,7 @@ public class Spregorg implements Serializable, EgrulEntity {
      * All field constructor
      */
     public Spregorg(
-            BigInteger idspro,
+            String idspro,
             String name,
             Integer idRaion,
             Date gihdAdate,
@@ -176,7 +176,7 @@ public class Spregorg implements Serializable, EgrulEntity {
 
 
     public Spregorg(
-            BigInteger idspro,
+            String idspro,
             String name,
             Integer idRaion,
             Date gihdAdate,
@@ -240,11 +240,11 @@ public class Spregorg implements Serializable, EgrulEntity {
         );
     }
 
-    public BigInteger getIdspro() {
+    public String getIdspro() {
         return idspro;
     }
 
-    public void setIdspro(BigInteger idspro) {
+    public void setIdspro(String idspro) {
         this.idspro = idspro;
     }
 
@@ -349,7 +349,7 @@ public class Spregorg implements Serializable, EgrulEntity {
 
     @Override
     public String getIdenti() {
-        return idspro.toString();
+        return idspro;
     }
 
 

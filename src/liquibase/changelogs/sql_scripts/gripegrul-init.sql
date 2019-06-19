@@ -808,7 +808,7 @@ CREATE TABLE public."GOSREG" (
     regnum text,
     row_check_sum text,
     sersvid integer,
-    idregorg bigint,
+    idregorg text,
     idul text,
     idvidreg integer
 );
@@ -953,7 +953,7 @@ CREATE TABLE public."IP" (
     ipstart timestamp without time zone,
     ogrn text,
     row_check_sum text,
-    idregorg bigint,
+    idregorg text,
     idstatus integer,
     idvidip integer
 );
@@ -1589,7 +1589,7 @@ CREATE TABLE public."IPGOSREG" (
     row_check_sum text,
     sersvid integer,
     idip text,
-    idregorg bigint,
+    idregorg text,
     idvidreg integer
 );
 
@@ -2228,7 +2228,7 @@ CREATE TABLE public."IPREGOLD" (
     numold text,
     row_check_sum text,
     idip text,
-    idregorg bigint
+    idregorg text
 );
 
 
@@ -3434,7 +3434,7 @@ CREATE TABLE public."RUL" (
     idraion bigint,
     idregion bigint,
     idstreet bigint,
-    idregorg bigint,
+    idregorg text,
     idul text
 );
 
@@ -4612,7 +4612,7 @@ COMMENT ON COLUMN public."SPPF".name IS 'Наименование органа';
 --
 
 CREATE TABLE public."SPREGORG" (
-    idspro bigint NOT NULL,
+    idspro text NOT NULL,
     gihd__a_id_package integer,
     gihd__adate timestamp without time zone,
     gihd__ch_id_package integer,
@@ -5553,9 +5553,9 @@ CREATE TABLE public."UL" (
     regnumend text,
     regnumstart text,
     row_check_sum text,
-    idregorg bigint,
-    idregorgend bigint,
-    idregorgstart bigint,
+    idregorg text,
+    idregorgend text,
+    idregorgstart text,
     idstatus integer,
     idvidregend integer,
     idvidregstart integer
@@ -7093,7 +7093,7 @@ CREATE TABLE public."ULPREDSH" (
     idraion bigint,
     idregion bigint,
     idstreet bigint,
-    idregorg bigint,
+    idregorg text,
     idul text
 );
 
@@ -7327,7 +7327,7 @@ CREATE TABLE public."ULPREEM" (
     idraion bigint,
     idregion bigint,
     idstreet bigint,
-    idregorg bigint,
+    idregorg text,
     idul text
 );
 
