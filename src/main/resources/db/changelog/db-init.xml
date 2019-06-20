@@ -1,0 +1,13 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="init_schema" author="v.bogdanov" dbms="postgresql" failOnError="true" logicalFilePath="sql_scripts/egripegrul-init.sql">
+        <comment>Initial schema settings</comment>
+        <sqlFile path="sql_scripts/egripegrul-init.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="reset_to_initial" author="v.bogdanov">
+        <tagDatabase tag="reset"/>
+    </changeSet>
+</databaseChangeLog>

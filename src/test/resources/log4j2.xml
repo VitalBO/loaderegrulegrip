@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+
+    <!-- Logging Properties -->
+    <Properties>
+        <Property name="LOG_PATTERN">%date %level [%thread] %logger{10} [%file:%line] %msg%n</Property>
+    </Properties>
+
+    <Appenders>
+
+        <!-- Console Appender -->
+        <Console name="CONSOLE" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <!--File Appender -->
+        <File name="FILE" fileName="logs/app.log">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </File>
+
+    </Appenders>
+
+    <Loggers>
+
+        <!-- Root logger -->
+        <Root level="debug">
+            <AppenderRef ref="FILE"/>
+            <AppenderRef ref="CONSOLE"/>
+        </Root>
+
+        <!-- Logger -->
+        <Logger name="org.hibernate" level="DEBUG">
+        </Logger>
+
+    </Loggers>
+
+</Configuration>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Загрузка данных ЕГРЮЛ/ЕГРИП</title>
+<script type="text/javascript">
+    function getXmlHttp()
+    {
+        var xmlhttp;
+        try {
+            xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch (e) {
+            try {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (E) {
+                xmlhttp = false;
+            }
+        }
+        if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+            xmlhttp = new XMLHttpRequest();
+        }
+        return xmlhttp;
+    }
+    function submitedFiles()
+    {
+        var xmlHttp=getXmlHttp();
+        var files=document.getElementById("egrulegripFiles").files;
+        var xmlFiles = Array.from(files).filter(function(s){
+            return s.type.includes("text/xml")
+        });
+        var form=new FormData();
+        for (var i=0; i<xmlFiles.length; ++i){
+            form.append('files', files[i]);
+        }
+        //form.append("tepmkdFile",new Blob([xmlFiles],{type:"application/octet-stream"}));
+        xmlHttp.open("POST","rest/api/egrul_egrip/upload/dir",true);
+        alert('Производится выгрузка данных, не закрывайте страницу!');
+        xmlHttp.send(form);
+        xmlHttp.onload = function () {
+            switch(xmlHttp.status)
+            {
+                case 200:
+                {
+                    alert("Выгрузка данных произведена успешно!");
+                    break;
+                }
+                default:
+                {
+                    alert("Ошибка: "+xmlHttp.response);
+                    break;
+                }
+            }
+        }
+        document.getElementById("selectDataDir").disabled = true;
+    }
+    function submitedFile()
+    {
+        var xmlHttp = getXmlHttp();
+        var xmlFile = document.getElementById("egrulegripFile").files[0];
+        var form=new FormData();
+        form.append('file', xmlFile);
+        xmlHttp.open("POST","rest/api/egrul_egrip/upload/file",true);
+        alert('Производится выгрузка данных, не закрывайте страницу!');
+        xmlHttp.send(form);
+        xmlHttp.onload = function () {
+            switch(xmlHttp.status)
+            {
+                case 200:
+                {
+                    alert("Выгрузка данных из файла произведена успешно!");
+                    break;
+                }
+                default:
+                {
+                    alert("Ошибка: "+xmlHttp.response);
+                    break;
+                }
+            }
+        }
+        document.getElementById("selectDataFile").disabled = true;
+    }
+    function submitedZip()
+    {
+        var xmlHttp = getXmlHttp();
+        var zipFile = document.getElementById("egrulegripZip").files[0];
+        var form=new FormData();
+        form.append('zipFile', zipFile);
+        xmlHttp.open("POST","rest/api/egrul_egrip/upload/zip",true);
+        alert('Производится выгрузка данных, не закрывайте страницу!');
+        xmlHttp.send(form);
+        xmlHttp.onload = function () {
+            switch(xmlHttp.status)
+            {
+                case 200:
+                {
+                    alert("Выгрузка данных из архива произведена успешно!");
+                    break;
+                }
+                default:
+                {
+                    alert("Ошибка: "+xmlHttp.response);
+                    break;
+                }
+            }
+        }
+        document.getElementById("selectDataZip").disabled = true;
+    }
+    function selectedDir(){
+        document.getElementById("selectDataDir").disabled = false;
+    }
+    function selectedFile(){
+        document.getElementById("selectDataFile").disabled = false;
+    }
+    function selectedZip(){
+        document.getElementById("selectDataZip").disabled = false;
+    }
+
+</script>
+</head>
+<body>
+<h1>EGRUL/EGRIP Service (Version 1)</h1>
+<form>
+    <label>Загрузка данных из папки 'c:\tmp\egrulegrip_data'</label>
+    <br/>
+    <a href="rest/api/egrul_egrip/upload">Загрузить данные</a>
+    <br/>
+    <br/>
+    <label for="egrulegripFiles" class="btn btn-primary btn-block btn-outlined">Загрузка данных из выбранной папки</label>
+    <br/>
+    <input type="file" id="egrulegripFiles" webkitdirectory directory accept="text/xml" onchange="selectedDir()"/> <!--accept="application/zip"/-->
+    <br/>
+    <input type="button" id="selectDataDir" value="Загрузить файлы" disabled = true onclick="javascript:submitedFiles()"/>
+    <br/>
+    <br/>
+    <label for="egrulegripFile" class="btn btn-primary btn-block btn-outlined">Загрузка данных из файла</label>
+    <br/>
+    <input type="file" id="egrulegripFile" accept="text/xml" onchange="selectedFile()"/> <!--accept="application/zip"/-->
+    <br/>
+    <input type="button" id="selectDataFile" value="Загрузить файл" disabled=true onclick="javascript:submitedFile()"/>
+    <br/>
+    <br/>
+    <label for="egrulegripZip">Загрузка данных из zip-архива</label>
+    <br/>
+    <input type="file" id="egrulegripZip" accept="application/zip" onchange="selectedZip()"/> <!--accept="application/zip"/-->
+    <br/>
+    <input type="button" id="selectDataZip" value="Загрузить архив" disabled=true onclick="javascript:submitedZip()"/>
+</form>
+
+</body>
+</html>
