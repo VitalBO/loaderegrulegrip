@@ -74,8 +74,6 @@
                 <OKSM ID="804" KOD_OKSM="804" NAME="ÓÊÐÀÈÍÀ"/>
             </IUL>
             <UCHRFL DTSTART="04.07.2002" SUMMA="5500000">
-                <FL FAM_FL="ÍÎÑÀÍÎÂ" NAME_FL="ÌÈÕÀÈË" OTCH_FL="ÂÀËÅÍÒÈÍÎÂÈ×"/>
-            </UCHRFL>
         </UCHR>
         <REESTR_AO OGRN="1143528009712" NAMEP="ÎÁÙÅÑÒÂÎ Ñ ÎÃÐÀÍÈ×ÅÍÍÎÉ ÎÒÂÅÒÑÒÂÅÍÍÎÑÒÜÞ &quot;ÏÀÐÒÍÅÐ&quot;"/>
         <DOLGNFL DTSTART="20.04.2015" DOLGN="ÃÅÍÅÐÀËÜÍÛÉ ÄÈÐÅÊÒÎÐ">

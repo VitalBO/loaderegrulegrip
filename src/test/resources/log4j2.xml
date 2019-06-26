@@ -29,7 +29,7 @@
         </Root>
 
         <!-- Logger -->
-        <Logger name="org.hibernate" level="DEBUG">
+        <Logger name="org.hibernate" level="INFO">
         </Logger>
 
     </Loggers>

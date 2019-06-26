@@ -20,7 +20,7 @@
 
         <!--File Appender with errors -->
         <File name="ERROR" fileName="logs/error.log">
-            <LevelRangeFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <LevelRangeFilter minlevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </File>
 

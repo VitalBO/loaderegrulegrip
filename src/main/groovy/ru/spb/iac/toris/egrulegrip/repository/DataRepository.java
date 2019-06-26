@@ -21,8 +21,8 @@ public class DataRepository implements IDataRepository{
 
     private static Logger LOG = LogManager.getLogger(DataRepository.class);
 
-    @PersistenceContext
-    private EntityManager em;
+//    @PersistenceContext
+//    private EntityManager em;
 
     public void saveOrUpdate(Object object) {
         Session session = HibernateUtil.getSession();

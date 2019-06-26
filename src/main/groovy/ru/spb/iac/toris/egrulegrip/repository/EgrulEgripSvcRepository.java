@@ -18,7 +18,7 @@ import javax.persistence.EntityManager;
 
 //@Repository
 @Service
-public class EgrulEgripSvcRepository {
+public class EgrulEgripSvcRepository implements IEgrulEgripSvcRepository{
 
     private static Logger LOG = LogManager.getLogger(EgrulEgripSvcRepository.class);
 
