@@ -1,4 +1,4 @@
-package ru.spb.iac.toris.egrulegrip.parser
+package ru.spb.iac.toris.egrulegrip.loader
 
 import ru.spb.iac.toris.egrulegrip.controller.AppController
 import org.springframework.beans.factory.annotation.Autowired
