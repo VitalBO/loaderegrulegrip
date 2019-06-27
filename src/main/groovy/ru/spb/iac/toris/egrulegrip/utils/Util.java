@@ -3,6 +3,7 @@ package ru.spb.iac.toris.egrulegrip.utils;
 import groovy.util.slurpersupport.Attributes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 import ru.spb.iac.toris.egrulegrip.model.EgrulEgripEntity;
 
@@ -14,9 +15,8 @@ import java.math.BigInteger;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
 //import org.slf4j.Logger;
@@ -26,7 +26,7 @@ public abstract class Util {
 
     public static final int ERROR = 1;
     public static final int SUCCESS = 0;
-
+    private static int entitiesParsed=0;
     private static Logger log = LogManager.getLogger(Util.class);
 
 
@@ -103,5 +103,16 @@ public abstract class Util {
             }
         }
         directoryToBeDeleted.delete();
+    }
+
+    public static String responseString(Map<String,Integer> resultImport){
+        int countSuccess = 0, countFails = 0;
+        List<Entry<String, Integer>> list = new ArrayList<>(resultImport.entrySet());
+        for(int i = entitiesParsed; i < list.size(); ++i){
+            if(list.get(i).getValue() == 0) ++countSuccess;
+            else ++countFails;
+        }
+        entitiesParsed = list.size();
+        return  "Successful: "+countSuccess+" entries\nFailed: "+countFails+" entries";
     }
 }

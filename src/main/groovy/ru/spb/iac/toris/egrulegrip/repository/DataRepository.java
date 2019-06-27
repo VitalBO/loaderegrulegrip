@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import ru.spb.iac.toris.egrulegrip.utils.HibernateUtil;
 
@@ -15,8 +16,8 @@ import java.util.List;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 
-//@Repository
-@Service
+@Repository
+//@Service
 public class DataRepository implements IDataRepository{
 
     private static Logger LOG = LogManager.getLogger(DataRepository.class);

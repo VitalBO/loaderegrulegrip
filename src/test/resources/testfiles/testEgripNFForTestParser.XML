@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1251"?>
 <Файл ИдФайл="VO_RIGFO_0000_7800_20180202_2bbdd530-8a0c-4ab8-934a-98fb629683dd" ВерсФорм="4.04" ТипИнф="ЕГРИП_ОТКР_СВЕД" ВерсПрог="1.0.0.2" КолДок="         1"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="file:///G:/tmp/egrul_data/xsd/VO_RIGF_2_311_27_04_03_02.xsd">
+      xsi:noNamespaceSchemaLocation="../xsd/VO_RIGF_2_311_27_04_03_02.xsd">
   <ИдОтпр ДолжОтв="Заместитель руководителя" Тлф="(812)740-40-14">
     <ФИООтв Фамилия="Курочкина" Имя="Наталия" Отчество="Васильевна" />
   </ИдОтпр>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1251"?>
 <Файл ИдФайл="VO_RUGFO_0000_7800_20180202_0bad885f-6c35-4dc7-9f48-4595d2a63455" ВерсФорм="4.05" ТипИнф="ЕГРЮЛ_ОТКР_СВЕД" ВерсПрог="1.0.0.2" КолДок="        73"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="file:///g:/tmp/egrul_data/xsd/VO_RUGF_2_311_26_04_04_02.xsd">
+      xsi:noNamespaceSchemaLocation="../xsd/VO_RUGF_2_311_26_04_04_02.xsd">
   <ИдОтпр ДолжОтв="Заместитель руководителя" Тлф="(812)740-40-14">
     <ФИООтв Фамилия="Курочкина" Имя="Наталия" Отчество="Васильевна" />
   </ИдОтпр>

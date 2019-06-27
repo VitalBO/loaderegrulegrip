@@ -21,7 +21,6 @@ import java.util.concurrent.Executors
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 
-//@Component
 @Service
 class MainParser implements  IMainParser{
 //    private static Logger log = LoggerFactory.getLogger(MainParser.class)
@@ -62,7 +61,7 @@ class MainParser implements  IMainParser{
  * Method to create files queue *
  * @param filePath - directory with files
 */
-    void parse(File filePath) {
+    HashMap parse(File filePath) {
         filePath.listFiles()
         Comparator<File> comparator = new DataFileComparator()
         PriorityQueue<File> queue =
@@ -91,8 +90,9 @@ class MainParser implements  IMainParser{
         }
         log.info("Total amount " + resultImport.size() + "; fails " + countFail + "; percent fails " +  countFail /resultImport.size()* 100 + "%")
         //System.exit(0)
+        return resultImport
     }
-    void parse(File[] filePath) {
+    HashMap parse(File[] filePath) {
         //filePath.listFiles()
         Comparator<File> comparator = new DataFileComparator()
         PriorityQueue<File> queue =
@@ -123,6 +123,7 @@ class MainParser implements  IMainParser{
         }
         log.info("Total amount " + resultImport.size() + "; fails " + countFail + "; percent fails " + countFail / resultImport.size() *  100 + "%")
         //System.exit(0)
+        return resultImport
     }
 /**
  * Main method to create threads and parsing files*
