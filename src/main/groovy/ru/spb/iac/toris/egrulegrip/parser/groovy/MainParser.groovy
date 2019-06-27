@@ -2,10 +2,6 @@ package ru.spb.iac.toris.egrulegrip.parser.groovy
 
 import groovy.util.slurpersupport.GPathResult
 import org.apache.logging.log4j.LogManager
-
-//import org.slf4j.Logger
-//import org.slf4j.LoggerFactory
-
 import org.apache.logging.log4j.Logger
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -23,12 +19,10 @@ import java.util.concurrent.TimeUnit
 
 @Service
 class MainParser implements  IMainParser{
-//    private static Logger log = LoggerFactory.getLogger(MainParser.class)
       private static Logger log = LogManager.getLogger(MainParser.class)
 
     HashMap<String, Integer> resultImport = new HashMap<>()
 
-    //@Autowired
     private final AppConfiguration appConfiguration
 
     @Autowired
@@ -40,7 +34,7 @@ class MainParser implements  IMainParser{
     private String tmpDataDir;
 
     @Autowired
-    public MainParser(AppConfiguration appConfiguration) {
+    MainParser(AppConfiguration appConfiguration) {
         this.appConfiguration=appConfiguration
 
 
@@ -93,19 +87,11 @@ class MainParser implements  IMainParser{
         return resultImport
     }
     HashMap parse(File[] filePath) {
-        //filePath.listFiles()
         Comparator<File> comparator = new DataFileComparator()
         PriorityQueue<File> queue =
                 new PriorityQueue<File>(10, comparator)
 
-        for (File temp : filePath
-//        (new FileFilter() {
-//            @Override
-//            boolean accept(File pathname) {
-//                return pathname.getName().toUpperCase().endsWith(".XML")
-//            }
-//        })
-        ) {
+        for (File temp : filePath) {
             queue.add(temp)
         }
         int countFile = 0

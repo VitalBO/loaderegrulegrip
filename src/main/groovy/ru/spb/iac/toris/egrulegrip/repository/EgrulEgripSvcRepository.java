@@ -11,19 +11,10 @@ import ru.spb.iac.toris.egrulegrip.model.*;
 import ru.spb.iac.toris.egrulegrip.utils.HibernateUtil;
 import ru.spb.iac.toris.egrulegrip.utils.Util;
 
-import javax.persistence.EntityManager;
-
-// import org.slf4j.Logger;
-// import org.slf4j.LoggerFactory;
-
-//@Repository
 @Service
 public class EgrulEgripSvcRepository implements IEgrulEgripSvcRepository{
 
     private static Logger LOG = LogManager.getLogger(EgrulEgripSvcRepository.class);
-
-    @Autowired
-    private EntityManager em;
 
     @Autowired
     private IDataRepository dataRepository;
@@ -88,11 +79,9 @@ public class EgrulEgripSvcRepository implements IEgrulEgripSvcRepository{
             session.saveOrUpdate(ip);
             tx.commit();
             LOG.debug("Successfully saved to DB " + ip.getOgrn());
-//            LOG.info("Successfully saved to DB " + ip.getOgrn());
             return Util.SUCCESS;
         } catch (Exception ex) {
             LOG.error("Error while saving to DB IP " + ip.getOgrn(), ex);
-//            LOG.info("Error while saving to DB IP " + ip.getOgrn(), ex);
             tx.rollback();/////
             return Util.ERROR;
         } finally {
@@ -147,105 +136,13 @@ public class EgrulEgripSvcRepository implements IEgrulEgripSvcRepository{
             session.saveOrUpdate(ul);
             tx.commit();
             LOG.debug("Successfully saved UL " + ul.getOgrn());
-            //LOG.info("Successfully saved UL " + ul.getOgrn());///////////////////
             return Util.SUCCESS;
         } catch (Exception ex) {
             LOG.error("Error while saving to DB UL " + ul.getOgrn(), ex);
-            //LOG.info("Error while saving to DB UL " + ul.getOgrn(), ex);///////
             tx.rollback();
             return Util.ERROR;
         } finally {
             session.close();
         }
     }
-    //*****************************************************************//
-
-//    public /*static*/ void saveOrUpdate(Object object) {
-//        Session session = em.unwrap(Session.class);
-//        try {
-////                Transaction tx = session.beginTransaction();
-//            session.saveOrUpdate(object);
-////                tx.commit();
-//        } catch (Exception ex) {
-//            LOG.error("Error while saving to DB");
-//            LOG.error(ex.getMessage());
-//        } finally {
-//            //session.close();
-//            em.flush();
-//            em.clear();
-//        }
-//    }
-//
-//    public /*static*/ Object getFromDB(String classname, String id) {
-//        //Session session = em.unwrap(Session.class);///////////////////////////
-//        //Session session = getSession();
-//        Session session = HibernateUtil.getSession();
-//        //System.err.println (session.createSQLQuery("SELECT count(*) FROM IP").list().get(0));//////////////
-//        //System.err.println (em.createNativeQuery("SELECT count(*) FROM IP").getResultList().get(0));/////////
-//        Object object = session.get(classname, id);///////////
-//        session.close();
-//        return object;
-//    }
-//    public Object getFromDB(Class clazz, String id) {
-//        Object object = em.find(clazz, id);
-//        return object;
-//    }
-//
-//    public /*static*/ void removeFromDBHib(Object object) {
-//        //Session session = em.unwrap(Session.class);
-//        //Session session = getSession();/////
-//        Session session = HibernateUtil.getSession();
-//        Transaction tx = session.getTransaction();
-//        if (!session.getTransaction().isActive()) tx = session.beginTransaction();
-//        //em.getTransaction().begin();////////////
-//        //getSession().delete(object); //
-//        session.delete(object);
-//        tx.commit();
-//        //session.flush();/////////////////
-//        //em.getTransaction().commit();/////////////////
-//        session.close();
-//        //tx.commit();
-//    }
-//
-//    public void removeFromDB(Object object) {
-//        //object=em.merge(object);
-//        em.remove(object);
-//        //em.flush();
-//        //em.clear();
-//    }
-//
-//    public /*static*/ Object getNamedQuery(String queryName, String parametrName, String parametr, Session session) {
-//        Object object = null;
-//        org.hibernate.query.Query query = session.getNamedQuery(queryName);
-//        query.setParameter(parametrName, parametr);
-//        List list = query.list();
-//        if (list.size() > 0) {
-//            object = list.get(0);
-//        }
-//        return object;
-//    }
-/////////////////////////////////////
-////  public Object getNamedQuery(String queryName, String parametrName, String parametr, Session session) {
-////      Object object = null;
-////      List list = em.createNamedQuery(queryName).setParameter(parametrName, parametr).getResultList();
-////      if (list.size() > 0) {
-////          object = list.get(0);
-////      }
-////      return object;
-////  }
-////////////////////////////
-//
-//    public Session getSession(){
-//        File propertiesFile = new File("application.properties");
-//        SessionFactory factory;
-//        ServiceRegistry registry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").loadProperties(propertiesFile).build();
-//        try{
-//            factory = new Configuration().buildSessionFactory(registry);
-//        } catch (Exception e) {
-//            StandardServiceRegistryBuilder.destroy(registry);
-//                throw new RuntimeException(e);
-//        }
-//        return factory.openSession();
-//        //return em.unwrap(Session.class);
-//    }
 }

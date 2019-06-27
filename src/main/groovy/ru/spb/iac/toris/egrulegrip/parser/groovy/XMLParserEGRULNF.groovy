@@ -4,10 +4,6 @@ import groovy.util.slurpersupport.GPathResult
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import ru.spb.iac.toris.egrulegrip.model.*
-
-//import org.slf4j.Logger
-//import org.slf4j.LoggerFactory
-
 import ru.spb.iac.toris.egrulegrip.utils.Util
 
 class XMLParserEGRULNF {
@@ -461,8 +457,6 @@ class XMLParserEGRULNF {
                 }
             }
         } catch (Exception ex) {
-            //log.error("Exception while parsing UL with OGRN = " + ul.getOgrn())
-            //log.error(ex.message)
             log.info(ex.message)///////
             log.info("Exception while parsing UL with OGRN = " + ul.getOgrn())//////
 

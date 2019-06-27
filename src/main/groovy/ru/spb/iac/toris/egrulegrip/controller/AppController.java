@@ -15,8 +15,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
-import java.util.Map.Entry;
-
 
 @RestController
 @RequestMapping("/rest/api")
@@ -25,8 +23,7 @@ public class AppController {
     private static final String SUCCESS_STATUS = "success";
     private static final String ERROR_STATUS = "error";
     private static final int CODE_SUCCESS = 100;
-    private static final int AUTH_FAILURE = 102;
-//    private static int entitiesParsed=0;
+    private static final int CODE_FAILURE = 102;
 
     @Autowired
     private IMainParser mainParser;
@@ -57,7 +54,6 @@ public class AppController {
 
     @PostMapping("/egrul_egrip/upload/dir")
     public ResponseEntity<String> uploadDataDir(@RequestParam("files") List<MultipartFile> files){
-        //Object files="files";
         File[] convFiles = null;
         try{
             convFiles = new File[files.size()];
@@ -103,6 +99,5 @@ public class AppController {
             if (zip != null) zip.delete();
             Util.deleteDirectory(new File(dest));
         }
-//        return (new ResponseEntity<>("Successful", null, HttpStatus.OK));
     }
 }

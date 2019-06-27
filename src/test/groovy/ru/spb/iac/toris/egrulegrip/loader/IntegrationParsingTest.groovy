@@ -1,14 +1,11 @@
 package ru.spb.iac.toris.egrulegrip.loader
 
 import org.springframework.util.ResourceUtils
-import org.xml.sax.SAXParseException
-import ru.spb.iac.toris.egrulegrip.model.EgrulEgripEntity
 import ru.spb.iac.toris.egrulegrip.parser.IMainParser
 import ru.spb.iac.toris.egrulegrip.parser.groovy.XMLParserEGRIP
 import ru.spb.iac.toris.egrulegrip.parser.groovy.XMLParserEGRIPNF
 import ru.spb.iac.toris.egrulegrip.parser.groovy.XMLParserEGRUL
 import ru.spb.iac.toris.egrulegrip.parser.groovy.XMLParserEGRULNF
-import ru.spb.iac.toris.egrulegrip.repository.DataRepository
 import ru.spb.iac.toris.egrulegrip.repository.IDataRepository
 import ru.spb.iac.toris.egrulegrip.repository.IEgrulEgripSvcRepository
 import ru.spb.iac.toris.egrulegrip.utils.HibernateUtil
@@ -17,14 +14,10 @@ import org.springframework.boot.test.context.SpringBootTest
 import ru.spb.iac.toris.egrulegrip.utils.Util
 import ru.spb.iac.toris.egrulegrip.model.*
 import spock.lang.Ignore
-import spock.lang.Narrative
 import spock.lang.Specification
 import spock.lang.Stepwise
-import spock.lang.Title
 import org.hibernate.Session
 
-//@Title("Application Specification")
-//@Narrative("Specification which beans are expected")
 @SpringBootTest
 @Stepwise
 class IntegratonParsingTest extends Specification {

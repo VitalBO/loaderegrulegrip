@@ -2,7 +2,6 @@ package ru.spb.iac.toris.egrulegrip.loader
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import ru.spb.iac.toris.egrulegrip.parser.IMainParser
 import ru.spb.iac.toris.egrulegrip.utils.HibernateUtil
 import spock.lang.Specification
 import org.hibernate.Session

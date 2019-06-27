@@ -4,15 +4,11 @@ import java.io.File;
 import java.util.HashMap;
 
 public interface IMainParser {
-//    public abstract void parse(File filePath);
+    HashMap parse(File filePath);
 
-    public abstract HashMap parse(File filePath);
+    HashMap parse(File[] filePath);
 
-    //public abstract void parse(File[] filePath);
+    HashMap parseFile(File filePath);
 
-    public abstract HashMap parse(File[] filePath);
-
-    public abstract HashMap parseFile(File filePath);
-
-    public abstract void parse();
+    void parse();
 }

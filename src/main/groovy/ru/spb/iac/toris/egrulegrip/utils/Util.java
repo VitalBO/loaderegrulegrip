@@ -3,7 +3,6 @@ package ru.spb.iac.toris.egrulegrip.utils;
 import groovy.util.slurpersupport.Attributes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 import ru.spb.iac.toris.egrulegrip.model.EgrulEgripEntity;
 
@@ -18,9 +17,6 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
-
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
 
 public abstract class Util {
 
@@ -50,7 +46,6 @@ public abstract class Util {
     public static Integer convertToInt(Attributes attribute) {
         if (attribute.text() == null) return null;
         if (Objects.equals(attribute.text(), "")) return null;
-        // = null;
         Integer integer = Integer.parseInt(attribute.text());
         return integer;
     }
