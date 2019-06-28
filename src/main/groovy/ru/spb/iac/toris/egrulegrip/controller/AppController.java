@@ -52,8 +52,8 @@ public class AppController {
         }
     }
 
-    @PostMapping("/egrul_egrip/upload/dir")
-    public ResponseEntity<String> uploadDataDir(@RequestParam("files") List<MultipartFile> files){
+    @PostMapping("/egrul_egrip/upload/files")
+    public ResponseEntity<String> uploadDataFiles(@RequestParam("files") List<MultipartFile> files){
         File[] convFiles = null;
         try{
             convFiles = new File[files.size()];
@@ -90,7 +90,6 @@ public class AppController {
             File destDir = new File (dest);
             return new ResponseEntity<>("\nВсего файлов: " + destDir.listFiles().length + "\n"
                     + Util.responseString(mainParser.parse(destDir)), null, HttpStatus.OK);
-            //mainParser.parse(new File(dest));
         } catch (ZipException e) {
             System.out.println("Error while parsing");
             System.out.println(e.getMessage());
@@ -98,6 +97,31 @@ public class AppController {
         }finally {
             if (zip != null) zip.delete();
             Util.deleteDirectory(new File(dest));
+        }
+    }
+
+    @PostMapping("/egrul_egrip/upload/dir")
+    public ResponseEntity<String> uploadDataDir(@RequestParam("files") List<MultipartFile> files){
+        File[] convFiles = null;
+        try{
+            convFiles = new File[files.size()];
+            int i =0;
+            for (MultipartFile file : files) {
+                convFiles[i]=Util.convert(file);
+                ++i;
+            }
+            return new ResponseEntity<>("\nВсего файлов: " + convFiles.length + "\n"
+                    + Util.responseString(mainParser.parse(convFiles)), null, HttpStatus.OK);
+        } catch (Exception e) {
+            System.out.println("Error while parsing");
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>("Error", null, HttpStatus.INTERNAL_SERVER_ERROR);
+        } finally {
+            if (convFiles != null) {
+                for (File tmp : convFiles) {
+                    tmp.delete();
+                }
+            }
         }
     }
 }

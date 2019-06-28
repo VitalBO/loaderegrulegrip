@@ -48,8 +48,7 @@ spring:
 spring:
     profiles: test
     datasource:
-#        url: jdbc:postgresql://10:146:136:40:8200/egrulegrip
-        url: jdbc:postgresql://localhost:5454/egrulegrip_test
+        url: jdbc:postgresql://10:146:136:40:8200/egrulegrip
         username: EGRUL_DEV2
         password: 123
 
@@ -69,4 +68,3 @@ spring:
         url: jdbc:postgresql://host:port/egrulegrip
         username: EGRUL_DEV2
         password: 123
-
