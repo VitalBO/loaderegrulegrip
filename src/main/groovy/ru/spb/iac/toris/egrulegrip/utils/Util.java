@@ -102,12 +102,17 @@ public abstract class Util {
 
     public static String responseString(Map<String,Integer> resultImport){
         int countSuccess = 0, countFails = 0;
+        String responseString;
         List<Entry<String, Integer>> list = new ArrayList<>(resultImport.entrySet());
-        for(int i = entitiesParsed; i < list.size(); ++i){
-            if(list.get(i).getValue() == 0) ++countSuccess;
-            else ++countFails;
+        responseString = "Новых записей добавлено: " + (list.size() - entitiesParsed);
+        if ((list.size() - entitiesParsed) > 0){
+            for(int i = entitiesParsed; i < list.size(); ++i){
+                if(list.get(i).getValue() == 0) ++countSuccess;
+                else ++countFails;
+            }
+            responseString += "\nSuccessful: "+countSuccess+" entries\nFailed: "+countFails+" entries";
         }
         entitiesParsed = list.size();
-        return  "Successful: "+countSuccess+" entries\nFailed: "+countFails+" entries";
+        return responseString;
     }
 }

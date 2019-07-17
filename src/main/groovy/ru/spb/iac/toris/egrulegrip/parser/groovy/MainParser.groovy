@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit
 
 @Service
 class MainParser implements  IMainParser{
-      private static Logger log = LogManager.getLogger(MainParser.class)
+    private static Logger log = LogManager.getLogger(MainParser.class)
 
     HashMap<String, Integer> resultImport = new HashMap<>()
 
@@ -31,7 +31,7 @@ class MainParser implements  IMainParser{
     private int threads = 1
     private int maxthreads = 10
     private int countFilesToMaxThreads
-    private String tmpDataDir;
+    private String tmpDataDir
 
     @Autowired
     MainParser(AppConfiguration appConfiguration) {
