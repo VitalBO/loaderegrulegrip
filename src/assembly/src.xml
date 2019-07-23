@@ -19,7 +19,7 @@
     </fileSets>
     <dependencySets>
         <dependencySet>
-            <outputDirectory>lib</outputDirectory>
+            <outputDirectory>library</outputDirectory>
         </dependencySet>
     </dependencySets>
 </assembly>
